@@ -1,0 +1,8 @@
+[
+  {"slug": "example-film-composer", "name": "Alex Rivera", "kind": "film",
+   "note": "I loved your score for the new series. I orchestrate for Ludwig Göransson and John Williams’s teams and would love to help on your next project, whenever the timing suits.",
+   "example": true},
+  {"slug": "example-artist", "name": "Sam Lee", "kind": "artist",
+   "note": "Your last record had so much space in it for strings. I was supervising orchestrator on Rosalía’s LUX with the London Symphony Orchestra, and I’d love to write something for your next one.",
+   "example": true}
+]

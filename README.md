@@ -16,3 +16,9 @@ Hosted on GitHub Pages; every push to `main` deploys automatically (.github/work
 Poster and album art is always pulled from online, never left as a placeholder.
 Add `"slug": "<image url>"` to `tools/art.json` and push; the "Fetch artwork" Action
 downloads it to `art/<slug>.jpg`. Pull, run `tools/sync_art.py`, set the credit's image key, rebuild.
+
+## Pitch pages (/for/<name>/)
+Personal pages for outreach, hidden from Google (noindex, not in the sitemap).
+Add an entry to `tools/pitches.json` — `slug`, `name`, `kind` (film | tv | artist | orchestra), `note` — then rebuild.
+The page leads with the credits for that kind of client and Kyle's note. Send the link in the pitch email;
+visits show up in analytics under /for/<slug>/.

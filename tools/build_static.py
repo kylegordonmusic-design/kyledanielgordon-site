@@ -102,6 +102,11 @@ PAGES = [
                          "description": "String and orchestral arrangements for pop and alternative artists: records, recording sessions and live shows."}]),
 ]
 
+# ---- pitch pages (/for/<slug>/), hidden from search
+for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):
+    PAGES.append(dict(src=f'Pitch-{pt["slug"]}.dc.html', out=f'for/{pt["slug"]}/index.html', path=f'/for/{pt["slug"]}/',
+                      title=f'For {pt["name"]}, Kyle Daniel Gordon', desc='A note from Kyle Daniel Gordon, orchestrator.', graph=[PERSON], noindex=True))
+
 FAVICON = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#1b1a17"/><g stroke="#f7f4ec" stroke-width="2.2"><path d="M10 20h44M10 27h44M10 34h44M10 41h44M10 48h44"/></g><ellipse cx="34" cy="37.5" rx="8" ry="5.5" fill="#e2581a" transform="rotate(-22 34 37.5)"/><path d="M41.2 35V13" stroke="#e2581a" stroke-width="2.6"/></svg>'''
 open(os.path.join(OUT, 'favicon.svg'), 'w').write(FAVICON)
 
@@ -124,6 +129,7 @@ def head(p):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{p['title']}</title>
 <meta name="description" content="{p['desc']}">
+{'<meta name="robots" content="noindex, nofollow">' if p.get('noindex') else ''}
 <link rel="canonical" href="{canon}">
 <meta name="author" content="Kyle Daniel Gordon">
 <meta property="og:type" content="website">
@@ -177,7 +183,7 @@ open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(h404)
 open(os.path.join(OUT, 'googleb7fd6123e4efb445.html'), 'w').write('google-site-verification: googleb7fd6123e4efb445.html')
 
 # ---- sitemap, robots, netlify config, readme
-urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><changefreq>monthly</changefreq><priority>{"1.0" if p["path"] == "/" else "0.8"}</priority></url>' for p in PAGES)
+urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><changefreq>monthly</changefreq><priority>{"1.0" if p["path"] == "/" else "0.8"}</priority></url>' for p in PAGES if not p.get('noindex'))
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
 open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n')
 open(os.path.join(OUT, 'netlify.toml'), 'w').write('''[build]

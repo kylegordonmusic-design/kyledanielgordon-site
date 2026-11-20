@@ -610,3 +610,57 @@ def popstrings():
 for fn, f in [('Home.dc.html', home), ('Project.dc.html', lux), ('WorkWith.dc.html', workwith), ('Oppenheimer.dc.html', oppenheimer), ('Live.dc.html', live), ('PopStrings.dc.html', popstrings)]:
     open(os.path.join(OUT, fn), 'w', encoding='utf-8').write(f().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
 print('written', len(P), 'projects,', sum(1 for p in P if p[5]), 'with Spotify links')
+# ------------------------------------------------------------------ PITCH PAGES (/for/<slug>/, noindex)
+PITCH_SETS = {
+    'film': ('Film &amp; television', ['Oppenheimer', 'Frozen II', 'Star Wars: The Last Jedi', 'Black Panther: Wakanda Forever', 'The Gilded Age', 'The Mandalorian']),
+    'tv': ('Television', ['The Gilded Age', 'Bridgerton', 'Star Trek: Strange New Worlds', 'Outer Banks', 'Bluey', 'The Book of Boba Fett']),
+    'artist': ('Records', ['LUX', 'People Pleaser', 'Grace Kelly with Strings: At The Movies', 'Magia en Dos', 'Romani: The Untold Story', 'Baby Shark 10th Anniversary']),
+    'orchestra': ('Records', ['LUX', 'Romani: The Untold Story', 'Baby Shark 10th Anniversary', 'Grace Kelly with Strings: At The Movies']),
+}
+PITCHES = json.load(open('/home/claude/kdg_scripts/pitches.json'))
+
+
+def pitch(pt):
+    head, titles = PITCH_SETS.get(pt['kind'], PITCH_SETS['film'])
+    ratio = '1 / 1' if pt['kind'] in ('artist', 'orchestra') else '2 / 3'
+    tiles = ''.join(tile(t, f'{BY[t][2]} · {BY[t][3]}' if BY[t][3] else BY[t][2], ratio, 'Project.dc.html' if t == 'LUX' else ('Oppenheimer.dc.html' if t == 'Oppenheimer' else None)) for t in titles if t in BY)
+    live = ''
+    if pt['kind'] == 'orchestra':
+        live = f'''<section aria-label="Live" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('B', 'Live', 'BBC Proms · San Francisco Symphony')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 18px">{prom_cards()}</div></section>'''
+    first = pt['name'].split()[0]
+    inner = f'''<header style="position: relative">
+{band('#120f22 0%, #3b2a6a 26%, #a9c3ff 54%, #eef1f8 78%', 300)}
+{nav('#eef1ff')}
+<div style="{WRAP}; padding-top: 220px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<span style="{MONO}; font-size: 12px; color: {MUTE}">For {pt['name']}</span>
+<h1 style="margin: 0; {SANS}; font-size: clamp(44px, 6vw, 88px); line-height: 0.95; letter-spacing: -0.05em; font-weight: 600">Hi {first}.</h1>
+</div>
+<div style="display: flex; flex-direction: column; gap: 18px">
+<p style="margin: 0; font-size: 20px; line-height: 1.5; max-width: 54ch">{pt['note']}</p>
+<span style="{MONO}; font-size: 12px; color: {MUTE}">— Kyle Daniel Gordon · orchestrator, arranger, conductor</span>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kylegordonmusic@gmail.com?subject=Hi%20Kyle%20%E2%80%94%20from%20{pt['name'].replace(' ', '%20')}">Reply to Kyle</a><a class="btn line" href="Home.dc.html#credits">All credits</a></div>
+</div>
+</div>
+</header>
+
+<section aria-label="Selected work" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('A', head, 'Selected for you')}
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 46%), 1fr)); gap: 32px 24px">{tiles}</div>
+</section>
+{live}
+
+<section aria-label="LUX" style="{WRAP}; margin-top: 110px">
+<a href="Project.dc.html" class="press" style="border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: {C['tang']}">Rosalía · LUX · 6 Latin Grammys · 10 Grammy nominations</span>
+<span class="h" style="{SANS}; font-size: clamp(24px, 3vw, 36px); line-height: 1.15; letter-spacing: -0.03em">Supervising orchestrator on LUX, recorded with the London Symphony Orchestra {ARROW}</span></a>
+</section>
+
+{footer('#a9c3ff 30%, #3b2a6a 62%, #120f22 100%')}'''
+    return page(f'For {pt["name"]}, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=3200)
+
+
+for pt in PITCHES:
+    open(os.path.join(OUT, f'Pitch-{pt["slug"]}.dc.html'), 'w', encoding='utf-8').write(
+        pitch(pt).replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
