@@ -35,6 +35,13 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 </script>
 <style>@view-transition{navigation:auto}</style>'''
 
+CLARITY = '''<script>
+/* Microsoft Clarity (heatmaps + recordings), loaded only after the page is idle so it never slows the first screen */
+addEventListener('load',function(){var go=function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","zgts1iwdii");
+if(location.pathname.indexOf('/for/')===0){clarity('set','pitch',location.pathname.split('/')[2]||'')}};
+('requestIdleCallback' in window)?requestIdleCallback(go,{timeout:2500}):setTimeout(go,1500)});
+</script>'''
+
 BEACON = '''<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "74d2ccc3aba8442e8ffe162baef5f751"}'></script>'''
 
 SW_REG = '''<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js')})}</script>'''
@@ -110,7 +117,7 @@ def optimize(out):
         vp = head.find('meta', attrs={'name': 'viewport'}) or head.find('meta')
         vp.insert_after(BeautifulSoup(FONT_CSS, 'html.parser'))
         head.append(BeautifulSoup(SPECULATION + SW_REG, 'html.parser'))
-        soup.body.append(BeautifulSoup(BEACON, 'html.parser'))
+        soup.body.append(BeautifulSoup(BEACON + CLARITY, 'html.parser'))
         open(p, 'w', encoding='utf-8').write(str(soup))
     # grain texture as WebP (lossless) and point CSS at it
     g = os.path.join(out, 'img', 'grain.png')
