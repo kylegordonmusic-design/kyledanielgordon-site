@@ -231,3 +231,8 @@ Hosted on Netlify; every push to `main` deploys automatically.
 - `img/` images (file names carry project + name for search)
 ''')
 print('built', sorted(os.path.relpath(os.path.join(d, f), OUT) for d, _, fs in os.walk(OUT) for f in fs if not f.endswith('.jpg')))
+
+# ---- speed pass: responsive WebP, self-hosted fonts, instant navigation, service worker
+sys.path.insert(0, '/home/claude/kdg_scripts')
+import speed
+speed.optimize(OUT)
