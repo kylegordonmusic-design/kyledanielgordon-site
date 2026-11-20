@@ -31,7 +31,7 @@ if tw <= w:
 im.resize((1200, 630), Image.LANCZOS).save(os.path.join(OUT, 'img', 'kyle-daniel-gordon-orchestrator-share.jpg'), quality=84)
 OG = SITE + '/img/kyle-daniel-gordon-orchestrator-share.jpg'
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -81,6 +81,25 @@ PAGES = [
          desc='Orchestration, pop string arrangements and conducting for composers, artists and labels. Orchestrator on Rosalía’s LUX, Oppenheimer and the BBC Proms.',
          graph=[PERSON, {"@type": "Service", "serviceType": "Orchestration and string arrangements", "provider": {"@id": SITE + "/#kyle"},
                          "areaServed": "Worldwide", "description": "Orchestration, pop string arrangements and conducting for film, television, records and live shows."}]),
+    dict(src='Oppenheimer.dc.html', out='work/oppenheimer/index.html', path='/work/oppenheimer/',
+         title='Oppenheimer Orchestration, Kyle Daniel Gordon',
+         desc='Kyle Daniel Gordon, orchestrator on Ludwig Göransson’s Academy Award-winning score for Christopher Nolan’s Oppenheimer (2023).',
+         graph=[PERSON, {"@type": "Movie", "name": "Oppenheimer", "dateCreated": "2023", "director": {"@type": "Person", "name": "Christopher Nolan"},
+                         "musicBy": {"@type": "Person", "name": "Ludwig Göransson"}, "contributor": {"@id": SITE + "/#kyle"},
+                         "image": SITE + blob2path[A['oppenheimer-film-poster']], "sameAs": "https://www.imdb.com/title/tt15398776/"},
+                {"@type": "BreadcrumbList", "itemListElement": [
+             {"@type": "ListItem", "position": 1, "name": "Work", "item": SITE + "/#work"},
+             {"@type": "ListItem", "position": 2, "name": "Oppenheimer", "item": SITE + "/work/oppenheimer/"}]}],
+         og=SITE + blob2path[A['oppenheimer-film-poster']]),
+    dict(src='Live.dc.html', out='live/index.html', path='/live/',
+         title='BBC Proms Arranger and Organist, Kyle Daniel Gordon',
+         desc='Arrangements for the BBC Proms with the BBC Concert Orchestra: Bond and Beyond (Radiohead’s “Spectre” on organ), Marvin Gaye, Soul Revolution. The Little Bird premiered by the San Francisco Symphony.',
+         graph=[PERSON] + EVENTS),
+    dict(src='PopStrings.dc.html', out='pop-strings/index.html', path='/pop-strings/',
+         title='Pop String Arrangements, Kyle Daniel Gordon',
+         desc='String and orchestral arrangements for pop artists, from Rosalía’s LUX with the London Symphony Orchestra to records, sessions and live shows.',
+         graph=[PERSON, {"@type": "Service", "serviceType": "Pop string arrangements", "provider": {"@id": SITE + "/#kyle"}, "areaServed": "Worldwide",
+                         "description": "String and orchestral arrangements for pop and alternative artists: records, recording sessions and live shows."}]),
 ]
 
 FAVICON = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#1b1a17"/><g stroke="#f7f4ec" stroke-width="2.2"><path d="M10 20h44M10 27h44M10 34h44M10 41h44M10 48h44"/></g><ellipse cx="34" cy="37.5" rx="8" ry="5.5" fill="#e2581a" transform="rotate(-22 34 37.5)"/><path d="M41.2 35V13" stroke="#e2581a" stroke-width="2.6"/></svg>'''

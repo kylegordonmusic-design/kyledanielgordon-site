@@ -145,7 +145,7 @@ def band(grad, h=300):
 
 
 def nav(color, current=''):
-    links = [('Work', 'Home.dc.html#work'), ('LUX', 'Project.dc.html'), ('Credits', 'Home.dc.html#credits'),
+    links = [('Work', 'Home.dc.html#work'), ('LUX', 'Project.dc.html'), ('Live', 'Live.dc.html'), ('Credits', 'Home.dc.html#credits'),
              ('About', 'Home.dc.html#about'), ('Work with Kyle', 'WorkWith.dc.html')]
     ls = ''.join(f'<a class="cl" href="{h}" style="padding: 10px 0"{" aria-current=\"page\"" if n == current else ""}>{n}</a>' for n, h in links)
     return (f'<nav aria-label="Primary" style="{WRAP}; padding-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; '
@@ -211,20 +211,10 @@ def tile(title, sub, ratio, href_title=None):
             f'<span style="{MONO}; font-size: 11px; color: {MUTE}">{sub}</span></div></div>')
 
 
-AWARDS = [('6', 'Latin Grammys', 'Including Album of the Year, 2026'), ('10', 'Grammy nominations', 'Including Album of the Year, 2027')]
-
-
-# ------------------------------------------------------------------ HOME
-def home():
-    posters = ''.join(tile(t, f'{BY[t][1]} · {s}', '2 / 3') for t, s in
-                      [('Oppenheimer', 'Orchestrator'), ('Bridgerton', 'Orchestration'), ('The Mandalorian', 'Orchestration'), ('Babylon', 'Orchestration')])
-    recs = ''.join(tile(t, s, '1 / 1') for t, s in
-                   [('Romani: The Untold Story', 'Billboard #1 Classical Album, 2024'), ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'),
-                    ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('People Pleaser', 'Mollie Elizabeth · arranger, 2026')])
-    wall = ''.join(cov(t, BY[t][4], '2 / 3', BY[t][5], 'Play', grad=GOLD) for t in POPULAR)
-    proms = ''.join(f'''<article class="prom" aria-label="{ven} {y}: {t}">
+def prom_cards():
+    return ''.join(f'''<article class="prom" aria-label="{ven} {y}: {t}">
 <div class="face" style="position: relative; aspect-ratio: 4 / 3; background: {g}; overflow: hidden">{grain(0.42)}
-<span style="position: absolute; left: 18px; top: 16px; {MONO}; font-size: 11px">{ven}</span>
+<span style="position: absolute; left: 18px; top: 16px; z-index: 1; max-width: 46%; {MONO}; font-size: 11px; line-height: 1.5">{ven}</span>
 <span style="position: absolute; right: 16px; top: 4px; {SANS}; font-size: 120px; line-height: 1; letter-spacing: -0.06em; opacity: 0.9">{y[2:]}</span>
 <h3 style="position: absolute; left: 18px; right: 18px; bottom: 16px; margin: 0; {COND}; font-size: 38px; line-height: 0.95">{t}</h3>
 </div>
@@ -233,6 +223,20 @@ def home():
 <span style="{MONO}; font-size: 11px; line-height: 1.5; color: #cfc6b6">{d}</span>
 {f'<a href="{v[1]}" style="{MONO}; font-size: 11px; color: {C["celery"]}; padding: 8px 0 0; text-transform: uppercase; letter-spacing: .04em; display: inline-flex; align-items: center; gap: 8px">{PLAY} {v[0]}</a>' if v else ''}
 </div></article>''' for y, t, r, d, g, v, ven in PROMS)
+
+
+AWARDS = [('6', 'Latin Grammys', 'Including Album of the Year, 2026'), ('10', 'Grammy nominations', 'Including Album of the Year, 2027')]
+
+
+# ------------------------------------------------------------------ HOME
+def home():
+    posters = ''.join(tile(t, f'{BY[t][1]} · {s}', '2 / 3', 'Oppenheimer.dc.html' if t == 'Oppenheimer' else None) for t, s in
+                      [('Oppenheimer', 'Orchestrator'), ('Bridgerton', 'Orchestration'), ('The Mandalorian', 'Orchestration'), ('Babylon', 'Orchestration')])
+    recs = ''.join(tile(t, s, '1 / 1') for t, s in
+                   [('Romani: The Untold Story', 'Billboard #1 Classical Album, 2024'), ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'),
+                    ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('People Pleaser', 'Mollie Elizabeth · arranger, 2026')])
+    wall = ''.join(cov(t, BY[t][4], '2 / 3', BY[t][5], 'Play', grad=GOLD) for t in POPULAR)
+    proms = prom_cards()
     press = ''.join(f'''<a class="press" href="{u}"><span style="{MONO}; font-size: 11px; color: {MUTE}">{o}</span>
 <span class="h" style="{SANS}; font-size: 22px; line-height: 1.2; letter-spacing: -0.02em">{h} {ARROW}</span>
 <span style="font-size: 15px; line-height: 1.45; color: #3a362f">{dsc}</span></a>''' for o, h, dsc, u in PRESS)
@@ -293,7 +297,7 @@ def home():
 </section>
 
 <section id="live" aria-label="Live" style="{WRAP}; margin-top: 140px; display: flex; flex-direction: column; gap: 36px">
-{staff_head('C', 'Live', 'BBC Proms · San Francisco Symphony')}
+{staff_head('C', 'Live', '<a class="cl" href="Live.dc.html" style="padding: 10px 0">BBC Proms · San Francisco Symphony →</a>')}
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px">
 {proms}</div>
 </section>
@@ -418,7 +422,7 @@ def workwith():
             ('Conducting', ['Recording sessions', 'Live concerts', 'Los Angeles, Nashville and London', 'Trained in jazz and classical'])]
     cap = ''.join(f'''<div style="display: flex; flex-direction: column; gap: 16px; padding-top: 18px; border-top: 1.5px solid {INK}">
 <span style="{MONO}; font-size: 12px; color: {MUTE}">0{i + 1}</span>
-<h3 style="margin: 0; {COND}; font-size: clamp(40px, 4.4vw, 60px); line-height: 0.92; color: {[C['sky'], C['mag'], C['tang']][i]}">{h}</h3>
+<h3 style="margin: 0; {COND}; font-size: clamp(40px, 4.4vw, 60px); line-height: 0.92; color: {[C['sky'], C['mag'], C['tang']][i]}">{f'<a href="PopStrings.dc.html" class="cl">{h}</a>' if h == 'Pop strings' else h}</h3>
 <ul style="margin: 0; padding: 0; list-style: none; {MONO}; font-size: 12px">{''.join(f'<li style="padding: 9px 0; border-top: 1px solid {RULE}">{x}</li>' for x in items)}</ul>
 </div>''' for i, (h, items) in enumerate(caps))
     steps = [('Sketch to score', 'A mockup, sketch or demo becomes a full score written for the players in the room, in the composer’s voice.'),
@@ -470,6 +474,139 @@ def workwith():
     return page('Work with Kyle Daniel Gordon', root(inner), CSS, PAPER, h=4300)
 
 
-for fn, f in [('Home.dc.html', home), ('Project.dc.html', lux), ('WorkWith.dc.html', workwith)]:
+# ------------------------------------------------------------------ EXTRA PAGES (SEO)
+def crumbs(*parts):
+    links = ' / '.join(parts)
+    return f'<span style="{MONO}; font-size: 12px; color: {MUTE}">{links}</span>'
+
+
+def spec(rows):
+    sp = ''.join(f'<dt style="padding: 11px 18px 11px 0; color: {MUTE}; border-top: 1px solid {RULE}">{a}</dt><dd style="margin: 0; padding: 11px 0; border-top: 1px solid {RULE}">{b}</dd>' for a, b in rows)
+    return f'<dl style="margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); {MONO}; font-size: 12px; border-bottom: 1px solid {RULE}">{sp}</dl>'
+
+
+def hero_title(kicker, big, size='clamp(76px, 12vw, 190px)'):
+    return (f'<h1 style="margin: 0; display: flex; flex-direction: column; gap: 6px"><span style="{MONO}; font-size: 14px; font-weight: 400">{kicker}</span>'
+            f'<span style="{COND}; font-size: {size}; line-height: 0.86; letter-spacing: -0.01em">{big}</span></h1>')
+
+
+def next_link(label, title, href):
+    return f'''<section aria-label="Next" style="{WRAP}; margin-top: 140px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 40px; border-top: 1px solid {INK}; padding-top: 22px">
+<span style="{MONO}; font-size: 12px; color: {MUTE}">{label}</span>
+<a href="{href}" class="cl" style="{COND}; font-size: clamp(34px, 5vw, 64px); line-height: 1">{title}</a>
+</div></section>'''
+
+
+def oppenheimer():
+    o = BY['Oppenheimer']
+    more = ''.join(tile(t, s, '2 / 3') for t, s in [('Black Panther: Wakanda Forever', 'Ludwig Göransson · orchestration'),
+                                                    ('The Mandalorian', 'Ludwig Göransson · orchestration')]
+                   if t in BY)
+    inner = f'''<header style="position: relative">
+{band('#050302 0%, #3a1406 24%, #c2521a 50%, #efc9a0 76%', 320)}
+{nav('#f6e8d8')}
+<div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: start">
+<div class="rise" style="display: flex; flex-direction: column; gap: 22px">
+{crumbs('<a class="cl" href="Home.dc.html#work" style="padding: 10px 0">Work</a>', 'Film', 'Oppenheimer')}
+{hero_title('Christopher Nolan · 2023', 'Oppenheimer', 'clamp(46px, 5.4vw, 84px)')}
+<p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 42ch">Orchestration on Ludwig Göransson’s Academy Award-winning score.</p>
+<p style="margin: 0; font-size: 17px; max-width: 58ch">Kyle Daniel Gordon was an orchestrator on Ludwig Göransson’s score for <em>Oppenheimer</em>, Christopher Nolan’s 2023 film about J. Robert Oppenheimer. The score won the Academy Award for Best Original Score.</p>
+<p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">Nolan asked for a score led by the solo violin, which he heard as Oppenheimer’s own voice. Around two and a half hours of music runs through the three-hour film, and the orchestra recorded it in five days.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{o[5]}">{PLAY}Listen on Spotify</a><a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
+</div>
+<div class="rise" style="animation-delay: .15s; display: flex; flex-direction: column; gap: 22px; max-width: 460px">
+{cov('Oppenheimer', o[4], '2 / 3', o[5])}
+{spec([('Film', 'Oppenheimer (2023)'), ('Director', 'Christopher Nolan'), ('Composer', 'Ludwig Göransson'), ('Orchestration', 'Kyle Daniel Gordon'), ('Studio', 'Universal Pictures'), ('Recognition', 'Academy Award, Best Original Score')])}
+</div>
+</div>
+</header>
+
+<section aria-label="With Ludwig Göransson" style="{WRAP}; margin-top: 130px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('A', 'More with Ludwig Göransson', 'Film &amp; television')}
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 46%), 1fr)); gap: 32px 24px">{more}</div>
+</section>
+
+{next_link('Next — Record', 'Rosalía · LUX', 'Project.dc.html')}
+
+{footer('#c2521a 30%, #3a1406 62%, #050302 100%')}'''
+    return page('Oppenheimer orchestration, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=3600)
+
+
+def live():
+    reviews = ''.join(f'''<a class="press" href="{u}"><span style="{MONO}; font-size: 11px; color: {MUTE}">{o}</span>
+<span class="h" style="{SANS}; font-size: 22px; line-height: 1.2; letter-spacing: -0.02em">{h} {ARROW}</span>
+<span style="font-size: 15px; line-height: 1.45; color: #3a362f">{dsc}</span></a>''' for o, h, dsc, u in PRESS if 'Proms' in h)
+    shows = ''.join(tile(t, s, '1 / 1') for t, s in [('Hawthorne Heights', 'Orchestral show · arranger'), ('Escape the Fate', 'Orchestral show · arranger')] if t in BY and BY[t][4])
+    inner = f'''<header style="position: relative">
+{band('#2b0f2a 0%, #8e2a5e 26%, #f08a5d 52%, #f4dcc4 76%', 320)}
+{nav('#fbeee6', 'Live')}
+<div style="{WRAP}; padding-top: 230px; display: flex; flex-direction: column; gap: 22px" class="rise">
+{crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Live')}
+{hero_title('BBC Proms · San Francisco Symphony', 'Live')}
+<p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 52ch">Arrangements, new music and the occasional turn at the Royal Albert Hall organ.</p>
+<p style="margin: 0; font-size: 17px; max-width: 64ch">At the BBC Proms, Kyle Daniel Gordon was lead orchestrator on <em>Soul Revolution</em> (2025) with the BBC Concert Orchestra, writing its finale and playing the Royal Albert Hall organ. In 2026 he arranged for <em>Bond and Beyond</em>, performing his arrangement of Radiohead’s “Spectre” on the organ, and contributed arrangements to <em>Marvin Gaye: Prince of Soul</em>. His piece <em>The Little Bird</em> was premiered by the San Francisco Symphony in May 2026.</p>
+</div>
+</header>
+
+<section aria-label="Concerts" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('A', 'Concerts', 'Newest first')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 18px">{prom_cards()}</div>
+</section>
+
+<section aria-label="Reviews" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('B', 'Reviews', 'Press')}
+<div style="display: flex; flex-direction: column">{reviews}</div>
+</section>
+
+{next_link('Hire for a concert', 'Work with Kyle', 'WorkWith.dc.html')}
+
+{footer('#f08a5d 30%, #8e2a5e 62%, #2b0f2a 100%')}'''
+    return page('Live: BBC Proms arrangements and premieres, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=3400)
+
+
+def popstrings():
+    recs = ''.join(tile(t, s, '1 / 1', 'Project.dc.html' if t == 'LUX' else None) for t, s in
+                   [('LUX', 'Rosalía · supervising orchestrator · LSO'), ('People Pleaser', 'Mollie Elizabeth · arranger'),
+                    ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('Magia en Dos', 'Ariza · orchestrator'),
+                    ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'), ('Romani: The Untold Story', 'Billboard #1 Classical Album')])
+    steps = ''.join(f'''<li style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding: 18px 0; border-top: 1px solid {RULE}">
+<span style="{MONO}; font-size: 12px; color: {MUTE}">0{i + 1}</span><span style="display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 18px; letter-spacing: -0.01em">{a}</strong><span style="color: #3a362f">{b}</span></span></li>''' for i, (a, b) in enumerate([
+        ('Send the song', 'A demo, stems or a rough mix is enough. Tell him the size: a string quartet, a section, or a full orchestra.'),
+        ('Arrangement', 'Strings written to sit around the vocal and the production, with mockups to sign off before anyone plays a note.'),
+        ('Session', 'Players booked and parts prepared for Los Angeles, Nashville or London (AIR, Abbey Road), or for remote recording.'),
+        ('Stage', 'The same charts adapted for live shows, from a string section on tour to a symphony orchestra.')]))
+    inner = f'''<header style="position: relative">
+{band('#0e1a12 0%, #31502c 24%, #a8b85a 50%, #eef0cf 76%', 320)}
+{nav('#f1f4e0')}
+<div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: end">
+<div class="rise" style="display: flex; flex-direction: column; gap: 22px">
+{crumbs('<a class="cl" href="WorkWith.dc.html" style="padding: 10px 0">Work with Kyle</a>', 'Pop strings')}
+{hero_title('String &amp; orchestral arrangements for artists', 'Pop strings', 'clamp(64px, 9vw, 150px)')}
+</div>
+<div class="rise" style="animation-delay: .1s; display: flex; flex-direction: column; gap: 18px">
+<p style="margin: 0; font-size: 18px; max-width: 58ch">Kyle Daniel Gordon writes string and orchestral arrangements for pop and alternative artists. He was supervising orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and arranges for records, sessions and live shows.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kylegordonmusic@gmail.com?subject=String%20arrangement">Email Kyle</a><a class="btn line" href="Project.dc.html">The LUX story</a></div>
+</div>
+</div>
+</header>
+
+<section aria-label="Records" style="{WRAP}; margin-top: 120px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('A', 'Records', 'Strings &amp; orchestra')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 46%), 1fr)); gap: 32px 24px">{recs}</div>
+</section>
+
+<section aria-label="How it works" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('B', 'How it works', 'Demo to stage')}
+<ol style="margin: 0; padding: 0; list-style: none; font-size: 16px; border-bottom: 1px solid {RULE}">{steps}</ol>
+</section>
+
+{next_link('Live', 'BBC Proms &amp; premieres', 'Live.dc.html')}
+
+{footer('#a8b85a 30%, #31502c 62%, #0e1a12 100%')}'''
+    return page('Pop string arrangements, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=3800)
+
+
+for fn, f in [('Home.dc.html', home), ('Project.dc.html', lux), ('WorkWith.dc.html', workwith), ('Oppenheimer.dc.html', oppenheimer), ('Live.dc.html', live), ('PopStrings.dc.html', popstrings)]:
     open(os.path.join(OUT, fn), 'w', encoding='utf-8').write(f().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
 print('written', len(P), 'projects,', sum(1 for p in P if p[5]), 'with Spotify links')
