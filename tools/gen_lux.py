@@ -191,7 +191,7 @@ def footer(grad):
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; {MONO}; font-size: 11px; border-top: 1px solid rgba(251,248,242,0.4); padding-top: 18px">
 <span>Kyle Daniel Gordon · Orchestrator, arranger, conductor · Los Angeles</span>
-<span style="display: flex; gap: 26px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a></span>
+<span style="display: flex; gap: 26px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a></span>
 </div>
 </div>
 </footer>'''

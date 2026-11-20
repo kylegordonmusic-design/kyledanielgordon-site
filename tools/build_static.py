@@ -51,7 +51,7 @@ PERSON = {
     "subjectOf": [{"@type": "NewsArticle", "headline": "'Art for Art's Sake': Rosalía's Collaborators Reflect on 'Lux'",
                    "publisher": {"@type": "Organization", "name": "Rolling Stone"},
                    "url": "https://www.rollingstone.com/music/music-features/rosalia-lux-collaborators-making-of-1235470741/"}],
-    "sameAs": ["https://www.imdb.com/name/nm8773349/", "https://www.instagram.com/kylegordonmusic/", "https://musicbrainz.org/artist/d642a287-31a5-409d-aaf6-33e91929405c", "https://www.discogs.com/artist/13136118-Kyle-Gordon-7", "https://www.allmusic.com/artist/kyle-daniel-gordon-mn0005019152", "https://www.wikidata.org/wiki/Q136366079"]}
+    "sameAs": ["https://www.imdb.com/name/nm8773349/", "https://www.instagram.com/kylegordonmusic/", "https://musicbrainz.org/artist/d642a287-31a5-409d-aaf6-33e91929405c", "https://www.discogs.com/artist/13136118-Kyle-Gordon-7", "https://www.allmusic.com/artist/kyle-daniel-gordon-mn0005019152", "https://www.wikidata.org/wiki/Q136366079", "https://www.youtube.com/@kylegordonmusic"]}
 ALBUM = {
     "@type": "MusicAlbum", "@id": SITE + "/work/rosalia-lux/#album", "name": "LUX",
     "byArtist": {"@type": "MusicGroup", "name": "Rosalía"}, "datePublished": "2025-11-07",
