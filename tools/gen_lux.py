@@ -155,7 +155,7 @@ def nav(color, current=''):
 
 
 def cov(title, key, ratio, href, label='Play on Spotify', extra='', grad=None):
-    alt = f'{title} artwork'
+    alt = f'{title} poster' if ratio == '2 / 3' else (f'{title} album cover' if ratio == '1 / 1' else f'{title} artwork')
     img = f'<img src="{A[key]}" alt="{alt}" loading="lazy">' if key else ''
     inner = img if key else (f'<span aria-hidden="true" style="position: absolute; inset: 0; background: {grad or G[7]}">{grain(0.42)}</span>'
                              f'<span style="position: absolute; left: 10px; top: 9px; {MONO}; font-size: 9px; color: rgba(251,248,242,.8)">HBO</span>'

@@ -42,6 +42,7 @@ PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
     "disambiguatingDescription": "Los Angeles orchestrator, arranger and conductor (Rosalía's LUX, Oppenheimer, BBC Proms). Not the comedian Kyle Gordon.",
     "jobTitle": ["Orchestrator", "Arranger", "Conductor"],
+    "hasOccupation": [{"@type": "Occupation", "name": n, "occupationLocation": {"@type": "City", "name": "Los Angeles"}} for n in ["Orchestrator", "Music arranger", "Conductor"]],
     "knowsAbout": ["Orchestration", "String arrangements", "Pop strings", "Film scoring", "Conducting"],
     "url": SITE + "/", "image": OG, "email": "mailto:kylegordonmusic@gmail.com",
     "homeLocation": {"@type": "Place", "name": "Los Angeles, California"},
@@ -98,7 +99,7 @@ PAGES = [
     dict(src='ProjectES.dc.html', out='es/rosalia-lux/index.html', path='/es/rosalia-lux/', lang='es',
          alternates={'en': '/work/rosalia-lux/', 'es': '/es/rosalia-lux/'},
          title='Rosalía, LUX: orquestaciones de Kyle Daniel Gordon',
-         desc='Kyle Daniel Gordon fue el orquestador supervisor de LUX de Rosalía, grabado con la Orquesta Sinfónica de Londres en los AIR Studios. Seis Latin Grammy, diez nominaciones al Grammy.',
+         desc='Kyle Daniel Gordon fue el orquestador supervisor de LUX de Rosalía, grabado con la Orquesta Sinfónica de Londres. Seis Latin Grammy y diez nominaciones al Grammy.',
          graph=[PERSON, ALBUM], og=ogi('rosalia-lux')),
     dict(src='WorkWith.dc.html', out='work-with-kyle/index.html', path='/work-with-kyle/',
          title='Hire an Orchestrator: Kyle Daniel Gordon',
@@ -117,7 +118,7 @@ PAGES = [
          og=ogi('oppenheimer')),
     dict(src='Live.dc.html', out='live/index.html', path='/live/',
          title='BBC Proms Arranger and Organist, Kyle Daniel Gordon',
-         desc='Arrangements for the BBC Proms with the BBC Concert Orchestra: Bond and Beyond (Radiohead’s “Spectre” on organ), Marvin Gaye, Soul Revolution. The Little Bird premiered by the San Francisco Symphony.',
+         desc='Arranger and organist at the BBC Proms: Bond and Beyond (Radiohead’s “Spectre”), Soul Revolution, Marvin Gaye. The Little Bird premiered by the San Francisco Symphony.',
          graph=[PERSON] + EVENTS, og=ogi('live')),
     dict(src='PopStrings.dc.html', out='pop-strings/index.html', path='/pop-strings/',
          title='Pop String Arrangements, Kyle Daniel Gordon',
@@ -217,8 +218,14 @@ open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(h404)
 open(os.path.join(OUT, 'googleb7fd6123e4efb445.html'), 'w').write('google-site-verification: googleb7fd6123e4efb445.html')
 
 # ---- sitemap, robots, netlify config, readme
-urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>{"1.0" if p["path"] == "/" else "0.8"}</priority></url>' for p in PAGES if not p.get('noindex'))
-open(os.path.join(OUT, 'sitemap.xml'), 'w').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
+PHOTOS = {'/': [SITE + blob2path[A['conducting-london-symphony-orchestra']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], SITE + blob2path[A['rosalia-lux-album']]],
+          '/work/rosalia-lux/': [SITE + blob2path[A['rosalia-lux-album']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']]],
+          '/work/oppenheimer/': [SITE + blob2path[A['oppenheimer-film-poster']]],
+          '/press/': [SITE + blob2path[A['conducting-london-symphony-orchestra']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']]]}
+urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>{"1.0" if p["path"] == "/" else "0.8"}</priority>'
+               + ''.join(f'<image:image><image:loc>{i}</image:loc></image:image>' for i in PHOTOS.get(p['path'], [p.get('og', OG)]))
+               + '</url>' for p in PAGES if not p.get('noindex'))
+open(os.path.join(OUT, 'sitemap.xml'), 'w').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">{urls}</urlset>\n')
 open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
 open(os.path.join(OUT, INDEXNOW_KEY + '.txt'), 'w').write(INDEXNOW_KEY)
 open(os.path.join(OUT, 'llms.txt'), 'w', encoding='utf-8').write(open('/home/claude/kdg_scripts/llms.txt', encoding='utf-8').read())
