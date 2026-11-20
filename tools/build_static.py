@@ -165,6 +165,7 @@ def head(p):
 {'<meta name="robots" content="noindex, nofollow">' if p.get('noindex') else ''}
 <link rel="canonical" href="{canon}">{''.join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{u}">' for l, u in p.get('alternates', {}).items())}{('<link rel="alternate" hreflang="x-default" href="' + SITE + p['alternates']['en'] + '">') if p.get('alternates') else ''}
 <meta name="author" content="Kyle Daniel Gordon">
+<meta name="msvalidate.01" content="D4D450FFF230A7CE8C4381C45F062F39">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kyle Daniel Gordon">
 <meta property="og:title" content="{p['title']}">
