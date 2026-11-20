@@ -44,9 +44,7 @@ self.addEventListener('fetch', e => {
   const asset = /\\/(img|fonts)\\//.test(u.pathname) || u.host === 'fonts.gstatic.com' || u.host === 'fonts.googleapis.com';
   if (asset) {  // cache first: images and fonts never change under the same name
     e.respondWith(caches.match(r).then(hit => hit || fetch(r).then(res => { const c = res.clone(); caches.open('kdg-' + V).then(x => x.put(r, c)); return res; })));
-  } else if (u.origin === location.origin && r.mode === 'navigate') {  // pages: fresh from network, cached copy if offline/slow
-    e.respondWith(fetch(r).then(res => { const c = res.clone(); caches.open('kdg-' + V).then(x => x.put(r, c)); return res; }).catch(() => caches.match(r)));
-  }
+  }  // pages are left to the browser so hover prefetch/prerender stays instant
 });
 '''
 
@@ -115,7 +113,7 @@ def optimize(out):
         for p in pages:
             s = open(p, encoding='utf-8').read().replace('/img/grain.png', '/img/grain.webp')
             open(p, 'w', encoding='utf-8').write(s)
-    core = ['/', '/img/grain.webp', '/favicon.svg', '/fonts/archivo-62-800.woff2', '/fonts/dm-mono-400.woff2', '/fonts/instrument-sans.woff2']
+    core = ['/img/grain.webp', '/favicon.svg', '/fonts/archivo-62-800.woff2', '/fonts/dm-mono-400.woff2', '/fonts/instrument-sans.woff2']
     ver = hashlib.sha1(''.join(open(p, 'rb').read().hex()[:2000] for p in pages).encode()).hexdigest()[:10]
     open(os.path.join(out, 'sw.js'), 'w').write(SW % (ver, json.dumps(core)))
     print('speed: pages', len(pages), 'images', len(cache))
