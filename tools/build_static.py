@@ -30,8 +30,13 @@ if tw <= w:
     im = im.crop(((w - tw) // 2, 0, (w - tw) // 2 + tw, h))
 im.resize((1200, 630), Image.LANCZOS).save(os.path.join(OUT, 'img', 'kyle-daniel-gordon-orchestrator-share.jpg'), quality=84)
 OG = SITE + '/img/kyle-daniel-gordon-orchestrator-share.jpg'
+OGDIR = '/home/claude/kdg_scripts/og'
+for f in os.listdir(OGDIR):
+    shutil.copy(os.path.join(OGDIR, f), os.path.join(OUT, 'img', f'share-{f[:-4]}-kyle-daniel-gordon.jpg'))
+def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg'
+OG = ogi('home')
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -75,12 +80,12 @@ PAGES = [
          graph=[PERSON, ALBUM, {"@type": "BreadcrumbList", "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Work", "item": SITE + "/#work"},
              {"@type": "ListItem", "position": 2, "name": "Rosalía, LUX", "item": SITE + "/work/rosalia-lux/"}]}],
-         og=SITE + blob2path[A['rosalia-lux-album']]),
+         og=ogi('rosalia-lux')),
     dict(src='WorkWith.dc.html', out='work-with-kyle/index.html', path='/work-with-kyle/',
          title='Hire an Orchestrator: Kyle Daniel Gordon',
          desc='Orchestration, pop string arrangements and conducting for composers, artists and labels. Orchestrator on Rosalía’s LUX, Oppenheimer and the BBC Proms.',
          graph=[PERSON, {"@type": "Service", "serviceType": "Orchestration and string arrangements", "provider": {"@id": SITE + "/#kyle"},
-                         "areaServed": "Worldwide", "description": "Orchestration, pop string arrangements and conducting for film, television, records and live shows."}]),
+                         "areaServed": "Worldwide", "description": "Orchestration, pop string arrangements and conducting for film, television, records and live shows."}], og=ogi('work-with-kyle')),
     dict(src='Oppenheimer.dc.html', out='work/oppenheimer/index.html', path='/work/oppenheimer/',
          title='Oppenheimer Orchestration, Kyle Daniel Gordon',
          desc='Kyle Daniel Gordon, orchestrator on Ludwig Göransson’s Academy Award-winning score for Christopher Nolan’s Oppenheimer (2023).',
@@ -90,22 +95,26 @@ PAGES = [
                 {"@type": "BreadcrumbList", "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Work", "item": SITE + "/#work"},
              {"@type": "ListItem", "position": 2, "name": "Oppenheimer", "item": SITE + "/work/oppenheimer/"}]}],
-         og=SITE + blob2path[A['oppenheimer-film-poster']]),
+         og=ogi('oppenheimer')),
     dict(src='Live.dc.html', out='live/index.html', path='/live/',
          title='BBC Proms Arranger and Organist, Kyle Daniel Gordon',
          desc='Arrangements for the BBC Proms with the BBC Concert Orchestra: Bond and Beyond (Radiohead’s “Spectre” on organ), Marvin Gaye, Soul Revolution. The Little Bird premiered by the San Francisco Symphony.',
-         graph=[PERSON] + EVENTS),
+         graph=[PERSON] + EVENTS, og=ogi('live')),
     dict(src='PopStrings.dc.html', out='pop-strings/index.html', path='/pop-strings/',
          title='Pop String Arrangements, Kyle Daniel Gordon',
          desc='String and orchestral arrangements for pop artists, from Rosalía’s LUX with the London Symphony Orchestra to records, sessions and live shows.',
          graph=[PERSON, {"@type": "Service", "serviceType": "Pop string arrangements", "provider": {"@id": SITE + "/#kyle"}, "areaServed": "Worldwide",
-                         "description": "String and orchestral arrangements for pop and alternative artists: records, recording sessions and live shows."}]),
+                         "description": "String and orchestral arrangements for pop and alternative artists: records, recording sessions and live shows."}], og=ogi('pop-strings')),
+    dict(src='Press.dc.html', out='press/index.html', path='/press/',
+         title='Press Kit: Kyle Daniel Gordon, Orchestrator',
+         desc='Biographies, photos and facts for Kyle Daniel Gordon, orchestrator of Rosalía’s LUX and Oppenheimer. Free to use in programmes and press.',
+         graph=[PERSON]),
 ]
 
 # ---- pitch pages (/for/<slug>/), hidden from search
 for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):
     PAGES.append(dict(src=f'Pitch-{pt["slug"]}.dc.html', out=f'for/{pt["slug"]}/index.html', path=f'/for/{pt["slug"]}/',
-                      title=f'For {pt["name"]}, Kyle Daniel Gordon', desc='A note from Kyle Daniel Gordon, orchestrator.', graph=[PERSON], noindex=True))
+                      title=f'For {pt["name"]}, Kyle Daniel Gordon', desc='A note from Kyle Daniel Gordon, orchestrator.', graph=[PERSON], noindex=True, og=ogi('for-' + pt['slug'])))
 
 FAVICON = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#1b1a17"/><g stroke="#f7f4ec" stroke-width="2.2"><path d="M10 20h44M10 27h44M10 34h44M10 41h44M10 48h44"/></g><ellipse cx="34" cy="37.5" rx="8" ry="5.5" fill="#e2581a" transform="rotate(-22 34 37.5)"/><path d="M41.2 35V13" stroke="#e2581a" stroke-width="2.6"/></svg>'''
 open(os.path.join(OUT, 'favicon.svg'), 'w').write(FAVICON)
@@ -117,6 +126,11 @@ def fix(s):
     for a, b in LINKS:
         s = s.replace(f'href="{a}', f'href="{b}')
     s = re.sub(r'<a href="(https?://[^"]+)"', r'<a href="\1" target="_blank" rel="noopener"', s)
+    # performance: one slim font request, lazy images
+    s = re.sub(r'https://fonts\.googleapis\.com/css2\?[^"]+',
+               'https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62,800&amp;family=DM+Mono:wght@400;500&amp;family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap', s)
+    s = re.sub(r'<img (?![^>]*loading=)', '<img loading="lazy" ', s)
+    s = re.sub(r'<img (?![^>]*decoding=)', '<img decoding="async" ', s)
     s = re.sub(r'<a ([^>]*?)href="(https?://[^"]+)"', lambda m: m.group(0) if 'target=' in m.group(0) else f'<a {m.group(1)}href="{m.group(2)}" target="_blank" rel="noopener"', s)
     return s
 

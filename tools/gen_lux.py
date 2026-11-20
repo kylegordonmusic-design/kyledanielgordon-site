@@ -191,7 +191,7 @@ def footer(grad):
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; {MONO}; font-size: 11px; border-top: 1px solid rgba(251,248,242,0.4); padding-top: 18px">
 <span>Kyle Daniel Gordon · Orchestrator, arranger, conductor · Los Angeles</span>
-<span style="display: flex; gap: 26px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a></span>
+<span style="display: flex; gap: 26px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a></span>
 </div>
 </div>
 </footer>'''
@@ -664,3 +664,66 @@ def pitch(pt):
 for pt in PITCHES:
     open(os.path.join(OUT, f'Pitch-{pt["slug"]}.dc.html'), 'w', encoding='utf-8').write(
         pitch(pt).replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+# ------------------------------------------------------------------ PRESS KIT
+BIO_SHORT = ('Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He was supervising orchestrator on Rosalía’s '
+             '<em>LUX</em>, recorded with the London Symphony Orchestra, and orchestrated Ludwig Göransson’s score for <em>Oppenheimer</em>.')
+BIO_MED = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was supervising orchestrator on Rosalía’s '
+           '<em>LUX</em> (2025), recorded with the London Symphony Orchestra, which won six Latin Grammys including Album of the Year. '
+           'In film and television he orchestrated Ludwig Göransson’s score for <em>Oppenheimer</em> and has worked on <em>Frozen II</em>, '
+           '<em>Star Wars: The Last Jedi</em>, <em>Black Panther: Wakanda Forever</em>, <em>The Mandalorian</em> and <em>The Gilded Age</em>. '
+           'At the BBC Proms he was lead orchestrator on <em>Soul Revolution</em> (2025) and arranged for <em>Bond and Beyond</em> (2026), '
+           'playing his arrangement of Radiohead’s “Spectre” on the Royal Albert Hall organ. His piece <em>The Little Bird</em> was premiered by the '
+           'San Francisco Symphony in 2026. He holds a master’s in music from the University of North Texas.')
+
+
+def press():
+    photos = [('conducting-london-symphony-orchestra-for-rosalia-lux-lso', 'Kyle Daniel Gordon conducting', 'Square · 1200 × 1200'),
+              ('conducting-london-symphony-orchestra', 'Kyle Daniel Gordon with the London Symphony Orchestra', 'Landscape · 1200 × 675')]
+    ph = ''.join(f'''<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+<a href="{A[k]}" download class="cov" style="aspect-ratio: {'1 / 1' if 'lux' in k else '16 / 9'}"><img src="{A[k]}" alt="{alt}" loading="lazy"><span class="play">Download</span></a>
+<figcaption style="{MONO}; font-size: 11px; color: {MUTE}">{alt} · {sz}</figcaption></figure>''' for k, alt, sz in photos)
+    facts = spec([('Name', 'Kyle Daniel Gordon (also credited as Kyle Gordon)'), ('Based in', 'Los Angeles'),
+                  ('Work', 'Orchestrator · arranger · conductor · composer'), ('Selected', 'Rosalía, LUX · Oppenheimer · BBC Proms'),
+                  ('Orchestras', 'London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra'),
+                  ('Education', 'University of North Texas (MM)'), ('Credit as', 'Kyle Daniel Gordon')])
+    links = ''.join(f'''<a class="press" href="{u}"><span style="{MONO}; font-size: 11px; color: {MUTE}">{o}</span>
+<span class="h" style="{SANS}; font-size: 20px; line-height: 1.2; letter-spacing: -0.02em">{h} {ARROW}</span></a>''' for o, h, dsc, u in PRESS)
+    def bio(label, text, words):
+        return f'''<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 18px; border-top: 1.5px solid {INK}">
+<span style="{MONO}; font-size: 12px; color: {MUTE}">{label} · {words}</span>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 70ch">{text}</p></div>'''
+    inner = f'''<header style="position: relative">
+{band('#1b1a17 0%, #4b463e 26%, #b9b0a0 54%, #efeadf 78%', 300)}
+{nav('#f2efe8')}
+<div style="{WRAP}; padding-top: 220px; display: flex; flex-direction: column; gap: 20px" class="rise">
+{crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Press')}
+{hero_title('Bios, photos and facts for programmes and press', 'Press kit', 'clamp(64px, 10vw, 160px)')}
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kylegordonmusic@gmail.com?subject=Press%20request">Press requests</a></div>
+</div>
+</header>
+
+<section aria-label="Biographies" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('A', 'Biographies', 'Free to use')}
+<div style="display: flex; flex-direction: column; gap: 36px">{bio('Short', BIO_SHORT, '40 words')}{bio('Programme', BIO_MED, '150 words')}</div>
+</section>
+
+<section aria-label="Photos" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('B', 'Photos', 'Click to download')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 28px; align-items: start">{ph}</div>
+</section>
+
+<section aria-label="Facts" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('C', 'Facts', 'At a glance')}
+{facts}
+</section>
+
+<section aria-label="Coverage" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('D', 'Coverage', 'Press')}
+<div style="display: flex; flex-direction: column">{links}</div>
+</section>
+
+{footer('#b9b0a0 30%, #4b463e 62%, #1b1a17 100%')}'''
+    return page('Press kit, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=3800)
+
+
+open(os.path.join(OUT, 'Press.dc.html'), 'w', encoding='utf-8').write(press().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
