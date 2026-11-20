@@ -132,8 +132,10 @@ def grain(op=0.38):
 
 
 def band(grad, h=300):
-    return (f'<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: {h}px; '
-            f'background: linear-gradient(180deg, {grad}, {PAPER}); overflow: hidden">{grain()}</div>')
+    fade = 'linear-gradient(180deg, #000 0%, #000 42%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.18) 86%, transparent 100%)'
+    return (f'<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: {h + 160}px; '
+            f'background: linear-gradient(180deg, {grad}); overflow: hidden; '
+            f'-webkit-mask-image: {fade}; mask-image: {fade}">{grain()}</div>')
 
 
 def nav(color, current=''):
@@ -169,8 +171,8 @@ def staff_head(mark, title, meta, sid=''):
 
 
 def footer(grad):
-    return f'''<footer id="contact" style="position: relative; overflow: hidden; margin-top: 150px; padding: 180px 24px 36px; background: linear-gradient(180deg, {PAPER} 0%, {grad}); color: #fbf8f2">
-{grain(0.4)}
+    return f'''<footer id="contact" style="position: relative; overflow: hidden; margin-top: 150px; padding: 180px 24px 36px; color: #fbf8f2">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, {PAPER} 0%, {grad}); -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.25) 12%, #000 34%); mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.25) 12%, #000 34%)">{grain(0.4)}</div>
 <div style="position: relative; max-width: 1392px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px">
 <div style="display: flex; flex-wrap: wrap; gap: 28px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
