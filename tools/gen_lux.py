@@ -509,7 +509,7 @@ def oppenheimer():
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: start">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
 {crumbs('<a class="cl" href="Home.dc.html#work" style="padding: 10px 0">Work</a>', 'Film', 'Oppenheimer')}
-{hero_title('Christopher Nolan · 2023', 'Oppenheimer', 'clamp(46px, 5.4vw, 84px)')}
+{hero_title('Christopher Nolan · 2023', 'Oppenheimer', 'clamp(64px, 9.5vw, 150px)')}
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 42ch">Orchestration on Ludwig Göransson’s Academy Award-winning score.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch">Kyle Daniel Gordon was an orchestrator on Ludwig Göransson’s score for <em>Oppenheimer</em>, Christopher Nolan’s 2023 film about J. Robert Oppenheimer. The score won the Academy Award for Best Original Score.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">Nolan asked for a score led by the solo violin, which he heard as Oppenheimer’s own voice. Around two and a half hours of music runs through the three-hour film, and the orchestra recorded it in five days.</p>
@@ -582,7 +582,7 @@ def popstrings():
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: end">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
 {crumbs('<a class="cl" href="WorkWith.dc.html" style="padding: 10px 0">Work with Kyle</a>', 'Pop strings')}
-{hero_title('String &amp; orchestral arrangements for artists', 'Pop strings', 'clamp(64px, 9vw, 150px)')}
+{hero_title('String &amp; orchestral arrangements for artists', 'Pop strings', 'clamp(76px, 12vw, 190px)')}
 </div>
 <div class="rise" style="animation-delay: .1s; display: flex; flex-direction: column; gap: 18px">
 <p style="margin: 0; font-size: 18px; max-width: 58ch">Kyle Daniel Gordon writes string and orchestral arrangements for pop and alternative artists. He was supervising orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and arranges for records, sessions and live shows.</p>
