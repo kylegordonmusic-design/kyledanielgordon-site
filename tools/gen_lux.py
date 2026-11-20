@@ -118,8 +118,14 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 .wall .cov .play{left:8px;bottom:8px;padding:6px 9px 6px 8px;font-size:10px}
 .row{position:relative;display:grid;grid-template-columns:48px minmax(0,1.5fr) 120px minmax(0,1.2fr) minmax(0,1fr) 92px;gap:16px;align-items:center;padding:12px 10px;border-top:1px solid rgba(27,26,23,.22);text-decoration:none;color:#1b1a17;transition:background-color .2s ease}
 .row:hover{background-color:var(--tint)}
-.row .peek{position:absolute;right:120px;top:50%;width:72px;opacity:0;transform:translateY(-50%) rotate(-4deg) scale(.9);transition:opacity .25s ease,transform .4s cubic-bezier(.2,.8,.2,1);pointer-events:none;z-index:2;box-shadow:0 16px 24px -14px rgba(27,26,23,.6)}
-.row:hover .peek{opacity:1;transform:translateY(-50%) rotate(-4deg) scale(1)}
+.cwrap{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:48px;align-items:start}
+.cprev{position:sticky;top:96px;margin:0;display:flex;flex-direction:column;gap:14px}
+.cprev .cp-art{position:relative;overflow:hidden;background:#e9e4da;box-shadow:0 24px 40px -26px rgba(27,26,23,.55);transition:aspect-ratio .35s ease}
+.cprev img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .28s ease}
+.cprev .cp-blank{position:absolute;inset:0;opacity:0;transition:opacity .28s ease}
+.cprev figcaption{display:flex;flex-direction:column;gap:6px}
+.cwrap .row{grid-template-columns:40px minmax(0,1.6fr) 96px minmax(0,1.3fr) 84px}
+.cwrap .row>span:nth-child(5){display:none}
 .row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:1;transition:opacity .2s ease}
 .row:hover .go{opacity:1}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 20px;border-radius:999px;text-decoration:none;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:.04em;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
@@ -130,7 +136,8 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .rise{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
 @media (max-width: 600px){.luxcard{grid-template-columns:1fr !important}.luxcard>.cov{max-width:280px}}
-@media (max-width: 860px){.row{grid-template-columns:36px minmax(0,1fr) 40px}.row .hide{display:none}.row .peek{display:none}}'''
+@media (max-width: 1100px){.cwrap{grid-template-columns:1fr}.cprev{display:none}}
+@media (max-width: 860px){.row,.cwrap .row{grid-template-columns:36px minmax(0,1fr) 40px}.row .hide{display:none}.row .peek{display:none}}'''
 
 
 def grain(op=0.38):
@@ -228,6 +235,13 @@ def prom_cards():
 AWARDS = [('6', 'Latin Grammys', 'Including Album of the Year, 2026'), ('10', 'Grammy nominations', 'Including Album of the Year, 2027')]
 
 
+CREDIT_JS = r'''<script>
+(function(){var f=document.querySelector('.cprev');if(!f)return;var art=f.querySelector('.cp-art'),img=art.querySelector('img'),blank=art.querySelector('.cp-blank'),t=f.querySelector('.cp-t'),m=f.querySelector('.cp-m'),cur;
+function show(r){if(r===cur)return;cur=r;var src=r.getAttribute('data-img');t.textContent=r.getAttribute('data-t');t.style.color=r.getAttribute('data-c');m.textContent=r.getAttribute('data-m');art.style.aspectRatio=r.getAttribute('data-r');
+if(src){blank.style.opacity=0;img.style.opacity=0;var n=new Image();n.onload=function(){if(cur!==r)return;img.removeAttribute('srcset');img.removeAttribute('sizes');img.src=src;img.style.opacity=1};n.src=src}else{img.style.opacity=0;blank.style.background=r.getAttribute('data-g')||'#e9e4da';blank.style.opacity=1}}
+document.querySelectorAll('#credits .row[data-t]').forEach(function(r){r.addEventListener('mouseenter',function(){show(r)});r.addEventListener('focus',function(){show(r)})});})();
+</script>'''
+
 # ------------------------------------------------------------------ HOME
 def home():
     posters = ''.join(tile(t, f'{BY[t][1]} · {s}', '2 / 3', 'Oppenheimer.dc.html' if t == 'Oppenheimer' else None) for t, s in
@@ -242,10 +256,15 @@ def home():
 <span style="font-size: 15px; line-height: 1.45; color: #3a362f">{dsc}</span></a>''' for o, h, dsc, u in PRESS)
     rows = ''
     for n, (t, cat, role, w, key, spot) in enumerate(P):
-        peek = f'<span class="peek" aria-hidden="true"><img src="{A[key]}" alt="" style="display: block; width: 100%"></span>' if key else ''
+        peek = ''
+        pdata = f' data-img="{A[key]}"' if key else ''
+        if not key:
+            gg = next((pr[4] for pr in PROMS if pr[1].split(':')[0] in t), 'linear-gradient(160deg, #1b1a17 0%, #4b3a5e 50%, #d9a46a 100%)')
+            pdata += f' data-g="{gg}"'
+        pdata += f' data-t="{t}" data-m="{role}{(" · " + w) if w else ""}" data-c="{CATCOL[cat]}" data-r="{"2 / 3" if cat in ("Film", "Television", "Game") else "1 / 1"}"'
         go = f'<span class="go" style="{MONO}; font-size: 11px">{PLAY}{"Watch" if "instagram" in spot else "Listen"}</span>' if spot else f'<span class="go" style="{MONO}; font-size: 11px; color: {MUTE}">Broadcast</span>'
         tag, attr = ('a', f' href="{spot}"') if spot else ('div', '')
-        rows += (f'<{tag}{attr} class="row" style="--tint: {TINT[cat]}">'
+        rows += (f'<{tag}{attr}{pdata} class="row" style="--tint: {TINT[cat]}">'
                  f'<span style="{MONO}; font-size: 11px; font-variant-numeric: tabular-nums; color: {MUTE}">{n + 1:02d}</span>'
                  f'<span style="{COND}; font-size: clamp(22px, 2.2vw, 30px); line-height: 1">{t}</span>'
                  f'<span class="hide" style="{MONO}; font-size: 11px; color: {CATCOL[cat]}">{cat}</span>'
@@ -323,10 +342,15 @@ def home():
 
 <section id="credits" aria-label="Full credits" style="{WRAP}; margin-top: 140px; display: flex; flex-direction: column; gap: 28px">
 {staff_head('E', 'Credits', f'{len(P)} projects')}
+<div class="cwrap">
+<figure class="cprev" aria-hidden="true"><div class="cp-art" style="aspect-ratio: 1 / 1"><img src="{A['rosalia-lux-album']}" alt="" loading="lazy"><span class="cp-blank"></span></div>
+<figcaption><span class="cp-t" style="{COND}; font-size: 30px; line-height: 1; color: {C['olive']}">LUX</span><span class="cp-m" style="{MONO}; font-size: 11px; color: {MUTE}">Supervising orchestrator · Rosalía · London Symphony Orchestra</span></figcaption></figure>
 <div>
 <div aria-hidden="true" class="row" style="border-top: 0; padding-top: 0; padding-bottom: 10px; {MONO}; font-size: 10px; color: {MUTE}"><span>No.</span><span>Title</span><span class="hide">Category</span><span class="hide">Role</span><span class="hide">With</span><span></span></div>
 {rows}</div>
+</div>
 </section>
+{CREDIT_JS}
 
 <section id="about" aria-label="About" style="{WRAP}; margin-top: 150px; display: flex; flex-direction: column; gap: 44px">
 {staff_head('F', 'About', 'Los Angeles')}

@@ -110,6 +110,12 @@ def optimize(out):
             if first and img.find_parent('header') is not None:
                 img['loading'] = 'eager'; img['fetchpriority'] = 'high'
                 first = False
+        for el in soup.select('[data-img]'):
+            s0 = el['data-img']
+            if s0.startswith('/img/') and s0.endswith('.jpg'):
+                if s0 not in cache:
+                    cache[s0] = variants(out, s0)
+                el['data-img'] = cache[s0][min(2, len(cache[s0]) - 1)][0]
         head = soup.head
         for l in head.find_all('link'):
             if 'fonts.googleapis.com' in l.get('href', '') or 'fonts.gstatic.com' in l.get('href', ''):
