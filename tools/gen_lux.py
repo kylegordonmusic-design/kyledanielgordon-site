@@ -19,12 +19,14 @@ def sp_search(q):
 
 # title, category, role, with, image key, spotify
 P = [
- ('LUX', 'Record', 'Orchestrator', 'Rosalía · London Symphony Orchestra', 'rosalia-lux-album', 'https://open.spotify.com/album/3SUEJULSGgBDG1j4GQhfYY'),
+ ('LUX', 'Record', 'Supervising orchestrator', 'Rosalía · London Symphony Orchestra', 'rosalia-lux-album', 'https://open.spotify.com/album/3SUEJULSGgBDG1j4GQhfYY'),
  ('Romani: The Untold Story', 'Record', 'Arranger, orchestrator, conductor', 'Ion Zanca · Dallas String Quartet · LSO', 'romani-the-untold-story-london-symphony-orchestra', 'https://open.spotify.com/track/31eojlHu2jxOHQr5NW74PL'),
  ('Baby Shark 10th Anniversary', 'Record', 'Arranger, orchestrator, conductor', 'Pinkfong · London Symphony Orchestra', 'baby-shark-10th-anniversary-london-symphony-orchestra', 'https://open.spotify.com/album/6myoH7UjcukBliJGvWorpG'),
- ('BBC Proms: Bond and Beyond', 'Stage', 'Arrangements · organ on “Spectre”', 'BBC Concert Orchestra · 2026', None, None),
+ ('BBC Proms: Bond and Beyond', 'Stage', 'Arranger · organ on Radiohead’s “Spectre”', 'BBC Concert Orchestra · 2026', None, 'https://www.instagram.com/kylegordonmusic/reel/Dejq7epTaDR/'),
  ('BBC Proms: Marvin Gaye, Prince of Soul', 'Stage', 'Arrangements', 'BBC Concert Orchestra · 2026', None, None),
- ('BBC Proms: Soul Revolution', 'Stage', 'Lead orchestrator', 'BBC Concert Orchestra · 2025', None, None),
+ ('BBC Proms: Soul Revolution', 'Stage', 'Arranger, composer (finale), organ', 'BBC Concert Orchestra · 2025', None, 'https://www.instagram.com/kylegordonmusic/reel/DM7t0RKo_Ne/'),
+ ('The Little Bird', 'Stage', 'Composer · world premiere', 'San Francisco Symphony · 2026', None, None),
+ ('People Pleaser', 'Record', 'Arranger', 'Mollie Elizabeth · 2026', None, sp_search('Mollie Elizabeth People Pleaser')),
  ('Grace Kelly with Strings: At The Movies', 'Record', 'Arranger, orchestrator, co-producer', 'Grace Kelly', 'grace-kelly-with-strings-at-the-movies', 'https://open.spotify.com/album/2buBjbRAHUe3QMiWbRuHM0'),
  ('This Light Has No Darkness', 'Record', 'Arranger, orchestrator, co-producer', 'David Friesen', 'david-friesen-this-light-has-no-darkness', sp_search('David Friesen This Light Has No Darkness')),
  ('Magia en Dos', 'Record', 'Orchestrator', 'Ariza', 'ariza-magia-en-dos', sp_search('Ariza Magia en Dos')),
@@ -44,6 +46,7 @@ P = [
  ('Haunted Mansion', 'Film', OM, 'Kris Bowers', 'haunted-mansion', sp_search('Haunted Mansion 2023 soundtrack')),
  ('Mink!', 'Film', OM, 'Documentary', 'mink-documentary', sp_search('Mink documentary soundtrack')),
  ('Bridgerton', 'Television', OM, 'Kris Bowers', 'bridgerton', sp_search('Bridgerton Kris Bowers')),
+ ('The Gilded Age', 'Television', OM, 'Harry & Rupert Gregson-Williams', None, sp_search('The Gilded Age soundtrack Gregson-Williams')),
  ('The Mandalorian', 'Television', OM, 'Ludwig Göransson', 'the-mandalorian', sp_search('The Mandalorian original score')),
  ('The Book of Boba Fett', 'Television', OM, '', 'the-book-of-boba-fett', sp_search('The Book of Boba Fett soundtrack')),
  ('Star Trek: Strange New Worlds', 'Television', OM, '', 'star-trek-strange-new-worlds', sp_search('Star Trek Strange New Worlds soundtrack')),
@@ -67,22 +70,25 @@ P = [
 ]
 BY = {p[0]: p for p in P}
 PHOTO_WIDE = A['conducting-london-symphony-orchestra']
-POPULAR = ['the-simpsons', 'frozen-ii', 'star-wars-the-last-jedi', 'black-panther-wakanda-forever', 'bluey', 'the-book-of-boba-fett',
-           'haunted-mansion', 'outer-banks', 'star-trek-discovery', 'star-trek-picard', 'star-trek-strange-new-worlds', 'american-dad',
-           'genshin-impact', 'cocaine-bear', 'blue-beetle', 'the-santa-clauses', 'frozen-planet-ii', 'the-serpent-queen', 'white-noise',
-           'dc-stargirl', 'prehistoric-planet-2', 'the-wonderful-world-of-mickey-mouse', 'cars-on-the-road', 'fraggle-rock-back-to-the-rock',
-           'chevalier', 'mira-royal-detective', 'tots-tiny-ones-transport-service', 'jerry-and-marge-go-large', 'mink-documentary']
+POPULAR = ['Frozen II', 'Star Wars: The Last Jedi', 'Black Panther: Wakanda Forever', 'The Gilded Age', 'The Book of Boba Fett',
+           'Haunted Mansion', 'Star Trek: Strange New Worlds', 'Outer Banks', 'Bluey', 'Star Trek: Discovery', 'Star Trek: Picard',
+           'Frozen Planet II', 'The Serpent Queen', 'Cocaine Bear', 'Blue Beetle', 'White Noise', 'Chevalier', 'The Santa Clauses',
+           'Prehistoric Planet 2', 'Genshin Impact', 'The Simpsons', 'American Dad', 'Stargirl', 'The Wonderful World of Mickey Mouse',
+           'Cars on the Road', 'Fraggle Rock: Back to the Rock', 'Mira, Royal Detective', 'T.O.T.S.', 'Jerry & Marge Go Large', 'Mink!']
+GOLD = 'linear-gradient(165deg, #120d07 0%, #4a3315 38%, #b8893c 72%, #f1d9a0 100%)'
 RS_URL = 'https://www.rollingstone.com/music/music-features/rosalia-lux-collaborators-making-of-1235470741/'
 PRESS = [('Rolling Stone', '‘Art for Art’s Sake’: Rosalía’s Collaborators Reflect on ‘Lux’', 'Gordon on how the LUX orchestrations came about, alongside Daníel Bjarnason, Carminho and Yahritza.', RS_URL),
          ('Dazed', 'Inside Rosalía’s Lux, with its key collaborators', 'Conductor Daníel Bjarnason on the AIR Studios sessions and the orchestrator who prepared them.', 'https://www.dazeddigital.com/music/article/69044/1/lux-rosalia-new-album-2025-noah-dillon-carminho-daniel-bjaranason-yahritza'),
          ('BroadwayWorld', 'Review: BBC Proms, Bond and Beyond', 'Arrangements credited to Kyle Gordon, Barry Forgie, Guy Barker and Nic Raine; Radiohead’s “Spectre” singled out.', 'https://www.broadwayworld.com/article/Review-BBC-PROMS-BOND-AND-BEYOND-Royal-Albert-Hall-20260826'),
          ('Rolling Stone Brasil', '‘Arte pela Arte’: colaboradores de Rosalía refletem sobre ‘Lux’', 'Portuguese edition of the Rolling Stone feature.', 'https://rollingstone.com.br/musica/arte-pela-arte-colaboradores-de-rosalia-refletem-sobre-lux/')]
-PROMS = [('2025', 'Soul Revolution', 'Lead orchestrator', 'BBC Concert Orchestra · Daniel Bartholomew-Poyser, conductor · presented by Trevor Nelson · 3 August 2025',
-          'linear-gradient(160deg, #2b0f2a 0%, #8e2a5e 45%, #f08a5d 100%)', None),
+PROMS = [('2026', 'Bond and Beyond', 'Arranger · organ on Radiohead’s “Spectre”', 'BBC Concert Orchestra · Daniel Bartholomew-Poyser, conductor · 25 August 2026',
+          'linear-gradient(160deg, #0b0b0c 0%, #3a3330 45%, #c9a24a 100%)', ('Watch “Spectre” from the organ', 'https://www.instagram.com/kylegordonmusic/reel/Dejq7epTaDR/'), 'BBC Proms · Royal Albert Hall'),
+         ('2026', 'The Little Bird', 'Composer · world premiere', 'San Francisco Symphony · Davies Symphony Hall · May 2026',
+          'linear-gradient(160deg, #06281f 0%, #1f6b52 48%, #e9d27a 100%)', None, 'San Francisco Symphony'),
          ('2026', 'Marvin Gaye: Prince of Soul', 'Arrangements', 'BBC Concert Orchestra · Edwin Outwater, conductor · 14 August 2026',
-          'linear-gradient(160deg, #0f1a3a 0%, #2a4fb8 50%, #f2c36b 100%)', None),
-         ('2026', 'Bond and Beyond', 'Arrangements · organ on Radiohead’s “Spectre”', 'BBC Concert Orchestra · Daniel Bartholomew-Poyser, conductor · 25 August 2026',
-          'linear-gradient(160deg, #0b0b0c 0%, #3a3330 45%, #c9a24a 100%)', None)]
+          'linear-gradient(160deg, #0f1a3a 0%, #2a4fb8 50%, #f2c36b 100%)', None, 'BBC Proms · Royal Albert Hall'),
+         ('2025', 'Soul Revolution', 'Arranger · composer of the finale · organ', 'BBC Concert Orchestra · Daniel Bartholomew-Poyser, conductor · presented by Trevor Nelson · 3 August 2025',
+          'linear-gradient(160deg, #2b0f2a 0%, #8e2a5e 45%, #f08a5d 100%)', ('Watch the finale', 'https://www.instagram.com/kylegordonmusic/reel/DM7t0RKo_Ne/'), 'BBC Proms · Royal Albert Hall')]
 PHOTO_LUX = A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']
 
 PLAY = '<svg aria-hidden="true" width="12" height="13" viewBox="0 0 12 13"><path d="M1.5 1v11l9.5-5.5z" fill="currentColor"></path></svg>'
@@ -148,11 +154,12 @@ def nav(color, current=''):
             f'<span style="display: flex; flex-wrap: wrap; gap: 6px 26px">{ls}</span></nav>')
 
 
-def cov(title, key, ratio, href, label='Play on Spotify', extra=''):
+def cov(title, key, ratio, href, label='Play on Spotify', extra='', grad=None):
     alt = f'{title} artwork'
     img = f'<img src="{A[key]}" alt="{alt}" loading="lazy">' if key else ''
-    inner = img if key else (f'<span aria-hidden="true" style="position: absolute; inset: 0; background: {G[7]}">{grain(0.42)}</span>'
-                             f'<span style="position: absolute; left: 12px; right: 12px; bottom: 44px; {COND}; font-size: 24px; line-height: 1; color: #fbf8f2">{title}</span>')
+    inner = img if key else (f'<span aria-hidden="true" style="position: absolute; inset: 0; background: {grad or G[7]}">{grain(0.42)}</span>'
+                             f'<span style="position: absolute; left: 10px; top: 9px; {MONO}; font-size: 9px; color: rgba(251,248,242,.8)">HBO</span>'
+                             f'<span style="position: absolute; left: 10px; right: 10px; bottom: 12px; {COND}; font-size: 22px; line-height: .95; color: #fbf8f2">{title}</span>')
     tag = 'a' if href else 'span'
     attrs = f' href="{href}" aria-label="Play {title} on Spotify"' if href else ''
     play = f'<span class="play">{PLAY}{label}</span>' if href else ''
@@ -214,26 +221,25 @@ def home():
     recs = ''.join(tile(t, s, '1 / 1') for t, s in
                    [('Romani: The Untold Story', 'Billboard #1 Classical Album, 2024'), ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'),
                     ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('This Light Has No Darkness', 'David Friesen')])
-    bykey = {p[4]: p for p in P if p[4]}
-    wall = ''.join(cov(bykey[k][0], k, '2 / 3', bykey[k][5], 'Play') for k in POPULAR)
-    proms = ''.join(f'''<article class="prom" aria-label="BBC Proms {y}: {t}">
+    wall = ''.join(cov(t, BY[t][4], '2 / 3', BY[t][5], 'Play', grad=GOLD) for t in POPULAR)
+    proms = ''.join(f'''<article class="prom" aria-label="{ven} {y}: {t}">
 <div class="face" style="position: relative; aspect-ratio: 4 / 3; background: {g}; overflow: hidden">{grain(0.42)}
-<span style="position: absolute; left: 18px; top: 16px; {MONO}; font-size: 11px">BBC Proms · Royal Albert Hall</span>
+<span style="position: absolute; left: 18px; top: 16px; {MONO}; font-size: 11px">{ven}</span>
 <span style="position: absolute; right: 16px; top: 4px; {SANS}; font-size: 120px; line-height: 1; letter-spacing: -0.06em; opacity: 0.9">{y[2:]}</span>
 <h3 style="position: absolute; left: 18px; right: 18px; bottom: 16px; margin: 0; {COND}; font-size: 38px; line-height: 0.95">{t}</h3>
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px; padding: 16px 18px 20px">
 <span style="font-size: 16px; font-weight: 600">{r}</span>
 <span style="{MONO}; font-size: 11px; line-height: 1.5; color: #cfc6b6">{d}</span>
-{f'<span style="{MONO}; font-size: 11px; color: {C["celery"]}; padding-top: 4px">{PLAY} {v}</span>' if v else ''}
-</div></article>''' for y, t, r, d, g, v in PROMS)
+{f'<a href="{v[1]}" style="{MONO}; font-size: 11px; color: {C["celery"]}; padding: 8px 0 0; text-transform: uppercase; letter-spacing: .04em; display: inline-flex; align-items: center; gap: 8px">{PLAY} {v[0]}</a>' if v else ''}
+</div></article>''' for y, t, r, d, g, v, ven in PROMS)
     press = ''.join(f'''<a class="press" href="{u}"><span style="{MONO}; font-size: 11px; color: {MUTE}">{o}</span>
 <span class="h" style="{SANS}; font-size: 22px; line-height: 1.2; letter-spacing: -0.02em">{h} {ARROW}</span>
 <span style="font-size: 15px; line-height: 1.45; color: #3a362f">{dsc}</span></a>''' for o, h, dsc, u in PRESS)
     rows = ''
     for n, (t, cat, role, w, key, spot) in enumerate(P):
         peek = f'<span class="peek" aria-hidden="true"><img src="{A[key]}" alt="" style="display: block; width: 100%"></span>' if key else ''
-        go = f'<span class="go" style="{MONO}; font-size: 11px">{PLAY}Listen</span>' if spot else f'<span class="go" style="{MONO}; font-size: 11px; color: {MUTE}">Broadcast</span>'
+        go = f'<span class="go" style="{MONO}; font-size: 11px">{PLAY}{"Watch" if "instagram" in spot else "Listen"}</span>' if spot else f'<span class="go" style="{MONO}; font-size: 11px; color: {MUTE}">Broadcast</span>'
         tag, attr = ('a', f' href="{spot}"') if spot else ('div', '')
         rows += (f'<{tag}{attr} class="row" style="--tint: {TINT[cat]}">'
                  f'<span style="{MONO}; font-size: 11px; font-variant-numeric: tabular-nums; color: {MUTE}">{n + 1:02d}</span>'
@@ -255,9 +261,9 @@ def home():
 <article aria-labelledby="lux-h" class="rise luxcard" style="animation-delay: .15s; display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 22px; align-items: start">
 {cov('LUX', 'rosalia-lux-album', '1 / 1', BY['LUX'][5])}
 <div style="display: flex; flex-direction: column; gap: 10px">
-<span style="{MONO}; font-size: 11px; color: {C['tang']}">Orchestrator · Rosalía · 2025</span>
+<span style="{MONO}; font-size: 11px; color: {C['tang']}">Supervising orchestrator · Rosalía · 2025</span>
 <h2 id="lux-h" style="margin: 0; {COND}; font-size: 46px; line-height: 0.92">Rosalía — LUX</h2>
-<p style="margin: 0; font-size: 15px; line-height: 1.45; color: #2f2c27">Orchestrations for Rosalía's fourth album, recorded with the London Symphony Orchestra at AIR Studios, London.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.45; color: #2f2c27">Supervising orchestrator on Rosalía's fourth album, recorded with the London Symphony Orchestra at AIR Studios, London.</p>
 <div style="display: flex; flex-direction: column">{aw}</div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 6px"><a class="btn solid" href="{BY['LUX'][5]}">{PLAY}Listen</a><a class="btn line" href="Project.dc.html">About the record</a></div>
 </div>
@@ -267,7 +273,7 @@ def home():
 
 <section aria-label="Orchestras and composers" style="{WRAP}; margin-top: 110px">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 28px 72px; padding: 24px 0; border-top: 1px solid {INK}; border-bottom: 1px solid {INK}">
-<div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestras</span><p style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: {C['sky']}">London Symphony Orchestra · BBC Concert Orchestra · San Francisco Symphony · Seattle Symphony · National Arts Centre Orchestra</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestras</span><p style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: {C['sky']}">London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra · Seattle Symphony · National Arts Centre Orchestra</p></div>
 <div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestration teams for</span><p style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: {C['mag']}">John Williams · Ludwig Göransson · Kris Bowers · Walter Murphy · Justin Hurwitz</p></div>
 </div>
 </section>
@@ -286,9 +292,9 @@ def home():
 {recs}</div>
 </section>
 
-<section id="live" aria-label="Live at the BBC Proms" style="{WRAP}; margin-top: 140px; display: flex; flex-direction: column; gap: 36px">
-{staff_head('C', 'Live at the BBC Proms', 'Royal Albert Hall, London')}
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px">
+<section id="live" aria-label="Live" style="{WRAP}; margin-top: 140px; display: flex; flex-direction: column; gap: 36px">
+{staff_head('C', 'Live', 'BBC Proms · San Francisco Symphony')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px">
 {proms}</div>
 </section>
 
@@ -323,9 +329,9 @@ def home():
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 44px 80px; align-items: start">
 <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="{PHOTO_LUX}" alt="Kyle Daniel Gordon with the London Symphony Orchestra during the LUX sessions" loading="lazy" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%"><figcaption style="{MONO}; font-size: 11px; color: {MUTE}">LUX sessions, London Symphony Orchestra</figcaption></figure>
 <div style="display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.55; max-width: 62ch">
-<p style="margin: 0">Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He orchestrated Rosalía's <em>LUX</em>, recorded with the London Symphony Orchestra, which won six Latin Grammys including Album of the Year and received ten Grammy nominations.</p>
+<p style="margin: 0">Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was supervising orchestrator on Rosalía's <em>LUX</em>, recorded with the London Symphony Orchestra, which won six Latin Grammys including Album of the Year and received ten Grammy nominations.</p>
 <p style="margin: 0; color: #3a362f">In film and television he orchestrated <em>Oppenheimer</em> and <em>Bridgerton</em>, and has worked in the music departments of <em>The Mandalorian</em>, <em>Black Panther: Wakanda Forever</em> and <em>Star Wars: The Rise of Skywalker</em>. He leads orchestration teams in Los Angeles for composers including John Williams, Ludwig Göransson, Kris Bowers, Walter Murphy and Justin Hurwitz.</p>
-<p style="margin: 0; color: #3a362f">At the BBC Proms he was lead orchestrator on <em>Soul Revolution</em> (2025) with the BBC Concert Orchestra, and in 2026 wrote arrangements for <em>Marvin Gaye: Prince of Soul</em> and <em>Bond and Beyond</em>, where he also played organ on Radiohead’s “Spectre”. He arranged, orchestrated and conducted the <em>Baby Shark 10th Anniversary</em> symphonic album with the LSO. <em>Romani: The Untold Story</em>, which he orchestrated and conducted with the LSO and Dallas String Quartet, received the 2024 Billboard Award for #1 Classical Album. He has conducted sessions and concerts in Los Angeles, Nashville and London, and arranged touring orchestral shows for Hawthorne Heights and Escape the Fate.</p>
+<p style="margin: 0; color: #3a362f">At the BBC Proms he was lead orchestrator on <em>Soul Revolution</em> (2025) with the BBC Concert Orchestra, writing its finale and playing the Royal Albert Hall organ. In 2026 he arranged the <em>Bond and Beyond</em> Prom, performing his arrangement of Radiohead’s “Spectre” on the organ, and wrote arrangements for <em>Marvin Gaye: Prince of Soul</em>. His piece <em>The Little Bird</em> was premiered by the San Francisco Symphony in 2026. He arranged, orchestrated and conducted the <em>Baby Shark 10th Anniversary</em> symphonic album with the LSO. <em>Romani: The Untold Story</em>, which he orchestrated and conducted with the LSO and Dallas String Quartet, received the 2024 Billboard Award for #1 Classical Album. He has conducted sessions and concerts in Los Angeles, Nashville and London, and arranged touring orchestral shows for Hawthorne Heights and Escape the Fate.</p>
 <p style="margin: 0; color: #3a362f">Trained in jazz and classical music, he holds a master's in music from the University of North Texas, and made his Carnegie Hall debut as a bassist in 2018. He is also credited as Kyle Gordon.</p>
 
 </div>
@@ -342,7 +348,7 @@ def lux():
               'Mundo Nuevo', 'De Madrugá', 'Dios Es Un Stalker', 'La Yugular', 'Sauvignon Blanc', 'La Rumba Del Perdón', 'Memória', 'Magnolias']
     tl = ''.join(f'<li style="display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 9px 0; border-top: 1px solid {RULE}">'
                  f'<span style="{MONO}; font-size: 11px; color: {MUTE}; font-variant-numeric: tabular-nums">{i + 1:02d}</span><span>{t}</span></li>' for i, t in enumerate(tracks))
-    spec = [('Artist', 'Rosalía'), ('Album', 'LUX (2025) · LUX (Complete Works)'), ('Orchestrations', 'Kyle Daniel Gordon'),
+    spec = [('Artist', 'Rosalía'), ('Album', 'LUX (2025) · LUX (Complete Works)'), ('Supervising orchestrator', 'Kyle Daniel Gordon'),
             ('Orchestra', 'London Symphony Orchestra'), ('Conductor', 'Daníel Bjarnason'), ('Recorded', 'AIR Studios, London'),
             ('Label', 'Columbia Records')]
     sp = ''.join(f'<dt style="padding: 11px 18px 11px 0; color: {MUTE}; border-top: 1px solid {RULE}">{a}</dt><dd style="margin: 0; padding: 11px 0; border-top: 1px solid {RULE}">{b}</dd>' for a, b in spec)
@@ -359,7 +365,7 @@ def lux():
 <span style="{MONO}; font-size: 12px; color: {MUTE}"><a class="cl" href="Home.dc.html#work" style="padding: 10px 0">Work</a> / Records / Rosalía</span>
 <h1 style="margin: 0; display: flex; flex-direction: column; gap: 6px"><span style="{MONO}; font-size: 14px; font-weight: 400">Rosalía</span><span style="{COND}; font-size: clamp(96px, 15vw, 220px); line-height: 0.8; color: {INK}">LUX</span></h1>
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 40ch">Orchestrations for an album sung in thirteen languages, with the London Symphony Orchestra on every track.</p>
-<p style="margin: 0; font-size: 17px; max-width: 58ch">LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon wrote the orchestrations. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.</p>
+<p style="margin: 0; font-size: 17px; max-width: 58ch">LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s supervising orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">LUX won six Latin Grammys at the 27th Latin Grammy Awards, including Album of the Year, and received ten nominations at the 69th Grammy Awards, including Album of the Year.</p>
 <a href="{RS_URL}" class="press" style="margin-top: 8px; border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: {C['tang']}">Rolling Stone</span>
 <span class="h" style="{SANS}; font-size: 22px; line-height: 1.25; letter-spacing: -0.02em">‘Art for Art’s Sake’: Rosalía’s Collaborators Reflect on ‘Lux’ {ARROW}</span>

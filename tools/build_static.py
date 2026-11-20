@@ -35,6 +35,7 @@ LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('Project.dc.html', '/w
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
+    "disambiguatingDescription": "Los Angeles orchestrator, arranger and conductor (Rosalía's LUX, Oppenheimer, BBC Proms). Not the comedian Kyle Gordon.",
     "jobTitle": ["Orchestrator", "Arranger", "Conductor"],
     "knowsAbout": ["Orchestration", "String arrangements", "Pop strings", "Film scoring", "Conducting"],
     "url": SITE + "/", "image": OG, "email": "mailto:kylegordonmusic@gmail.com",
