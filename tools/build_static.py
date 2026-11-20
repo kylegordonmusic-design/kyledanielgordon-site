@@ -36,7 +36,7 @@ for f in os.listdir(OGDIR):
 def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg'
 OG = ogi('home')
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -67,20 +67,39 @@ EVENTS = [
      "performer": [BBCCO], "contributor": {"@id": SITE + "/#kyle"}},
     {"@type": "MusicEvent", "name": "BBC Proms: Soul Revolution", "startDate": "2025-08-03T19:30+01:00", "location": RAH,
      "performer": [BBCCO], "contributor": {"@id": SITE + "/#kyle"}}]
+import datetime
+TODAY = datetime.date.today().isoformat()
+PROFILE = {"@type": "ProfilePage", "@id": SITE + "/#profile", "url": SITE + "/", "name": "Kyle Daniel Gordon, orchestrator",
+           "mainEntity": {"@id": SITE + "/#kyle"}, "dateModified": TODAY, "inLanguage": "en"}
+INDEXNOW_KEY = "8f3c2a7d5e9b41c6a0d4f7e2b9c13a58"
 WEBSITE = {"@type": "WebSite", "@id": SITE + "/#site", "url": SITE + "/", "name": "Kyle Daniel Gordon", "publisher": {"@id": SITE + "/#kyle"}}
+
+# ---- every credit as structured data: Kyle's role on each work
+TYPE = {'Film': 'Movie', 'Television': 'TVSeries', 'Record': 'MusicAlbum', 'Stage': 'MusicEvent', 'Game': 'VideoGame'}
+CREDITS = json.load(open('/home/claude/kdg_scripts/credits.json', encoding='utf-8'))
+WORKS = {"@type": "ItemList", "@id": SITE + "/#credits", "name": "Credits of Kyle Daniel Gordon", "numberOfItems": len(CREDITS),
+         "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": dict(
+             {"@type": TYPE.get(c['cat'], 'CreativeWork'), "name": c['title'],
+              "contributor": {"@type": "Role", "roleName": c['role'], "contributor": {"@id": SITE + "/#kyle"}}},
+             **({"description": c['with_']} if c['with_'] else {}))} for i, c in enumerate(CREDITS) if c['cat'] != 'Stage']}
 
 PAGES = [
     dict(src='Home.dc.html', out='index.html', path='/',
          title='Kyle Daniel Gordon, Orchestrator for Rosalía’s LUX',
          desc='Orchestrator, arranger and conductor in Los Angeles. Pop string arrangements and orchestrations for Rosalía’s LUX, Oppenheimer and Bridgerton.',
-         graph=[WEBSITE, PERSON, ALBUM] + EVENTS),
+         graph=[WEBSITE, PROFILE, PERSON, ALBUM, WORKS] + EVENTS),
     dict(src='Project.dc.html', out='work/rosalia-lux/index.html', path='/work/rosalia-lux/',
          title='Rosalía LUX Orchestrations, Kyle Daniel Gordon',
          desc='Kyle Daniel Gordon orchestrated Rosalía’s LUX, recorded with the London Symphony Orchestra at AIR Studios. Six Latin Grammys, ten Grammy nominations.',
          graph=[PERSON, ALBUM, {"@type": "BreadcrumbList", "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Work", "item": SITE + "/#work"},
              {"@type": "ListItem", "position": 2, "name": "Rosalía, LUX", "item": SITE + "/work/rosalia-lux/"}]}],
-         og=ogi('rosalia-lux')),
+         og=ogi('rosalia-lux'), alternates={'en': '/work/rosalia-lux/', 'es': '/es/rosalia-lux/'}),
+    dict(src='ProjectES.dc.html', out='es/rosalia-lux/index.html', path='/es/rosalia-lux/', lang='es',
+         alternates={'en': '/work/rosalia-lux/', 'es': '/es/rosalia-lux/'},
+         title='Rosalía, LUX: orquestaciones de Kyle Daniel Gordon',
+         desc='Kyle Daniel Gordon fue el orquestador supervisor de LUX de Rosalía, grabado con la Orquesta Sinfónica de Londres en los AIR Studios. Seis Latin Grammy, diez nominaciones al Grammy.',
+         graph=[PERSON, ALBUM], og=ogi('rosalia-lux')),
     dict(src='WorkWith.dc.html', out='work-with-kyle/index.html', path='/work-with-kyle/',
          title='Hire an Orchestrator: Kyle Daniel Gordon',
          desc='Orchestration, pop string arrangements and conducting for composers, artists and labels. Orchestrator on Rosalía’s LUX, Oppenheimer and the BBC Proms.',
@@ -144,7 +163,7 @@ def head(p):
 <title>{p['title']}</title>
 <meta name="description" content="{p['desc']}">
 {'<meta name="robots" content="noindex, nofollow">' if p.get('noindex') else ''}
-<link rel="canonical" href="{canon}">
+<link rel="canonical" href="{canon}">{''.join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{u}">' for l, u in p.get('alternates', {}).items())}{('<link rel="alternate" hreflang="x-default" href="' + SITE + p['alternates']['en'] + '">') if p.get('alternates') else ''}
 <meta name="author" content="Kyle Daniel Gordon">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kyle Daniel Gordon">
@@ -170,7 +189,7 @@ for p in PAGES:
     helmet = re.search(r'<helmet>(.*?)</helmet>', s, re.S).group(1)
     body = re.search(r'</helmet>(.*?)</x-dc>', s, re.S).group(1)
     html = f'''<!doctype html>
-<html lang="en">
+<html lang="{p.get('lang', 'en')}">
 <head>
 {head(p)}
 {fix(helmet).strip()}
@@ -197,9 +216,11 @@ open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(h404)
 open(os.path.join(OUT, 'googleb7fd6123e4efb445.html'), 'w').write('google-site-verification: googleb7fd6123e4efb445.html')
 
 # ---- sitemap, robots, netlify config, readme
-urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><changefreq>monthly</changefreq><priority>{"1.0" if p["path"] == "/" else "0.8"}</priority></url>' for p in PAGES if not p.get('noindex'))
+urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>{"1.0" if p["path"] == "/" else "0.8"}</priority></url>' for p in PAGES if not p.get('noindex'))
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
-open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n')
+open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
+open(os.path.join(OUT, INDEXNOW_KEY + '.txt'), 'w').write(INDEXNOW_KEY)
+open(os.path.join(OUT, 'llms.txt'), 'w', encoding='utf-8').write(open('/home/claude/kdg_scripts/llms.txt', encoding='utf-8').read())
 open(os.path.join(OUT, 'netlify.toml'), 'w').write('''[build]
   publish = "."
 

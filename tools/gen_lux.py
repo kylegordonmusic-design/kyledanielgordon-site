@@ -366,7 +366,7 @@ def lux():
 {nav('#f2efe8', 'LUX')}
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: start">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
-<span style="{MONO}; font-size: 12px; color: {MUTE}"><a class="cl" href="Home.dc.html#work" style="padding: 10px 0">Work</a> / Records / Rosalía</span>
+<span style="{MONO}; font-size: 12px; color: {MUTE}"><a class="cl" href="Home.dc.html#work" style="padding: 10px 0">Work</a> / Records / Rosalía <span aria-hidden="true">·</span> <a class="cl" href="ProjectES.dc.html" hreflang="es" lang="es" style="padding: 10px 0">Español</a></span>
 <h1 style="margin: 0; display: flex; flex-direction: column; gap: 6px"><span style="{MONO}; font-size: 14px; font-weight: 400">Rosalía</span><span style="{COND}; font-size: clamp(96px, 15vw, 220px); line-height: 0.8; color: {INK}">LUX</span></h1>
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 40ch">Orchestrations for an album sung in thirteen languages, with the London Symphony Orchestra on every track.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch">LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s supervising orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.</p>
@@ -727,3 +727,48 @@ def press():
 
 
 open(os.path.join(OUT, 'Press.dc.html'), 'w', encoding='utf-8').write(press().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+# ------------------------------------------------------------------ LUX (español)
+ES = [
+ ('Orchestrations for an album sung in thirteen languages, with the London Symphony Orchestra on every track.',
+  'Orquestaciones para un álbum cantado en trece idiomas, con la Orquesta Sinfónica de Londres en todas las canciones.'),
+ ("LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s supervising orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.",
+  'LUX es el cuarto álbum de estudio de Rosalía, publicado en noviembre de 2025. Kyle Daniel Gordon fue el orquestador supervisor del álbum, grabado con la Orquesta Sinfónica de Londres en los AIR Studios de Londres bajo la dirección de Daníel Bjarnason.'),
+ ('LUX won six Latin Grammys at the 27th Latin Grammy Awards, including Album of the Year, and received ten nominations at the 69th Grammy Awards, including Album of the Year.',
+  'LUX ganó seis Latin Grammy en la 27.ª edición de los premios, entre ellos Álbum del Año, y recibió diez nominaciones en la 69.ª edición de los Grammy, entre ellas Álbum del Año.'),
+ ('Gordon tells the story of the call from the London Symphony Orchestra that brought him onto the album.',
+  'Gordon cuenta la llamada de la Orquesta Sinfónica de Londres que lo llevó al álbum (artículo en inglés).'),
+ ('LUX sessions with the London Symphony Orchestra', 'Sesiones de LUX con la Orquesta Sinfónica de Londres'),
+ ('The London Symphony Orchestra plays on every song. LUX (Complete Works) adds three more.',
+  'La Orquesta Sinfónica de Londres toca en todas las canciones. LUX (Complete Works) añade tres más.'),
+ ('>Work</a> / Records / Rosalía', '>Trabajo</a> / Discos / Rosalía'),
+ ('<a class="cl" href="ProjectES.dc.html" hreflang="es" lang="es" style="padding: 10px 0">Español</a>', '<a class="cl" href="Project.dc.html" hreflang="en" lang="en" style="padding: 10px 0">English</a>'),
+ ('>Artist<', '>Artista<'), ('>Album<', '>Álbum<'), ('>Supervising orchestrator<', '>Orquestador supervisor<'),
+ ('>Orchestra<', '>Orquesta<'), ('>London Symphony Orchestra<', '>Orquesta Sinfónica de Londres<'), ('>Conductor<', '>Director<'),
+ ('>Recorded<', '>Grabación<'), ('>AIR Studios, London<', '>AIR Studios, Londres<'), ('>Label<', '>Sello<'),
+ ('>Recognition<', '>Reconocimientos<'), ('>Tracklist<', '>Canciones<'), ('>LUX · 15 tracks<', '>LUX · 15 canciones<'),
+ ('Listen on Spotify</a>', 'Escuchar en Spotify</a>'), ('Play the album</a>', 'Escuchar el álbum</a>'),
+ ('>Play on Spotify<', '>Escuchar en Spotify<'), ('Next — Film', 'Siguiente — Cine'),
+ ('>Latin Grammys<', '>Latin Grammy<'),
+ ('Album of the Year, Song of the Year (“La Perla”), Best Alternative Music Album and more · 27th Latin Grammy Awards, 2026',
+  'Álbum del Año, Canción del Año («La Perla»), Mejor Álbum de Música Alternativa y más · 27.ª edición de los Latin Grammy, 2026'),
+ ('>Grammy nominations<', '>nominaciones al Grammy<'),
+ ('Including Album of the Year · 69th Grammy Awards, 2027', 'Entre ellas Álbum del Año · 69.ª edición de los Grammy, 2027'),
+ ('>Start a project<', '>Empezar un proyecto<'), ('>Contact<', '>Contacto<'),
+]
+
+
+def lux_es():
+    s = lux()
+    missing = [a for a, b in ES if a not in s]
+    if missing:
+        print('ES: not found ->', [m[:40] for m in missing])
+    for a, b in ES:
+        s = s.replace(a, b)
+    return s
+
+
+open(os.path.join(OUT, 'ProjectES.dc.html'), 'w', encoding='utf-8').write(lux_es().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+
+# credits for structured data (read by build_static.py)
+json.dump([dict(title=t, cat=c, role=r, with_=w, spotify=s) for t, c, r, w, k, s in P],
+          open('/home/claude/kdg_scripts/credits.json', 'w'), ensure_ascii=False, indent=0)

@@ -1,4 +1,4 @@
-const V = '07f23a2f49';
+const V = '2a607338af';
 const CORE = ["/img/grain.webp", "/favicon.svg", "/fonts/archivo-62-800.woff2", "/fonts/dm-mono-400.woff2", "/fonts/instrument-sans.woff2"];
 self.addEventListener('install', e => { e.waitUntil(caches.open('kdg-' + V).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== 'kdg-' + V).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
