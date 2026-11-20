@@ -191,7 +191,7 @@ def footer(grad):
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; {MONO}; font-size: 11px; border-top: 1px solid rgba(251,248,242,0.4); padding-top: 18px">
 <span>Kyle Daniel Gordon · Orchestrator, arranger, conductor · Los Angeles</span>
-<span style="display: flex; gap: 26px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a></span>
+<span style="display: flex; gap: 26px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a><a class="cl" href="Privacy.dc.html" style="padding: 10px 0">Privacy</a></span>
 </div>
 </div>
 </footer>'''
@@ -768,6 +768,27 @@ def lux_es():
 
 
 open(os.path.join(OUT, 'ProjectES.dc.html'), 'w', encoding='utf-8').write(lux_es().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+
+# ------------------------------------------------------------------ PRIVACY
+def privacy():
+    items = [('What is measured', 'This site uses Cloudflare Web Analytics (page views, no cookies) and Microsoft Clarity (anonymous heatmaps and session recordings that show how pages are used). Text you type into forms is masked. Neither tool is used for advertising.'),
+             ('Cookies', 'Cloudflare Web Analytics sets no cookies. Microsoft Clarity may set first-party cookies to link page views within a visit; where consent is required it runs without them. You can block both with any standard content blocker.'),
+             ('Your data', 'No personal information is collected unless you email Kyle. Email is used only to reply. For questions or deletion requests, write to kylegordonmusic@gmail.com.'),
+             ('Third parties', 'Microsoft’s privacy statement: privacy.microsoft.com. Cloudflare’s privacy policy: cloudflare.com/privacypolicy.')]
+    body = ''.join(f'''<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid {RULE}">
+<h2 style="margin: 0; {SANS}; font-size: 22px; letter-spacing: -0.02em">{h}</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">{t}</p></div>''' for h, t in items)
+    inner = f'''<header style="position: relative">
+{band('#1b1a17 0%, #4b463e 26%, #b9b0a0 54%, #efeadf 78%', 260)}
+{nav('#f2efe8')}
+<div style="{WRAP}; padding-top: 200px; display: flex; flex-direction: column; gap: 14px" class="rise">
+{hero_title('Updated November 2026', 'Privacy', 'clamp(64px, 10vw, 150px)')}
+</div></header>
+<section aria-label="Privacy" style="{WRAP}; margin-top: 70px; border-bottom: 1px solid {RULE}">{body}</section>
+{footer('#b9b0a0 30%, #4b463e 62%, #1b1a17 100%')}'''
+    return page('Privacy, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=2200)
+
+
+open(os.path.join(OUT, 'Privacy.dc.html'), 'w', encoding='utf-8').write(privacy().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
 
 # credits for structured data (read by build_static.py)
 json.dump([dict(title=t, cat=c, role=r, with_=w, spotify=s) for t, c, r, w, k, s in P],

@@ -36,7 +36,7 @@ for f in os.listdir(OGDIR):
 def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg'
 OG = ogi('home')
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -125,6 +125,9 @@ PAGES = [
          desc='String and orchestral arrangements for pop artists, from Rosalía’s LUX with the London Symphony Orchestra to records, sessions and live shows.',
          graph=[PERSON, {"@type": "Service", "serviceType": "Pop string arrangements", "provider": {"@id": SITE + "/#kyle"}, "areaServed": "Worldwide",
                          "description": "String and orchestral arrangements for pop and alternative artists: records, recording sessions and live shows."}], og=ogi('pop-strings')),
+    dict(src='Privacy.dc.html', out='privacy/index.html', path='/privacy/', title='Privacy, Kyle Daniel Gordon',
+         desc='How kyledanielgordon.com measures visits: Cloudflare Web Analytics and Microsoft Clarity. No advertising, no personal data unless you email.',
+         graph=[PERSON]),
     dict(src='Press.dc.html', out='press/index.html', path='/press/',
          title='Press Kit: Kyle Daniel Gordon, Orchestrator',
          desc='Biographies, photos and facts for Kyle Daniel Gordon, orchestrator of Rosalía’s LUX and Oppenheimer. Free to use in programmes and press.',
