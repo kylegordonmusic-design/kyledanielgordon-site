@@ -174,6 +174,8 @@ h404 = re.sub(r'<body>.*</body>', '''<body><main style="min-height: 100vh; displ
 h404 = h404.replace('<link rel="canonical"', '<meta name="robots" content="noindex">\n<link rel="canonical"')
 open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(h404)
 
+open(os.path.join(OUT, 'googleb7fd6123e4efb445.html'), 'w').write('google-site-verification: googleb7fd6123e4efb445.html')
+
 # ---- sitemap, robots, netlify config, readme
 urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><changefreq>monthly</changefreq><priority>{"1.0" if p["path"] == "/" else "0.8"}</priority></url>' for p in PAGES)
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
