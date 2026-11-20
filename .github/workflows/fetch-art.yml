@@ -1,0 +1,20 @@
+name: Fetch artwork
+on:
+  push:
+    branches: [main]
+    paths: ['tools/art.json']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - run: python tools/fetch_art.py
+      - run: |
+          git config user.name "art-bot"
+          git config user.email "art-bot@users.noreply.github.com"
+          git add art
+          git diff --cached --quiet || (git commit -m "Fetch artwork" && git push)
