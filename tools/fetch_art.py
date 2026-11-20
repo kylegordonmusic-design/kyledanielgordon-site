@@ -19,3 +19,15 @@ for slug, url in art.items():
     except Exception as e:
         print('FAILED', slug, url, e, file=sys.stderr)
 print(ok, 'new images')
+
+# Raw files (fonts etc.) listed in tools/files.json -> fonts/<name>, downloaded as-is.
+if os.path.exists('tools/files.json'):
+    os.makedirs('fonts', exist_ok=True)
+    for name, url in json.load(open('tools/files.json')).items():
+        out = f'fonts/{name}'
+        if os.path.exists(out): continue
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (KDG site asset fetcher)'})
+            open(out, 'wb').write(urllib.request.urlopen(req, timeout=30).read()); print('saved', out)
+        except Exception as e:
+            print('FAILED', name, url, e, file=sys.stderr)

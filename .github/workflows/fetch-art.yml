@@ -2,7 +2,7 @@ name: Fetch artwork
 on:
   push:
     branches: [main]
-    paths: ['tools/art.json']
+    paths: ['tools/art.json', 'tools/files.json']
   workflow_dispatch:
 permissions:
   contents: write
@@ -16,5 +16,5 @@ jobs:
       - run: |
           git config user.name "art-bot"
           git config user.email "art-bot@users.noreply.github.com"
-          git add art
+          git add art fonts
           git diff --cached --quiet || (git commit -m "Fetch artwork" && git push)
