@@ -32,6 +32,8 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 </script>
 <style>@view-transition{navigation:auto}</style>'''
 
+BEACON = '''<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "74d2ccc3aba8442e8ffe162baef5f751"}'></script>'''
+
 SW_REG = '''<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js')})}</script>'''
 
 SW = '''const V = '%s';
@@ -105,6 +107,7 @@ def optimize(out):
         vp = head.find('meta', attrs={'name': 'viewport'}) or head.find('meta')
         vp.insert_after(BeautifulSoup(FONT_CSS, 'html.parser'))
         head.append(BeautifulSoup(SPECULATION + SW_REG, 'html.parser'))
+        soup.body.append(BeautifulSoup(BEACON, 'html.parser'))
         open(p, 'w', encoding='utf-8').write(str(soup))
     # grain texture as WebP (lossless) and point CSS at it
     g = os.path.join(out, 'img', 'grain.png')
