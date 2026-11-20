@@ -36,7 +36,7 @@ for f in os.listdir(OGDIR):
 def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg'
 OG = ogi('home')
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -44,7 +44,7 @@ PERSON = {
     "jobTitle": ["Orchestrator", "Arranger", "Conductor"],
     "hasOccupation": [{"@type": "Occupation", "name": n, "occupationLocation": {"@type": "City", "name": "Los Angeles"}} for n in ["Orchestrator", "Music arranger", "Conductor"]],
     "knowsAbout": ["Orchestration", "String arrangements", "Pop strings", "Film scoring", "Conducting"],
-    "url": SITE + "/", "image": {"@type": "ImageObject", "url": SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], "caption": "Kyle Daniel Gordon conducting"}, "email": "mailto:kylegordonmusic@gmail.com",
+    "url": SITE + "/", "image": {"@type": "ImageObject", "url": SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], "caption": "Kyle Daniel Gordon conducting"}, "email": "mailto:kylegordonmusic@gmail.com", "contactPoint": {"@type": "ContactPoint", "contactType": "bookings", "email": "kylegordonmusic@gmail.com", "telephone": "+1-818-518-3441", "url": SITE + "/contact/"},
     "homeLocation": {"@type": "Place", "name": "Los Angeles, California"},
     "alumniOf": {"@type": "CollegeOrUniversity", "name": "University of North Texas"},
     "award": "Billboard Award, #1 Classical Album (Romani: The Untold Story), 2024",
@@ -83,6 +83,11 @@ WORKS = {"@type": "ItemList", "@id": SITE + "/#credits", "name": "Credits of Kyl
              {"@type": TYPE.get(c['cat'], 'CreativeWork'), "name": c['title'],
               "contributor": {"@type": "Role", "roleName": c['role'], "contributor": {"@id": SITE + "/#kyle"}}},
              **({"description": c['with_']} if c['with_'] else {}))} for i, c in enumerate(CREDITS) if c['cat'] != 'Stage']}
+
+FAQS = json.load(open('/home/claude/kdg_scripts/faq.json', encoding='utf-8'))
+def FAQ(k):
+    strip = lambda t: re.sub(r'<[^>]+>', '', t)
+    return {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": strip(a)}} for q, a in FAQS[k]]}
 
 PAGES = [
     dict(src='Home.dc.html', out='index.html', path='/',
@@ -128,6 +133,24 @@ PAGES = [
     dict(src='Privacy.dc.html', out='privacy/index.html', path='/privacy/', title='Privacy, Kyle Daniel Gordon',
          desc='How kyledanielgordon.com measures visits: Cloudflare Web Analytics and Microsoft Clarity. No advertising, no personal data unless you email.',
          graph=[PERSON]),
+    dict(src='LA.dc.html', out='orchestrator-los-angeles/index.html', path='/orchestrator-los-angeles/',
+         title='Orchestrator in Los Angeles: Kyle Daniel Gordon',
+         desc='Los Angeles orchestrator, arranger and conductor for film, TV and records: Rosalía’s LUX, Oppenheimer, Frozen II, Star Wars. Orchestration, strings, score prep.',
+         graph=[PERSON, {"@type": "ProfessionalService", "name": "Kyle Daniel Gordon, orchestrator", "url": SITE + "/orchestrator-los-angeles/",
+                         "founder": {"@id": SITE + "/#kyle"}, "email": "kylegordonmusic@gmail.com", "telephone": "+1-818-518-3441",
+                         "address": {"@type": "PostalAddress", "addressLocality": "Los Angeles", "addressRegion": "CA", "addressCountry": "US"},
+                         "areaServed": [{"@type": "City", "name": "Los Angeles"}, "Worldwide"],
+                         "serviceType": ["Orchestration", "String arrangements", "Score preparation", "Conducting"]}, FAQ('la')]),
+    dict(src='Orchestrator.dc.html', out='what-does-an-orchestrator-do/index.html', path='/what-does-an-orchestrator-do/',
+         title='What Does an Orchestrator Do? A Guide by Kyle Daniel Gordon',
+         desc='What an orchestrator does on a film score and a pop record, how it differs from arranging and composing, and how to hire one. By orchestrator Kyle Daniel Gordon.',
+         graph=[PERSON, {"@type": "Article", "headline": "What does an orchestrator do?", "author": {"@id": SITE + "/#kyle"},
+                         "datePublished": TODAY, "dateModified": TODAY, "mainEntityOfPage": SITE + "/what-does-an-orchestrator-do/",
+                         "about": ["Orchestration", "Film scoring", "String arrangements"], "image": OG}]),
+    dict(src='Contact.dc.html', out='contact/index.html', path='/contact/',
+         title='Contact Kyle Daniel Gordon, Orchestrator',
+         desc='Contact Los Angeles orchestrator Kyle Daniel Gordon for orchestration, string arrangements and conducting: kylegordonmusic@gmail.com, (818) 518-3441.',
+         graph=[PERSON, {"@type": "ContactPage", "url": SITE + "/contact/", "mainEntity": {"@id": SITE + "/#kyle"}}, FAQ('contact')]),
     dict(src='Press.dc.html', out='press/index.html', path='/press/',
          title='Press Kit: Kyle Daniel Gordon, Orchestrator',
          desc='Biographies, photos and facts for Kyle Daniel Gordon, orchestrator of Rosalía’s LUX and Oppenheimer. Free to use in programmes and press.',

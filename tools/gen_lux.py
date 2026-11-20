@@ -146,7 +146,7 @@ def band(grad, h=300):
 
 def nav(color, current=''):
     links = [('Work', 'Home.dc.html#work'), ('LUX', 'Project.dc.html'), ('Live', 'Live.dc.html'), ('Credits', 'Home.dc.html#credits'),
-             ('About', 'Home.dc.html#about'), ('Work with Kyle', 'WorkWith.dc.html')]
+             ('About', 'Home.dc.html#about'), ('Work with Kyle', 'WorkWith.dc.html'), ('Contact', 'Contact.dc.html')]
     ls = ''.join(f'<a class="cl" href="{h}" style="padding: 10px 0"{" aria-current=\"page\"" if n == current else ""}>{n}</a>' for n, h in links)
     return (f'<nav aria-label="Primary" style="{WRAP}; padding-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; '
             f'gap: 12px 28px; {MONO}; font-size: 12px; color: {color}">'
@@ -187,11 +187,11 @@ def footer(grad):
 <a href="mailto:kylegordonmusic@gmail.com" style="{SANS}; font-size: clamp(30px, 5.4vw, 78px); line-height: 0.95; letter-spacing: -0.045em; text-decoration: none; color: #fbf8f2; overflow-wrap: anywhere">kylegordonmusic@gmail.com</a>
 <span style="{MONO}; font-size: 13px">(818) 518-3441 · Los Angeles</span>
 </div>
-<a class="btn line" href="mailto:kylegordonmusic@gmail.com" style="color: #fbf8f2">Start a project</a>
+<a class="btn line" href="Contact.dc.html" style="color: #fbf8f2">Start a project</a>
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; {MONO}; font-size: 11px; border-top: 1px solid rgba(251,248,242,0.4); padding-top: 18px">
 <span>Kyle Daniel Gordon · Orchestrator, arranger, conductor · Los Angeles</span>
-<span style="display: flex; gap: 26px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a><a class="cl" href="Privacy.dc.html" style="padding: 10px 0">Privacy</a></span>
+<span style="display: flex; gap: 26px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a><a class="cl" href="LA.dc.html" style="padding: 10px 0">Orchestrator in LA</a><a class="cl" href="Orchestrator.dc.html" style="padding: 10px 0">What an orchestrator does</a><a class="cl" href="Privacy.dc.html" style="padding: 10px 0">Privacy</a></span>
 </div>
 </div>
 </footer>'''
@@ -349,9 +349,10 @@ def home():
 # ------------------------------------------------------------------ LUX PROJECT
 def lux():
     tracks = ['Sexo, Violencia y Llantas', 'Reliquia', 'Divinize', 'Porcelana', 'Mio Cristo Piange Diamanti', 'Berghain', 'La Perla',
-              'Mundo Nuevo', 'De Madrugá', 'Dios Es Un Stalker', 'La Yugular', 'Sauvignon Blanc', 'La Rumba Del Perdón', 'Memória', 'Magnolias']
+              'Mundo Nuevo', 'De Madrugá', 'Dios Es Un Stalker', 'La Yugular', 'Sauvignon Blanc', 'La Rumba Del Perdón', 'Memória', 'Magnolias',
+              'Focu ’ranni', 'Jeanne', 'Novia Robot']
     tl = ''.join(f'<li style="display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 9px 0; border-top: 1px solid {RULE}">'
-                 f'<span style="{MONO}; font-size: 11px; color: {MUTE}; font-variant-numeric: tabular-nums">{i + 1:02d}</span><span>{t}</span></li>' for i, t in enumerate(tracks))
+                 f'<span style="{MONO}; font-size: 11px; color: {MUTE}; font-variant-numeric: tabular-nums">{i + 1:02d}</span><span style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px"><span>{t}</span><span style="{MONO}; font-size: 11px; color: {MUTE}">{"Complete Works · " if i >= 15 else ""}Orchestration: Kyle Daniel Gordon</span></span></li>' for i, t in enumerate(tracks))
     spec = [('Artist', 'Rosalía'), ('Album', 'LUX (2025) · LUX (Complete Works)'), ('Supervising orchestrator', 'Kyle Daniel Gordon'),
             ('Orchestra', 'London Symphony Orchestra'), ('Conductor', 'Daníel Bjarnason'), ('Recorded', 'AIR Studios, London'),
             ('Label', 'Columbia Records')]
@@ -395,7 +396,7 @@ def lux():
 
 <section aria-label="Tracklist" style="{WRAP}; margin-top: 130px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 40px 80px; align-items: start">
 <div style="display: flex; flex-direction: column; gap: 18px">
-{staff_head('B', 'Tracklist', 'LUX · 15 tracks')}
+{staff_head('B', 'Tracklist', 'LUX · 18 tracks')}
 <p style="margin: 0; font-size: 16px; color: #3a362f; max-width: 44ch">The London Symphony Orchestra plays on every song. LUX (Complete Works) adds three more.</p>
 <a class="btn line" href="{BY['LUX'][5]}" style="align-self: flex-start">{PLAY}Play the album</a>
 </div>
@@ -745,7 +746,7 @@ ES = [
  ('>Artist<', '>Artista<'), ('>Album<', '>Álbum<'), ('>Supervising orchestrator<', '>Orquestador supervisor<'),
  ('>Orchestra<', '>Orquesta<'), ('>London Symphony Orchestra<', '>Orquesta Sinfónica de Londres<'), ('>Conductor<', '>Director<'),
  ('>Recorded<', '>Grabación<'), ('>AIR Studios, London<', '>AIR Studios, Londres<'), ('>Label<', '>Sello<'),
- ('>Recognition<', '>Reconocimientos<'), ('>Tracklist<', '>Canciones<'), ('>LUX · 15 tracks<', '>LUX · 15 canciones<'),
+ ('>Recognition<', '>Reconocimientos<'), ('>Tracklist<', '>Canciones<'), ('>LUX · 18 tracks<', '>LUX · 18 canciones<'), ('Orchestration: Kyle Daniel Gordon<', 'Orquestación: Kyle Daniel Gordon<'),
  ('Listen on Spotify</a>', 'Escuchar en Spotify</a>'), ('Play the album</a>', 'Escuchar el álbum</a>'),
  ('>Play on Spotify<', '>Escuchar en Spotify<'), ('Next — Film', 'Siguiente — Cine'),
  ('>Latin Grammys<', '>Latin Grammy<'),
@@ -789,6 +790,140 @@ def privacy():
 
 
 open(os.path.join(OUT, 'Privacy.dc.html'), 'w', encoding='utf-8').write(privacy().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+
+# ------------------------------------------------------------------ SEO LANDING PAGES
+def prose(paras, width='66ch'):
+    return ''.join(f'<p style="margin: 0; font-size: 18px; line-height: 1.65; max-width: {width}">{t}</p>' for t in paras)
+
+
+def faq_block(qas):
+    return ''.join(f'''<details style="border-top: 1px solid {RULE}; padding: 18px 0">
+<summary style="cursor: pointer; {SANS}; font-size: 21px; letter-spacing: -0.02em; list-style-position: outside">{q}</summary>
+<p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; max-width: 66ch; color: #3a362f">{a}</p></details>''' for q, a in qas)
+
+
+FAQ_LA = [
+    ('What does Kyle Daniel Gordon do?', 'He is an orchestrator, arranger and conductor in Los Angeles. He turns composers’ sketches and mockups into full orchestral scores, writes string and orchestral arrangements for artists, prepares scores and parts, and conducts recording sessions and concerts.'),
+    ('Which projects has he orchestrated?', 'Credits include Rosalía’s LUX (supervising orchestrator, with the London Symphony Orchestra), Oppenheimer, Frozen II, Star Wars: The Last Jedi, Black Panther: Wakanda Forever, The Mandalorian, Haunted Mansion, Bridgerton and The Gilded Age, plus arrangements for the BBC Proms.'),
+    ('Does he work remotely?', 'Yes. Scores and parts are delivered digitally, so he works with composers and artists anywhere. Recording sessions and concerts take place in Los Angeles, Nashville, London and elsewhere.'),
+    ('Can he write strings for a pop or alternative record?', 'Yes. Send a demo, stems or a rough mix and the size of ensemble you have in mind, from a string quartet to a full orchestra. See <a class="cl" href="PopStrings.dc.html">pop string arrangements</a>.'),
+    ('How do I book him?', 'Email <a class="cl" href="mailto:kylegordonmusic@gmail.com">kylegordonmusic@gmail.com</a> with the project, the dates and what you need: orchestration, arrangement, score preparation or conducting.'),
+]
+
+
+def la_page():
+    tiles = ''.join(tile(t, f'{BY[t][2]}' + (f' · {BY[t][3]}' if BY[t][3] else ''), '2 / 3', 'Oppenheimer.dc.html' if t == 'Oppenheimer' else None)
+                    for t in ['Oppenheimer', 'Frozen II', 'Star Wars: The Last Jedi', 'Black Panther: Wakanda Forever', 'The Gilded Age', 'The Mandalorian'] if t in BY)
+    services = [('Film &amp; TV orchestration', 'Full orchestration from mockups, MIDI and sketches, in the composer’s voice. Lead orchestrator or part of an orchestration team.'),
+                ('String &amp; orchestral arrangements', 'Strings, brass and full orchestra for records, singles, live shows and symphonic reimaginings.'),
+                ('Score preparation', 'Proofed scores and parts delivered before the session, so the studio time goes to the music.'),
+                ('Conducting', 'Recording sessions and live concerts with orchestras in Los Angeles and abroad.')]
+    sv = ''.join(f'''<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1.5px solid {INK}">
+<h3 style="margin: 0; {SANS}; font-size: 22px; letter-spacing: -0.02em">{h}</h3><p style="margin: 0; font-size: 16px; color: #3a362f">{t}</p></div>''' for h, t in services)
+    inner = f'''<header style="position: relative">
+{band('#0b1a2e 0%, #1d4f86 26%, #e8a35a 54%, #f4e6cf 78%', 300)}
+{nav('#f3ece0')}
+<div style="{WRAP}; padding-top: 220px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
+<div style="display: flex; flex-direction: column; gap: 18px">
+{crumbs('<a class="cl" href="WorkWith.dc.html" style="padding: 10px 0">Work with Kyle</a>', 'Los Angeles')}
+{hero_title('Film, television &amp; records', 'Orchestrator in Los Angeles', 'clamp(52px, 7vw, 112px)')}
+</div>
+<div style="display: flex; flex-direction: column; gap: 18px">
+{prose(['Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He was supervising orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and has worked on the scores for <em>Oppenheimer</em>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em> and <em>The Gilded Age</em>.'])}
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="Contact.dc.html">Contact Kyle</a><a class="btn line" href="Home.dc.html#credits">All credits</a></div>
+</div></div></header>
+
+<section aria-label="Services" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('A', 'What he does', 'Orchestration · strings · conducting')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 28px 36px">{sv}</div>
+</section>
+
+<section aria-label="Film and television" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('B', 'Film &amp; television', 'Selected')}
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 46%), 1fr)); gap: 32px 24px">{tiles}</div>
+</section>
+
+<section aria-label="Questions" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('C', 'Questions', 'Hiring an orchestrator')}
+<div style="border-bottom: 1px solid {RULE}">{faq_block(FAQ_LA)}</div>
+</section>
+
+{next_link('Learn more', 'What does an orchestrator do?', 'Orchestrator.dc.html')}
+{footer('#e8a35a 30%, #1d4f86 62%, #0b1a2e 100%')}'''
+    return page('Orchestrator in Los Angeles, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=4200)
+
+
+def orchestrator_guide():
+    sec = lambda h, paras: f'''<section style="display: flex; flex-direction: column; gap: 16px; padding-top: 28px; border-top: 1.5px solid {INK}">
+<h2 style="margin: 0; {SANS}; font-size: clamp(26px, 3vw, 36px); letter-spacing: -0.035em">{h}</h2>{prose(paras)}</section>'''
+    body = ''.join([
+        sec('The short answer', ['An orchestrator takes music that already exists in some form, a piano sketch, a demo or a composer’s computer mockup, and writes it out for real instruments: which notes the violins play, where the horns double the melody, how loud the timpani is. The composer decides what the music says; the orchestrator decides how an orchestra says it, then delivers a score that players can sight-read in a recording session.']),
+        sec('Orchestrator, arranger and composer', ['A <strong>composer</strong> writes the original music. An <strong>arranger</strong> reshapes existing music, for example turning a pop song into a version for strings. An <strong>orchestrator</strong> assigns finished musical ideas to instruments. In practice the roles overlap, and many people, including Kyle Daniel Gordon, work as all three depending on the project.']),
+        sec('How orchestration works on a film score', ['On a large film or series the composer writes against picture, usually in a detailed digital mockup. The mockup goes to a team of orchestrators, often led by a lead or supervising orchestrator, who turn each cue into a full score in the composer’s style. A music preparation team then produces the individual parts, and the cues are recorded with an orchestra on a scoring stage, often in only a few days.',
+                                                    'Kyle has worked in this way on scores such as <a class="cl" href="Oppenheimer.dc.html"><em>Oppenheimer</em></a>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em> and <em>The Gilded Age</em>.']),
+        sec('How it works on a record', ['On a pop or alternative record the starting point is a song, a production and a vocal. The orchestrator writes parts that sit around the voice without fighting the production, then the strings or orchestra are recorded separately and blended in the mix. On Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>, Kyle Daniel Gordon was supervising orchestrator, with the London Symphony Orchestra playing on every track. Read more about <a class="cl" href="PopStrings.dc.html">pop string arrangements</a>.']),
+        sec('What a good orchestrator brings', ['Knowledge of every instrument’s range, colour and limits; the ability to write in someone else’s voice; clean, readable scores that save expensive studio time; and the judgement to make a mockup sound better, not just louder, when real players perform it.']),
+        sec('Hiring an orchestrator', ['Send the music, the deadline and the size of the ensemble. Rates depend on the amount of music, the size of the orchestra and the turnaround. For film, television, records and concerts, <a class="cl" href="Contact.dc.html">contact Kyle Daniel Gordon</a> in Los Angeles.']),
+    ])
+    inner = f'''<header style="position: relative">
+{band('#1b1a17 0%, #4a3b6e 26%, #c9b6e8 54%, #f2eef7 78%', 280)}
+{nav('#f4f0fa')}
+<div style="{WRAP}; padding-top: 210px; display: flex; flex-direction: column; gap: 16px" class="rise">
+{crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Guide')}
+{hero_title('A guide by Kyle Daniel Gordon, orchestrator', 'What does an orchestrator do?', 'clamp(48px, 6.4vw, 104px)')}
+</div></header>
+<article style="{WRAP}; margin-top: 90px; display: flex; flex-direction: column; gap: 46px; max-width: 900px">{body}</article>
+{next_link('Hire an orchestrator', 'Orchestrator in Los Angeles', 'LA.dc.html')}
+{footer('#c9b6e8 30%, #4a3b6e 62%, #1b1a17 100%')}'''
+    return page('What does an orchestrator do?', root(inner), CSS, PAPER, h=4200)
+
+
+FAQ_CONTACT = [
+    ('What should I send?', 'The project and your role, dates and deadlines, the music if you have it (mockups, demos, stems or a rough mix), the size of ensemble, and whether you need orchestration, an arrangement, score preparation or conducting.'),
+    ('Does Kyle work with independent artists?', 'Yes, as well as composers, labels, studios and orchestras. Many arrangements start from a simple demo.'),
+    ('Where are sessions recorded?', 'Wherever the project needs: Los Angeles, Nashville, London (LUX was recorded at AIR Studios), or remotely with players you choose.'),
+    ('Press and programme requests?', 'Biographies and photos are in the <a class="cl" href="Press.dc.html">press kit</a>. For anything else, email.'),
+]
+
+
+def contact():
+    opts = [('Film &amp; TV composers', 'Orchestration for an upcoming score', 'Orchestration%20enquiry', 'Project%3A%0ADates%3A%0AEnsemble%20size%3A%0AMusic%20%28mockups%2Flinks%29%3A%0A'),
+            ('Artists &amp; producers', 'Strings or orchestra on a record or show', 'String%20arrangement%20enquiry', 'Song%2Frecord%3A%0ADemo%20link%3A%0AEnsemble%20%28quartet%2C%20section%2C%20orchestra%29%3A%0ARelease%20%2F%20session%20date%3A%0A'),
+            ('Orchestras &amp; festivals', 'Arrangements, programmes and conducting', 'Concert%20enquiry', 'Orchestra%3A%0AProgramme%20%2F%20concert%20date%3A%0AWhat%20you%20need%3A%0A')]
+    cards = ''.join(f'''<a href="mailto:kylegordonmusic@gmail.com?subject={sj}&amp;body={bd}" class="press" style="border-top: 1.5px solid {INK}; padding-top: 18px">
+<span style="{MONO}; font-size: 12px; color: {MUTE}">0{i + 1}</span>
+<span class="h" style="{SANS}; font-size: 26px; letter-spacing: -0.03em">{h} {ARROW}</span>
+<span style="font-size: 16px; color: #3a362f">{t}</span></a>''' for i, (h, t, sj, bd) in enumerate(opts))
+    inner = f'''<header style="position: relative">
+{band('#120f22 0%, #3b2a6a 26%, #a9c3ff 54%, #eef1f8 78%', 280)}
+{nav('#eef1ff')}
+<div style="{WRAP}; padding-top: 210px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
+<div style="display: flex; flex-direction: column; gap: 16px">
+{crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Contact')}
+{hero_title('Orchestration · strings · conducting', 'Contact', 'clamp(64px, 10vw, 160px)')}
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<a href="mailto:kylegordonmusic@gmail.com" style="{SANS}; font-size: clamp(24px, 2.7vw, 40px); letter-spacing: -0.04em; text-decoration: none; color: {INK}; overflow-wrap: anywhere">kylegordonmusic@gmail.com</a>
+<a href="tel:+18185183441" class="cl" style="{MONO}; font-size: 14px; padding: 8px 0; align-self: flex-start">(818) 518-3441</a>
+<span style="{MONO}; font-size: 12px; color: {MUTE}">Los Angeles · working worldwide</span>
+</div></div></header>
+
+<section aria-label="Start a project" style="{WRAP}; margin-top: 100px; display: flex; flex-direction: column; gap: 28px">
+{staff_head('A', 'Start a project', 'Opens an email with the details to fill in')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px 36px">{cards}</div>
+</section>
+
+<section aria-label="Questions" style="{WRAP}; margin-top: 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('B', 'Questions', 'Before you write')}
+<div style="border-bottom: 1px solid {RULE}">{faq_block(FAQ_CONTACT)}</div>
+</section>
+{footer('#a9c3ff 30%, #3b2a6a 62%, #120f22 100%')}'''
+    return page('Contact Kyle Daniel Gordon', root(inner), CSS, PAPER, h=3000)
+
+
+for _fn, _f in [('LA.dc.html', la_page), ('Orchestrator.dc.html', orchestrator_guide), ('Contact.dc.html', contact)]:
+    open(os.path.join(OUT, _fn), 'w', encoding='utf-8').write(_f().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+json.dump({'la': FAQ_LA, 'contact': FAQ_CONTACT}, open('/home/claude/kdg_scripts/faq.json', 'w'), ensure_ascii=False)
 
 # credits for structured data (read by build_static.py)
 json.dump([dict(title=t, cat=c, role=r, with_=w, spotify=s) for t, c, r, w, k, s in P],
