@@ -44,7 +44,7 @@ PERSON = {
     "jobTitle": ["Orchestrator", "Arranger", "Conductor"],
     "hasOccupation": [{"@type": "Occupation", "name": n, "occupationLocation": {"@type": "City", "name": "Los Angeles"}} for n in ["Orchestrator", "Music arranger", "Conductor"]],
     "knowsAbout": ["Orchestration", "String arrangements", "Pop strings", "Film scoring", "Conducting"],
-    "url": SITE + "/", "image": OG, "email": "mailto:kylegordonmusic@gmail.com",
+    "url": SITE + "/", "image": {"@type": "ImageObject", "url": SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], "caption": "Kyle Daniel Gordon conducting"}, "email": "mailto:kylegordonmusic@gmail.com",
     "homeLocation": {"@type": "Place", "name": "Los Angeles, California"},
     "alumniOf": {"@type": "CollegeOrUniversity", "name": "University of North Texas"},
     "award": "Billboard Award, #1 Classical Album (Romani: The Untold Story), 2024",
@@ -55,7 +55,7 @@ PERSON = {
 ALBUM = {
     "@type": "MusicAlbum", "@id": SITE + "/work/rosalia-lux/#album", "name": "LUX",
     "byArtist": {"@type": "MusicGroup", "name": "Rosalía"}, "datePublished": "2025-11-07",
-    "recordLabel": {"@type": "Organization", "name": "Columbia Records"},
+    "publisher": {"@type": "Organization", "name": "Columbia Records"},
     "contributor": {"@id": SITE + "/#kyle"}, "award": "Latin Grammy Award for Album of the Year (2026)",
     "image": SITE + blob2path[A['rosalia-lux-album']],
     "sameAs": "https://open.spotify.com/album/3SUEJULSGgBDG1j4GQhfYY"}
