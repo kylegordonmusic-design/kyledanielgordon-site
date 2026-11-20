@@ -26,7 +26,7 @@ P = [
  ('BBC Proms: Marvin Gaye, Prince of Soul', 'Stage', 'Arrangements', 'BBC Concert Orchestra · 2026', None, None),
  ('BBC Proms: Soul Revolution', 'Stage', 'Arranger, composer (finale), organ', 'BBC Concert Orchestra · 2025', None, 'https://www.instagram.com/kylegordonmusic/reel/DM7t0RKo_Ne/'),
  ('The Little Bird', 'Stage', 'Composer · world premiere', 'San Francisco Symphony · 2026', None, None),
- ('People Pleaser', 'Record', 'Arranger', 'Mollie Elizabeth · 2026', None, sp_search('Mollie Elizabeth People Pleaser')),
+ ('People Pleaser', 'Record', 'Arranger', 'Mollie Elizabeth · 2026', 'mollie-elizabeth-people-pleaser', 'https://open.spotify.com/album/6vYVu3wSl9OedjOU8n8pVX'),
  ('Grace Kelly with Strings: At The Movies', 'Record', 'Arranger, orchestrator, co-producer', 'Grace Kelly', 'grace-kelly-with-strings-at-the-movies', 'https://open.spotify.com/album/2buBjbRAHUe3QMiWbRuHM0'),
  ('This Light Has No Darkness', 'Record', 'Arranger, orchestrator, co-producer', 'David Friesen', 'david-friesen-this-light-has-no-darkness', sp_search('David Friesen This Light Has No Darkness')),
  ('Magia en Dos', 'Record', 'Orchestrator', 'Ariza', 'ariza-magia-en-dos', sp_search('Ariza Magia en Dos')),
@@ -220,7 +220,7 @@ def home():
                       [('Oppenheimer', 'Orchestrator'), ('Bridgerton', 'Orchestration'), ('The Mandalorian', 'Orchestration'), ('Babylon', 'Orchestration')])
     recs = ''.join(tile(t, s, '1 / 1') for t, s in
                    [('Romani: The Untold Story', 'Billboard #1 Classical Album, 2024'), ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'),
-                    ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('This Light Has No Darkness', 'David Friesen')])
+                    ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('People Pleaser', 'Mollie Elizabeth · arranger, 2026')])
     wall = ''.join(cov(t, BY[t][4], '2 / 3', BY[t][5], 'Play', grad=GOLD) for t in POPULAR)
     proms = ''.join(f'''<article class="prom" aria-label="{ven} {y}: {t}">
 <div class="face" style="position: relative; aspect-ratio: 4 / 3; background: {g}; overflow: hidden">{grain(0.42)}
