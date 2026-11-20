@@ -11,3 +11,8 @@ Hosted on GitHub Pages; every push to `main` deploys automatically (.github/work
 ## Layout
 - `public/` the live site (GitHub Pages publishes this folder)
 - `tools/` the scripts that generate the pages from the design
+
+## Artwork (standing rule, approved by Kyle 2026-11-20)
+Poster and album art is always pulled from online, never left as a placeholder.
+Add `"slug": "<image url>"` to `tools/art.json` and push; the "Fetch artwork" Action
+downloads it to `art/<slug>.jpg`. Pull, run `tools/sync_art.py`, set the credit's image key, rebuild.

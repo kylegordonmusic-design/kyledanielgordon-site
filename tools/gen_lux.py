@@ -35,7 +35,7 @@ P = [
  ('Oppenheimer', 'Film', 'Orchestrator', 'Ludwig Göransson', 'oppenheimer-film-poster', 'https://open.spotify.com/album/0rwbMKjNkp4ehQTwf9V2Jk'),
  ('Frozen II', 'Film', OM, '', 'frozen-ii', sp_search('Frozen II soundtrack')),
  ('Star Wars: The Last Jedi', 'Film', OM, 'John Williams', 'star-wars-the-last-jedi', sp_search('Star Wars The Last Jedi soundtrack')),
- ('Star Wars: The Rise of Skywalker', 'Film', 'Music department', 'John Williams', None, sp_search('Star Wars The Rise of Skywalker soundtrack')),
+ ('Star Wars: The Rise of Skywalker', 'Film', 'Music department', 'John Williams', 'star-wars-the-rise-of-skywalker', sp_search('Star Wars The Rise of Skywalker soundtrack')),
  ('Black Panther: Wakanda Forever', 'Film', OM, 'Ludwig Göransson', 'black-panther-wakanda-forever', sp_search('Black Panther Wakanda Forever score')),
  ('Babylon', 'Film', OM, 'Justin Hurwitz', 'babylon', sp_search('Babylon soundtrack Justin Hurwitz')),
  ('Blue Beetle', 'Film', OM, '', 'blue-beetle', sp_search('Blue Beetle soundtrack')),
@@ -46,7 +46,7 @@ P = [
  ('Haunted Mansion', 'Film', OM, 'Kris Bowers', 'haunted-mansion', sp_search('Haunted Mansion 2023 soundtrack')),
  ('Mink!', 'Film', OM, 'Documentary', 'mink-documentary', sp_search('Mink documentary soundtrack')),
  ('Bridgerton', 'Television', OM, 'Kris Bowers', 'bridgerton', sp_search('Bridgerton Kris Bowers')),
- ('The Gilded Age', 'Television', OM, 'Harry & Rupert Gregson-Williams', None, sp_search('The Gilded Age soundtrack Gregson-Williams')),
+ ('The Gilded Age', 'Television', OM, 'Harry & Rupert Gregson-Williams', 'the-gilded-age', sp_search('The Gilded Age soundtrack Gregson-Williams')),
  ('The Mandalorian', 'Television', OM, 'Ludwig Göransson', 'the-mandalorian', sp_search('The Mandalorian original score')),
  ('The Book of Boba Fett', 'Television', OM, '', 'the-book-of-boba-fett', sp_search('The Book of Boba Fett soundtrack')),
  ('Star Trek: Strange New Worlds', 'Television', OM, '', 'star-trek-strange-new-worlds', sp_search('Star Trek Strange New Worlds soundtrack')),
@@ -70,7 +70,7 @@ P = [
 ]
 BY = {p[0]: p for p in P}
 PHOTO_WIDE = A['conducting-london-symphony-orchestra']
-POPULAR = ['Frozen II', 'Star Wars: The Last Jedi', 'Black Panther: Wakanda Forever', 'The Gilded Age', 'The Book of Boba Fett',
+POPULAR = ['Frozen II', 'Star Wars: The Last Jedi', 'Star Wars: The Rise of Skywalker', 'Black Panther: Wakanda Forever', 'The Gilded Age', 'The Book of Boba Fett',
            'Haunted Mansion', 'Star Trek: Strange New Worlds', 'Outer Banks', 'Bluey', 'Star Trek: Discovery', 'Star Trek: Picard',
            'Frozen Planet II', 'The Serpent Queen', 'Cocaine Bear', 'Blue Beetle', 'White Noise', 'Chevalier', 'The Santa Clauses',
            'Prehistoric Planet 2', 'Genshin Impact', 'The Simpsons', 'American Dad', 'Stargirl', 'The Wonderful World of Mickey Mouse',
