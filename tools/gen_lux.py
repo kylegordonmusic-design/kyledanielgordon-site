@@ -120,7 +120,7 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 .row:hover{background-color:var(--tint)}
 .row .peek{position:absolute;right:120px;top:50%;width:72px;opacity:0;transform:translateY(-50%) rotate(-4deg) scale(.9);transition:opacity .25s ease,transform .4s cubic-bezier(.2,.8,.2,1);pointer-events:none;z-index:2;box-shadow:0 16px 24px -14px rgba(27,26,23,.6)}
 .row:hover .peek{opacity:1;transform:translateY(-50%) rotate(-4deg) scale(1)}
-.row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:.55;transition:opacity .2s ease}
+.row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:1;transition:opacity .2s ease}
 .row:hover .go{opacity:1}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 20px;border-radius:999px;text-decoration:none;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:.04em;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
 .btn.solid{background:#1b1a17;color:#f7f4ec;border:1px solid #1b1a17}
@@ -265,7 +265,7 @@ def home():
 <article aria-labelledby="lux-h" class="rise luxcard" style="animation-delay: .15s; display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 22px; align-items: start">
 {cov('LUX', 'rosalia-lux-album', '1 / 1', BY['LUX'][5])}
 <div style="display: flex; flex-direction: column; gap: 10px">
-<span style="{MONO}; font-size: 11px; color: {C['tang']}">Supervising orchestrator · Rosalía · 2025</span>
+<span style="{MONO}; font-size: 11px; color: #b5410b">Supervising orchestrator · Rosalía · 2025</span>
 <h2 id="lux-h" style="margin: 0; {COND}; font-size: 46px; line-height: 0.92">Rosalía — LUX</h2>
 <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #2f2c27">Supervising orchestrator on Rosalía's fourth album, recorded with the London Symphony Orchestra at AIR Studios, London.</p>
 <div style="display: flex; flex-direction: column">{aw}</div>
@@ -277,7 +277,7 @@ def home():
 
 <section aria-label="Orchestras and composers" style="{WRAP}; margin-top: 110px">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 28px 72px; padding: 24px 0; border-top: 1px solid {INK}; border-bottom: 1px solid {INK}">
-<div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestras</span><p style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: {C['sky']}">London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra · Seattle Symphony · National Arts Centre Orchestra</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestras</span><p style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: #1d6fc4">London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra · Seattle Symphony · National Arts Centre Orchestra</p></div>
 <div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestration teams for</span><p style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: {C['mag']}">John Williams · Ludwig Göransson · Kris Bowers · Walter Murphy · Justin Hurwitz</p></div>
 </div>
 </section>
@@ -304,7 +304,7 @@ def home():
 
 <section id="press" aria-label="Press" style="{WRAP}; margin-top: 140px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr)); gap: 40px 80px; align-items: start">
 <a href="{RS_URL}" style="display: flex; flex-direction: column; gap: 22px; text-decoration: none; color: {INK}">
-<span style="{MONO}; font-size: 12px; color: {C['tang']}">In Rolling Stone</span>
+<span style="{MONO}; font-size: 12px; color: #b5410b">In Rolling Stone</span>
 <span style="{SANS}; font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.045em">“Known for the <em style="font-family: 'Instrument Serif', Georgia, serif; font-weight: 400">Oppenheimer</em> and <em style="font-family: 'Instrument Serif', Georgia, serif; font-weight: 400">Bridgerton</em> soundtracks.”</span>
 <span style="font-size: 17px; line-height: 1.45; color: #3a362f; max-width: 46ch">Rolling Stone’s feature on the making of <em>LUX</em> names Kyle Daniel Gordon as the album’s orchestrator. In it he describes getting the call from the London Symphony Orchestra.</span>
 <span class="btn line" style="align-self: flex-start">Read the feature {ARROW}</span>
@@ -371,7 +371,7 @@ def lux():
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 40ch">Orchestrations for an album sung in thirteen languages, with the London Symphony Orchestra on every track.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch">LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s supervising orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">LUX won six Latin Grammys at the 27th Latin Grammy Awards, including Album of the Year, and received ten nominations at the 69th Grammy Awards, including Album of the Year.</p>
-<a href="{RS_URL}" class="press" style="margin-top: 8px; border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: {C['tang']}">Rolling Stone</span>
+<a href="{RS_URL}" class="press" style="margin-top: 8px; border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: #b5410b">Rolling Stone</span>
 <span class="h" style="{SANS}; font-size: 22px; line-height: 1.25; letter-spacing: -0.02em">‘Art for Art’s Sake’: Rosalía’s Collaborators Reflect on ‘Lux’ {ARROW}</span>
 <span style="font-size: 15px; color: #3a362f">Gordon tells the story of the call from the London Symphony Orchestra that brought him onto the album.</span></a>
 </div>
@@ -422,7 +422,7 @@ def workwith():
             ('Conducting', ['Recording sessions', 'Live concerts', 'Los Angeles, Nashville and London', 'Trained in jazz and classical'])]
     cap = ''.join(f'''<div style="display: flex; flex-direction: column; gap: 16px; padding-top: 18px; border-top: 1.5px solid {INK}">
 <span style="{MONO}; font-size: 12px; color: {MUTE}">0{i + 1}</span>
-<h3 style="margin: 0; {COND}; font-size: clamp(40px, 4.4vw, 60px); line-height: 0.92; color: {[C['sky'], C['mag'], C['tang']][i]}">{f'<a href="PopStrings.dc.html" class="cl">{h}</a>' if h == 'Pop strings' else h}</h3>
+<h3 style="margin: 0; {COND}; font-size: clamp(40px, 4.4vw, 60px); line-height: 0.92; color: {['#2271c3', C['mag'], C['tang']][i]}">{f'<a href="PopStrings.dc.html" class="cl">{h}</a>' if h == 'Pop strings' else h}</h3>
 <ul style="margin: 0; padding: 0; list-style: none; {MONO}; font-size: 12px">{''.join(f'<li style="padding: 9px 0; border-top: 1px solid {RULE}">{x}</li>' for x in items)}</ul>
 </div>''' for i, (h, items) in enumerate(caps))
     steps = [('Sketch to score', 'A mockup, sketch or demo becomes a full score written for the players in the room, in the composer’s voice.'),
@@ -653,7 +653,7 @@ def pitch(pt):
 {live}
 
 <section aria-label="LUX" style="{WRAP}; margin-top: 110px">
-<a href="Project.dc.html" class="press" style="border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: {C['tang']}">Rosalía · LUX · 6 Latin Grammys · 10 Grammy nominations</span>
+<a href="Project.dc.html" class="press" style="border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: #b5410b">Rosalía · LUX · 6 Latin Grammys · 10 Grammy nominations</span>
 <span class="h" style="{SANS}; font-size: clamp(24px, 3vw, 36px); line-height: 1.15; letter-spacing: -0.03em">Supervising orchestrator on LUX, recorded with the London Symphony Orchestra {ARROW}</span></a>
 </section>
 

@@ -4,10 +4,13 @@ from PIL import Image
 from bs4 import BeautifulSoup
 
 FONTS_SRC = '/home/claude/kyledanielgordon-site/fonts'
-FONT_CSS = '''<link rel="preload" href="/fonts/archivo-62-800.woff2" as="font" type="font/woff2" crossorigin>
+FONT_CSS = '''<link rel="preload" href="/img/grain.webp" as="image" type="image/webp" fetchpriority="high">
+<link rel="preload" href="/fonts/archivo-62-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+#credits{content-visibility:auto;contain-intrinsic-size:auto 2600px}
+@media (max-width:800px){.grainm{display:none}}
 @font-face{font-family:'Archivo';font-style:normal;font-weight:800;font-stretch:62%;font-display:swap;src:url(/fonts/archivo-62-800.woff2) format('woff2')}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-mono-400.woff2) format('woff2')}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-mono-500.woff2) format('woff2')}
@@ -112,7 +115,7 @@ def optimize(out):
     # grain texture as WebP (lossless) and point CSS at it
     g = os.path.join(out, 'img', 'grain.png')
     if os.path.exists(g):
-        Image.open(g).convert('RGB').save(os.path.join(out, 'img', 'grain.webp'), 'WEBP', quality=60, method=6)
+        Image.open(g).convert('RGB').resize((240, 240), Image.LANCZOS).save(os.path.join(out, 'img', 'grain.webp'), 'WEBP', quality=45, method=6)
         for p in pages:
             s = open(p, encoding='utf-8').read().replace('/img/grain.png', '/img/grain.webp')
             open(p, 'w', encoding='utf-8').write(s)

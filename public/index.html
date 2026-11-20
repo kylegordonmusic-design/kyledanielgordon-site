@@ -3,10 +3,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/><link as="font" crossorigin="" href="/fonts/archivo-62-800.woff2" rel="preload" type="font/woff2"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/><link as="image" fetchpriority="high" href="/img/grain.webp" rel="preload" type="image/webp"/>
+<link as="font" crossorigin="" href="/fonts/archivo-62-800.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/fonts/dm-mono-400.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/fonts/instrument-sans.woff2" rel="preload" type="font/woff2"/>
 <style>
+#credits{content-visibility:auto;contain-intrinsic-size:auto 2600px}
+@media (max-width:800px){.grainm{display:none}}
 @font-face{font-family:'Archivo';font-style:normal;font-weight:800;font-stretch:62%;font-display:swap;src:url(/fonts/archivo-62-800.woff2) format('woff2')}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-mono-400.woff2) format('woff2')}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-mono-500.woff2) format('woff2')}
@@ -909,7 +912,7 @@ a:focus-visible,button:focus-visible{outline:2px solid currentColor;outline-offs
 .row:hover{background-color:var(--tint)}
 .row .peek{position:absolute;right:120px;top:50%;width:72px;opacity:0;transform:translateY(-50%) rotate(-4deg) scale(.9);transition:opacity .25s ease,transform .4s cubic-bezier(.2,.8,.2,1);pointer-events:none;z-index:2;box-shadow:0 16px 24px -14px rgba(27,26,23,.6)}
 .row:hover .peek{opacity:1;transform:translateY(-50%) rotate(-4deg) scale(1)}
-.row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:.55;transition:opacity .2s ease}
+.row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:1;transition:opacity .2s ease}
 .row:hover .go{opacity:1}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 20px;border-radius:999px;text-decoration:none;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:.04em;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
 .btn.solid{background:#1b1a17;color:#f7f4ec;border:1px solid #1b1a17}
@@ -949,7 +952,7 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 <article aria-labelledby="lux-h" class="rise luxcard" style="animation-delay: .15s; display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 22px; align-items: start">
 <a aria-label="Play LUX on Spotify" class="cov" href="https://open.spotify.com/album/3SUEJULSGgBDG1j4GQhfYY" rel="noopener" style="aspect-ratio: 1 / 1" target="_blank"><img alt="LUX album cover" decoding="async" fetchpriority="high" loading="eager" sizes="(max-width: 800px) 100vw, 50vw" src="/img/rosalia-lux-album-kyle-daniel-gordon-orchestrator-320.webp" srcset="/img/rosalia-lux-album-kyle-daniel-gordon-orchestrator-160.webp 160w, /img/rosalia-lux-album-kyle-daniel-gordon-orchestrator-320.webp 320w, /img/rosalia-lux-album-kyle-daniel-gordon-orchestrator-640.webp 640w"/><span class="play"><svg aria-hidden="true" height="13" viewbox="0 0 12 13" width="12"><path d="M1.5 1v11l9.5-5.5z" fill="currentColor"></path></svg>Play on Spotify</span></a>
 <div style="display: flex; flex-direction: column; gap: 10px">
-<span style="font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; color: #e2581a">Supervising orchestrator · Rosalía · 2025</span>
+<span style="font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; color: #b5410b">Supervising orchestrator · Rosalía · 2025</span>
 <h2 id="lux-h" style="margin: 0; font-family: 'Archivo', 'Arial Narrow', sans-serif; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: 46px; line-height: 0.92">Rosalía — LUX</h2>
 <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #2f2c27">Supervising orchestrator on Rosalía's fourth album, recorded with the London Symphony Orchestra at AIR Studios, London.</p>
 <div style="display: flex; flex-direction: column"><div style="display: flex; align-items: baseline; gap: 14px; padding: 14px 0; border-top: 1px solid rgba(27,26,23,0.22)">
@@ -964,7 +967,7 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 </header>
 <section aria-label="Orchestras and composers" style="position: relative; max-width: 1392px; margin: 0 auto; padding-left: 24px; padding-right: 24px; box-sizing: border-box; margin-top: 110px">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 28px 72px; padding: 24px 0; border-top: 1px solid #1b1a17; border-bottom: 1px solid #1b1a17">
-<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; color: #625d55">Orchestras</span><p style="margin: 0; font-family: 'Archivo', 'Arial Narrow', sans-serif; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: 24px; line-height: 1.15; color: #3a97f2">London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra · Seattle Symphony · National Arts Centre Orchestra</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; color: #625d55">Orchestras</span><p style="margin: 0; font-family: 'Archivo', 'Arial Narrow', sans-serif; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: 24px; line-height: 1.15; color: #1d6fc4">London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra · Seattle Symphony · National Arts Centre Orchestra</p></div>
 <div style="display: flex; flex-direction: column; gap: 8px"><span style="font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; color: #625d55">Orchestration teams for</span><p style="margin: 0; font-family: 'Archivo', 'Arial Narrow', sans-serif; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: 24px; line-height: 1.15; color: #cf1f84">John Williams · Ludwig Göransson · Kris Bowers · Walter Murphy · Justin Hurwitz</p></div>
 </div>
 </section>
@@ -1046,7 +1049,7 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 </section>
 <section aria-label="Press" id="press" style="position: relative; max-width: 1392px; margin: 0 auto; padding-left: 24px; padding-right: 24px; box-sizing: border-box; margin-top: 140px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr)); gap: 40px 80px; align-items: start">
 <a href="https://www.rollingstone.com/music/music-features/rosalia-lux-collaborators-making-of-1235470741/" rel="noopener" style="display: flex; flex-direction: column; gap: 22px; text-decoration: none; color: #1b1a17" target="_blank">
-<span style="font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 12px; color: #e2581a">In Rolling Stone</span>
+<span style="font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 12px; color: #b5410b">In Rolling Stone</span>
 <span style="font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.045em">“Known for the <em style="font-family: 'Instrument Serif', Georgia, serif; font-weight: 400">Oppenheimer</em> and <em style="font-family: 'Instrument Serif', Georgia, serif; font-weight: 400">Bridgerton</em> soundtracks.”</span>
 <span style="font-size: 17px; line-height: 1.45; color: #3a362f; max-width: 46ch">Rolling Stone’s feature on the making of <em>LUX</em> names Kyle Daniel Gordon as the album’s orchestrator. In it he describes getting the call from the London Symphony Orchestra.</span>
 <span class="btn line" style="align-self: flex-start">Read the feature <svg aria-hidden="true" fill="none" height="11" stroke="currentColor" stroke-width="1.5" viewbox="0 0 11 11" width="11"><path d="M2 9 9 2M3.5 2H9v5.5"></path></svg></span>

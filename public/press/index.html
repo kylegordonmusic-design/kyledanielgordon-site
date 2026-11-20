@@ -3,10 +3,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/><link as="font" crossorigin="" href="/fonts/archivo-62-800.woff2" rel="preload" type="font/woff2"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/><link as="image" fetchpriority="high" href="/img/grain.webp" rel="preload" type="image/webp"/>
+<link as="font" crossorigin="" href="/fonts/archivo-62-800.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/fonts/dm-mono-400.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/fonts/instrument-sans.woff2" rel="preload" type="font/woff2"/>
 <style>
+#credits{content-visibility:auto;contain-intrinsic-size:auto 2600px}
+@media (max-width:800px){.grainm{display:none}}
 @font-face{font-family:'Archivo';font-style:normal;font-weight:800;font-stretch:62%;font-display:swap;src:url(/fonts/archivo-62-800.woff2) format('woff2')}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-mono-400.woff2) format('woff2')}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-mono-500.woff2) format('woff2')}
@@ -154,7 +157,7 @@ a:focus-visible,button:focus-visible{outline:2px solid currentColor;outline-offs
 .row:hover{background-color:var(--tint)}
 .row .peek{position:absolute;right:120px;top:50%;width:72px;opacity:0;transform:translateY(-50%) rotate(-4deg) scale(.9);transition:opacity .25s ease,transform .4s cubic-bezier(.2,.8,.2,1);pointer-events:none;z-index:2;box-shadow:0 16px 24px -14px rgba(27,26,23,.6)}
 .row:hover .peek{opacity:1;transform:translateY(-50%) rotate(-4deg) scale(1)}
-.row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:.55;transition:opacity .2s ease}
+.row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:1;transition:opacity .2s ease}
 .row:hover .go{opacity:1}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 20px;border-radius:999px;text-decoration:none;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:.04em;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
 .btn.solid{background:#1b1a17;color:#f7f4ec;border:1px solid #1b1a17}

@@ -3,10 +3,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/><link as="font" crossorigin="" href="/fonts/archivo-62-800.woff2" rel="preload" type="font/woff2"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/><link as="image" fetchpriority="high" href="/img/grain.webp" rel="preload" type="image/webp"/>
+<link as="font" crossorigin="" href="/fonts/archivo-62-800.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/fonts/dm-mono-400.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="/fonts/instrument-sans.woff2" rel="preload" type="font/woff2"/>
 <style>
+#credits{content-visibility:auto;contain-intrinsic-size:auto 2600px}
+@media (max-width:800px){.grainm{display:none}}
 @font-face{font-family:'Archivo';font-style:normal;font-weight:800;font-stretch:62%;font-display:swap;src:url(/fonts/archivo-62-800.woff2) format('woff2')}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-mono-400.woff2) format('woff2')}
 @font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-mono-500.woff2) format('woff2')}
@@ -191,7 +194,7 @@ a:focus-visible,button:focus-visible{outline:2px solid currentColor;outline-offs
 .row:hover{background-color:var(--tint)}
 .row .peek{position:absolute;right:120px;top:50%;width:72px;opacity:0;transform:translateY(-50%) rotate(-4deg) scale(.9);transition:opacity .25s ease,transform .4s cubic-bezier(.2,.8,.2,1);pointer-events:none;z-index:2;box-shadow:0 16px 24px -14px rgba(27,26,23,.6)}
 .row:hover .peek{opacity:1;transform:translateY(-50%) rotate(-4deg) scale(1)}
-.row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:.55;transition:opacity .2s ease}
+.row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:1;transition:opacity .2s ease}
 .row:hover .go{opacity:1}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 20px;border-radius:999px;text-decoration:none;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:.04em;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
 .btn.solid{background:#1b1a17;color:#f7f4ec;border:1px solid #1b1a17}
@@ -230,7 +233,7 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 <p style="margin: 0; font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 15px; line-height: 1.45; max-width: 40ch">Orchestrations for an album sung in thirteen languages, with the London Symphony Orchestra on every track.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch">LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s supervising orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">LUX won six Latin Grammys at the 27th Latin Grammy Awards, including Album of the Year, and received ten nominations at the 69th Grammy Awards, including Album of the Year.</p>
-<a class="press" href="https://www.rollingstone.com/music/music-features/rosalia-lux-collaborators-making-of-1235470741/" rel="noopener" style="margin-top: 8px; border-top: 2px solid #e2581a" target="_blank"><span style="font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; color: #e2581a">Rolling Stone</span>
+<a class="press" href="https://www.rollingstone.com/music/music-features/rosalia-lux-collaborators-making-of-1235470741/" rel="noopener" style="margin-top: 8px; border-top: 2px solid #e2581a" target="_blank"><span style="font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; color: #b5410b">Rolling Stone</span>
 <span class="h" style="font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 22px; line-height: 1.25; letter-spacing: -0.02em">‘Art for Art’s Sake’: Rosalía’s Collaborators Reflect on ‘Lux’ <svg aria-hidden="true" fill="none" height="11" stroke="currentColor" stroke-width="1.5" viewbox="0 0 11 11" width="11"><path d="M2 9 9 2M3.5 2H9v5.5"></path></svg></span>
 <span style="font-size: 15px; color: #3a362f">Gordon tells the story of the call from the London Symphony Orchestra that brought him onto the album.</span></a>
 </div>
