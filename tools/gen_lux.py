@@ -154,8 +154,6 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 @media (max-width: 600px){.luxcard{grid-template-columns:1fr !important}.luxcard>.cov{max-width:280px}}
 @media (max-width: 1100px){.cwrap{grid-template-columns:1fr}.cprev{display:none}}
 @media (max-height: 520px) and (orientation: landscape){header>div[style*="padding-top: 2"]{padding-top:96px !important}header h1>span:last-child,header h1[style*="font-size: clamp"]{font-size:clamp(44px,14vh,96px) !important}}
-@media (max-width: 1000px) and (min-width: 601px){.contact{grid-template-columns:repeat(6,minmax(0,1fr)) !important}.contact>figure{grid-column:span 2}.contact>figure:nth-child(n+4){grid-column:span 3}.contact>figure:nth-child(n+4) .cov{aspect-ratio:16/9 !important}}
-@media (max-width: 600px){.contact{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:14px !important}.contact>figure:first-child{grid-column:1/-1}.contact>figure:first-child .cov{aspect-ratio:1290/525 !important}}
 @media (max-width: 860px){.row .sub{display:block}.row,.cwrap .row{grid-template-columns:36px minmax(0,1fr) 40px}.row .hide{display:none}.row .peek{display:none}}'''
 
 
@@ -737,17 +735,17 @@ BIO_MED = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based 
 
 
 def press():
-    photos = [('kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session', 'Kyle Daniel Gordon with Rosalía and the London Symphony Orchestra at a LUX recording session', 'Wide · 1290 × 525', '1290 / 525'),
-              ('kyle-daniel-gordon-orchestrator-portrait', 'Kyle Daniel Gordon, portrait', 'Portrait · 1600 × 2133', '3 / 4'),
+    photos = [('kyle-daniel-gordon-orchestrator-portrait', 'Kyle Daniel Gordon, portrait', 'Portrait · 1600 × 2133', '3 / 4'),
               ('conducting-london-symphony-orchestra-for-rosalia-lux-lso', 'Kyle Daniel Gordon conducting', 'Square · 1889 × 1889', '1 / 1'),
+              ('kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session', 'Kyle Daniel Gordon with Rosalía and the London Symphony Orchestra at a LUX recording session', 'Wide · 1290 × 525', '1290 / 525'),
               ('kyle-daniel-gordon-recording-session', 'Kyle Daniel Gordon with Mollie Elizabeth at a recording session', 'Landscape · 2000 × 1125', '16 / 9'),
               ('conducting-london-symphony-orchestra', 'Kyle Daniel Gordon conducting the London Symphony Orchestra', 'Landscape · 2400 × 1350', '16 / 9')]
     SHORT = {'kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session': 'With Rosalía and the LSO, LUX sessions', 'kyle-daniel-gordon-orchestrator-portrait': 'Portrait',
              'conducting-london-symphony-orchestra-for-rosalia-lux-lso': 'Conducting', 'kyle-daniel-gordon-recording-session': 'With Mollie Elizabeth in the studio',
              'conducting-london-symphony-orchestra': 'Conducting the LSO'}
     FOCUS = {'kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session': '52% 40%', 'kyle-daniel-gordon-orchestrator-portrait': '50% 22%'}
-    ph = ''.join(f'''<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
-<a href="{A[k]}" download class="cov" style="aspect-ratio: 1 / 1"><img src="{A[k]}" alt="{alt}" loading="lazy" style="object-position: {FOCUS.get(k, '50% 50%')}"><span class="play">Download</span></a>
+    ph = ''.join(f'''<figure style="margin: 0 0 28px; display: flex; flex-direction: column; gap: 10px; break-inside: avoid">
+<a href="{A[k]}" download class="cov" style="aspect-ratio: {ar}"><img src="{A[k]}" alt="{alt}" loading="lazy"><span class="play">Download</span></a>
 <figcaption style="display: flex; flex-direction: column; gap: 2px; {MONO}; font-size: 11px; line-height: 1.4"><span style="color: {INK}">{SHORT.get(k, alt)}</span><span style="color: {MUTE}">{sz}</span></figcaption></figure>''' for k, alt, sz, ar in photos)
     facts = spec([('Name', 'Kyle Daniel Gordon (also credited as Kyle Gordon)'), ('Based in', 'Los Angeles'),
                   ('Work', 'Orchestrator · arranger · conductor · composer'), ('Selected', 'Rosalía, LUX · Oppenheimer · BBC Proms'),
@@ -802,7 +800,7 @@ def press():
 
 <section aria-label="Photos" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
 {staff_head('B', 'Photos', 'Click to download')}
-<div class="contact" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; align-items: start">{ph}</div>
+<div style="columns: 3 300px; column-gap: 28px">{ph}</div>
 </section>
 
 <section aria-label="Facts" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
