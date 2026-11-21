@@ -287,7 +287,7 @@ open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(h404)
 open(os.path.join(OUT, 'googleb7fd6123e4efb445.html'), 'w').write('google-site-verification: googleb7fd6123e4efb445.html')
 
 # ---- sitemap, robots, netlify config, readme
-PHOTOS = {'/pop-strings/': [SITE + blob2path[A['kyle-daniel-gordon-recording-session']]], '/': [SITE + blob2path[A['kyle-daniel-gordon-orchestrator-portrait']], SITE + blob2path[A['conducting-london-symphony-orchestra']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], SITE + blob2path[A['rosalia-lux-album']]],
+PHOTOS = {'/work/mollie-elizabeth-people-pleaser/': [SITE + blob2path[A['mollie-elizabeth-people-pleaser']], SITE + blob2path[A['kyle-daniel-gordon-recording-session']]], '/pop-strings/': [SITE + blob2path[A['kyle-daniel-gordon-recording-session']]], '/': [SITE + blob2path[A['kyle-daniel-gordon-orchestrator-portrait']], SITE + blob2path[A['conducting-london-symphony-orchestra']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], SITE + blob2path[A['rosalia-lux-album']]],
           '/work/rosalia-lux/': [SITE + blob2path[A['rosalia-lux-album']], SITE + blob2path[A['kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']]],
           '/work/oppenheimer/': [SITE + blob2path[A['oppenheimer-film-poster']]],
           '/press/': [SITE + blob2path[A['kyle-daniel-gordon-orchestrator-portrait']], SITE + blob2path[A['kyle-daniel-gordon-recording-session']], SITE + blob2path[A['conducting-london-symphony-orchestra']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']]]}

@@ -430,7 +430,7 @@ def lux():
 
 <figure style="position: relative; margin: 130px 0 0; padding: 0">
 <img src="{PHOTO_ROSALIA}" alt="Kyle Daniel Gordon with Rosalía and the London Symphony Orchestra at a LUX recording session" loading="lazy" style="display: block; width: 100%; max-width: 1392px; margin: 0 auto; aspect-ratio: 1290 / 525; object-fit: cover">
-<figcaption style="{WRAP}; padding-top: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; {MONO}; font-size: 11px; color: {MUTE}"><span>With Rosalía and the London Symphony Orchestra, LUX sessions</span><span>Fig. 2</span></figcaption>
+<figcaption style="{WRAP}; padding-top: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; {MONO}; font-size: 11px; color: {MUTE}"><span>Behind the scenes: with Rosalía and the London Symphony Orchestra, LUX sessions</span><span>Fig. 2</span></figcaption>
 </figure>
 
 <section aria-label="Tracklist" style="{WRAP}; margin-top: 130px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 40px 80px; align-items: start">
@@ -636,8 +636,8 @@ def popstrings():
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 46%), 1fr)); gap: 32px 24px">{recs}</div>
 </section>
 
-<figure style="margin: 120px 0 0; padding: 0"><img src="{PHOTO_SESSION}" alt="Kyle Daniel Gordon leading a recording session with brass and saxophones" loading="lazy" style="display: block; width: 100%; height: clamp(300px, 52vw, 760px); object-fit: cover; object-position: 40% 35%">
-<figcaption style="{WRAP}; padding-top: 12px; {MONO}; font-size: 11px; color: {MUTE}">On the podium at a recording session</figcaption></figure>
+<figure style="margin: 120px 0 0; padding: 0"><img src="{PHOTO_SESSION}" alt="Kyle Daniel Gordon and Mollie Elizabeth on the podium at a recording session" loading="lazy" style="display: block; width: 100%; height: clamp(300px, 52vw, 760px); object-fit: cover; object-position: 40% 35%">
+<figcaption style="{WRAP}; padding-top: 12px; {MONO}; font-size: 11px; color: {MUTE}">With Mollie Elizabeth on the podium at a recording session</figcaption></figure>
 
 <section aria-label="How it works" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
 {staff_head('B', 'How it works', 'Demo to stage')}
@@ -722,7 +722,7 @@ BIO_MED = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based 
 def press():
     photos = [('kyle-daniel-gordon-orchestrator-portrait', 'Kyle Daniel Gordon, portrait', 'Portrait · 1600 × 2133', '3 / 4'),
               ('conducting-london-symphony-orchestra-for-rosalia-lux-lso', 'Kyle Daniel Gordon conducting', 'Square · 1889 × 1889', '1 / 1'),
-              ('kyle-daniel-gordon-recording-session', 'Kyle Daniel Gordon leading a recording session', 'Landscape · 2000 × 1125', '16 / 9'),
+              ('kyle-daniel-gordon-recording-session', 'Kyle Daniel Gordon with Mollie Elizabeth at a recording session', 'Landscape · 2000 × 1125', '16 / 9'),
               ('conducting-london-symphony-orchestra', 'Kyle Daniel Gordon conducting the London Symphony Orchestra', 'Landscape · 2400 × 1350', '16 / 9')]
     ph = ''.join(f'''<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
 <a href="{A[k]}" download class="cov" style="aspect-ratio: {ar}"><img src="{A[k]}" alt="{alt}" loading="lazy"><span class="play">Download</span></a>
@@ -1023,7 +1023,8 @@ RECORDS = [
       tracks=['Gimme More!', 'Run Rabbit', 'Puppet Show', 'Bang Bang', 'Petty Crimes', 'Kiss The Ring'], complete=True,
       spec=[('Artist', 'Mollie Elizabeth'), ('Released', '30 October 2026'), ('Label', 'Capitol Records'),
             ('Arranger, orchestrator, score producer, conductor', 'Kyle Daniel Gordon'), ('Also plays', 'Upright bass, music box')],
-      more=['LUX', 'Grace Kelly with Strings: At The Movies', 'Magia en Dos'], nxt=('Next — Record', 'Ariza · Magia en Dos', 'Rec-ariza.dc.html')),
+      more=['LUX', 'Grace Kelly with Strings: At The Movies', 'Magia en Dos'], nxt=('Next — Record', 'Ariza · Magia en Dos', 'Rec-ariza.dc.html'),
+      photo=('kyle-daniel-gordon-recording-session', 'Kyle Daniel Gordon and Mollie Elizabeth on the podium at a recording session', 'With Mollie Elizabeth on the podium at a recording session')),
  dict(fn='Rec-ariza.dc.html', title='Magia en Dos', crumb='Ariza', kicker='Ariza · 2025',
       big='Magia en Dos', size='clamp(60px, 9vw, 150px)', grad='#0b1012 0%, #173f45 24%, #3f9a8c 50%, #d9efe6 76%',
       lede='Ariza’s Spanish-language album, orchestrated by Kyle Daniel Gordon.',
@@ -1059,6 +1060,8 @@ def record_page(r):
 </div>
 </div>
 </header>
+
+{(f'<figure style="margin: 120px 0 0; padding: 0"><img src="{A[r["photo"][0]]}" alt="{r["photo"][1]}" loading="lazy" style="display: block; width: 100%; height: clamp(300px, 52vw, 760px); object-fit: cover; object-position: 40% 35%"><figcaption style="{WRAP}; padding-top: 12px; {MONO}; font-size: 11px; color: {MUTE}">{r["photo"][2]}</figcaption></figure>') if r.get('photo') else ''}
 
 <section aria-label="Tracks" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
 {staff_head('A', 'Tracks', f"{len(r['tracks'])} tracks" if r.get('complete') else 'Selected tracks')}
