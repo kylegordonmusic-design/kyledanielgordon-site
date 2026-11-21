@@ -14,6 +14,8 @@ CARDS = [
  ('baby-shark-london-symphony-orchestra', 'Baby Shark × LSO', 'Arranger · Conductor', 'Pinkfong · London Symphony Orchestra · 2025', 'baby-shark-10th-anniversary-london-symphony-orchestra', '1/1', '#06121f 0%, #0d3b63 30%, #2f8fc4 62%, #f7f4ec 100%'),
  ('grace-kelly-with-strings-at-the-movies', 'At The Movies', 'Arranger · Orchestrator · Co-producer', 'Grace Kelly with Strings · 2024', 'grace-kelly-with-strings-at-the-movies', '1/1', '#1a0f08 0%, #5a2a14 30%, #c98a3c 62%, #f7f4ec 100%'),
  ('david-friesen-this-light-has-no-darkness', 'This Light Has No Darkness', 'Arranger · Orchestrator', 'David Friesen · 33-piece chamber orchestra', 'david-friesen-this-light-has-no-darkness', '1/1', '#0c0d14 0%, #23305a 30%, #8a8fc4 62%, #f7f4ec 100%'),
+ ('mollie-elizabeth-people-pleaser', 'People Pleaser', 'Arranger · Orchestrator · Conductor', 'Mollie Elizabeth · Capitol Records · 2026', 'mollie-elizabeth-people-pleaser', '1/1', '#160b12 0%, #4e1c3a 30%, #c45a86 62%, #f7f4ec 100%'),
+ ('ariza-magia-en-dos', 'Magia en Dos', 'Orchestrator', 'Ariza · 2025', 'ariza-magia-en-dos', '1/1', '#0b1012 0%, #173f45 30%, #3f9a8c 62%, #f7f4ec 100%'),
 ]
 for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):
     CARDS.append(('for-' + pt['slug'], f"Hi {pt['name'].split()[0]}.", 'A note from Kyle Daniel Gordon', 'Orchestrator · Rosalía’s LUX · Oppenheimer', 'conducting-london-symphony-orchestra-for-rosalia-lux-lso', '1/1', '#120f22 0%, #3b2a6a 30%, #a9c3ff 62%, #f7f4ec 100%'))

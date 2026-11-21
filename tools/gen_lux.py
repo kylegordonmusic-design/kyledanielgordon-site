@@ -27,12 +27,12 @@ P = [
  ('BBC Proms: Marvin Gaye, Prince of Soul', 'Stage', 'Arrangements', 'BBC Concert Orchestra · 2026', None, None),
  ('BBC Proms: Soul Revolution', 'Stage', 'Arranger, composer (finale), organ', 'BBC Concert Orchestra · 2025', None, 'https://www.instagram.com/kylegordonmusic/reel/DM7t0RKo_Ne/'),
  ('The Little Bird', 'Stage', 'Composer · world premiere', 'San Francisco Symphony · 2026', None, None),
- ('People Pleaser', 'Record', 'Arranger', 'Mollie Elizabeth · 2026', 'mollie-elizabeth-people-pleaser', 'https://open.spotify.com/album/6vYVu3wSl9OedjOU8n8pVX'),
+ ('People Pleaser', 'Record', 'Arranger, orchestrator, conductor', 'Mollie Elizabeth · 2026', 'mollie-elizabeth-people-pleaser', 'https://open.spotify.com/album/6vYVu3wSl9OedjOU8n8pVX'),
  ('My One And Only Love', 'Record', 'Arranger, conductor, producer', 'Alex Blair · 2024', 'alex-blair-my-one-and-only-love', 'https://open.spotify.com/track/2KPppSYqaRlZby9tyl0k9P'),
  ('It’s Christmas Time', 'Record', 'Arranger', 'Jali Music · 2022', 'jali-music-its-christmas-time', 'https://open.spotify.com/track/00wLdAWRWqsjzNWu5vUcMU'),
  ('Grace Kelly with Strings: At The Movies', 'Record', 'Arranger, orchestrator, co-producer', 'Grace Kelly', 'grace-kelly-with-strings-at-the-movies', 'https://open.spotify.com/album/2buBjbRAHUe3QMiWbRuHM0'),
  ('This Light Has No Darkness', 'Record', 'Arranger, orchestrator, co-producer', 'David Friesen', 'david-friesen-this-light-has-no-darkness', sp_search('David Friesen This Light Has No Darkness')),
- ('Magia en Dos', 'Record', 'Orchestrator', 'Ariza', 'ariza-magia-en-dos', sp_search('Ariza Magia en Dos')),
+ ('Magia en Dos', 'Record', 'Orchestrator', 'Ariza · 2025', 'ariza-magia-en-dos', 'https://open.spotify.com/album/4KTrbaxpyksYA5qWOpPE9l'),
  ('Hawthorne Heights', 'Stage', 'Arranger', 'Touring orchestral show', None, sp_search('Hawthorne Heights')),
  ('Escape the Fate', 'Stage', 'Arranger', 'Touring orchestral show', None, sp_search('Escape the Fate')),
  ('Oppenheimer', 'Film', 'Orchestrator', 'Ludwig Göransson', 'oppenheimer-film-poster', 'https://open.spotify.com/album/0rwbMKjNkp4ehQTwf9V2Jk'),
@@ -75,6 +75,7 @@ BY = {p[0]: p for p in P}
 REC = {'Romani: The Untold Story': 'Rec-romani.dc.html', 'Baby Shark 10th Anniversary': 'Rec-babyshark.dc.html',
        'Bebefinn Medley with London Symphony Orchestra': 'Rec-babyshark.dc.html',
        'Grace Kelly with Strings: At The Movies': 'Rec-gracekelly.dc.html', 'This Light Has No Darkness': 'Rec-friesen.dc.html',
+       'People Pleaser': 'Rec-mollie.dc.html', 'Magia en Dos': 'Rec-ariza.dc.html',
        'LUX': 'Project.dc.html', 'Oppenheimer': 'Oppenheimer.dc.html'}
 PHOTO_WIDE = A['conducting-london-symphony-orchestra']
 POPULAR = ['Frozen II', 'Star Wars: The Last Jedi', 'Star Wars: The Rise of Skywalker', 'Black Panther: Wakanda Forever', 'The Gilded Age', 'The Book of Boba Fett',
@@ -414,7 +415,7 @@ def lux():
 <div class="rise" style="animation-delay: .15s; display: flex; flex-direction: column; gap: 22px">
 {cov('LUX', 'rosalia-lux-album', '1 / 1', BY['LUX'][5])}
 <div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="{BY['LUX'][5]}">{PLAY}Listen on Spotify</a></div>
-<dl style="margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); {MONO}; font-size: 12px; border-bottom: 1px solid {RULE}">{sp}</dl>
+<dl style="margin: 0; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); {MONO}; font-size: 12px; border-bottom: 1px solid {RULE}">{sp}</dl>
 </div>
 </div>
 </header>
@@ -518,7 +519,7 @@ def crumbs(*parts):
 
 def spec(rows):
     sp = ''.join(f'<dt style="padding: 11px 18px 11px 0; color: {MUTE}; border-top: 1px solid {RULE}">{a}</dt><dd style="margin: 0; padding: 11px 0; border-top: 1px solid {RULE}">{b}</dd>' for a, b in rows)
-    return f'<dl style="margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); {MONO}; font-size: 12px; border-bottom: 1px solid {RULE}">{sp}</dl>'
+    return f'<dl style="margin: 0; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); {MONO}; font-size: 12px; border-bottom: 1px solid {RULE}">{sp}</dl>'
 
 
 def hero_title(kicker, big, size='clamp(76px, 12vw, 190px)'):
@@ -603,7 +604,7 @@ def live():
 
 def popstrings():
     recs = ''.join(tile(t, s, '1 / 1', REC.get(t)) for t, s in
-                   [('LUX', 'Rosalía · lead orchestrator · LSO'), ('People Pleaser', 'Mollie Elizabeth · arranger'),
+                   [('LUX', 'Rosalía · lead orchestrator · LSO'), ('People Pleaser', 'Mollie Elizabeth · arranger, orchestrator, conductor'),
                     ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('Magia en Dos', 'Ariza · orchestrator'),
                     ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'), ('Romani: The Untold Story', 'Billboard #1 Classical Album')])
     steps = ''.join(f'''<li style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding: 18px 0; border-top: 1px solid {RULE}">
@@ -1004,7 +1005,26 @@ RECORDS = [
       tracks=['Recovery for Two', 'Motivation', 'Basic Strategy', 'Perseverance', 'Innocence', 'A Beautiful Moment', 'Return to the Father', 'Tides Turning', 'A Smile Turns to Laughter', 'Time Changes'],
       spec=[('Artist', 'David Friesen'), ('Released', '16 February 2024'), ('Label', 'Origin Records'), ('Ensemble', '33-piece chamber orchestra'),
             ('Arranger, orchestrator', 'Kyle Daniel Gordon')],
-      more=['Grace Kelly with Strings: At The Movies', 'Romani: The Untold Story', 'LUX'], nxt=('Next — Record', 'Rosalía · LUX', 'Project.dc.html')),
+      more=['Grace Kelly with Strings: At The Movies', 'Romani: The Untold Story', 'LUX'], nxt=('Next — Record', 'Mollie Elizabeth · People Pleaser', 'Rec-mollie.dc.html')),
+
+ dict(fn='Rec-mollie.dc.html', title='People Pleaser', crumb='Mollie Elizabeth', kicker='Mollie Elizabeth · Capitol Records · 2026',
+      big='People Pleaser', size='clamp(60px, 9vw, 150px)', grad='#160b12 0%, #4e1c3a 24%, #c45a86 50%, #f6d6e2 76%',
+      lede='Mollie Elizabeth’s second EP. Arranged, orchestrated, score-produced and conducted by Kyle Daniel Gordon, who also plays upright bass and music box.',
+      body=['<em>People Pleaser</em> is the second EP by singer-songwriter Mollie Elizabeth, released by Capitol Records on 30 October 2026. It follows her 2025 debut EP <em>Dirty Blonde</em>.',
+            'Kyle Daniel Gordon was the EP’s arranger, orchestrator, score producer and conductor, and plays upright bass and music box on it. The six songs include the singles “Run Rabbit”, “Puppet Show”, “Petty Crimes” and “Kiss The Ring”.'],
+      tracks=['Gimme More!', 'Run Rabbit', 'Puppet Show', 'Bang Bang', 'Petty Crimes', 'Kiss The Ring'], complete=True,
+      spec=[('Artist', 'Mollie Elizabeth'), ('Released', '30 October 2026'), ('Label', 'Capitol Records'),
+            ('Arranger, orchestrator, score producer, conductor', 'Kyle Daniel Gordon'), ('Also plays', 'Upright bass, music box')],
+      more=['LUX', 'Grace Kelly with Strings: At The Movies', 'Magia en Dos'], nxt=('Next — Record', 'Ariza · Magia en Dos', 'Rec-ariza.dc.html')),
+ dict(fn='Rec-ariza.dc.html', title='Magia en Dos', crumb='Ariza', kicker='Ariza · 2025',
+      big='Magia en Dos', size='clamp(60px, 9vw, 150px)', grad='#0b1012 0%, #173f45 24%, #3f9a8c 50%, #d9efe6 76%',
+      lede='Ariza’s Spanish-language album, orchestrated by Kyle Daniel Gordon.',
+      body=['<em>Magia en Dos</em> is a 13-track album by singer-songwriter Ariza, released on 23 May 2025. Kyle Daniel Gordon was its orchestrator.',
+            'Guests include Morat on “Ciudad Amurallada”, Juliana on “Dos Almas”, and nic and ROBI on “Tiempo Perdido”.'],
+      tracks=['Inducción', 'Conciliando El Sueño', '100 Años Después', 'Mundo Al Revés', 'Ciudad Amurallada (with Morat)', 'Abducción', 'Dos Almas (with Juliana)',
+              'Tiempo Perdido (with nic, ROBI)', 'Hoja En Blanco', 'Júpiter', 'Te Volveré a Encontrar', 'Sísifo', 'San Alejo'], complete=True,
+      spec=[('Artist', 'Ariza'), ('Released', '23 May 2025'), ('Tracks', '13'), ('Orchestrator', 'Kyle Daniel Gordon')],
+      more=['LUX', 'People Pleaser', 'Romani: The Untold Story'], nxt=('Next — Record', 'Romani: The Untold Story', 'Rec-romani.dc.html')),
 ]
 
 

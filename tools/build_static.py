@@ -36,7 +36,7 @@ for f in os.listdir(OGDIR):
 def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg'
 OG = ogi('home')
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/'), ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/'), ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -174,6 +174,14 @@ RECP = [
   'David Friesen, This Light Has No Darkness: Orchestrated by Kyle Daniel Gordon',
   'Bassist David Friesen’s 12-part suite, arranged and orchestrated by Kyle Daniel Gordon for 33-piece chamber orchestra. Origin Records, 2024.',
   {"@type": "Person", "name": "David Friesen"}, '2024-02-16', 'Origin Records', None),
+ ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/', 'mollie-elizabeth-people-pleaser', 'People Pleaser',
+  'Mollie Elizabeth, People Pleaser: Arranger & Conductor Kyle Daniel Gordon',
+  'Kyle Daniel Gordon arranged, orchestrated, score-produced and conducted Mollie Elizabeth’s People Pleaser EP (Capitol Records, 2026), and plays upright bass and music box.',
+  {"@type": "Person", "name": "Mollie Elizabeth"}, '2026-10-30', 'Capitol Records', 'https://open.spotify.com/album/6vYVu3wSl9OedjOU8n8pVX'),
+ ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/', 'ariza-magia-en-dos', 'Magia en Dos',
+  'Ariza, Magia en Dos: Orchestrator Kyle Daniel Gordon',
+  'Kyle Daniel Gordon orchestrated Ariza’s 2025 album Magia en Dos, with Morat, Juliana, nic and ROBI. Orquestador: Kyle Daniel Gordon.',
+  {"@type": "Person", "name": "Ariza"}, '2025-05-23', 'Ariza', 'https://open.spotify.com/album/4KTrbaxpyksYA5qWOpPE9l'),
 ]
 for src, path, key, name, title, desc, by, date, label, spot in RECP:
     alb = {"@type": "MusicAlbum", "@id": SITE + path + "#album", "name": name, "byArtist": by, "datePublished": date,
