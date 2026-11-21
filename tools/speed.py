@@ -146,7 +146,8 @@ def optimize(out):
             s = open(p, encoding='utf-8').read().replace('/img/grain.png', '/img/grain.webp')
             open(p, 'w', encoding='utf-8').write(s)
     core = ['/img/grain.webp', '/favicon.svg', '/fonts/archivo-62-800.woff2', '/fonts/dm-mono-400.woff2', '/fonts/instrument-sans.woff2']
-    ver = hashlib.sha1(''.join(open(p, 'rb').read().hex()[:2000] for p in pages).encode()).hexdigest()[:10]
+    imgsig = ''.join(f'{f}:{os.path.getsize(os.path.join(out, "img", f))}' for f in sorted(os.listdir(os.path.join(out, 'img'))))
+    ver = hashlib.sha1((''.join(open(p, 'rb').read().hex()[:2000] for p in pages) + imgsig).encode()).hexdigest()[:10]  # image changes bust the SW cache too
     open(os.path.join(out, 'sw.js'), 'w').write(SW % (ver, json.dumps(core)))
     print('speed: pages', len(pages), 'images', len(cache))
 
