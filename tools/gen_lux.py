@@ -211,7 +211,7 @@ def footer(grad):
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; {MONO}; font-size: 11px; border-top: 1px solid rgba(251,248,242,0.4); padding-top: 18px">
 <span>Kyle Daniel Gordon · Orchestrator, arranger, conductor · Los Angeles</span>
-<span class="flinks" style="display: flex; flex-wrap: wrap; gap: 4px 26px; white-space: nowrap"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a><a class="cl" href="LA.dc.html" style="padding: 10px 0">Orchestrator in LA</a><a class="cl" href="Orchestrator.dc.html" style="padding: 10px 0">What an orchestrator does</a><a class="cl" href="Privacy.dc.html" style="padding: 10px 0">Privacy</a></span>
+<span class="flinks" style="display: flex; flex-wrap: wrap; gap: 4px 26px; white-space: nowrap"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press room</a><a class="cl" href="LA.dc.html" style="padding: 10px 0">Orchestrator in LA</a><a class="cl" href="Orchestrator.dc.html" style="padding: 10px 0">What an orchestrator does</a><a class="cl" href="Privacy.dc.html" style="padding: 10px 0">Privacy</a></span>
 </div>
 </div>
 </footer>'''
@@ -734,6 +734,20 @@ def press():
                   ('Education', 'University of North Texas (MM)'), ('Credit as', 'Kyle Daniel Gordon')])
     links = ''.join(f'''<a class="press" href="{u}"><span style="{MONO}; font-size: 11px; color: {MUTE}">{o}</span>
 <span class="h" style="{SANS}; font-size: 20px; line-height: 1.2; letter-spacing: -0.02em">{h} {ARROW}</span></a>''' for o, h, dsc, u in PRESS)
+    credit = spec([('Name', 'Kyle Daniel Gordon. Older credits read “Kyle Gordon”. Not the comedian Kyle Gordon.'),
+                   ('Role on LUX', '“Orchestrator on LUX” or “orchestrated all 19 tracks of LUX”'),
+                   ('Also on LUX', 'Daníel Bjarnason conducted the LSO sessions; other arrangers, including Caroline Shaw and Angélica Negrón, are credited on some tracks'),
+                   ('Grammys', 'LUX is nominated for Album of the Year at the 69th Grammy Awards. Please don’t call Kyle a Grammy nominee'),
+                   ('Oppenheimer', 'Orchestrator · score by Ludwig Göransson'),
+                   ('Other film and TV', '“Worked on”, as part of the orchestration team'),
+                   ('Link', 'kyledanielgordon.com')])
+    topics = ''.join(f'<li>{t}</li>' for t in [
+        'How a full symphony orchestra gets built into a pop album, from demo to the LSO at AIR Studios',
+        'What an orchestrator actually does, and how it differs from composing and arranging',
+        'Writing for an orchestra on a record sung in thirteen languages',
+        'Film scoring versus records: from Oppenheimer to LUX',
+        'Arranging for the BBC Proms and playing the Royal Albert Hall organ',
+        'Life as a working orchestrator in Los Angeles'])
     def bio(label, text, words):
         return f'''<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 18px; border-top: 1.5px solid {INK}">
 <span style="{MONO}; font-size: 12px; color: {MUTE}">{label} · {words}</span>
@@ -743,8 +757,10 @@ def press():
 {nav('#f2efe8')}
 <div style="{WRAP}; padding-top: 220px; display: flex; flex-direction: column; gap: 20px" class="rise">
 {crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Press')}
-{hero_title('Bios, photos and facts for programmes and press', 'Press kit', 'clamp(64px, 10vw, 160px)')}
-<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kylegordonmusic@gmail.com?subject=Press%20request">Press requests</a></div>
+{hero_title('Bios, photos, facts and interviews', 'Press room', 'clamp(64px, 10vw, 160px)')}
+<p style="margin: 0; max-width: 60ch; font-size: 18px; line-height: 1.55">Kyle is available for interviews in Los Angeles, by phone, video or email. Everything on this page is free to use in coverage.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kyledanielgordon.press@gmail.com?subject=Interview%20request%3A%20Kyle%20Daniel%20Gordon">Request an interview</a><a class="btn line" href="/press/kyle-daniel-gordon-press-sheet.pdf" download>Press sheet (PDF)</a></div>
+<span style="{MONO}; font-size: 12px; color: {MUTE}">Press office · kyledanielgordon.press@gmail.com</span>
 </div>
 </header>
 
@@ -763,13 +779,23 @@ def press():
 {facts}
 </section>
 
+<section aria-label="How to credit" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('D', 'How to credit', 'For writers')}
+{credit}
+</section>
+
+<section aria-label="Interview topics" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('E', 'Interview topics', 'Ask about')}
+<ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.5">{topics}</ol>
+</section>
+
 <section aria-label="Coverage" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('D', 'Coverage', 'Press')}
+{staff_head('F', 'Coverage', 'Press')}
 <div style="display: flex; flex-direction: column">{links}</div>
 </section>
 
 {footer('#b9b0a0 30%, #4b463e 62%, #1b1a17 100%')}'''
-    return page('Press kit, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=3800)
+    return page('Press room, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=4800)
 
 
 open(os.path.join(OUT, 'Press.dc.html'), 'w', encoding='utf-8').write(press().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))

@@ -155,8 +155,8 @@ PAGES = [
          desc='Contact Los Angeles orchestrator Kyle Daniel Gordon for orchestration, string arrangements and conducting: kylegordonmusic@gmail.com, (818) 518-3441.',
          graph=[PERSON, {"@type": "ContactPage", "url": SITE + "/contact/", "mainEntity": {"@id": SITE + "/#kyle"}}, FAQ('contact')]),
     dict(src='Press.dc.html', out='press/index.html', path='/press/',
-         title='Press Kit: Kyle Daniel Gordon, Orchestrator',
-         desc='Biographies, photos and facts for Kyle Daniel Gordon, orchestrator of Rosalía’s LUX and Oppenheimer. Free to use in programmes and press.',
+         title='Press Room: Kyle Daniel Gordon, Orchestrator of LUX',
+         desc='Interviews, biographies, photos, credit wording and a press sheet for Kyle Daniel Gordon, orchestrator of Rosalía’s LUX and Oppenheimer.',
          graph=[PERSON]),
 ]
 # ---- record pages (one per project)
@@ -300,6 +300,7 @@ urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><lastmod>{TODAY}</lastmod><cha
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">{urls}</urlset>\n')
 open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
 open(os.path.join(OUT, INDEXNOW_KEY + '.txt'), 'w').write(INDEXNOW_KEY)
+os.makedirs(os.path.join(OUT, 'press'), exist_ok=True); shutil.copy('/home/claude/kdg_scripts/press/kyle-daniel-gordon-press-sheet.pdf', os.path.join(OUT, 'press', 'kyle-daniel-gordon-press-sheet.pdf'))
 open(os.path.join(OUT, 'llms.txt'), 'w', encoding='utf-8').write(open('/home/claude/kdg_scripts/llms.txt', encoding='utf-8').read())
 open(os.path.join(OUT, 'netlify.toml'), 'w').write('''[build]
   publish = "."
