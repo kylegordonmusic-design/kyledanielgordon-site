@@ -99,7 +99,7 @@ PAGES = [
          graph=[WEBSITE, PROFILE, PERSON, ALBUM, WORKS] + EVENTS),
     dict(src='Project.dc.html', out='work/rosalia-lux/index.html', path='/work/rosalia-lux/',
          title='Rosalía LUX Orchestrations, Kyle Daniel Gordon',
-         desc='Kyle Daniel Gordon orchestrated Rosalía’s LUX, recorded with the London Symphony Orchestra at AIR Studios. Six Latin Grammys, ten Grammy nominations.',
+         desc='Kyle Daniel Gordon orchestrated Rosalía’s LUX, recorded with the London Symphony Orchestra at AIR Studios. Six Latin Grammys; Grammy Album of the Year nominee.',
          graph=[PERSON, ALBUM, {"@type": "BreadcrumbList", "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Work", "item": SITE + "/#work"},
              {"@type": "ListItem", "position": 2, "name": "Rosalía, LUX", "item": SITE + "/work/rosalia-lux/"}]}],
@@ -107,7 +107,7 @@ PAGES = [
     dict(src='ProjectES.dc.html', out='es/rosalia-lux/index.html', path='/es/rosalia-lux/', lang='es',
          alternates={'en': '/work/rosalia-lux/', 'es': '/es/rosalia-lux/'},
          title='Rosalía, LUX: orquestaciones de Kyle Daniel Gordon',
-         desc='Kyle Daniel Gordon fue el orquestador principal de LUX de Rosalía, grabado con la Orquesta Sinfónica de Londres. Seis Latin Grammy y diez nominaciones al Grammy.',
+         desc='Kyle Daniel Gordon fue el orquestador principal de LUX de Rosalía, grabado con la Orquesta Sinfónica de Londres. Seis Latin Grammy; nominado al Grammy a Álbum del Año.',
          graph=[PERSON, ALBUM], og=ogi('rosalia-lux')),
     dict(src='WorkWith.dc.html', out='work-with-kyle/index.html', path='/work-with-kyle/',
          title='Hire an Orchestrator: Kyle Daniel Gordon',
