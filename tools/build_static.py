@@ -1,3 +1,4 @@
+import sys
 """Build the live static site for kyledanielgordon.com from the design pages.
 
 Usage: python3 build_static.py <design project dir> <images dir> <out dir>
@@ -31,9 +32,11 @@ if tw <= w:
 im.resize((1200, 630), Image.LANCZOS).save(os.path.join(OUT, 'img', 'kyle-daniel-gordon-orchestrator-share.jpg'), quality=84)
 OG = SITE + '/img/kyle-daniel-gordon-orchestrator-share.jpg'
 OGDIR = '/home/claude/kdg_scripts/og'
+import subprocess  # redraw share cards on every build so they always match their page's colours
+subprocess.run([sys.executable, '/home/claude/kdg_scripts/make_og.py'], cwd='/home/claude/kdg_scripts', check=True)
 for f in os.listdir(OGDIR):
     shutil.copy(os.path.join(OGDIR, f), os.path.join(OUT, 'img', f'share-{f[:-4]}-kyle-daniel-gordon.jpg'))
-def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg?v=3'
+def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg?v=5'
 OG = ogi('home')
 
 LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('PressES.dc.html', '/es/prensa/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/'), ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/'), ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/')]
@@ -104,11 +107,11 @@ PAGES = [
              {"@type": "ListItem", "position": 1, "name": "Work", "item": SITE + "/#work"},
              {"@type": "ListItem", "position": 2, "name": "Rosalía, LUX", "item": SITE + "/work/rosalia-lux/"}]}],
          og=ogi('rosalia-lux'), alternates={'en': '/work/rosalia-lux/', 'es': '/es/rosalia-lux/'}),
-    dict(src='ProjectES.dc.html', out='es/rosalia-lux/index.html', path='/es/rosalia-lux/', lang='es',
+    dict(src='ProjectES.dc.html', og=ogi('es-rosalia-lux'), out='es/rosalia-lux/index.html', path='/es/rosalia-lux/', lang='es',
          alternates={'en': '/work/rosalia-lux/', 'es': '/es/rosalia-lux/'},
          title='Rosalía, LUX: orquestaciones de Kyle Daniel Gordon',
          desc='Kyle Daniel Gordon fue el orquestador principal de LUX de Rosalía, grabado con la Orquesta Sinfónica de Londres. Seis Latin Grammy; nominado al Grammy a Álbum del Año.',
-         graph=[PERSON, ALBUM], og=ogi('rosalia-lux')),
+         graph=[PERSON, ALBUM]),
     dict(src='WorkWith.dc.html', out='work-with-kyle/index.html', path='/work-with-kyle/',
          title='Hire an Orchestrator: Kyle Daniel Gordon',
          desc='Orchestration, pop string arrangements and conducting for composers, artists and labels. Orchestrator on Rosalía’s LUX, Oppenheimer and the BBC Proms.',
@@ -133,10 +136,10 @@ PAGES = [
          desc='String and orchestral arrangements for pop artists, from Rosalía’s LUX with the London Symphony Orchestra to records, sessions and live shows.',
          graph=[PERSON, {"@type": "Service", "serviceType": "Pop string arrangements", "provider": {"@id": SITE + "/#kyle"}, "areaServed": "Worldwide",
                          "description": "String and orchestral arrangements for pop and alternative artists: records, recording sessions and live shows."}], og=ogi('pop-strings')),
-    dict(src='Privacy.dc.html', out='privacy/index.html', path='/privacy/', title='Privacy, Kyle Daniel Gordon',
+    dict(src='Privacy.dc.html', og=ogi('privacy'), out='privacy/index.html', path='/privacy/', title='Privacy, Kyle Daniel Gordon',
          desc='How kyledanielgordon.com measures visits: Cloudflare Web Analytics and Microsoft Clarity. No advertising, no personal data unless you email.',
          graph=[PERSON]),
-    dict(src='LA.dc.html', out='orchestrator-los-angeles/index.html', path='/orchestrator-los-angeles/',
+    dict(src='LA.dc.html', og=ogi('orchestrator-los-angeles'), out='orchestrator-los-angeles/index.html', path='/orchestrator-los-angeles/',
          title='Orchestrator in Los Angeles: Kyle Daniel Gordon',
          desc='Los Angeles orchestrator, arranger and conductor for film, TV and records: Rosalía’s LUX, Oppenheimer, Frozen II, Star Wars. Orchestration, strings, score prep.',
          graph=[PERSON, {"@type": "ProfessionalService", "name": "Kyle Daniel Gordon, orchestrator", "url": SITE + "/orchestrator-los-angeles/",
@@ -144,21 +147,21 @@ PAGES = [
                          "address": {"@type": "PostalAddress", "addressLocality": "Los Angeles", "addressRegion": "CA", "addressCountry": "US"},
                          "areaServed": [{"@type": "City", "name": "Los Angeles"}, "Worldwide"],
                          "serviceType": ["Orchestration", "String arrangements", "Score preparation", "Conducting"]}, FAQ('la')]),
-    dict(src='Orchestrator.dc.html', out='what-does-an-orchestrator-do/index.html', path='/what-does-an-orchestrator-do/',
+    dict(src='Orchestrator.dc.html', og=ogi('what-does-an-orchestrator-do'), out='what-does-an-orchestrator-do/index.html', path='/what-does-an-orchestrator-do/',
          title='What Does an Orchestrator Do? A Guide by Kyle Daniel Gordon',
          desc='What an orchestrator does on a film score and a pop record, how it differs from arranging and composing, and how to hire one. By orchestrator Kyle Daniel Gordon.',
          graph=[PERSON, {"@type": "Article", "headline": "What does an orchestrator do?", "author": {"@id": SITE + "/#kyle"},
                          "datePublished": TODAY, "dateModified": TODAY, "mainEntityOfPage": SITE + "/what-does-an-orchestrator-do/",
                          "about": ["Orchestration", "Film scoring", "String arrangements"], "image": OG}]),
-    dict(src='Contact.dc.html', out='contact/index.html', path='/contact/',
+    dict(src='Contact.dc.html', og=ogi('contact'), out='contact/index.html', path='/contact/',
          title='Contact Kyle Daniel Gordon, Orchestrator',
          desc='Contact Los Angeles orchestrator Kyle Daniel Gordon for orchestration, string arrangements and conducting: kylegordonmusic@gmail.com, (818) 518-3441.',
          graph=[PERSON, {"@type": "ContactPage", "url": SITE + "/contact/", "mainEntity": {"@id": SITE + "/#kyle"}}, FAQ('contact')]),
-    dict(src='Press.dc.html', out='press/index.html', path='/press/',
+    dict(src='Press.dc.html', og=ogi('press'), out='press/index.html', path='/press/',
          title='Press Room: Kyle Daniel Gordon, Orchestrator of LUX',
          desc='Interviews, biographies, photos, credit wording and a press sheet for Kyle Daniel Gordon, orchestrator of Rosalía’s LUX and Oppenheimer.',
          graph=[PERSON], alternates={'en': '/press/', 'es': '/es/prensa/'}),
-    dict(src='PressES.dc.html', out='es/prensa/index.html', path='/es/prensa/', lang='es',
+    dict(src='PressES.dc.html', og=ogi('es-prensa'), out='es/prensa/index.html', path='/es/prensa/', lang='es',
          alternates={'en': '/press/', 'es': '/es/prensa/'},
          title='Sala de prensa: Kyle Daniel Gordon, orquestador de LUX de Rosalía',
          desc='Biografías, fotos, citas y datos de Kyle Daniel Gordon, orquestador principal de LUX de Rosalía, grabado con la Orquesta Sinfónica de Londres. Material libre para prensa.',

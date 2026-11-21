@@ -161,6 +161,9 @@ def grain(op=0.38):
     return f'<span class="grain" style="opacity: {op}"></span>'
 
 
+# Page header gradients. make_og.py reads og_grads.json (written at the end) so share cards always match their page.
+PAGE_GRADS = {'home': '#120d0b 0%, #4a1a12 22%, #b4461a 46%, #e9a36f 70%', 'rosalia-lux': '#0f0e10 0%, #3b3a40 22%, #a7a3a0 48%, #e9e4da 74%', 'work-with-kyle': '#120f22 0%, #3b2a6a 24%, #8a76c9 50%, #cdc8ef 74%', 'oppenheimer': '#050302 0%, #3a1406 24%, #c2521a 50%, #efc9a0 76%', 'live': '#2b0f2a 0%, #8e2a5e 26%, #f08a5d 52%, #f4dcc4 76%', 'pop-strings': '#0e1a12 0%, #31502c 24%, #a8b85a 50%, #eef0cf 76%', 'pitch': '#120f22 0%, #3b2a6a 26%, #a9c3ff 54%, #eef1f8 78%', 'press': '#1b1a17 0%, #4b463e 26%, #b9b0a0 54%, #efeadf 78%', 'orchestrator-los-angeles': '#0b1a2e 0%, #1d4f86 26%, #e8a35a 54%, #f4e6cf 78%', 'what-does-an-orchestrator-do': '#1b1a17 0%, #4a3b6e 26%, #c9b6e8 54%, #f2eef7 78%', 'contact': '#120f22 0%, #3b2a6a 26%, #a9c3ff 54%, #eef1f8 78%', 'privacy': '#1b1a17 0%, #4b463e 26%, #b9b0a0 54%, #efeadf 78%'}
+
 def band(grad, h=300):
     fade = 'linear-gradient(180deg, #000 0%, #000 42%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.18) 86%, transparent 100%)'
     return (f'<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: {h + 160}px; '
@@ -304,7 +307,7 @@ def home():
 <span style="{SANS}; font-size: 44px; line-height: 0.9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums">{a}</span>
 <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 600">{b}</span><span style="{MONO}; font-size: 11px; color: {MUTE}">{c}</span></span></div>''' for a, b, c in AWARDS)
     inner = f'''<header style="position: relative">
-{band('#120d0b 0%, #4a1a12 22%, #b4461a 46%, #e9a36f 70%', 320)}
+{band(PAGE_GRADS['home'], 320)}
 {nav('#f3e7cf')}
 <div style="{WRAP}; padding-top: 240px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr)); gap: 56px 72px; align-items: end">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
@@ -417,7 +420,7 @@ def lux():
                   [('6', 'Latin Grammys', 'Album of the Year, Song of the Year (“La Perla”), Best Alternative Music Album and more · 27th Latin Grammy Awards, 2026'),
                    ('10', 'Grammy nominations', 'Including Album of the Year · 69th Grammy Awards, 2027')])
     inner = f'''<header style="position: relative">
-{band('#0f0e10 0%, #3b3a40 22%, #a7a3a0 48%, #e9e4da 74%', 320)}
+{band(PAGE_GRADS['rosalia-lux'], 320)}
 {nav('#f2efe8', 'LUX')}
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: start">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
@@ -491,7 +494,7 @@ def workwith():
     strip = ''.join(cov(t, BY[t][4], '1 / 1' if BY[t][1] == 'Record' else '2 / 3', BY[t][5], 'Play')
                     for t in ['LUX', 'Oppenheimer', 'Bridgerton', 'Romani: The Untold Story', 'The Mandalorian', 'Baby Shark 10th Anniversary'])
     inner = f'''<header style="position: relative">
-{band('#120f22 0%, #3b2a6a 24%, #8a76c9 50%, #cdc8ef 74%', 320)}
+{band(PAGE_GRADS['work-with-kyle'], 320)}
 {nav('#ece8ff', 'Work with Kyle')}
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 48px 80px; align-items: start">
 <div class="rise" style="display: flex; flex-direction: column; gap: 24px">
@@ -559,7 +562,7 @@ def oppenheimer():
                                                     ('The Mandalorian', 'Ludwig Göransson · orchestration')]
                    if t in BY)
     inner = f'''<header style="position: relative">
-{band('#050302 0%, #3a1406 24%, #c2521a 50%, #efc9a0 76%', 320)}
+{band(PAGE_GRADS['oppenheimer'], 320)}
 {nav('#f6e8d8')}
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: start">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
@@ -594,7 +597,7 @@ def live():
 <span style="font-size: 15px; line-height: 1.45; color: #3a362f">{dsc}</span></a>''' for o, h, dsc, u in PRESS if 'Proms' in h)
     shows = ''.join(tile(t, s, '1 / 1') for t, s in [('Hawthorne Heights', 'Orchestral show · arranger'), ('Escape the Fate', 'Orchestral show · arranger')] if t in BY and BY[t][4])
     inner = f'''<header style="position: relative">
-{band('#2b0f2a 0%, #8e2a5e 26%, #f08a5d 52%, #f4dcc4 76%', 320)}
+{band(PAGE_GRADS['live'], 320)}
 {nav('#fbeee6', 'Live')}
 <div style="{WRAP}; padding-top: 230px; display: flex; flex-direction: column; gap: 22px" class="rise">
 {crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Live')}
@@ -632,7 +635,7 @@ def popstrings():
         ('Session', 'Players booked and parts prepared for Los Angeles, Nashville or London (AIR, Abbey Road), or for remote recording.'),
         ('Stage', 'The same charts adapted for live shows, from a string section on tour to a symphony orchestra.')]))
     inner = f'''<header style="position: relative">
-{band('#0e1a12 0%, #31502c 24%, #a8b85a 50%, #eef0cf 76%', 320)}
+{band(PAGE_GRADS['pop-strings'], 320)}
 {nav('#f1f4e0')}
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: end">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
@@ -689,7 +692,7 @@ def pitch(pt):
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 18px">{prom_cards()}</div></section>'''
     first = pt['name'].split()[0]
     inner = f'''<header style="position: relative">
-{band('#120f22 0%, #3b2a6a 26%, #a9c3ff 54%, #eef1f8 78%', 300)}
+{band(PAGE_GRADS['pitch'], 300)}
 {nav('#eef1ff')}
 <div style="{WRAP}; padding-top: 220px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
 <div style="display: flex; flex-direction: column; gap: 18px">
@@ -861,7 +864,7 @@ def press(lang='en'):
     H = T['heads']; AR = T['aria']
     grid = f'{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start'
     inner = f'''<header style="position: relative">
-{band('#1b1a17 0%, #4b463e 26%, #b9b0a0 54%, #efeadf 78%', 300)}
+{band(PAGE_GRADS['press'], 300)}
 {nav('#f2efe8')}
 <div style="{WRAP}; padding-top: 220px; display: flex; flex-direction: column; gap: 20px" class="rise">
 {crumbs(f'<a class="cl" href="Home.dc.html" style="padding: 10px 0">{T["crumb"][0]}</a>', T['crumb'][1] + ' <span aria-hidden="true">·</span> ' + T['other'])}
@@ -969,7 +972,7 @@ def privacy():
     body = ''.join(f'''<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid {RULE}">
 <h2 style="margin: 0; {SANS}; font-size: 22px; letter-spacing: -0.02em">{h}</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">{t}</p></div>''' for h, t in items)
     inner = f'''<header style="position: relative">
-{band('#1b1a17 0%, #4b463e 26%, #b9b0a0 54%, #efeadf 78%', 260)}
+{band(PAGE_GRADS['privacy'], 260)}
 {nav('#f2efe8')}
 <div style="{WRAP}; padding-top: 200px; display: flex; flex-direction: column; gap: 14px" class="rise">
 {hero_title('Updated November 2026', 'Privacy', 'clamp(64px, 10vw, 150px)')}
@@ -1011,7 +1014,7 @@ def la_page():
     sv = ''.join(f'''<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1.5px solid {INK}">
 <h3 style="margin: 0; {SANS}; font-size: 22px; letter-spacing: -0.02em">{h}</h3><p style="margin: 0; font-size: 16px; color: #3a362f">{t}</p></div>''' for h, t in services)
     inner = f'''<header style="position: relative">
-{band('#0b1a2e 0%, #1d4f86 26%, #e8a35a 54%, #f4e6cf 78%', 300)}
+{band(PAGE_GRADS['orchestrator-los-angeles'], 300)}
 {nav('#f3ece0')}
 <div style="{WRAP}; padding-top: 220px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
 <div style="display: flex; flex-direction: column; gap: 18px">
@@ -1056,7 +1059,7 @@ def orchestrator_guide():
         sec('Hiring an orchestrator', ['Send the music, the deadline and the size of the ensemble. Rates depend on the amount of music, the size of the orchestra and the turnaround. For film, television, records and concerts, <a class="cl" href="Contact.dc.html">contact Kyle Daniel Gordon</a> in Los Angeles.']),
     ])
     inner = f'''<header style="position: relative">
-{band('#1b1a17 0%, #4a3b6e 26%, #c9b6e8 54%, #f2eef7 78%', 280)}
+{band(PAGE_GRADS['what-does-an-orchestrator-do'], 280)}
 {nav('#f4f0fa')}
 <div style="{WRAP}; padding-top: 210px; display: flex; flex-direction: column; gap: 16px" class="rise">
 {crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Guide')}
@@ -1085,7 +1088,7 @@ def contact():
 <span class="h" style="{SANS}; font-size: 26px; letter-spacing: -0.03em">{h} {ARROW}</span>
 <span style="font-size: 16px; color: #3a362f">{t}</span></a>''' for i, (h, t, sj, bd) in enumerate(opts))
     inner = f'''<header style="position: relative">
-{band('#120f22 0%, #3b2a6a 26%, #a9c3ff 54%, #eef1f8 78%', 280)}
+{band(PAGE_GRADS['contact'], 280)}
 {nav('#eef1ff')}
 <div style="{WRAP}; padding-top: 210px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
 <div style="display: flex; flex-direction: column; gap: 16px">
@@ -1239,3 +1242,14 @@ def record_page(r):
 
 for r in RECORDS:
     open(os.path.join(OUT, r['fn']), 'w', encoding='utf-8').write(record_page(r).replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+
+
+# Share-card gradients: one per card name in make_og.py, taken from the page's own header gradient.
+_REC_OG = {'Rec-romani.dc.html': 'romani-the-untold-story', 'Rec-babyshark.dc.html': 'baby-shark-london-symphony-orchestra',
+           'Rec-gracekelly.dc.html': 'grace-kelly-with-strings-at-the-movies', 'Rec-friesen.dc.html': 'david-friesen-this-light-has-no-darkness',
+           'Rec-mollie.dc.html': 'mollie-elizabeth-people-pleaser', 'Rec-ariza.dc.html': 'ariza-magia-en-dos'}
+_og = dict(PAGE_GRADS)
+_og['es-prensa'] = PAGE_GRADS['press']; _og['es-rosalia-lux'] = PAGE_GRADS['rosalia-lux']
+for _r in RECORDS:
+    if _r['fn'] in _REC_OG: _og[_REC_OG[_r['fn']]] = _r['grad']
+json.dump(_og, open('/home/claude/kdg_scripts/og_grads.json', 'w'), indent=1)

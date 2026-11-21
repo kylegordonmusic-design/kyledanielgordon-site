@@ -16,9 +16,24 @@ CARDS = [
  ('david-friesen-this-light-has-no-darkness', 'This Light Has No Darkness', 'Arranger · Orchestrator', 'David Friesen · 33-piece chamber orchestra', 'david-friesen-this-light-has-no-darkness', '1/1', '#0c0d14 0%, #23305a 30%, #8a8fc4 62%, #f7f4ec 100%'),
  ('mollie-elizabeth-people-pleaser', 'People Pleaser', 'Arranger · Orchestrator · Conductor', 'Mollie Elizabeth · Capitol Records · 2026', 'mollie-elizabeth-people-pleaser', '1/1', '#160b12 0%, #4e1c3a 30%, #c45a86 62%, #f7f4ec 100%'),
  ('ariza-magia-en-dos', 'Magia en Dos', 'Orchestrator', 'Ariza · 2025', 'ariza-magia-en-dos', '1/1', '#0b1012 0%, #173f45 30%, #3f9a8c 62%, #f7f4ec 100%'),
+ ('es-rosalia-lux', 'Rosalía · LUX', 'Orquestador principal', 'Orquesta Sinfónica de Londres · 6 Latin Grammy', 'rosalia-lux-album', '1/1', ''),
+ ('press', 'Press room', 'Bios · Photos · Interviews', 'Rosalía’s LUX · Oppenheimer · BBC Proms', 'kyle-daniel-gordon-orchestrator-portrait', '3/4', ''),
+ ('es-prensa', 'Sala de prensa', 'Biografías · Fotos · Entrevistas', 'LUX de Rosalía · Oppenheimer · BBC Proms', 'kyle-daniel-gordon-orchestrator-portrait', '3/4', ''),
+ ('contact', 'Contact', 'Start a project', 'Orchestration · Pop strings · Conducting', 'kyle-daniel-gordon-orchestrator-portrait', '3/4', ''),
+ ('orchestrator-los-angeles', 'Orchestrator, Los Angeles', 'Orchestration · Pop strings · Conducting', 'Rosalía’s LUX · Oppenheimer · London Symphony Orchestra', 'conducting-london-symphony-orchestra', '4/3', ''),
+ ('what-does-an-orchestrator-do', 'What does an orchestrator do?', 'A guide', 'By Kyle Daniel Gordon, lead orchestrator on Rosalía’s LUX', 'kyle-daniel-gordon-recording-session', '4/3', ''),
+ ('privacy', 'Privacy', 'kyledanielgordon.com', 'Run by KG Music LLC', None, None, ''),
 ]
 for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):
     CARDS.append(('for-' + pt['slug'], f"Hi {pt['name'].split()[0]}.", 'A note from Kyle Daniel Gordon', 'Orchestrator · Rosalía’s LUX · Oppenheimer', 'conducting-london-symphony-orchestra-for-rosalia-lux-lso', '1/1', '#120f22 0%, #3b2a6a 30%, #a9c3ff 62%, #f7f4ec 100%'))
+# Card gradients come from each page's own header gradient (written by gen_lux.py), so cards always match their page.
+GRADS = json.load(open('/home/claude/kdg_scripts/og_grads.json'))
+def page_grad(name, fallback):
+    g = GRADS.get('pitch' if name.startswith('for-') else name)
+    return (g + ', #f7f4ec 100%') if g else fallback
+CARDS = [(n, t, k, s_, key, ar, page_grad(n, g)) for n, t, k, s_, key, ar, g in CARDS]
+missing = [c[0] for c in CARDS if ('pitch' if c[0].startswith('for-') else c[0]) not in GRADS]
+if missing: print('WARNING: no page gradient for', missing)
 TPL = '''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>
 @font-face{font-family:D;src:url(file:///usr/share/fonts/opentype/inter/InterDisplay-Bold.otf)}
 @font-face{font-family:M;src:url(file:///usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf)}
@@ -39,9 +54,9 @@ with sync_playwright() as p:
     b = p.chromium.launch(executable_path='/usr/bin/google-chrome')
     pg = b.new_page(viewport={'width': 1200, 'height': 630})
     for name, title, kick, sub, key, ar, grad in CARDS:
-        ah = {'1/1': 400, '2/3': 470, '4/3': 330}.get(ar, 0)
-        aw = {'1/1': 400, '2/3': 313, '4/3': 440}.get(ar, 0)
-        html = TPL % dict(grad=grad, right=(aw + 120) if key else 64, size=96 if len(title) < 16 else 80, kick=kick, title=title, sub=sub,
+        ah = {'1/1': 400, '2/3': 470, '4/3': 330, '3/4': 450}.get(ar, 0)
+        aw = {'1/1': 400, '2/3': 313, '4/3': 440, '3/4': 338}.get(ar, 0)
+        html = TPL % dict(grad=grad, right=(aw + 120) if key else 64, size=96 if len(title) < 16 else (80 if len(title) < 26 else 68), kick=kick, title=title, sub=sub,
                           ah=ah, ar=ar or '1', img=b64(key) if key else '', artdiv='<div class="art"></div>' if key else '')
         open('/tmp/og.html', 'w', encoding='utf-8').write(html)
         pg.goto('file:///tmp/og.html'); pg.wait_for_timeout(300)
