@@ -96,6 +96,19 @@ def optimize(out):
     for p in pages:
         html = open(p, encoding='utf-8').read()
         soup = BeautifulSoup(html, 'html.parser')
+        # tidy line breaks: a ' · ' separator never starts a line, names never split at hyphens
+        from bs4 import NavigableString
+        for t in soup.find_all(string=True):
+            if t.parent and t.parent.name in ('script', 'style', 'title'):
+                continue
+            v = str(t)
+            n = v.replace(' · ', '\u00a0· ').replace('Bartholomew-Poyser', 'Bartholomew\u2011Poyser')
+            for name in ('Royal Albert Hall', 'Davies Symphony Hall', 'BBC Proms', 'LSO St Luke’s', 'Abbey Road', 'AIR Studios'):
+                n = n.replace(name, name.replace(' ', '\u00a0'))
+            n = re.sub(r'\b(\d{1,2}) (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})\b', '\\1\u00a0\\2\u00a0\\3', n)
+            n = re.sub(r'\b(January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})\b', '\\1\u00a0\\2', n)
+            if n != v:
+                t.replace_with(NavigableString(n))
         first = True
         for img in soup.find_all('img'):
             s = img.get('src', '')
