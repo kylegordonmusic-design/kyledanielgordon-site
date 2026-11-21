@@ -748,6 +748,7 @@ def press():
         'On ‘Berghain’ I only used the notes the natural horns of Mozart’s time could play. Limiting the orchestration to what was period-correct is what brings you into that world.',
         'Rosalía’s songwriting is astounding: the stories she tells, the way she weaves melodies together. It has so much pathos. Pairing her with the orchestra was the perfect match, her emotion with the natural grandeur of the orchestra.',
         'The London Symphony Orchestra was so collaborative and so excited to dig into this music and bring it to life. Daníel Bjarnason was a wonderful conductor for the project and added so much to the sessions.',
+        'Harry Wilson did an incredible job capturing it. It’s no easy feat: a week of recording, strings and winds together, then brass, percussion, harp and organ each on their own.',
         'Noah Goldstein was such a wonderful producer, so encouraging and welcoming. He just wanted this album to be the best it could possibly be.',
         'An orchestrator is a collaborator. You take someone’s vision of a song and make it sing with an orchestra.'])
     topics = ''.join(f'<li>{t}</li>' for t in [
