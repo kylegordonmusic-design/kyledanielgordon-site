@@ -19,7 +19,7 @@ CARDS = [
 ]
 for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):
     CARDS.append(('for-' + pt['slug'], f"Hi {pt['name'].split()[0]}.", 'A note from Kyle Daniel Gordon', 'Orchestrator · Rosalía’s LUX · Oppenheimer', 'conducting-london-symphony-orchestra-for-rosalia-lux-lso', '1/1', '#120f22 0%, #3b2a6a 30%, #a9c3ff 62%, #f7f4ec 100%'))
-TPL = '''<html><head><style>
+TPL = '''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>
 @font-face{font-family:D;src:url(file:///usr/share/fonts/opentype/inter/InterDisplay-Bold.otf)}
 @font-face{font-family:M;src:url(file:///usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf)}
 body{margin:0;width:1200px;height:630px;overflow:hidden;background:#f7f4ec;color:#1b1a17;font-family:D}
@@ -43,7 +43,7 @@ with sync_playwright() as p:
         aw = {'1/1': 400, '2/3': 313, '4/3': 440}.get(ar, 0)
         html = TPL % dict(grad=grad, right=(aw + 120) if key else 64, size=96 if len(title) < 16 else 80, kick=kick, title=title, sub=sub,
                           ah=ah, ar=ar or '1', img=b64(key) if key else '', artdiv='<div class="art"></div>' if key else '')
-        open('/tmp/og.html', 'w').write(html)
+        open('/tmp/og.html', 'w', encoding='utf-8').write(html)
         pg.goto('file:///tmp/og.html'); pg.wait_for_timeout(300)
         pg.screenshot(path=f'og/{name}.jpg', type='jpeg', quality=86)
     b.close()

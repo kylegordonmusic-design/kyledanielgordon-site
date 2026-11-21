@@ -33,7 +33,7 @@ OG = SITE + '/img/kyle-daniel-gordon-orchestrator-share.jpg'
 OGDIR = '/home/claude/kdg_scripts/og'
 for f in os.listdir(OGDIR):
     shutil.copy(os.path.join(OGDIR, f), os.path.join(OUT, 'img', f'share-{f[:-4]}-kyle-daniel-gordon.jpg'))
-def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg'
+def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg?v=2'
 OG = ogi('home')
 
 LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('PressES.dc.html', '/es/prensa/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/'), ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/'), ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/')]
