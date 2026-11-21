@@ -3,20 +3,20 @@ import os, re, json, hashlib, shutil
 from PIL import Image
 from bs4 import BeautifulSoup
 
-FONTS_SRC = '/home/claude/kyledanielgordon-site/fonts'
+FONTS_SRC = '/home/claude/kdg_scripts/fonts_opt'  # built by optfonts.py: instanced + subset, renamed .v2 so cached copies refresh
 FONT_CSS = '''<link rel="preload" href="/img/grain.webp" as="image" type="image/webp" fetchpriority="high">
-<link rel="preload" href="/fonts/archivo-62-800.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/dm-mono-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/archivo-62-800.v2.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-mono-400.v2.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrument-sans.v2.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 #credits{content-visibility:auto;contain-intrinsic-size:auto 2600px}
 @media (max-width:800px){.grainm{display:none}}
-@font-face{font-family:'Archivo';font-style:normal;font-weight:800;font-stretch:62%;font-display:swap;src:url(/fonts/archivo-62-800.woff2) format('woff2')}
-@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-mono-400.woff2) format('woff2')}
-@font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-mono-500.woff2) format('woff2')}
-@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 700;font-stretch:100%;font-display:swap;src:url(/fonts/instrument-sans.woff2) format('woff2')}
-@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif.woff2) format('woff2')}
-@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic.woff2) format('woff2')}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:800;font-stretch:62%;font-display:swap;src:url(/fonts/archivo-62-800.v2.woff2) format('woff2')}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/dm-mono-400.v2.woff2) format('woff2')}
+@font-face{font-family:'DM Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/dm-mono-500.v2.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 700;font-stretch:100%;font-display:swap;src:url(/fonts/instrument-sans.v2.woff2) format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif.v2.woff2) format('woff2')}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic.v2.woff2) format('woff2')}
 </style>'''
 
 WIDTHS = (160, 320, 640, 1000, 1600)
@@ -42,7 +42,7 @@ if(location.pathname.indexOf('/for/')===0){clarity('set','pitch',location.pathna
 ('requestIdleCallback' in window)?requestIdleCallback(go,{timeout:2500}):setTimeout(go,1500)});
 </script>'''
 
-BEACON = '''<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "74d2ccc3aba8442e8ffe162baef5f751"}'></script>'''
+BEACON = '''<script>addEventListener('load',function(){var s=document.createElement('script');s.defer=true;s.src='https://static.cloudflareinsights.com/beacon.min.js';s.setAttribute('data-cf-beacon','{"token": "74d2ccc3aba8442e8ffe162baef5f751"}');document.body.appendChild(s)})</script>'''
 
 SW_REG = '''<script>if('serviceWorker' in navigator){addEventListener('load',function(){navigator.serviceWorker.register('/sw.js')})}</script>'''
 
@@ -121,7 +121,9 @@ def optimize(out):
             img['srcset'] = ', '.join(f'{u} {w}w' for u, w in v)
             img['sizes'] = sizes_for(img)
             if first and img.find_parent('header') is not None:
-                img['loading'] = 'eager'; img['fetchpriority'] = 'high'
+                img['loading'] = 'eager'
+                if os.path.normpath(p) != os.path.normpath(os.path.join(out, 'index.html')):
+                    img['fetchpriority'] = 'high'  # on the home page the hero gradient is the LCP, so the album art doesn't jump the queue
                 first = False
         for el in soup.select('[data-img]'):
             s0 = el['data-img']
@@ -137,7 +139,13 @@ def optimize(out):
         vp.insert_after(BeautifulSoup(FONT_CSS, 'html.parser'))
         head.append(BeautifulSoup(SPECULATION + SW_REG, 'html.parser'))
         soup.body.append(BeautifulSoup(BEACON + CLARITY, 'html.parser'))
-        open(p, 'w', encoding='utf-8').write(str(soup))
+        html_out = str(soup)
+        # accessibility: mark the page body as <main> (between the hero header and the site footer)
+        if '<main' not in html_out and '</header>' in html_out and '<footer' in html_out:
+            i = html_out.index('</header>') + len('</header>'); j = html_out.rindex('<footer')
+            if i < j:
+                html_out = html_out[:i] + '\n<main id="main">' + html_out[i:j] + '</main>\n' + html_out[j:]
+        open(p, 'w', encoding='utf-8').write(html_out)
     # grain texture as WebP (lossless) and point CSS at it
     g = os.path.join(out, 'img', 'grain.png')
     if os.path.exists(g):
@@ -145,7 +153,7 @@ def optimize(out):
         for p in pages:
             s = open(p, encoding='utf-8').read().replace('/img/grain.png', '/img/grain.webp')
             open(p, 'w', encoding='utf-8').write(s)
-    core = ['/img/grain.webp', '/favicon.svg', '/fonts/archivo-62-800.woff2', '/fonts/dm-mono-400.woff2', '/fonts/instrument-sans.woff2']
+    core = ['/img/grain.webp', '/favicon.svg', '/fonts/archivo-62-800.v2.woff2', '/fonts/dm-mono-400.v2.woff2', '/fonts/instrument-sans.v2.woff2']
     imgsig = ''.join(f'{f}:{os.path.getsize(os.path.join(out, "img", f))}' for f in sorted(os.listdir(os.path.join(out, 'img'))))
     ver = hashlib.sha1((''.join(open(p, 'rb').read().hex()[:2000] for p in pages) + imgsig).encode()).hexdigest()[:10]  # image changes bust the SW cache too
     open(os.path.join(out, 'sw.js'), 'w').write(SW % (ver, json.dumps(core)))
