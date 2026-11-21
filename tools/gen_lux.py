@@ -22,6 +22,7 @@ P = [
  ('LUX', 'Record', 'Supervising orchestrator', 'Rosalía · London Symphony Orchestra', 'rosalia-lux-album', 'https://open.spotify.com/album/3SUEJULSGgBDG1j4GQhfYY'),
  ('Romani: The Untold Story', 'Record', 'Arranger, orchestrator, conductor', 'Ion Zanca · Dallas String Quartet · LSO', 'romani-the-untold-story-london-symphony-orchestra', 'https://open.spotify.com/track/31eojlHu2jxOHQr5NW74PL'),
  ('Baby Shark 10th Anniversary', 'Record', 'Arranger, orchestrator, conductor', 'Pinkfong · London Symphony Orchestra', 'baby-shark-10th-anniversary-london-symphony-orchestra', 'https://open.spotify.com/album/6myoH7UjcukBliJGvWorpG'),
+ ('Bebefinn Medley with London Symphony Orchestra', 'Record', 'Conductor', 'Bebefinn · London Symphony Orchestra · 2025', 'bebefinn-medley-london-symphony-orchestra', 'https://open.spotify.com/track/1nnjQb0Rl6RUDkgSPfcuCC'),
  ('BBC Proms: Bond and Beyond', 'Stage', 'Arranger · organ on Radiohead’s “Spectre”', 'BBC Concert Orchestra · 2026', None, 'https://www.instagram.com/kylegordonmusic/reel/Dejq7epTaDR/'),
  ('BBC Proms: Marvin Gaye, Prince of Soul', 'Stage', 'Arrangements', 'BBC Concert Orchestra · 2026', None, None),
  ('BBC Proms: Soul Revolution', 'Stage', 'Arranger, composer (finale), organ', 'BBC Concert Orchestra · 2025', None, 'https://www.instagram.com/kylegordonmusic/reel/DM7t0RKo_Ne/'),
