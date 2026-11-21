@@ -63,12 +63,12 @@ colw = W - 2 * M - pw - 24
 y = H - M - 96
 y = head('In one line', y, colw)
 y = para('Kyle Daniel Gordon was the orchestrator on all 19 tracks of Rosalía’s LUX, recorded with the London Symphony '
-         'Orchestra, and orchestrated Ludwig Göransson’s score for Oppenheimer.', M, y, colw, size=12, lead=16) - 12
+         'Orchestra, and was one of the orchestrators on Ludwig Göransson’s score for Oppenheimer.', M, y, colw, size=12, lead=16) - 12
 
 y = head('Biography', y, colw)
 bio = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was lead orchestrator on '
        'Rosalía’s LUX (2025), recorded with the London Symphony Orchestra at AIR Studios, which won six Latin Grammys including '
-       'Album of the Year and is nominated for Album of the Year at the 69th Grammy Awards. In film and television he orchestrated '
+       'Album of the Year and is nominated for Album of the Year at the 69th Grammy Awards. In film and television he was one of the orchestrators on '
        'Ludwig Göransson’s score for Oppenheimer and has worked on Frozen II, Star Wars: The Last Jedi, Black Panther: Wakanda '
        'Forever, The Mandalorian and The Gilded Age. At the BBC Proms he was lead orchestrator on Soul Revolution (2025) and arranged '
        'for Bond and Beyond (2026). His piece The Little Bird was premiered by the San Francisco Symphony in 2026. He holds a '
@@ -79,7 +79,7 @@ full = W - 2 * M
 y = min(y, H - M - 14 - ph - 50)
 y = head('Selected work', y, full)
 rows = [('Rosalía, LUX (2025)', 'Orchestrator on all 19 tracks · London Symphony Orchestra · AIR Studios'),
-        ('Oppenheimer (2023)', 'Orchestrator · score by Ludwig Göransson'),
+        ('Oppenheimer (2023)', 'One of the orchestrators · score by Ludwig Göransson'),
         ('BBC Proms', 'Soul Revolution (2025, lead orchestrator) · Bond and Beyond (2026)'),
         ('San Francisco Symphony', 'The Little Bird, world premiere (2026), composer'),
         ('Baby Shark × LSO', 'Arranger and conductor · recorded at LSO St Luke’s')]
@@ -96,7 +96,7 @@ notes = ['Name: Kyle Daniel Gordon (older credits read “Kyle Gordon”). He is
          'LUX: “orchestrator on LUX” or “orchestrated all 19 tracks of LUX”. Daníel Bjarnason conducted the LSO sessions, and other '
          'arrangers are credited on some tracks, including Caroline Shaw and Angélica Negrón.',
          'Grammys: LUX is nominated for Album of the Year. Please don’t describe Kyle as a Grammy nominee.',
-         'Film and TV other than Oppenheimer: “worked on”, as part of the orchestration team.']
+         'Oppenheimer: “one of the orchestrators on Oppenheimer” (part of the orchestration team), not “the orchestrator of Oppenheimer”. Other film and TV: “worked on”.']
 for n in notes:
     c.setFillColor(TANG)
     c.circle(M + 3, y + 3.5, 2, stroke=0, fill=1)

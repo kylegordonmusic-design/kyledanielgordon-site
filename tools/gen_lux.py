@@ -374,7 +374,7 @@ def home():
 <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="{PHOTO_PORTRAIT}" alt="Kyle Daniel Gordon, orchestrator, in a Los Angeles recording studio" loading="lazy" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%"><figcaption style="{MONO}; font-size: 11px; color: {MUTE}">In the studio</figcaption></figure>
 <div style="display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.55; max-width: 62ch">
 <p style="margin: 0">Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was lead orchestrator on Rosalía's <em>LUX</em>, recorded with the London Symphony Orchestra, which won six Latin Grammys including Album of the Year and is nominated for Album of the Year at the 2027 Grammys.</p>
-<p style="margin: 0; color: #3a362f">In film and television he orchestrated <em>Oppenheimer</em> and <em>Bridgerton</em>, and has worked in the music departments of <em>The Mandalorian</em>, <em>Black Panther: Wakanda Forever</em> and <em>Star Wars: The Rise of Skywalker</em>. He leads orchestration teams in Los Angeles for composers including John Williams, Ludwig Göransson, Kris Bowers, Walter Murphy and Justin Hurwitz.</p>
+<p style="margin: 0; color: #3a362f">In film and television he was one of the orchestrators on <em>Oppenheimer</em> and <em>Bridgerton</em>, and has worked in the music departments of <em>The Mandalorian</em>, <em>Black Panther: Wakanda Forever</em> and <em>Star Wars: The Rise of Skywalker</em>. He works on orchestration teams in Los Angeles for composers including John Williams, Ludwig Göransson, Kris Bowers, Walter Murphy and Justin Hurwitz.</p>
 <p style="margin: 0; color: #3a362f">At the BBC Proms he was lead orchestrator on <em>Soul Revolution</em> (2025) with the BBC Concert Orchestra, writing its finale and playing the Royal Albert Hall organ. In 2026 he arranged the <em>Bond and Beyond</em> Prom, performing his arrangement of Radiohead’s “Spectre” on the organ, and wrote arrangements for <em>Marvin Gaye: Prince of Soul</em>. His piece <em>The Little Bird</em> was premiered by the San Francisco Symphony in 2026. He arranged, orchestrated and conducted the <em>Baby Shark 10th Anniversary</em> symphonic album with the LSO. <em>Romani: The Untold Story</em>, which he orchestrated and conducted with the LSO and Dallas String Quartet, received the 2024 Billboard Award for #1 Classical Album. He has conducted sessions and concerts in Los Angeles, Nashville and London, and arranged touring orchestral shows for Hawthorne Heights and Escape the Fate.</p>
 <p style="margin: 0; color: #3a362f">Trained in jazz and classical music, he holds a master's in music from the University of North Texas, and made his Carnegie Hall debut as a bassist in 2018. He is also credited as Kyle Gordon.</p>
 
@@ -552,13 +552,13 @@ def oppenheimer():
 {crumbs('<a class="cl" href="Home.dc.html#work" style="padding: 10px 0">Work</a>', 'Film', 'Oppenheimer')}
 {hero_title('Christopher Nolan · 2023', 'Oppenheimer', 'clamp(56px, 8vw, 128px)')}
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 42ch">Orchestration on Ludwig Göransson’s Academy Award-winning score.</p>
-<p style="margin: 0; font-size: 17px; max-width: 58ch">Kyle Daniel Gordon was an orchestrator on Ludwig Göransson’s score for <em>Oppenheimer</em>, Christopher Nolan’s 2023 film about J. Robert Oppenheimer. The score won the Academy Award for Best Original Score.</p>
+<p style="margin: 0; font-size: 17px; max-width: 58ch">Kyle Daniel Gordon was one of the orchestrators on Ludwig Göransson’s score for <em>Oppenheimer</em>, Christopher Nolan’s 2023 film about J. Robert Oppenheimer. The score won the Academy Award for Best Original Score.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">Nolan asked for a score led by the solo violin, which he heard as Oppenheimer’s own voice. Around two and a half hours of music runs through the three-hour film, and the orchestra recorded it in five days.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{o[5]}">{PLAY}Listen on Spotify</a><a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
 </div>
 <div class="rise" style="animation-delay: .15s; display: flex; flex-direction: column; gap: 22px; max-width: 460px">
 {cov('Oppenheimer', o[4], '2 / 3', o[5])}
-{spec([('Film', 'Oppenheimer (2023)'), ('Director', 'Christopher Nolan'), ('Composer', 'Ludwig Göransson'), ('Orchestration', 'Kyle Daniel Gordon'), ('Studio', 'Universal Pictures'), ('Recognition', 'Academy Award, Best Original Score')])}
+{spec([('Film', 'Oppenheimer (2023)'), ('Director', 'Christopher Nolan'), ('Composer', 'Ludwig Göransson'), ('Orchestration', 'Team of orchestrators, including Kyle Daniel Gordon'), ('Studio', 'Universal Pictures'), ('Recognition', 'Academy Award, Best Original Score')])}
 </div>
 </div>
 </header>
@@ -710,10 +710,10 @@ for pt in PITCHES:
         pitch(pt).replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
 # ------------------------------------------------------------------ PRESS KIT
 BIO_SHORT = ('Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He was lead orchestrator on Rosalía’s '
-             '<em>LUX</em>, recorded with the London Symphony Orchestra, and orchestrated Ludwig Göransson’s score for <em>Oppenheimer</em>.')
+             '<em>LUX</em>, recorded with the London Symphony Orchestra, and was one of the orchestrators on Ludwig Göransson’s score for <em>Oppenheimer</em>.')
 BIO_MED = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was lead orchestrator on Rosalía’s '
            '<em>LUX</em> (2025), recorded with the London Symphony Orchestra, which won six Latin Grammys including Album of the Year. '
-           'In film and television he orchestrated Ludwig Göransson’s score for <em>Oppenheimer</em> and has worked on <em>Frozen II</em>, '
+           'In film and television he was one of the orchestrators on Ludwig Göransson’s score for <em>Oppenheimer</em> and has worked on <em>Frozen II</em>, '
            '<em>Star Wars: The Last Jedi</em>, <em>Black Panther: Wakanda Forever</em>, <em>The Mandalorian</em> and <em>The Gilded Age</em>. '
            'At the BBC Proms he was lead orchestrator on <em>Soul Revolution</em> (2025) and arranged for <em>Bond and Beyond</em> (2026), '
            'playing his arrangement of Radiohead’s “Spectre” on the Royal Albert Hall organ. His piece <em>The Little Bird</em> was premiered by the '
@@ -738,7 +738,7 @@ def press():
                    ('Role on LUX', '“Orchestrator on LUX” or “orchestrated all 19 tracks of LUX”'),
                    ('Also on LUX', 'Daníel Bjarnason conducted the LSO sessions; other arrangers, including Caroline Shaw and Angélica Negrón, are credited on some tracks'),
                    ('Grammys', 'LUX is nominated for Album of the Year at the 69th Grammy Awards. Please don’t call Kyle a Grammy nominee'),
-                   ('Oppenheimer', 'Orchestrator · score by Ludwig Göransson'),
+                   ('Oppenheimer', '“One of the orchestrators on Oppenheimer”: he was part of the orchestration team on Ludwig Göransson’s score. Please don’t call him “the orchestrator of Oppenheimer”'),
                    ('Other film and TV', '“Worked on”, as part of the orchestration team'),
                    ('Link', 'kyledanielgordon.com')])
     quotes = ''.join(f'''<blockquote style="margin: 0; padding: 18px 0 0; border-top: 1.5px solid {INK}; display: flex; flex-direction: column; gap: 10px">

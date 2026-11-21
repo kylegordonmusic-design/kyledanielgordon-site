@@ -116,7 +116,7 @@ PAGES = [
                          "areaServed": "Worldwide", "description": "Orchestration, pop string arrangements and conducting for film, television, records and live shows."}], og=ogi('work-with-kyle')),
     dict(src='Oppenheimer.dc.html', out='work/oppenheimer/index.html', path='/work/oppenheimer/',
          title='Oppenheimer Orchestration, Kyle Daniel Gordon',
-         desc='Kyle Daniel Gordon, orchestrator on Ludwig Göransson’s Academy Award-winning score for Christopher Nolan’s Oppenheimer (2023).',
+         desc='Kyle Daniel Gordon, one of the orchestrators on Ludwig Göransson’s Academy Award-winning score for Christopher Nolan’s Oppenheimer (2023).',
          graph=[PERSON, {"@type": "Movie", "name": "Oppenheimer", "dateCreated": "2023", "director": {"@type": "Person", "name": "Christopher Nolan"},
                          "musicBy": {"@type": "Person", "name": "Ludwig Göransson"}, "contributor": {"@id": SITE + "/#kyle"},
                          "image": SITE + blob2path[A['oppenheimer-film-poster']], "sameAs": "https://www.imdb.com/title/tt15398776/"},
