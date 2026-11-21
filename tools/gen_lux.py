@@ -245,7 +245,7 @@ def prom_cards():
 </div></article>''' for y, t, r, d, g, v, ven in PROMS)
 
 
-CARD_YEARS = {}  # e.g. {'Hawthorne Heights': '2024'}; only years Kyle has confirmed
+CARD_YEARS = {'Hawthorne Heights': '2024', 'Escape the Fate': '2025'}  # confirmed by Kyle Nov 20, 2026
 
 AWARDS = [('6', 'Latin Grammys', 'Including Album of the Year, 2026'), ('AOTY', 'Grammy nominee', 'Album of the Year, 2027')]
 
