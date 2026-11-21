@@ -10,6 +10,10 @@ CARDS = [
  ('live', 'Live', 'BBC Proms · San Francisco Symphony', 'Bond and Beyond · Soul Revolution · The Little Bird', None, None, '#2b0f2a 0%, #8e2a5e 32%, #f08a5d 64%, #f7f4ec 100%'),
  ('pop-strings', 'Pop strings', 'String & orchestral arrangements', 'For artists, sessions and live shows', 'mollie-elizabeth-people-pleaser', '1/1', '#0e1a12 0%, #31502c 32%, #a8b85a 64%, #f7f4ec 100%'),
  ('work-with-kyle', 'Work with Kyle', 'Orchestration · Pop strings · Conducting', 'Los Angeles · London · Nashville', 'conducting-london-symphony-orchestra', '4/3', '#120f22 0%, #3b2a6a 32%, #8a76c9 64%, #f7f4ec 100%'),
+ ('romani-the-untold-story', 'Romani', 'Arranger · Orchestrator · Conductor', 'Ion Zanca · London Symphony Orchestra · Billboard No. 1', 'romani-the-untold-story-london-symphony-orchestra', '1/1', '#140a0f 0%, #4b1a24 30%, #b0473c 62%, #f7f4ec 100%'),
+ ('baby-shark-london-symphony-orchestra', 'Baby Shark × LSO', 'Arranger · Conductor', 'Pinkfong · London Symphony Orchestra · 2025', 'baby-shark-10th-anniversary-london-symphony-orchestra', '1/1', '#06121f 0%, #0d3b63 30%, #2f8fc4 62%, #f7f4ec 100%'),
+ ('grace-kelly-with-strings-at-the-movies', 'At The Movies', 'Arranger · Orchestrator · Co-producer', 'Grace Kelly with Strings · 2024', 'grace-kelly-with-strings-at-the-movies', '1/1', '#1a0f08 0%, #5a2a14 30%, #c98a3c 62%, #f7f4ec 100%'),
+ ('david-friesen-this-light-has-no-darkness', 'This Light Has No Darkness', 'Arranger · Orchestrator', 'David Friesen · 33-piece chamber orchestra', 'david-friesen-this-light-has-no-darkness', '1/1', '#0c0d14 0%, #23305a 30%, #8a8fc4 62%, #f7f4ec 100%'),
 ]
 for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):
     CARDS.append(('for-' + pt['slug'], f"Hi {pt['name'].split()[0]}.", 'A note from Kyle Daniel Gordon', 'Orchestrator · Rosalía’s LUX · Oppenheimer', 'conducting-london-symphony-orchestra-for-rosalia-lux-lso', '1/1', '#120f22 0%, #3b2a6a 30%, #a9c3ff 62%, #f7f4ec 100%'))

@@ -36,7 +36,7 @@ for f in os.listdir(OGDIR):
 def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg'
 OG = ogi('home')
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -156,6 +156,35 @@ PAGES = [
          desc='Biographies, photos and facts for Kyle Daniel Gordon, orchestrator of Rosalía’s LUX and Oppenheimer. Free to use in programmes and press.',
          graph=[PERSON]),
 ]
+# ---- record pages (one per project)
+RECP = [
+ ('Rec-romani.dc.html', '/work/romani-the-untold-story/', 'romani-the-untold-story-london-symphony-orchestra', 'Romani: The Untold Story',
+  'Romani: The Untold Story, Ion Zanca & LSO: Kyle Daniel Gordon',
+  'Kyle Daniel Gordon arranged, orchestrated and conducted Romani: The Untold Story, Ion Zanca’s No. 1 Billboard Classical album with the Dallas String Quartet and the London Symphony Orchestra.',
+  {"@type": "MusicGroup", "name": "Ion Zanca, Dallas String Quartet, London Symphony Orchestra"}, '2024-08-23', 'Dallas String Quartet', 'https://open.spotify.com/track/31eojlHu2jxOHQr5NW74PL'),
+ ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/', 'baby-shark-10th-anniversary-london-symphony-orchestra', 'Baby Shark (London Symphony Orchestra Version)',
+  'Baby Shark × London Symphony Orchestra: Arranger & Conductor Kyle Daniel Gordon',
+  'Kyle Daniel Gordon arranged and conducted the London Symphony Orchestra version of Baby Shark for its 10th anniversary, recorded at LSO St Luke’s, plus the Bebefinn Medley.',
+  {"@type": "MusicGroup", "name": "Pinkfong, London Symphony Orchestra"}, '2025-09-19', 'The Pinkfong Company', 'https://open.spotify.com/album/6myoH7UjcukBliJGvWorpG'),
+ ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/', 'grace-kelly-with-strings-at-the-movies', 'Grace Kelly with Strings: At The Movies',
+  'Grace Kelly with Strings: At The Movies, Arranger Kyle Daniel Gordon',
+  'Kyle Daniel Gordon was arranger, orchestrator and co-producer on saxophonist Grace Kelly’s film-music album with strings (2024): Morricone, E.T., James Bond, Disney.',
+  {"@type": "Person", "name": "Grace Kelly"}, '2024-03-01', 'PAZZ Productions', 'https://open.spotify.com/album/2buBjbRAHUe3QMiWbRuHM0'),
+ ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/', 'david-friesen-this-light-has-no-darkness', 'This Light Has No Darkness, Volume 1',
+  'David Friesen, This Light Has No Darkness: Orchestrated by Kyle Daniel Gordon',
+  'Bassist David Friesen’s 12-part suite, arranged and orchestrated by Kyle Daniel Gordon for 33-piece chamber orchestra. Origin Records, 2024.',
+  {"@type": "Person", "name": "David Friesen"}, '2024-02-16', 'Origin Records', None),
+]
+for src, path, key, name, title, desc, by, date, label, spot in RECP:
+    alb = {"@type": "MusicAlbum", "@id": SITE + path + "#album", "name": name, "byArtist": by, "datePublished": date,
+           "publisher": {"@type": "Organization", "name": label}, "contributor": {"@id": SITE + "/#kyle"}, "image": SITE + blob2path[A[key]]}
+    if spot: alb["sameAs"] = spot
+    PAGES.append(dict(src=src, out=path.strip('/') + '/index.html', path=path, title=title, desc=desc,
+                      graph=[PERSON, alb, {"@type": "BreadcrumbList", "itemListElement": [
+                          {"@type": "ListItem", "position": 1, "name": "Credits", "item": SITE + "/#credits"},
+                          {"@type": "ListItem", "position": 2, "name": name, "item": SITE + path}]}],
+                      og=ogi(path.strip('/').split('/')[-1])))
+
 
 # ---- pitch pages (/for/<slug>/), hidden from search
 for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):
@@ -164,6 +193,9 @@ for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):
 
 FAVICON = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#1b1a17"/><g stroke="#f7f4ec" stroke-width="2.2"><path d="M10 20h44M10 27h44M10 34h44M10 41h44M10 48h44"/></g><ellipse cx="34" cy="37.5" rx="8" ry="5.5" fill="#e2581a" transform="rotate(-22 34 37.5)"/><path d="M41.2 35V13" stroke="#e2581a" stroke-width="2.6"/></svg>'''
 open(os.path.join(OUT, 'favicon.svg'), 'w').write(FAVICON)
+import shutil as _sh
+for _f in os.listdir('/home/claude/kdg_scripts/icons'): _sh.copy(os.path.join('/home/claude/kdg_scripts/icons', _f), os.path.join(OUT, _f))
+open(os.path.join(OUT, 'site.webmanifest'), 'w').write(json.dumps({"name": "Kyle Daniel Gordon", "short_name": "Kyle D. Gordon", "start_url": "/", "display": "browser", "background_color": "#f7f4ec", "theme_color": "#f7f4ec", "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}]}))
 
 
 def fix(s):
@@ -205,6 +237,9 @@ def head(p):
 <meta name="twitter:image" content="{og}">
 <meta name="theme-color" content="#f7f4ec">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script type="application/ld+json">
@@ -236,7 +271,7 @@ home = open(os.path.join(OUT, 'index.html'), encoding='utf-8').read()
 h404 = re.sub(r'<body>.*</body>', '''<body><main style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; gap: 24px; padding: 24px; max-width: 900px; margin: 0 auto; font-family: 'Instrument Sans', system-ui, sans-serif; color: #1b1a17; background: #f7f4ec">
 <span style="font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: #625d55">Tacet · 404</span>
 <h1 style="margin: 0; font-weight: 600; font-size: clamp(48px, 9vw, 110px); line-height: .9; letter-spacing: -.05em">This bar is empty.</h1>
-<p style="margin: 0; font-size: 18px">The page you were looking for isn’t here. <a href="/" style="color: #e2581a">Back to the score</a>.</p>
+<p style="margin: 0; font-size: 18px">The page you were looking for isn’t here. <a href="/" style="color: #b5410b; display: inline-block; padding: 10px 0">Back to the score</a>.</p>
 </main></body>''', home, flags=re.S)
 h404 = h404.replace('<link rel="canonical"', '<meta name="robots" content="noindex">\n<link rel="canonical"')
 open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(h404)

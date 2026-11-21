@@ -72,6 +72,10 @@ P = [
  ('Genshin Impact', 'Game', OM, '', 'genshin-impact', sp_search('Genshin Impact soundtrack')),
 ]
 BY = {p[0]: p for p in P}
+REC = {'Romani: The Untold Story': 'Rec-romani.dc.html', 'Baby Shark 10th Anniversary': 'Rec-babyshark.dc.html',
+       'Bebefinn Medley with London Symphony Orchestra': 'Rec-babyshark.dc.html',
+       'Grace Kelly with Strings: At The Movies': 'Rec-gracekelly.dc.html', 'This Light Has No Darkness': 'Rec-friesen.dc.html',
+       'LUX': 'Project.dc.html', 'Oppenheimer': 'Oppenheimer.dc.html'}
 PHOTO_WIDE = A['conducting-london-symphony-orchestra']
 POPULAR = ['Frozen II', 'Star Wars: The Last Jedi', 'Star Wars: The Rise of Skywalker', 'Black Panther: Wakanda Forever', 'The Gilded Age', 'The Book of Boba Fett',
            'Haunted Mansion', 'Star Trek: Strange New Worlds', 'Outer Banks', 'Bluey', 'Star Trek: Discovery', 'Star Trek: Picard',
@@ -118,7 +122,7 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 .press{display:flex;flex-direction:column;gap:10px;padding:20px 0;border-top:1px solid rgba(27,26,23,.22);text-decoration:none;color:#1b1a17}
 .press .h{transition:color .2s ease}
 .press:hover .h{color:#e2581a}
-.wall .cov .play{left:8px;bottom:8px;padding:6px 9px 6px 8px;font-size:10px}
+.wall .cov .play{left:8px;bottom:8px;padding:6px 9px 6px 8px;font-size:11px}
 .row{position:relative;display:grid;grid-template-columns:48px minmax(0,1.5fr) 120px minmax(0,1.2fr) minmax(0,1fr) 92px;gap:16px;align-items:center;padding:12px 10px;border-top:1px solid rgba(27,26,23,.22);text-decoration:none;color:#1b1a17;transition:background-color .2s ease}
 .row:hover{background-color:var(--tint)}
 .cwrap{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:48px;align-items:start}
@@ -140,6 +144,7 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 .rise{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
 @media (max-width: 600px){.luxcard{grid-template-columns:1fr !important}.luxcard>.cov{max-width:280px}}
 @media (max-width: 1100px){.cwrap{grid-template-columns:1fr}.cprev{display:none}}
+@media (max-height: 520px) and (orientation: landscape){header>div[style*="padding-top: 2"]{padding-top:96px !important}header h1>span:last-child,header h1[style*="font-size: clamp"]{font-size:clamp(44px,14vh,96px) !important}}
 @media (max-width: 860px){.row,.cwrap .row{grid-template-columns:36px minmax(0,1fr) 40px}.row .hide{display:none}.row .peek{display:none}}'''
 
 
@@ -157,7 +162,7 @@ def band(grad, h=300):
 def nav(color, current=''):
     links = [('Work', 'Home.dc.html#work'), ('LUX', 'Project.dc.html'), ('Live', 'Live.dc.html'), ('Credits', 'Home.dc.html#credits'),
              ('About', 'Home.dc.html#about'), ('Work with Kyle', 'WorkWith.dc.html'), ('Contact', 'Contact.dc.html')]
-    ls = ''.join(f'<a class="cl" href="{h}" style="padding: 10px 0"{" aria-current=\"page\"" if n == current else ""}>{n}</a>' for n, h in links)
+    ls = ''.join(f'<a class="cl" href="{h}" style="padding: 10px 8px; margin: 0 -8px"{" aria-current=\"page\"" if n == current else ""}>{n}</a>' for n, h in links)
     return (f'<nav aria-label="Primary" style="{WRAP}; padding-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; '
             f'gap: 12px 28px; {MONO}; font-size: 12px; color: {color}">'
             f'<a href="Home.dc.html" style="padding: 10px 0; text-decoration: none">Kyle Daniel Gordon</a>'
@@ -267,6 +272,9 @@ def home():
         pdata += f' data-t="{t}" data-m="{role}{(" · " + w) if w else ""}" data-c="{CATCOL[cat]}" data-r="{"2 / 3" if cat in ("Film", "Television", "Game") else "1 / 1"}"'
         go = f'<span class="go" style="{MONO}; font-size: 11px">{PLAY}{"Watch" if "instagram" in spot else "Listen"}</span>' if spot else f'<span class="go" style="{MONO}; font-size: 11px; color: {MUTE}">Broadcast</span>'
         tag, attr = ('a', f' href="{spot}"') if spot else ('div', '')
+        if t in REC:
+            go = f'<span class="go" style="{MONO}; font-size: 11px">Story {ARROW}</span>'
+            tag, attr = 'a', f' href="{REC[t]}"'
         rows += (f'<{tag}{attr}{pdata} class="row" style="--tint: {TINT[cat]}">'
                  f'<span style="{MONO}; font-size: 11px; font-variant-numeric: tabular-nums; color: {MUTE}">{n + 1:02d}</span>'
                  f'<span style="{COND}; font-size: clamp(22px, 2.2vw, 30px); line-height: 1">{t}</span>'
@@ -349,7 +357,7 @@ def home():
 <figure class="cprev" aria-hidden="true"><div class="cp-art" style="aspect-ratio: 1 / 1"><img src="{A['rosalia-lux-album']}" alt="" loading="lazy"><span class="cp-blank"></span></div>
 <figcaption><span class="cp-t" style="{COND}; font-size: 30px; line-height: 1; color: {C['olive']}">LUX</span><span class="cp-m" style="{MONO}; font-size: 11px; color: {MUTE}">Lead orchestrator · Rosalía · London Symphony Orchestra</span></figcaption></figure>
 <div>
-<div aria-hidden="true" class="row" style="border-top: 0; padding-top: 0; padding-bottom: 10px; {MONO}; font-size: 10px; color: {MUTE}"><span>No.</span><span>Title</span><span class="hide">Category</span><span class="hide">Role</span><span class="hide">With</span><span></span></div>
+<div aria-hidden="true" class="row" style="border-top: 0; padding-top: 0; padding-bottom: 10px; {MONO}; font-size: 11px; color: {MUTE}"><span>No.</span><span>Title</span><span class="hide">Category</span><span class="hide">Role</span><span class="hide">With</span><span></span></div>
 {rows}</div>
 </div>
 </section>
@@ -594,7 +602,7 @@ def live():
 
 
 def popstrings():
-    recs = ''.join(tile(t, s, '1 / 1', 'Project.dc.html' if t == 'LUX' else None) for t, s in
+    recs = ''.join(tile(t, s, '1 / 1', REC.get(t)) for t, s in
                    [('LUX', 'Rosalía · lead orchestrator · LSO'), ('People Pleaser', 'Mollie Elizabeth · arranger'),
                     ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('Magia en Dos', 'Ariza · orchestrator'),
                     ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'), ('Romani: The Untold Story', 'Billboard #1 Classical Album')])
@@ -956,3 +964,89 @@ json.dump({'la': FAQ_LA, 'contact': FAQ_CONTACT}, open('/home/claude/kdg_scripts
 # credits for structured data (read by build_static.py)
 json.dump([dict(title=t, cat=c, role=r, with_=w, spotify=s) for t, c, r, w, k, s in P],
           open('/home/claude/kdg_scripts/credits.json', 'w'), ensure_ascii=False, indent=0)
+
+
+# ------------------------------------------------------------------ RECORD PAGES (one per project, for search)
+RECORDS = [
+ dict(fn='Rec-romani.dc.html', title='Romani: The Untold Story', crumb='Romani', kicker='Ion Zanca · Dallas String Quartet · LSO · 2024',
+      big='Romani', size='clamp(76px, 12vw, 190px)', grad='#140a0f 0%, #4b1a24 24%, #b0473c 50%, #f0c7a4 76%',
+      lede='Arranged, orchestrated and conducted by Kyle Daniel Gordon, with the London Symphony Orchestra.',
+      body=['<em>Romani: The Untold Story</em> is an album by violinist Ion Zanca with the Dallas String Quartet and the London Symphony Orchestra, released on 23 August 2024. Kyle Daniel Gordon was its arranger, orchestrator and conductor.',
+            'The album reached No. 1 on Billboard’s Classical Albums chart. Guests include flamenco musicians Sergio Pamies and Jorge Pardo on “Sangre Gitana”, and Sam Garner on “Letters of Pain”.'],
+      tracks=['Brewing Conflict', 'Letters of Pain', 'Key of Heaven', 'Sangre Gitana', 'Rhapsody for the Romani'], complete=True,
+      spec=[('Artists', 'Ion Zanca, Dallas String Quartet, London Symphony Orchestra'), ('Released', '23 August 2024'), ('Label', 'Dallas String Quartet'),
+            ('Arranger, orchestrator, conductor', 'Kyle Daniel Gordon'), ('Chart', 'No. 1, Billboard Classical Albums')],
+      more=['Baby Shark 10th Anniversary', 'LUX', 'Grace Kelly with Strings: At The Movies'], nxt=('Next — Record', 'Baby Shark × LSO', 'Rec-babyshark.dc.html')),
+ dict(fn='Rec-babyshark.dc.html', title='Baby Shark 10th Anniversary', crumb='Baby Shark', kicker='Pinkfong · London Symphony Orchestra · 2025',
+      big='Baby Shark × LSO', size='clamp(60px, 9vw, 150px)', grad='#06121f 0%, #0d3b63 24%, #2f8fc4 50%, #cfe9f2 76%',
+      lede='The London Symphony Orchestra version of “Baby Shark”, arranged and conducted by Kyle Daniel Gordon.',
+      body=['For the tenth anniversary of “Baby Shark”, The Pinkfong Company recorded a new version with the London Symphony Orchestra at LSO St Luke’s in London. Kyle Daniel Gordon arranged and conducted it. Pinkfong released it on 19 September 2025, as a single and on the <em>Baby Shark 10 Years</em> vinyl album.',
+            'It was the London Symphony Orchestra’s first collaboration with a Korean character brand. Gordon also conducted the <em>Bebefinn Medley with London Symphony Orchestra</em>, released on 14 November 2025.'],
+      tracks=['Baby Shark (London Symphony Orchestra Version)', 'Bebefinn Medley with London Symphony Orchestra'], complete=True,
+      spec=[('Artists', 'Pinkfong, London Symphony Orchestra'), ('Released', '19 September 2025 · Bebefinn Medley 14 November 2025'), ('Recorded', 'LSO St Luke’s, London'),
+            ('Arranger, conductor', 'Kyle Daniel Gordon'), ('Label', 'The Pinkfong Company')],
+      more=['Romani: The Untold Story', 'LUX', 'Grace Kelly with Strings: At The Movies'], nxt=('Next — Record', 'Grace Kelly with Strings', 'Rec-gracekelly.dc.html')),
+ dict(fn='Rec-gracekelly.dc.html', title='Grace Kelly with Strings: At The Movies', crumb='Grace Kelly', kicker='Grace Kelly · 2024',
+      big='At The Movies', size='clamp(60px, 9vw, 150px)', grad='#1a0f08 0%, #5a2a14 24%, #c98a3c 50%, #f4e2bf 76%',
+      lede='Film music for saxophone and strings. Arranged, orchestrated and co-produced by Kyle Daniel Gordon.',
+      body=['<em>Grace Kelly with Strings: At The Movies</em> is saxophonist Grace Kelly’s album of film music with strings, inspired by <em>Charlie Parker with Strings</em>. It was released on 1 March 2024 by PAZZ Productions. Kyle Daniel Gordon was an arranger, orchestrator and co-producer.',
+            'The record moves from James Bond and <em>Pirates of the Caribbean</em> to Morricone, <em>E.T.</em> and Disney, with guests Sean Jones and Cory Wong.'],
+      tracks=['James Bond Medley', 'He’s a Pirate (from Pirates of the Caribbean)', 'The Way You Look Tonight', 'Morricone Medley', 'True Love (from High Society)',
+              'Soul Bossa Nova (feat. Sean Jones)', 'Moon River', 'Mission Impossible', 'The Flying Theme (From E.T.)', 'By the Grave',
+              'The Power of Love (feat. Cory Wong)', 'When You Wish Upon a Star', 'Disney Medley'],
+      spec=[('Artist', 'Grace Kelly'), ('Released', '1 March 2024'), ('Label', 'PAZZ Productions'), ('Arranger, orchestrator, co-producer', 'Kyle Daniel Gordon')],
+      more=['This Light Has No Darkness', 'Romani: The Untold Story', 'People Pleaser'], nxt=('Next — Record', 'This Light Has No Darkness', 'Rec-friesen.dc.html')),
+ dict(fn='Rec-friesen.dc.html', title='This Light Has No Darkness', crumb='David Friesen', kicker='David Friesen · Origin Records · 2024',
+      big='This Light Has No Darkness', size='clamp(48px, 7vw, 120px)', grad='#0c0d14 0%, #23305a 24%, #8a8fc4 50%, #eae6f2 76%',
+      lede='A 12-part work by bassist David Friesen, arranged and orchestrated by Kyle Daniel Gordon for 33-piece chamber orchestra.',
+      body=['<em>This Light Has No Darkness, Volume 1</em> sets bassist David Friesen’s compositions for a 33-piece chamber orchestra, arranged and orchestrated by Kyle Daniel Gordon. Origin Records released it on 16 February 2024.',
+            'The suite was first conceived for the National Academic Symphonic Band of Ukraine. On the album the orchestra plays with Friesen, pianist Paul Lees and percussionists Charlie Doggett and Rob Moore.'],
+      tracks=['Recovery for Two', 'Motivation', 'Basic Strategy', 'Perseverance', 'Innocence', 'A Beautiful Moment', 'Return to the Father', 'Tides Turning', 'A Smile Turns to Laughter', 'Time Changes'],
+      spec=[('Artist', 'David Friesen'), ('Released', '16 February 2024'), ('Label', 'Origin Records'), ('Ensemble', '33-piece chamber orchestra'),
+            ('Arranger, orchestrator', 'Kyle Daniel Gordon')],
+      more=['Grace Kelly with Strings: At The Movies', 'Romani: The Untold Story', 'LUX'], nxt=('Next — Record', 'Rosalía · LUX', 'Project.dc.html')),
+]
+
+
+def record_page(r):
+    t, cat, role, w, key, spot = BY[r['title']]
+    tracks = ''.join(f'<li style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 13px 0; border-top: 1px solid {RULE}">'
+                     f'<span style="{MONO}; font-size: 11px; color: {MUTE}">{i + 1:02d}</span><span style="font-size: 16px">{tr}</span></li>' for i, tr in enumerate(r['tracks']))
+    more = ''.join(tile(m, f'{BY[m][2]}' + (f' · {BY[m][3]}' if BY[m][3] else ''), '1 / 1', REC.get(m)) for m in r['more'] if m in BY)
+    body = ''.join(f'<p style="margin: 0; font-size: 17px; max-width: 60ch{"; color: #3a362f" if i else ""}">{b}</p>' for i, b in enumerate(r['body']))
+    inner = f'''<header style="position: relative">
+{band(r['grad'], 320)}
+{nav('#f7efe4')}
+<div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: start">
+<div class="rise" style="display: flex; flex-direction: column; gap: 22px">
+{crumbs('<a class="cl" href="Home.dc.html#credits" style="padding: 10px 0">Credits</a>', 'Records', r['crumb'])}
+{hero_title(r['kicker'], r['big'], r['size'])}
+<p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 46ch">{r['lede']}</p>
+{body}
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{spot}">{PLAY}Listen on Spotify</a><a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
+</div>
+<div class="rise" style="animation-delay: .15s; display: flex; flex-direction: column; gap: 22px; max-width: 460px">
+{cov(t, key, '1 / 1', spot)}
+{spec(r['spec'])}
+</div>
+</div>
+</header>
+
+<section aria-label="Tracks" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('A', 'Tracks', f"{len(r['tracks'])} tracks" if r.get('complete') else 'Selected tracks')}
+<ol style="margin: 0; padding: 0; list-style: none; border-bottom: 1px solid {RULE}">{tracks}</ol>
+</section>
+
+<section aria-label="More records" style="{WRAP}; margin-top: 120px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('B', 'More records', 'Strings &amp; orchestra')}
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 46%), 1fr)); gap: 32px 24px">{more}</div>
+</section>
+
+{next_link(*r['nxt'])}
+
+{footer(', '.join([c.split()[0] + ' 30%' for c in r['grad'].split(', ')[2:3]] + [c.split()[0] + ' 62%' for c in r['grad'].split(', ')[1:2]] + [c.split()[0] + ' 100%' for c in r['grad'].split(', ')[0:1]]))}'''
+    return page(f"{r['title']}, Kyle Daniel Gordon", root(inner), CSS, PAPER, h=3600)
+
+
+for r in RECORDS:
+    open(os.path.join(OUT, r['fn']), 'w', encoding='utf-8').write(record_page(r).replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
