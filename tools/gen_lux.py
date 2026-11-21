@@ -735,11 +735,12 @@ BIO_MED = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based 
 
 
 def press():
-    photos = [('kyle-daniel-gordon-orchestrator-portrait', 'Kyle Daniel Gordon, portrait', 'Portrait · 1600 × 2133', '3 / 4'),
+    photos = [('kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session', 'Kyle Daniel Gordon with Rosalía and the London Symphony Orchestra at a LUX recording session', 'Wide · 1290 × 525', '1290 / 525'),
+              ('kyle-daniel-gordon-orchestrator-portrait', 'Kyle Daniel Gordon, portrait', 'Portrait · 1600 × 2133', '3 / 4'),
               ('conducting-london-symphony-orchestra-for-rosalia-lux-lso', 'Kyle Daniel Gordon conducting', 'Square · 1889 × 1889', '1 / 1'),
               ('kyle-daniel-gordon-recording-session', 'Kyle Daniel Gordon with Mollie Elizabeth at a recording session', 'Landscape · 2000 × 1125', '16 / 9'),
               ('conducting-london-symphony-orchestra', 'Kyle Daniel Gordon conducting the London Symphony Orchestra', 'Landscape · 2400 × 1350', '16 / 9')]
-    ph = ''.join(f'''<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+    ph = ''.join(f'''<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px{'; grid-column: 1 / -1' if ar == '1290 / 525' else ''}">
 <a href="{A[k]}" download class="cov" style="aspect-ratio: {ar}"><img src="{A[k]}" alt="{alt}" loading="lazy"><span class="play">Download</span></a>
 <figcaption style="{MONO}; font-size: 11px; color: {MUTE}">{alt} · {sz}</figcaption></figure>''' for k, alt, sz, ar in photos)
     facts = spec([('Name', 'Kyle Daniel Gordon (also credited as Kyle Gordon)'), ('Based in', 'Los Angeles'),
