@@ -137,7 +137,7 @@ PAGES = [
          title='Orchestrator in Los Angeles: Kyle Daniel Gordon',
          desc='Los Angeles orchestrator, arranger and conductor for film, TV and records: Rosalía’s LUX, Oppenheimer, Frozen II, Star Wars. Orchestration, strings, score prep.',
          graph=[PERSON, {"@type": "ProfessionalService", "name": "Kyle Daniel Gordon, orchestrator", "url": SITE + "/orchestrator-los-angeles/",
-                         "founder": {"@id": SITE + "/#kyle"}, "email": "kylegordonmusic@gmail.com", "telephone": "+1-818-518-3441",
+                         "legalName": "KG Music LLC", "founder": {"@id": SITE + "/#kyle"}, "email": "kylegordonmusic@gmail.com", "telephone": "+1-818-518-3441",
                          "address": {"@type": "PostalAddress", "addressLocality": "Los Angeles", "addressRegion": "CA", "addressCountry": "US"},
                          "areaServed": [{"@type": "City", "name": "Los Angeles"}, "Worldwide"],
                          "serviceType": ["Orchestration", "String arrangements", "Score preparation", "Conducting"]}, FAQ('la')]),

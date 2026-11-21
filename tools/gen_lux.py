@@ -799,6 +799,7 @@ def privacy():
     items = [('What is measured', 'This site uses Cloudflare Web Analytics (page views, no cookies) and Microsoft Clarity (anonymous heatmaps and session recordings that show how pages are used). Text you type into forms is masked. Neither tool is used for advertising.'),
              ('Cookies', 'Cloudflare Web Analytics sets no cookies. Microsoft Clarity may set first-party cookies to link page views within a visit; where consent is required it runs without them. You can block both with any standard content blocker.'),
              ('Your data', 'No personal information is collected unless you email Kyle. Email is used only to reply. For questions or deletion requests, write to kylegordonmusic@gmail.com.'),
+             ('Who runs this site', 'kyledanielgordon.com is run by KG Music LLC, the business of Kyle Daniel Gordon, Los Angeles. Contact: kylegordonmusic@gmail.com.'),
              ('Third parties', 'Microsoft’s privacy statement: privacy.microsoft.com. Cloudflare’s privacy policy: cloudflare.com/privacypolicy.')]
     body = ''.join(f'''<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid {RULE}">
 <h2 style="margin: 0; {SANS}; font-size: 22px; letter-spacing: -0.02em">{h}</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">{t}</p></div>''' for h, t in items)
