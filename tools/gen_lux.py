@@ -204,14 +204,14 @@ def footer(grad):
 <div style="display: flex; flex-wrap: wrap; gap: 28px 64px; align-items: flex-end; justify-content: space-between">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <span style="{MONO}; font-size: 12px; color: {C['celery']}">Contact</span>
-<a href="mailto:kylegordonmusic@gmail.com" style="{SANS}; font-size: clamp(30px, 5.4vw, 78px); line-height: 0.95; letter-spacing: -0.045em; text-decoration: none; color: #fbf8f2; overflow-wrap: anywhere">kylegordonmusic@gmail.com</a>
+<a href="mailto:kylegordonmusic@gmail.com" style="{SANS}; font-size: clamp(19px, 6.2vw, 78px); line-height: 0.95; letter-spacing: -0.045em; text-decoration: none; color: #fbf8f2; white-space: nowrap; display: inline-block; padding: 6px 0">kylegordonmusic@gmail.com</a>
 <span style="{MONO}; font-size: 13px">(818) 518-3441 · Los Angeles</span>
 </div>
 <a class="btn line" href="Contact.dc.html" style="color: #fbf8f2">Start a project</a>
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; {MONO}; font-size: 11px; border-top: 1px solid rgba(251,248,242,0.4); padding-top: 18px">
 <span>Kyle Daniel Gordon · Orchestrator, arranger, conductor · Los Angeles</span>
-<span style="display: flex; gap: 26px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a><a class="cl" href="LA.dc.html" style="padding: 10px 0">Orchestrator in LA</a><a class="cl" href="Orchestrator.dc.html" style="padding: 10px 0">What an orchestrator does</a><a class="cl" href="Privacy.dc.html" style="padding: 10px 0">Privacy</a></span>
+<span class="flinks" style="display: flex; flex-wrap: wrap; gap: 4px 26px; white-space: nowrap"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press kit</a><a class="cl" href="LA.dc.html" style="padding: 10px 0">Orchestrator in LA</a><a class="cl" href="Orchestrator.dc.html" style="padding: 10px 0">What an orchestrator does</a><a class="cl" href="Privacy.dc.html" style="padding: 10px 0">Privacy</a></span>
 </div>
 </div>
 </footer>'''
@@ -446,7 +446,7 @@ def lux():
 <section aria-label="Next project" style="{WRAP}; margin-top: 140px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 40px; border-top: 1px solid {INK}; padding-top: 22px">
 <span style="{MONO}; font-size: 12px; color: {MUTE}">Next — Film</span>
-<span style="display: flex; align-items: center; gap: 24px">{cov('Oppenheimer', 'oppenheimer-film-poster', '2 / 3', BY['Oppenheimer'][5], 'Play', '; width: 84px')}<a href="Home.dc.html#work" class="cl" style="{COND}; font-size: clamp(48px, 7vw, 100px); line-height: 0.9; color: {C['tang']}; text-decoration-color: {C['tang']}">Oppenheimer →</a></span>
+<span style="display: flex; align-items: center; gap: clamp(14px, 4vw, 24px); min-width: 0">{cov('Oppenheimer', 'oppenheimer-film-poster', '2 / 3', BY['Oppenheimer'][5], 'Play', '; width: clamp(56px, 16vw, 84px); flex-shrink: 0')}<a href="Oppenheimer.dc.html" class="cl" style="{COND}; font-size: clamp(36px, 10vw, 100px); line-height: 0.9; color: {C['tang']}; text-decoration-color: {C['tang']}">Oppenheimer →</a></span>
 </div>
 </section>
 
