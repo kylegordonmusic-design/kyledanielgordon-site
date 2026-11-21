@@ -300,7 +300,7 @@ urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><lastmod>{TODAY}</lastmod><cha
                + ''.join(f'<image:image><image:loc>{i}</image:loc></image:image>' for i in PHOTOS.get(p['path'], [p.get('og', OG)]))
                + '</url>' for p in PAGES if not p.get('noindex'))
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">{urls}</urlset>\n')
-open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
+open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nDisallow: /r/\n\nSitemap: {SITE}/sitemap.xml\n')
 open(os.path.join(OUT, INDEXNOW_KEY + '.txt'), 'w').write(INDEXNOW_KEY)
 os.makedirs(os.path.join(OUT, 'press'), exist_ok=True); shutil.copy('/home/claude/kdg_scripts/press/kyle-daniel-gordon-press-sheet.pdf', os.path.join(OUT, 'press', 'kyle-daniel-gordon-press-sheet.pdf'))
 open(os.path.join(OUT, 'llms.txt'), 'w', encoding='utf-8').write(open('/home/claude/kdg_scripts/llms.txt', encoding='utf-8').read())
@@ -340,3 +340,5 @@ print('built', sorted(os.path.relpath(os.path.join(d, f), OUT) for d, _, fs in o
 sys.path.insert(0, '/home/claude/kdg_scripts')
 import speed
 speed.optimize(OUT)
+import shortlinks
+shortlinks.build(OUT)  # /r/<code> tracked short links, written after the speed pass
