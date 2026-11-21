@@ -95,7 +95,7 @@ y = head('How to credit', y, full)
 notes = ['Name: Kyle Daniel Gordon (older credits read “Kyle Gordon”). He is not the comedian Kyle Gordon.',
          'LUX: “orchestrator on LUX” or “orchestrated all 19 tracks of LUX”. Daníel Bjarnason conducted the LSO sessions, and other '
          'arrangers are credited on some tracks, including Caroline Shaw and Angélica Negrón.',
-         'Grammys: LUX is nominated for Album of the Year. Please don’t describe Kyle as a Grammy nominee.',
+         'Grammys: LUX has 10 Grammy nominations, including Album of the Year.',
          'Oppenheimer: “one of the orchestrators on Oppenheimer” (part of the orchestration team), not “the orchestrator of Oppenheimer”. Other film and TV: “worked on”.']
 for n in notes:
     c.setFillColor(TANG)

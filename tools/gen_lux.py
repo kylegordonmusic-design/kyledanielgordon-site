@@ -745,7 +745,7 @@ def press():
     credit = spec([('Name', 'Kyle Daniel Gordon. Older credits read “Kyle Gordon”. Not the comedian Kyle Gordon.'),
                    ('Role on LUX', '“Orchestrator on LUX” or “orchestrated all 19 tracks of LUX”'),
                    ('Also on LUX', 'Daníel Bjarnason conducted the LSO sessions; other arrangers, including Caroline Shaw and Angélica Negrón, are credited on some tracks'),
-                   ('Grammys', 'LUX is nominated for Album of the Year at the 69th Grammy Awards. Please don’t call Kyle a Grammy nominee'),
+                   ('Grammys', 'LUX: 10 Grammy nominations, including Album of the Year at the 69th Grammy Awards'),
                    ('Oppenheimer', '“One of the orchestrators on Oppenheimer”: he was part of the orchestration team on Ludwig Göransson’s score. Please don’t call him “the orchestrator of Oppenheimer”'),
                    ('Other film and TV', '“Worked on”, as part of the orchestration team'),
                    ('Link', 'kyledanielgordon.com')])
