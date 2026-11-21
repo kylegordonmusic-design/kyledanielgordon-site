@@ -247,7 +247,7 @@ def prom_cards():
 
 CARD_YEARS = {'Hawthorne Heights': '2024', 'Escape the Fate': '2025'}  # confirmed by Kyle Nov 20, 2026
 
-AWARDS = [('6', 'Latin Grammys', 'Including Album of the Year, 2026'), ('9', 'Grammy nominations', 'Including Album of the Year, 2027')]
+AWARDS = [('6', 'Latin Grammys', 'Including Album of the Year, 2026'), ('10', 'Grammy nominations for LUX', 'Including Album of the Year, 2027')]
 
 
 CREDIT_JS = r'''<script>
