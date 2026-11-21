@@ -5,7 +5,7 @@ W='/home/claude/kdg_web'
 def b64(k): return 'data:image/jpeg;base64,'+base64.b64encode(open(f'{W}/{k}.jpg','rb').read()).decode()
 CARDS = [
  ('home', 'Kyle Daniel Gordon', 'Orchestrator · Arranger · Conductor', 'Rosalía’s LUX · Oppenheimer · BBC Proms', 'conducting-london-symphony-orchestra-for-rosalia-lux-lso', '1/1', '#0f0e10 0%, #3b3a40 30%, #a7a3a0 60%, #f7f4ec 100%'),
- ('rosalia-lux', 'Rosalía · LUX', 'Supervising orchestrator', 'London Symphony Orchestra · 6 Latin Grammys', 'rosalia-lux-album', '1/1', '#0f0e10 0%, #3b3a40 30%, #a7a3a0 60%, #f7f4ec 100%'),
+ ('rosalia-lux', 'Rosalía · LUX', 'Lead orchestrator', 'London Symphony Orchestra · 6 Latin Grammys', 'rosalia-lux-album', '1/1', '#0f0e10 0%, #3b3a40 30%, #a7a3a0 60%, #f7f4ec 100%'),
  ('oppenheimer', 'Oppenheimer', 'Orchestration', 'Ludwig Göransson’s Academy Award-winning score', 'oppenheimer-film-poster', '2/3', '#050302 0%, #3a1406 30%, #c2521a 62%, #f7f4ec 100%'),
  ('live', 'Live', 'BBC Proms · San Francisco Symphony', 'Bond and Beyond · Soul Revolution · The Little Bird', None, None, '#2b0f2a 0%, #8e2a5e 32%, #f08a5d 64%, #f7f4ec 100%'),
  ('pop-strings', 'Pop strings', 'String & orchestral arrangements', 'For artists, sessions and live shows', 'mollie-elizabeth-people-pleaser', '1/1', '#0e1a12 0%, #31502c 32%, #a8b85a 64%, #f7f4ec 100%'),

@@ -19,7 +19,7 @@ def sp_search(q):
 
 # title, category, role, with, image key, spotify
 P = [
- ('LUX', 'Record', 'Supervising orchestrator', 'Rosalía · London Symphony Orchestra', 'rosalia-lux-album', 'https://open.spotify.com/album/3SUEJULSGgBDG1j4GQhfYY'),
+ ('LUX', 'Record', 'Lead orchestrator', 'Rosalía · London Symphony Orchestra', 'rosalia-lux-album', 'https://open.spotify.com/album/3SUEJULSGgBDG1j4GQhfYY'),
  ('Romani: The Untold Story', 'Record', 'Arranger, orchestrator, conductor', 'Ion Zanca · Dallas String Quartet · LSO', 'romani-the-untold-story-london-symphony-orchestra', 'https://open.spotify.com/track/31eojlHu2jxOHQr5NW74PL'),
  ('Baby Shark 10th Anniversary', 'Record', 'Arranger, orchestrator, conductor', 'Pinkfong · London Symphony Orchestra', 'baby-shark-10th-anniversary-london-symphony-orchestra', 'https://open.spotify.com/album/6myoH7UjcukBliJGvWorpG'),
  ('Bebefinn Medley with London Symphony Orchestra', 'Record', 'Conductor', 'Bebefinn · London Symphony Orchestra · 2025', 'bebefinn-medley-london-symphony-orchestra', 'https://open.spotify.com/track/1nnjQb0Rl6RUDkgSPfcuCC'),
@@ -287,9 +287,9 @@ def home():
 <article aria-labelledby="lux-h" class="rise luxcard" style="animation-delay: .15s; display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 22px; align-items: start">
 {cov('LUX', 'rosalia-lux-album', '1 / 1', BY['LUX'][5])}
 <div style="display: flex; flex-direction: column; gap: 10px">
-<span style="{MONO}; font-size: 11px; color: #b5410b">Supervising orchestrator · Rosalía · 2025</span>
+<span style="{MONO}; font-size: 11px; color: #b5410b">Lead orchestrator · Rosalía · 2025</span>
 <h2 id="lux-h" style="margin: 0; {COND}; font-size: 46px; line-height: 0.92">Rosalía — LUX</h2>
-<p style="margin: 0; font-size: 15px; line-height: 1.45; color: #2f2c27">Supervising orchestrator on Rosalía's fourth album, recorded with the London Symphony Orchestra at AIR Studios, London.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.45; color: #2f2c27">Lead orchestrator on Rosalía's fourth album, recorded with the London Symphony Orchestra at AIR Studios, London.</p>
 <div style="display: flex; flex-direction: column">{aw}</div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 6px"><a class="btn solid" href="{BY['LUX'][5]}">{PLAY}Listen</a><a class="btn line" href="Project.dc.html">About the record</a></div>
 </div>
@@ -347,7 +347,7 @@ def home():
 {staff_head('E', 'Credits', f'{len(P)} projects')}
 <div class="cwrap">
 <figure class="cprev" aria-hidden="true"><div class="cp-art" style="aspect-ratio: 1 / 1"><img src="{A['rosalia-lux-album']}" alt="" loading="lazy"><span class="cp-blank"></span></div>
-<figcaption><span class="cp-t" style="{COND}; font-size: 30px; line-height: 1; color: {C['olive']}">LUX</span><span class="cp-m" style="{MONO}; font-size: 11px; color: {MUTE}">Supervising orchestrator · Rosalía · London Symphony Orchestra</span></figcaption></figure>
+<figcaption><span class="cp-t" style="{COND}; font-size: 30px; line-height: 1; color: {C['olive']}">LUX</span><span class="cp-m" style="{MONO}; font-size: 11px; color: {MUTE}">Lead orchestrator · Rosalía · London Symphony Orchestra</span></figcaption></figure>
 <div>
 <div aria-hidden="true" class="row" style="border-top: 0; padding-top: 0; padding-bottom: 10px; {MONO}; font-size: 10px; color: {MUTE}"><span>No.</span><span>Title</span><span class="hide">Category</span><span class="hide">Role</span><span class="hide">With</span><span></span></div>
 {rows}</div>
@@ -360,7 +360,7 @@ def home():
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 44px 80px; align-items: start">
 <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="{PHOTO_LUX}" alt="Kyle Daniel Gordon with the London Symphony Orchestra during the LUX sessions" loading="lazy" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%"><figcaption style="{MONO}; font-size: 11px; color: {MUTE}">LUX sessions, London Symphony Orchestra</figcaption></figure>
 <div style="display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.55; max-width: 62ch">
-<p style="margin: 0">Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was supervising orchestrator on Rosalía's <em>LUX</em>, recorded with the London Symphony Orchestra, which won six Latin Grammys including Album of the Year and received ten Grammy nominations.</p>
+<p style="margin: 0">Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was lead orchestrator on Rosalía's <em>LUX</em>, recorded with the London Symphony Orchestra, which won six Latin Grammys including Album of the Year and received ten Grammy nominations.</p>
 <p style="margin: 0; color: #3a362f">In film and television he orchestrated <em>Oppenheimer</em> and <em>Bridgerton</em>, and has worked in the music departments of <em>The Mandalorian</em>, <em>Black Panther: Wakanda Forever</em> and <em>Star Wars: The Rise of Skywalker</em>. He leads orchestration teams in Los Angeles for composers including John Williams, Ludwig Göransson, Kris Bowers, Walter Murphy and Justin Hurwitz.</p>
 <p style="margin: 0; color: #3a362f">At the BBC Proms he was lead orchestrator on <em>Soul Revolution</em> (2025) with the BBC Concert Orchestra, writing its finale and playing the Royal Albert Hall organ. In 2026 he arranged the <em>Bond and Beyond</em> Prom, performing his arrangement of Radiohead’s “Spectre” on the organ, and wrote arrangements for <em>Marvin Gaye: Prince of Soul</em>. His piece <em>The Little Bird</em> was premiered by the San Francisco Symphony in 2026. He arranged, orchestrated and conducted the <em>Baby Shark 10th Anniversary</em> symphonic album with the LSO. <em>Romani: The Untold Story</em>, which he orchestrated and conducted with the LSO and Dallas String Quartet, received the 2024 Billboard Award for #1 Classical Album. He has conducted sessions and concerts in Los Angeles, Nashville and London, and arranged touring orchestral shows for Hawthorne Heights and Escape the Fate.</p>
 <p style="margin: 0; color: #3a362f">Trained in jazz and classical music, he holds a master's in music from the University of North Texas, and made his Carnegie Hall debut as a bassist in 2018. He is also credited as Kyle Gordon.</p>
@@ -380,7 +380,7 @@ def lux():
               'Focu ’ranni', 'Jeanne', 'Novia Robot']
     tl = ''.join(f'<li style="display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 9px 0; border-top: 1px solid {RULE}">'
                  f'<span style="{MONO}; font-size: 11px; color: {MUTE}; font-variant-numeric: tabular-nums">{i + 1:02d}</span><span style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px"><span>{t}</span><span style="{MONO}; font-size: 11px; color: {MUTE}">{"Complete Works · " if i >= 15 else ""}Orchestration: Kyle Daniel Gordon</span></span></li>' for i, t in enumerate(tracks))
-    spec = [('Artist', 'Rosalía'), ('Album', 'LUX (2025) · LUX (Complete Works)'), ('Supervising orchestrator', 'Kyle Daniel Gordon'),
+    spec = [('Artist', 'Rosalía'), ('Album', 'LUX (2025) · LUX (Complete Works)'), ('Lead orchestrator', 'Kyle Daniel Gordon'),
             ('Orchestra', 'London Symphony Orchestra'), ('Conductor', 'Daníel Bjarnason'), ('Recorded', 'AIR Studios, London'),
             ('Label', 'Columbia Records')]
     sp = ''.join(f'<dt style="padding: 11px 18px 11px 0; color: {MUTE}; border-top: 1px solid {RULE}">{a}</dt><dd style="margin: 0; padding: 11px 0; border-top: 1px solid {RULE}">{b}</dd>' for a, b in spec)
@@ -397,7 +397,7 @@ def lux():
 <span style="{MONO}; font-size: 12px; color: {MUTE}"><a class="cl" href="Home.dc.html#work" style="padding: 10px 0">Work</a> / Records / Rosalía <span aria-hidden="true">·</span> <a class="cl" href="ProjectES.dc.html" hreflang="es" lang="es" style="padding: 10px 0">Español</a></span>
 <h1 style="margin: 0; display: flex; flex-direction: column; gap: 6px"><span style="{MONO}; font-size: 14px; font-weight: 400">Rosalía</span><span style="{COND}; font-size: clamp(96px, 15vw, 220px); line-height: 0.8; color: {INK}">LUX</span></h1>
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 40ch">Orchestrations for an album sung in thirteen languages, with the London Symphony Orchestra on every track.</p>
-<p style="margin: 0; font-size: 17px; max-width: 58ch">LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s supervising orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.</p>
+<p style="margin: 0; font-size: 17px; max-width: 58ch">LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s lead orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">LUX won six Latin Grammys at the 27th Latin Grammy Awards, including Album of the Year, and received ten nominations at the 69th Grammy Awards, including Album of the Year.</p>
 <a href="{RS_URL}" class="press" style="margin-top: 8px; border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: #b5410b">Rolling Stone</span>
 <span class="h" style="{SANS}; font-size: 22px; line-height: 1.25; letter-spacing: -0.02em">‘Art for Art’s Sake’: Rosalía’s Collaborators Reflect on ‘Lux’ {ARROW}</span>
@@ -595,7 +595,7 @@ def live():
 
 def popstrings():
     recs = ''.join(tile(t, s, '1 / 1', 'Project.dc.html' if t == 'LUX' else None) for t, s in
-                   [('LUX', 'Rosalía · supervising orchestrator · LSO'), ('People Pleaser', 'Mollie Elizabeth · arranger'),
+                   [('LUX', 'Rosalía · lead orchestrator · LSO'), ('People Pleaser', 'Mollie Elizabeth · arranger'),
                     ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('Magia en Dos', 'Ariza · orchestrator'),
                     ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'), ('Romani: The Untold Story', 'Billboard #1 Classical Album')])
     steps = ''.join(f'''<li style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding: 18px 0; border-top: 1px solid {RULE}">
@@ -613,7 +613,7 @@ def popstrings():
 {hero_title('String &amp; orchestral arrangements for artists', 'Pop strings', 'clamp(76px, 12vw, 190px)')}
 </div>
 <div class="rise" style="animation-delay: .1s; display: flex; flex-direction: column; gap: 18px">
-<p style="margin: 0; font-size: 18px; max-width: 58ch">Kyle Daniel Gordon writes string and orchestral arrangements for pop and alternative artists. He was supervising orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and arranges for records, sessions and live shows.</p>
+<p style="margin: 0; font-size: 18px; max-width: 58ch">Kyle Daniel Gordon writes string and orchestral arrangements for pop and alternative artists. He was lead orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and arranges for records, sessions and live shows.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kylegordonmusic@gmail.com?subject=String%20arrangement">Email Kyle</a><a class="btn line" href="Project.dc.html">The LUX story</a></div>
 </div>
 </div>
@@ -682,7 +682,7 @@ def pitch(pt):
 
 <section aria-label="LUX" style="{WRAP}; margin-top: 110px">
 <a href="Project.dc.html" class="press" style="border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: #b5410b">Rosalía · LUX · 6 Latin Grammys · 10 Grammy nominations</span>
-<span class="h" style="{SANS}; font-size: clamp(24px, 3vw, 36px); line-height: 1.15; letter-spacing: -0.03em">Supervising orchestrator on LUX, recorded with the London Symphony Orchestra {ARROW}</span></a>
+<span class="h" style="{SANS}; font-size: clamp(24px, 3vw, 36px); line-height: 1.15; letter-spacing: -0.03em">Lead orchestrator on LUX, recorded with the London Symphony Orchestra {ARROW}</span></a>
 </section>
 
 {footer('#a9c3ff 30%, #3b2a6a 62%, #120f22 100%')}'''
@@ -693,9 +693,9 @@ for pt in PITCHES:
     open(os.path.join(OUT, f'Pitch-{pt["slug"]}.dc.html'), 'w', encoding='utf-8').write(
         pitch(pt).replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
 # ------------------------------------------------------------------ PRESS KIT
-BIO_SHORT = ('Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He was supervising orchestrator on Rosalía’s '
+BIO_SHORT = ('Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He was lead orchestrator on Rosalía’s '
              '<em>LUX</em>, recorded with the London Symphony Orchestra, and orchestrated Ludwig Göransson’s score for <em>Oppenheimer</em>.')
-BIO_MED = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was supervising orchestrator on Rosalía’s '
+BIO_MED = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was lead orchestrator on Rosalía’s '
            '<em>LUX</em> (2025), recorded with the London Symphony Orchestra, which won six Latin Grammys including Album of the Year. '
            'In film and television he orchestrated Ludwig Göransson’s score for <em>Oppenheimer</em> and has worked on <em>Frozen II</em>, '
            '<em>Star Wars: The Last Jedi</em>, <em>Black Panther: Wakanda Forever</em>, <em>The Mandalorian</em> and <em>The Gilded Age</em>. '
@@ -759,8 +759,8 @@ open(os.path.join(OUT, 'Press.dc.html'), 'w', encoding='utf-8').write(press().re
 ES = [
  ('Orchestrations for an album sung in thirteen languages, with the London Symphony Orchestra on every track.',
   'Orquestaciones para un álbum cantado en trece idiomas, con la Orquesta Sinfónica de Londres en todas las canciones.'),
- ("LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s supervising orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.",
-  'LUX es el cuarto álbum de estudio de Rosalía, publicado en noviembre de 2025. Kyle Daniel Gordon fue el orquestador supervisor del álbum, grabado con la Orquesta Sinfónica de Londres en los AIR Studios de Londres bajo la dirección de Daníel Bjarnason.'),
+ ("LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s lead orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason.",
+  'LUX es el cuarto álbum de estudio de Rosalía, publicado en noviembre de 2025. Kyle Daniel Gordon fue el orquestador principal del álbum, grabado con la Orquesta Sinfónica de Londres en los AIR Studios de Londres bajo la dirección de Daníel Bjarnason.'),
  ('LUX won six Latin Grammys at the 27th Latin Grammy Awards, including Album of the Year, and received ten nominations at the 69th Grammy Awards, including Album of the Year.',
   'LUX ganó seis Latin Grammy en la 27.ª edición de los premios, entre ellos Álbum del Año, y recibió diez nominaciones en la 69.ª edición de los Grammy, entre ellas Álbum del Año.'),
  ('Gordon tells the story of the call from the London Symphony Orchestra that brought him onto the album.',
@@ -770,7 +770,7 @@ ES = [
   'La Orquesta Sinfónica de Londres toca en todas las canciones. LUX (Complete Works) añade tres más.'),
  ('>Work</a> / Records / Rosalía', '>Trabajo</a> / Discos / Rosalía'),
  ('<a class="cl" href="ProjectES.dc.html" hreflang="es" lang="es" style="padding: 10px 0">Español</a>', '<a class="cl" href="Project.dc.html" hreflang="en" lang="en" style="padding: 10px 0">English</a>'),
- ('>Artist<', '>Artista<'), ('>Album<', '>Álbum<'), ('>Supervising orchestrator<', '>Orquestador supervisor<'),
+ ('>Artist<', '>Artista<'), ('>Album<', '>Álbum<'), ('>Lead orchestrator<', '>Orquestador principal<'),
  ('>Orchestra<', '>Orquesta<'), ('>London Symphony Orchestra<', '>Orquesta Sinfónica de Londres<'), ('>Conductor<', '>Director<'),
  ('>Recorded<', '>Grabación<'), ('>AIR Studios, London<', '>AIR Studios, Londres<'), ('>Label<', '>Sello<'),
  ('>Recognition<', '>Reconocimientos<'), ('>Tracklist<', '>Canciones<'), ('>LUX · 18 tracks<', '>LUX · 18 canciones<'), ('Orchestration: Kyle Daniel Gordon<', 'Orquestación: Kyle Daniel Gordon<'),
@@ -832,7 +832,7 @@ def faq_block(qas):
 
 FAQ_LA = [
     ('What does Kyle Daniel Gordon do?', 'He is an orchestrator, arranger and conductor in Los Angeles. He turns composers’ sketches and mockups into full orchestral scores, writes string and orchestral arrangements for artists, prepares scores and parts, and conducts recording sessions and concerts.'),
-    ('Which projects has he orchestrated?', 'Credits include Rosalía’s LUX (supervising orchestrator, with the London Symphony Orchestra), Oppenheimer, Frozen II, Star Wars: The Last Jedi, Black Panther: Wakanda Forever, The Mandalorian, Haunted Mansion, Bridgerton and The Gilded Age, plus arrangements for the BBC Proms.'),
+    ('Which projects has he orchestrated?', 'Credits include Rosalía’s LUX (lead orchestrator, with the London Symphony Orchestra), Oppenheimer, Frozen II, Star Wars: The Last Jedi, Black Panther: Wakanda Forever, The Mandalorian, Haunted Mansion, Bridgerton and The Gilded Age, plus arrangements for the BBC Proms.'),
     ('Does he work remotely?', 'Yes. Scores and parts are delivered digitally, so he works with composers and artists anywhere. Recording sessions and concerts take place in Los Angeles, Nashville, London and elsewhere.'),
     ('Can he write strings for a pop or alternative record?', 'Yes. Send a demo, stems or a rough mix and the size of ensemble you have in mind, from a string quartet to a full orchestra. See <a class="cl" href="PopStrings.dc.html">pop string arrangements</a>.'),
     ('How do I book him?', 'Email <a class="cl" href="mailto:kylegordonmusic@gmail.com">kylegordonmusic@gmail.com</a> with the project, the dates and what you need: orchestration, arrangement, score preparation or conducting.'),
@@ -857,7 +857,7 @@ def la_page():
 {hero_title('Film, television &amp; records', 'Orchestrator in Los Angeles', 'clamp(52px, 7vw, 112px)')}
 </div>
 <div style="display: flex; flex-direction: column; gap: 18px">
-{prose(['Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He was supervising orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and has worked on the scores for <em>Oppenheimer</em>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em> and <em>The Gilded Age</em>.'])}
+{prose(['Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He was lead orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and has worked on the scores for <em>Oppenheimer</em>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em> and <em>The Gilded Age</em>.'])}
 <div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="Contact.dc.html">Contact Kyle</a><a class="btn line" href="Home.dc.html#credits">All credits</a></div>
 </div></div></header>
 
@@ -887,9 +887,9 @@ def orchestrator_guide():
     body = ''.join([
         sec('The short answer', ['An orchestrator takes music that already exists in some form, a piano sketch, a demo or a composer’s computer mockup, and writes it out for real instruments: which notes the violins play, where the horns double the melody, how loud the timpani is. The composer decides what the music says; the orchestrator decides how an orchestra says it, then delivers a score that players can sight-read in a recording session.']),
         sec('Orchestrator, arranger and composer', ['A <strong>composer</strong> writes the original music. An <strong>arranger</strong> reshapes existing music, for example turning a pop song into a version for strings. An <strong>orchestrator</strong> assigns finished musical ideas to instruments. In practice the roles overlap, and many people, including Kyle Daniel Gordon, work as all three depending on the project.']),
-        sec('How orchestration works on a film score', ['On a large film or series the composer writes against picture, usually in a detailed digital mockup. The mockup goes to a team of orchestrators, often led by a lead or supervising orchestrator, who turn each cue into a full score in the composer’s style. A music preparation team then produces the individual parts, and the cues are recorded with an orchestra on a scoring stage, often in only a few days.',
+        sec('How orchestration works on a film score', ['On a large film or series the composer writes against picture, usually in a detailed digital mockup. The mockup goes to a team of orchestrators, often led by a lead orchestrator, who turn each cue into a full score in the composer’s style. A music preparation team then produces the individual parts, and the cues are recorded with an orchestra on a scoring stage, often in only a few days.',
                                                     'Kyle has worked in this way on scores such as <a class="cl" href="Oppenheimer.dc.html"><em>Oppenheimer</em></a>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em> and <em>The Gilded Age</em>.']),
-        sec('How it works on a record', ['On a pop or alternative record the starting point is a song, a production and a vocal. The orchestrator writes parts that sit around the voice without fighting the production, then the strings or orchestra are recorded separately and blended in the mix. On Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>, Kyle Daniel Gordon was supervising orchestrator, with the London Symphony Orchestra playing on every track. Read more about <a class="cl" href="PopStrings.dc.html">pop string arrangements</a>.']),
+        sec('How it works on a record', ['On a pop or alternative record the starting point is a song, a production and a vocal. The orchestrator writes parts that sit around the voice without fighting the production, then the strings or orchestra are recorded separately and blended in the mix. On Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>, Kyle Daniel Gordon was lead orchestrator, with the London Symphony Orchestra playing on every track. Read more about <a class="cl" href="PopStrings.dc.html">pop string arrangements</a>.']),
         sec('What a good orchestrator brings', ['Knowledge of every instrument’s range, colour and limits; the ability to write in someone else’s voice; clean, readable scores that save expensive studio time; and the judgement to make a mockup sound better, not just louder, when real players perform it.']),
         sec('Hiring an orchestrator', ['Send the music, the deadline and the size of the ensemble. Rates depend on the amount of music, the size of the orchestra and the turnaround. For film, television, records and concerts, <a class="cl" href="Contact.dc.html">contact Kyle Daniel Gordon</a> in Los Angeles.']),
     ])
