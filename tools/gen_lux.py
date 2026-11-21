@@ -741,6 +741,15 @@ def press():
                    ('Oppenheimer', 'Orchestrator · score by Ludwig Göransson'),
                    ('Other film and TV', '“Worked on”, as part of the orchestration team'),
                    ('Link', 'kyledanielgordon.com')])
+    quotes = ''.join(f'''<blockquote style="margin: 0; padding: 18px 0 0; border-top: 1.5px solid {INK}; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: clamp(19px, 2vw, 24px); line-height: 1.4; letter-spacing: -0.01em">“{q}”</p>
+<footer style="{MONO}; font-size: 11px; color: {MUTE}">Kyle Daniel Gordon · free to quote</footer></blockquote>''' for q in [
+        'This was the project of my lifetime so far. Rosalía and Noah Goldstein were so excited to push the boundaries with the orchestra, and so supportive of me being experimental.',
+        'On ‘Berghain’ I only used the notes the natural horns of Mozart’s time could play. Limiting the orchestration to what was period-correct is what brings you into that world.',
+        'Rosalía’s songwriting is astounding: the stories she tells, the way she weaves melodies together. It has so much pathos. Pairing her with the orchestra was the perfect match, her emotion with the natural grandeur of the orchestra.',
+        'The London Symphony Orchestra was so collaborative and so excited to dig into this music and bring it to life. Daníel Bjarnason was a wonderful conductor for the project and added so much to the sessions.',
+        'Noah Goldstein was such a wonderful producer, so encouraging and welcoming. He just wanted this album to be the best it could possibly be.',
+        'An orchestrator is a collaborator. You take someone’s vision of a song and make it sing with an orchestra.'])
     topics = ''.join(f'<li>{t}</li>' for t in [
         'How a full symphony orchestra gets built into a pop album, from demo to the LSO at AIR Studios',
         'What an orchestrator actually does, and how it differs from composing and arranging',
@@ -779,23 +788,28 @@ def press():
 {facts}
 </section>
 
+<section aria-label="Quotes" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('D', 'Quotes', 'On LUX')}
+<div style="display: flex; flex-direction: column; gap: 28px">{quotes}</div>
+</section>
+
 <section aria-label="How to credit" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('D', 'How to credit', 'For writers')}
+{staff_head('E', 'How to credit', 'For writers')}
 {credit}
 </section>
 
 <section aria-label="Interview topics" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('E', 'Interview topics', 'Ask about')}
+{staff_head('F', 'Interview topics', 'Ask about')}
 <ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.5">{topics}</ol>
 </section>
 
 <section aria-label="Coverage" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('F', 'Coverage', 'Press')}
+{staff_head('G', 'Coverage', 'Press')}
 <div style="display: flex; flex-direction: column">{links}</div>
 </section>
 
 {footer('#b9b0a0 30%, #4b463e 62%, #1b1a17 100%')}'''
-    return page('Press room, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=4800)
+    return page('Press room, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=5800)
 
 
 open(os.path.join(OUT, 'Press.dc.html'), 'w', encoding='utf-8').write(press().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
