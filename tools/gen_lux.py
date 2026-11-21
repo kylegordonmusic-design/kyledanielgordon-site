@@ -90,7 +90,9 @@ PRESS = [('The Pinkfong Company', 'Baby Shark teams up with the London Symphony 
          ('Dazed', 'Inside Rosalía’s Lux, with its key collaborators', 'Conductor Daníel Bjarnason on the AIR Studios sessions and the orchestrator who prepared them.', 'https://www.dazeddigital.com/music/article/69044/1/lux-rosalia-new-album-2025-noah-dillon-carminho-daniel-bjaranason-yahritza'),
          ('BroadwayWorld', 'Review: BBC Proms, Bond and Beyond', 'Arrangements credited to Kyle Gordon, Barry Forgie, Guy Barker and Nic Raine; Radiohead’s “Spectre” singled out.', 'https://www.broadwayworld.com/article/Review-BBC-PROMS-BOND-AND-BEYOND-Royal-Albert-Hall-20260826'),
          ('Rolling Stone Brasil', '‘Arte pela Arte’: colaboradores de Rosalía refletem sobre ‘Lux’', 'Portuguese edition of the Rolling Stone feature.', 'https://rollingstone.com.br/musica/arte-pela-arte-colaboradores-de-rosalia-refletem-sobre-lux/')]
-PROMS = [('2026', 'Bond and Beyond', 'Arranger · organ on Radiohead’s “Spectre”', 'BBC Concert Orchestra · Daniel Bartholomew-Poyser, conductor · 25 August 2026',
+PROMS = [('2026', 'Creatividad en la Música', 'Speaker · on orchestrating LUX', 'PAN, Instituto de Experimentación en Inteligencia Creativa · Universidad Torcuato Di Tella, Buenos Aires · 6 November 2026',
+          'linear-gradient(160deg, #071a2e 0%, #2a6fb0 48%, #f1d38a 100%)', ('PAN 2026 speakers', 'https://www.panypanico.com/'), 'PAN · Buenos Aires'),
+         ('2026', 'Bond and Beyond', 'Arranger · organ on Radiohead’s “Spectre”', 'BBC Concert Orchestra · Daniel Bartholomew-Poyser, conductor · 25 August 2026',
           'linear-gradient(160deg, #0b0b0c 0%, #3a3330 45%, #c9a24a 100%)', ('Watch “Spectre” from the organ', 'https://www.instagram.com/kylegordonmusic/reel/Dejq7epTaDR/'), 'BBC Proms · Royal Albert Hall'),
          ('2026', 'The Little Bird', 'Composer · world premiere', 'San Francisco Symphony · Davies Symphony Hall · May 2026',
           'linear-gradient(160deg, #06281f 0%, #1f6b52 48%, #e9d27a 100%)', None, 'San Francisco Symphony'),
@@ -233,7 +235,8 @@ def tile(title, sub, ratio, href_title=None):
             f'<span style="{MONO}; font-size: 11px; color: {MUTE}">{sub}</span></div></div>')
 
 
-def prom_cards():
+def prom_cards(only=None):
+    items = [pr for pr in PROMS if only is None or pr[1] in only]
     return ''.join(f'''<article class="prom" aria-label="{ven} {y}: {t}">
 <div class="face" style="position: relative; aspect-ratio: 4 / 3; background: {g}; overflow: hidden">{grain(0.42)}
 <span style="position: absolute; left: 18px; top: 16px; z-index: 1; max-width: 46%; {MONO}; font-size: 11px; line-height: 1.5">{ven}</span>
@@ -243,8 +246,8 @@ def prom_cards():
 <div style="display: flex; flex-direction: column; gap: 8px; padding: 16px 18px 20px">
 <span style="font-size: 16px; font-weight: 600">{r}</span>
 <span style="{MONO}; font-size: 11px; line-height: 1.5; color: #cfc6b6">{d}</span>
-{f'<a href="{v[1]}" style="{MONO}; font-size: 11px; color: {C["celery"]}; padding: 8px 0 0; text-transform: uppercase; letter-spacing: .04em; display: inline-flex; align-items: center; gap: 8px">{PLAY} {v[0]}</a>' if v else ''}
-</div></article>''' for y, t, r, d, g, v, ven in PROMS)
+{f'<a href="{v[1]}" style="{MONO}; font-size: 11px; color: {C["celery"]}; padding: 8px 0 0; text-transform: uppercase; letter-spacing: .04em; display: inline-flex; align-items: center; gap: 8px">{PLAY if ('instagram' in v[1] or 'youtu' in v[1]) else ARROW} {v[0]}</a>' if v else ''}
+</div></article>''' for y, t, r, d, g, v, ven in items)
 
 
 CARD_YEARS = {'Hawthorne Heights': '2024', 'Escape the Fate': '2025'}  # confirmed by Kyle Nov 20, 2026
@@ -267,7 +270,7 @@ def home():
                    [('People Pleaser', 'Mollie Elizabeth · arranger, orchestrator, conductor, 2026'), ('Romani: The Untold Story', 'Billboard #1 Classical Album, 2024'),
                     ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'), ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer')])
     wall = ''.join(cov(t, BY[t][4], '2 / 3', BY[t][5], 'Play', grad=GOLD) for t in POPULAR)
-    proms = prom_cards()
+    proms = prom_cards(('Creatividad en la Música', 'Bond and Beyond', 'The Little Bird', 'Soul Revolution'))
     press = ''.join(f'''<a class="press" href="{u}"><span style="{MONO}; font-size: 11px; color: {MUTE}">{o}</span>
 <span class="h" style="{SANS}; font-size: 22px; line-height: 1.2; letter-spacing: -0.02em">{h} {ARROW}</span>
 <span style="font-size: 15px; line-height: 1.45; color: #3a362f">{dsc}</span></a>''' for o, h, dsc, u in PRESS)
@@ -602,8 +605,8 @@ def live():
 </header>
 
 <section aria-label="Concerts" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
-{staff_head('A', 'Concerts', 'Newest first')}
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 18px">{prom_cards()}</div>
+{staff_head('A', 'Concerts &amp; talks', 'Newest first')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 18px">{prom_cards()}</div>
 </section>
 
 <section aria-label="Reviews" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
