@@ -783,8 +783,8 @@ def press():
 {crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Press')}
 {hero_title('Bios, photos, facts and interviews', 'Press room', 'clamp(64px, 10vw, 160px)')}
 <p style="margin: 0; max-width: 60ch; font-size: 18px; line-height: 1.55">Kyle is available for interviews in Los Angeles, by phone, video or email. Everything on this page is free to use in coverage.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kyledanielgordon.press@gmail.com?subject=Interview%20request%3A%20Kyle%20Daniel%20Gordon">Request an interview</a><a class="btn line" href="/press/kyle-daniel-gordon-press-sheet.pdf" download>Press sheet (PDF)</a></div>
-<span style="{MONO}; font-size: 12px; color: {MUTE}">Press office · kyledanielgordon.press@gmail.com</span>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kyledanielgordonpress@gmail.com?subject=Interview%20request%3A%20Kyle%20Daniel%20Gordon">Request an interview</a><a class="btn line" href="/press/kyle-daniel-gordon-press-sheet.pdf" download>Press sheet (PDF)</a></div>
+<span style="{MONO}; font-size: 12px; color: {MUTE}">Press office · kyledanielgordonpress@gmail.com</span>
 </div>
 </header>
 

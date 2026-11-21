@@ -109,7 +109,7 @@ y = para('Available for interviews in English, in person in Los Angeles, by phon
          M, y, full, size=10, lead=13.5) - 6
 c.setFont('Helvetica-Bold', 11)
 c.setFillColor(INK)
-c.drawString(M, y, 'Press office: kyledanielgordon.press@gmail.com')
+c.drawString(M, y, 'Press office: kyledanielgordonpress@gmail.com')
 c.setFont('Helvetica', 10)
 c.setFillColor(MUTE)
 c.drawString(M, y - 15, 'Photos, bios and coverage: kyledanielgordon.com/press')
