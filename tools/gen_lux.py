@@ -20,6 +20,7 @@ def sp_search(q):
 # title, category, role, with, image key, spotify
 P = [
  ('LUX', 'Record', 'Lead orchestrator', 'Rosalía · London Symphony Orchestra', 'rosalia-lux-album', 'https://open.spotify.com/album/3SUEJULSGgBDG1j4GQhfYY'),
+ ('People Pleaser', 'Record', 'Arranger, orchestrator, conductor', 'Mollie Elizabeth · 2026', 'mollie-elizabeth-people-pleaser', 'https://open.spotify.com/album/6vYVu3wSl9OedjOU8n8pVX'),
  ('Romani: The Untold Story', 'Record', 'Arranger, orchestrator, conductor', 'Ion Zanca · Dallas String Quartet · LSO', 'romani-the-untold-story-london-symphony-orchestra', 'https://open.spotify.com/track/31eojlHu2jxOHQr5NW74PL'),
  ('Baby Shark 10th Anniversary', 'Record', 'Arranger, orchestrator, conductor', 'Pinkfong · London Symphony Orchestra', 'baby-shark-10th-anniversary-london-symphony-orchestra', 'https://open.spotify.com/album/6myoH7UjcukBliJGvWorpG'),
  ('Bebefinn Medley with London Symphony Orchestra', 'Record', 'Conductor', 'Bebefinn · London Symphony Orchestra · 2025', 'bebefinn-medley-london-symphony-orchestra', 'https://open.spotify.com/track/1nnjQb0Rl6RUDkgSPfcuCC'),
@@ -27,7 +28,6 @@ P = [
  ('BBC Proms: Marvin Gaye, Prince of Soul', 'Stage', 'Arrangements', 'BBC Concert Orchestra · 2026', None, None),
  ('BBC Proms: Soul Revolution', 'Stage', 'Arranger, composer (finale), organ', 'BBC Concert Orchestra · 2025', None, 'https://www.instagram.com/kylegordonmusic/reel/DM7t0RKo_Ne/'),
  ('The Little Bird', 'Stage', 'Composer · world premiere', 'San Francisco Symphony · 2026', None, None),
- ('People Pleaser', 'Record', 'Arranger, orchestrator, conductor', 'Mollie Elizabeth · 2026', 'mollie-elizabeth-people-pleaser', 'https://open.spotify.com/album/6vYVu3wSl9OedjOU8n8pVX'),
  ('My One And Only Love', 'Record', 'Arranger, conductor, producer', 'Alex Blair · 2024', 'alex-blair-my-one-and-only-love', 'https://open.spotify.com/track/2KPppSYqaRlZby9tyl0k9P'),
  ('It’s Christmas Time', 'Record', 'Arranger', 'Jali Music · 2022', 'jali-music-its-christmas-time', 'https://open.spotify.com/track/00wLdAWRWqsjzNWu5vUcMU'),
  ('Grace Kelly with Strings: At The Movies', 'Record', 'Arranger, orchestrator, co-producer', 'Grace Kelly', 'grace-kelly-with-strings-at-the-movies', 'https://open.spotify.com/album/2buBjbRAHUe3QMiWbRuHM0'),
@@ -264,8 +264,8 @@ def home():
     posters = ''.join(tile(t, f'{BY[t][1]} · {s}', '2 / 3', 'Oppenheimer.dc.html' if t == 'Oppenheimer' else None) for t, s in
                       [('Oppenheimer', 'Orchestrator'), ('Bridgerton', 'Orchestration'), ('The Mandalorian', 'Orchestration'), ('Babylon', 'Orchestration')])
     recs = ''.join(tile(t, s, '1 / 1') for t, s in
-                   [('Romani: The Untold Story', 'Billboard #1 Classical Album, 2024'), ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'),
-                    ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('People Pleaser', 'Mollie Elizabeth · arranger, 2026')])
+                   [('People Pleaser', 'Mollie Elizabeth · arranger, orchestrator, conductor, 2026'), ('Romani: The Untold Story', 'Billboard #1 Classical Album, 2024'),
+                    ('Baby Shark 10th Anniversary', 'London Symphony Orchestra'), ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer')])
     wall = ''.join(cov(t, BY[t][4], '2 / 3', BY[t][5], 'Play', grad=GOLD) for t in POPULAR)
     proms = prom_cards()
     press = ''.join(f'''<a class="press" href="{u}"><span style="{MONO}; font-size: 11px; color: {MUTE}">{o}</span>
@@ -1038,7 +1038,7 @@ RECORDS = [
       tracks=['Brewing Conflict', 'Letters of Pain', 'Key of Heaven', 'Sangre Gitana', 'Rhapsody for the Romani'], complete=True,
       spec=[('Artists', 'Ion Zanca, Dallas String Quartet, London Symphony Orchestra'), ('Released', '23 August 2024'), ('Label', 'Dallas String Quartet'),
             ('Arranger, orchestrator, conductor', 'Kyle Daniel Gordon'), ('Chart', 'No. 1, Billboard Classical Albums')],
-      more=['Baby Shark 10th Anniversary', 'LUX', 'Grace Kelly with Strings: At The Movies'], nxt=('Next — Record', 'Baby Shark × LSO', 'Rec-babyshark.dc.html')),
+      more=['Baby Shark 10th Anniversary', 'LUX', 'People Pleaser'], nxt=('Next — Record', 'Baby Shark × LSO', 'Rec-babyshark.dc.html')),
  dict(fn='Rec-babyshark.dc.html', title='Baby Shark 10th Anniversary', crumb='Baby Shark', kicker='Pinkfong · London Symphony Orchestra · 2025',
       big='Baby Shark × LSO', size='clamp(60px, 9vw, 150px)', grad='#06121f 0%, #0d3b63 24%, #2f8fc4 50%, #cfe9f2 76%',
       lede='The London Symphony Orchestra version of “Baby Shark”, arranged and conducted by Kyle Daniel Gordon.',
@@ -1052,7 +1052,7 @@ RECORDS = [
               ('Ringing in Baby Shark’s 10th anniversary with the LSO', 'Instagram · @kylegordonmusic', 'From the sessions at LSO St Luke’s, 12 September 2025.', 'https://www.instagram.com/kylegordonmusic/reel/DOjM3CPDgDU/'),
               ('Baby Shark turns 10 with the LSO', 'Instagram · @kylegordonmusic', 'Arranging and conducting it for the London Symphony Orchestra, 26 September 2025.', 'https://www.instagram.com/kylegordonmusic/reel/DPHMn2SAVOE/'),
               ('Bebefinn Medley with London Symphony Orchestra', 'YouTube · audio', 'Released 14 November 2025. Conducted by Kyle Gordon.', 'https://www.youtube.com/watch?v=X1GcluNc7CA')],
-      more=['Romani: The Untold Story', 'LUX', 'Grace Kelly with Strings: At The Movies'], nxt=('Next — Record', 'Grace Kelly with Strings', 'Rec-gracekelly.dc.html')),
+      more=['Romani: The Untold Story', 'LUX', 'People Pleaser'], nxt=('Next — Record', 'Grace Kelly with Strings', 'Rec-gracekelly.dc.html')),
  dict(fn='Rec-gracekelly.dc.html', title='Grace Kelly with Strings: At The Movies', crumb='Grace Kelly', kicker='Grace Kelly · 2024',
       big='At The Movies', size='clamp(60px, 9vw, 150px)', grad='#1a0f08 0%, #5a2a14 24%, #c98a3c 50%, #f4e2bf 76%',
       lede='Film music for saxophone and strings. Arranged, orchestrated and co-produced by Kyle Daniel Gordon.',
@@ -1071,7 +1071,7 @@ RECORDS = [
       tracks=['Recovery for Two', 'Motivation', 'Basic Strategy', 'Perseverance', 'Innocence', 'A Beautiful Moment', 'Return to the Father', 'Tides Turning', 'A Smile Turns to Laughter', 'Time Changes'],
       spec=[('Artist', 'David Friesen'), ('Released', '16 February 2024'), ('Label', 'Origin Records'), ('Ensemble', '33-piece chamber orchestra'),
             ('Arranger, orchestrator', 'Kyle Daniel Gordon')],
-      more=['Grace Kelly with Strings: At The Movies', 'Romani: The Untold Story', 'LUX'], nxt=('Next — Record', 'Mollie Elizabeth · People Pleaser', 'Rec-mollie.dc.html')),
+      more=['People Pleaser', 'Romani: The Untold Story', 'LUX'], nxt=('Next — Record', 'Mollie Elizabeth · People Pleaser', 'Rec-mollie.dc.html')),
 
  dict(fn='Rec-mollie.dc.html', title='People Pleaser', crumb='Mollie Elizabeth', kicker='Mollie Elizabeth · Capitol Records · 2026',
       big='People Pleaser', size='clamp(60px, 9vw, 150px)', grad='#160b12 0%, #4e1c3a 24%, #c45a86 50%, #f6d6e2 76%',
