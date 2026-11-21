@@ -245,13 +245,13 @@ def prom_cards():
 </div></article>''' for y, t, r, d, g, v, ven in PROMS)
 
 
-AWARDS = [('6', 'Latin Grammys', 'Including Album of the Year, 2026'), ('10', 'Grammy nominations', 'Including Album of the Year, 2027')]
+AWARDS = [('6', 'Latin Grammys', 'Including Album of the Year, 2026'), ('AOTY', 'Grammy nominee', 'Album of the Year, 2027')]
 
 
 CREDIT_JS = r'''<script>
 (function(){var f=document.querySelector('.cprev');if(!f)return;var art=f.querySelector('.cp-art'),img=art.querySelector('img'),blank=art.querySelector('.cp-blank'),t=f.querySelector('.cp-t'),m=f.querySelector('.cp-m'),cur;
 function show(r){if(r===cur)return;cur=r;var src=r.getAttribute('data-img');t.textContent=r.getAttribute('data-t');t.style.color=r.getAttribute('data-c');m.textContent=r.getAttribute('data-m');art.style.aspectRatio=r.getAttribute('data-r');
-if(src){blank.style.opacity=0;img.style.opacity=0;var n=new Image();n.onload=function(){if(cur!==r)return;img.removeAttribute('srcset');img.removeAttribute('sizes');img.src=src;img.style.opacity=1};n.src=src}else{img.style.opacity=0;blank.style.background=r.getAttribute('data-g')||'#e9e4da';blank.style.opacity=1}}
+if(src){blank.style.opacity=0;img.style.opacity=0;var n=new Image();n.onload=function(){if(cur!==r)return;img.removeAttribute('srcset');img.removeAttribute('sizes');img.src=src;img.style.opacity=1};n.src=src}else{img.style.opacity=0;blank.style.background=r.getAttribute('data-g')||'#e9e4da';var mm=r.getAttribute('data-m')||'',yy=mm.match(/(?:19|20)(\d\d)/);blank.querySelector('.cpb-t').textContent=r.getAttribute('data-t');blank.querySelector('.cpb-v').textContent=mm;blank.querySelector('.cpb-y').textContent=yy?yy[1]:'';blank.style.opacity=1}}
 document.querySelectorAll('#credits .row[data-t]').forEach(function(r){r.addEventListener('mouseenter',function(){show(r)});r.addEventListener('focus',function(){show(r)})});})();
 </script>'''
 
@@ -359,7 +359,7 @@ def home():
 <section id="credits" aria-label="Full credits" style="{WRAP}; margin-top: 140px; display: flex; flex-direction: column; gap: 28px">
 {staff_head('E', 'Credits', f'{len(P)} projects')}
 <div class="cwrap">
-<figure class="cprev" aria-hidden="true"><div class="cp-art" style="aspect-ratio: 1 / 1"><img src="{A['rosalia-lux-album']}" alt="" loading="lazy"><span class="cp-blank"></span></div>
+<figure class="cprev" aria-hidden="true"><div class="cp-art" style="aspect-ratio: 1 / 1"><img src="{A['rosalia-lux-album']}" alt="" loading="lazy"><span class="cp-blank">{grain(0.42)}<span class="cpb-v" style="position: absolute; left: 18px; top: 16px; z-index: 1; max-width: 50%; {MONO}; font-size: 11px; line-height: 1.5; color: #fbf8f2"></span><span class="cpb-y" style="position: absolute; right: 16px; top: 4px; {SANS}; font-size: clamp(72px, 7vw, 120px); line-height: 1; letter-spacing: -0.06em; color: #fbf8f2; opacity: 0.9"></span><span class="cpb-t" style="position: absolute; left: 18px; right: 18px; bottom: 16px; margin: 0; {COND}; font-size: clamp(32px, 3vw, 46px); line-height: 0.95; color: #fbf8f2; text-shadow: 0 1px 18px rgba(0,0,0,.25)"></span></span></div>
 <figcaption><span class="cp-t" style="{COND}; font-size: 30px; line-height: 1; color: {C['olive']}">LUX</span><span class="cp-m" style="{MONO}; font-size: 11px; color: {MUTE}">Lead orchestrator · Rosalía · London Symphony Orchestra</span></figcaption></figure>
 <div>
 <div aria-hidden="true" class="row" style="border-top: 0; padding-top: 0; padding-bottom: 10px; {MONO}; font-size: 11px; color: {MUTE}"><span>No.</span><span>Title</span><span class="hide">Category</span><span class="hide">Role</span><span class="hide">With</span><span></span></div>
