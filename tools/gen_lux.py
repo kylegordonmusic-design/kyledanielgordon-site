@@ -47,9 +47,9 @@ P = [
  ('Chevalier', 'Film', OM, 'Kris Bowers', 'chevalier', sp_search('Chevalier soundtrack Kris Bowers')),
  ('Jerry & Marge Go Large', 'Film', OM, '', 'jerry-and-marge-go-large', sp_search('Jerry and Marge Go Large soundtrack')),
  ('Haunted Mansion', 'Film', OM, 'Kris Bowers', 'haunted-mansion', sp_search('Haunted Mansion 2023 soundtrack')),
- ('Mink!', 'Film', OM, 'Documentary', 'mink-documentary', sp_search('Mink documentary soundtrack')),
- ('Bridgerton', 'Television', OM, 'Kris Bowers', 'bridgerton', sp_search('Bridgerton Kris Bowers')),
+ ('Mink!', 'Film', OM, 'Katya Richardson', 'mink-documentary', sp_search('Mink documentary soundtrack')),
  ('The Gilded Age', 'Television', OM, 'Harry & Rupert Gregson-Williams', 'the-gilded-age', sp_search('The Gilded Age soundtrack Gregson-Williams')),
+ ('Bridgerton', 'Television', OM, 'Kris Bowers', 'bridgerton', sp_search('Bridgerton Kris Bowers')),
  ('The Mandalorian', 'Television', OM, 'Ludwig Göransson', 'the-mandalorian', sp_search('The Mandalorian original score')),
  ('The Book of Boba Fett', 'Television', OM, '', 'the-book-of-boba-fett', sp_search('The Book of Boba Fett soundtrack')),
  ('Star Trek: Strange New Worlds', 'Television', OM, '', 'star-trek-strange-new-worlds', sp_search('Star Trek Strange New Worlds soundtrack')),
@@ -136,6 +136,8 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 .cprev img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .28s ease}
 .cprev .cp-blank{position:absolute;inset:0;opacity:0;transition:opacity .28s ease}
 .cprev figcaption{display:flex;flex-direction:column;gap:6px}
+.cprev figcaption .cp-t{margin-bottom:4px}
+.row .sub{display:none}
 .cwrap .row{grid-template-columns:40px minmax(0,1.6fr) 96px minmax(0,1.3fr) 84px}
 .cwrap .row>span:nth-child(5){display:none}
 .row .go{justify-self:end;display:inline-flex;align-items:center;gap:6px;opacity:1;transition:opacity .2s ease}
@@ -150,7 +152,7 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 @media (max-width: 600px){.luxcard{grid-template-columns:1fr !important}.luxcard>.cov{max-width:280px}}
 @media (max-width: 1100px){.cwrap{grid-template-columns:1fr}.cprev{display:none}}
 @media (max-height: 520px) and (orientation: landscape){header>div[style*="padding-top: 2"]{padding-top:96px !important}header h1>span:last-child,header h1[style*="font-size: clamp"]{font-size:clamp(44px,14vh,96px) !important}}
-@media (max-width: 860px){.row,.cwrap .row{grid-template-columns:36px minmax(0,1fr) 40px}.row .hide{display:none}.row .peek{display:none}}'''
+@media (max-width: 860px){.row .sub{display:block}.row,.cwrap .row{grid-template-columns:36px minmax(0,1fr) 40px}.row .hide{display:none}.row .peek{display:none}}'''
 
 
 def grain(op=0.38):
@@ -251,8 +253,8 @@ AWARDS = [('6', 'Latin Grammys', 'Including Album of the Year, 2026'), ('10', 'G
 
 
 CREDIT_JS = r'''<script>
-(function(){var f=document.querySelector('.cprev');if(!f)return;var art=f.querySelector('.cp-art'),img=art.querySelector('img'),blank=art.querySelector('.cp-blank'),t=f.querySelector('.cp-t'),m=f.querySelector('.cp-m'),cur;
-function show(r){if(r===cur)return;cur=r;var src=r.getAttribute('data-img');t.textContent=r.getAttribute('data-t');t.style.color=r.getAttribute('data-c');m.textContent=r.getAttribute('data-m');art.style.aspectRatio=r.getAttribute('data-r');
+(function(){var f=document.querySelector('.cprev');if(!f)return;var art=f.querySelector('.cp-art'),img=art.querySelector('img'),blank=art.querySelector('.cp-blank'),t=f.querySelector('.cp-t'),m=f.querySelector('.cp-m'),w=f.querySelector('.cp-w'),cur;
+function show(r){if(r===cur)return;cur=r;var src=r.getAttribute('data-img');t.textContent=r.getAttribute('data-t');t.style.color=r.getAttribute('data-c');m.textContent=r.getAttribute('data-m');w.textContent=r.getAttribute('data-w')||'';w.style.display=w.textContent?'':'none';art.style.aspectRatio=r.getAttribute('data-r');
 if(src){blank.style.opacity=0;img.style.opacity=0;var n=new Image();n.onload=function(){if(cur!==r)return;img.removeAttribute('srcset');img.removeAttribute('sizes');img.src=src;img.style.opacity=1};n.src=src}else{img.style.opacity=0;blank.style.background=r.getAttribute('data-g')||'#e9e4da';blank.querySelector('.cpb-t').textContent=r.getAttribute('data-t');blank.querySelector('.cpb-k1').textContent=r.getAttribute('data-k1')||'';blank.querySelector('.cpb-k2').textContent=r.getAttribute('data-k2')||'';blank.querySelector('.cpb-y').textContent=r.getAttribute('data-y')||'';blank.style.opacity=1}}
 document.querySelectorAll('#credits .row[data-t]').forEach(function(r){r.addEventListener('mouseenter',function(){show(r)});r.addEventListener('focus',function(){show(r)})});})();
 </script>'''
@@ -282,7 +284,8 @@ def home():
             yr = _re.search(r'(?:19|20)(\d\d)', w or '') or _re.search(r'(?:19|20)(\d\d)', CARD_YEARS.get(t, ''))
             k2 = _re.sub(r'\s*·\s*(?:19|20)\d\d\b', '', w or '').strip()
             pdata += f' data-k1="{k1}" data-k2="{k2}" data-y="{yr.group(1) if yr else ""}"'
-        pdata += f' data-t="{t}" data-m="{role}{(" · " + w) if w else ""}" data-c="{CATCOL[cat]}" data-r="{"2 / 3" if cat in ("Film", "Television", "Game") else "1 / 1"}"'
+        wnb = ' · '.join((lambda q: (q.rsplit('\u00a0', 1)[0] + ' ' + q.rsplit('\u00a0', 1)[1]) if '&' in q else q)(seg.replace(' ', '\u00a0').replace('-', '\u2011')) for seg in (w or '').split(' · '))
+        pdata += f' data-t="{t}" data-m="{role}" data-w="{wnb}" data-c="{CATCOL[cat]}" data-r="{"2 / 3" if cat in ("Film", "Television", "Game") else "1 / 1"}"'
         go = f'<span class="go" style="{MONO}; font-size: 11px">{PLAY}{"Watch" if "instagram" in spot else "Listen"}</span>' if spot else f'<span class="go" style="{MONO}; font-size: 11px; color: {MUTE}">Broadcast</span>'
         tag, attr = ('a', f' href="{spot}"') if spot else ('div', '')
         if t in REC:
@@ -290,7 +293,7 @@ def home():
             tag, attr = 'a', f' href="{REC[t]}"'
         rows += (f'<{tag}{attr}{pdata} class="row" style="--tint: {TINT[cat]}">'
                  f'<span style="{MONO}; font-size: 11px; font-variant-numeric: tabular-nums; color: {MUTE}">{n + 1:02d}</span>'
-                 f'<span style="{COND}; font-size: clamp(22px, 2.2vw, 30px); line-height: 1">{t}</span>'
+                 f'<span style="display: flex; flex-direction: column; gap: 6px"><span style="{COND}; font-size: clamp(22px, 2.2vw, 30px); line-height: 1">{t}</span>' + (f'<span class="sub" style="{MONO}; font-size: 11px; line-height: 1.3; color: {MUTE}">{wnb}</span>' if w else '') + '</span>'
                  f'<span class="hide" style="{MONO}; font-size: 11px; color: {CATCOL[cat]}">{cat}</span>'
                  f'<span class="hide" style="{MONO}; font-size: 11px">{role}</span>'
                  f'<span class="hide" style="{MONO}; font-size: 11px; color: {MUTE}">{w}</span>{go}{peek}</{tag}>\n')
@@ -368,7 +371,7 @@ def home():
 {staff_head('E', 'Credits', f'{len(P)} projects')}
 <div class="cwrap">
 <figure class="cprev" aria-hidden="true"><div class="cp-art" style="aspect-ratio: 1 / 1"><img src="{A['rosalia-lux-album']}" alt="" loading="lazy"><span class="cp-blank">{grain(0.42)}<span class="cpb-v" style="position: absolute; left: 18px; top: 16px; z-index: 1; max-width: 62%; display: flex; flex-direction: column; gap: 2px; {MONO}; font-size: 12px; line-height: 1.45; color: #fbf8f2; text-shadow: 0 1px 10px rgba(0,0,0,.35)"><span class="cpb-k1" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"></span><span class="cpb-k2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: .85"></span></span><span class="cpb-y" style="position: absolute; right: 16px; top: 4px; {SANS}; font-size: clamp(64px, 5.6vw, 88px); line-height: 1; letter-spacing: -0.06em; color: #fbf8f2; opacity: 0.9"></span><span class="cpb-t" style="position: absolute; left: 18px; right: 18px; bottom: 16px; margin: 0; {COND}; font-size: clamp(32px, 3vw, 46px); line-height: 0.95; color: #fbf8f2; text-shadow: 0 1px 18px rgba(0,0,0,.25)"></span></span></div>
-<figcaption><span class="cp-t" style="{COND}; font-size: 30px; line-height: 1; color: {C['olive']}">LUX</span><span class="cp-m" style="{MONO}; font-size: 11px; color: {MUTE}">Lead orchestrator · Rosalía · London Symphony Orchestra</span></figcaption></figure>
+<figcaption><span class="cp-t" style="{COND}; font-size: 30px; line-height: 1; color: {C['olive']}">LUX</span><span class="cp-m" style="{MONO}; font-size: 11px; line-height: 1.5; color: {MUTE}">Lead orchestrator</span><span class="cp-w" style="{MONO}; font-size: 11px; line-height: 1.5; color: {INK}">Rosalía · London\u00a0Symphony\u00a0Orchestra</span></figcaption></figure>
 <div>
 <div aria-hidden="true" class="row" style="border-top: 0; padding-top: 0; padding-bottom: 10px; {MONO}; font-size: 11px; color: {MUTE}"><span>No.</span><span>Title</span><span class="hide">Category</span><span class="hide">Role</span><span class="hide">With</span><span></span></div>
 {rows}</div>
@@ -1044,6 +1047,11 @@ RECORDS = [
       tracks=['Baby Shark (London Symphony Orchestra Version)', 'Bebefinn Medley with London Symphony Orchestra'], complete=True,
       spec=[('Artists', 'Pinkfong, London Symphony Orchestra'), ('Released', '19 September 2025 · Bebefinn Medley 14 November 2025'), ('Recorded', 'LSO St Luke’s, London'),
             ('Arranger, conductor', 'Kyle Daniel Gordon'), ('Label', 'The Pinkfong Company')],
+      videos=[('Baby Shark with London Symphony Orchestra (Live Performance Ver.)', 'YouTube · Baby Shark Official', 'Filmed at LSO St Luke’s. Kyle conducting the London Symphony Orchestra.', 'https://www.youtube.com/watch?v=EXVaxGTPSKY'),
+              ('Baby Shark with London Symphony Orchestra (Animation Ver.)', 'YouTube · Baby Shark Official', 'The same LSO recording, set to animation.', 'https://www.youtube.com/watch?v=EffszK6MOrg'),
+              ('Ringing in Baby Shark’s 10th anniversary with the LSO', 'Instagram · @kylegordonmusic', 'From the sessions at LSO St Luke’s, 12 September 2025.', 'https://www.instagram.com/kylegordonmusic/reel/DOjM3CPDgDU/'),
+              ('Baby Shark turns 10 with the LSO', 'Instagram · @kylegordonmusic', 'Arranging and conducting it for the London Symphony Orchestra, 26 September 2025.', 'https://www.instagram.com/kylegordonmusic/reel/DPHMn2SAVOE/'),
+              ('Bebefinn Medley with London Symphony Orchestra', 'YouTube · audio', 'Released 14 November 2025. Conducted by Kyle Gordon.', 'https://www.youtube.com/watch?v=X1GcluNc7CA')],
       more=['Romani: The Untold Story', 'LUX', 'Grace Kelly with Strings: At The Movies'], nxt=('Next — Record', 'Grace Kelly with Strings', 'Rec-gracekelly.dc.html')),
  dict(fn='Rec-gracekelly.dc.html', title='Grace Kelly with Strings: At The Movies', crumb='Grace Kelly', kicker='Grace Kelly · 2024',
       big='At The Movies', size='clamp(60px, 9vw, 150px)', grad='#1a0f08 0%, #5a2a14 24%, #c98a3c 50%, #f4e2bf 76%',
@@ -1093,6 +1101,14 @@ def record_page(r):
                      f'<span style="{MONO}; font-size: 11px; color: {MUTE}">{i + 1:02d}</span><span style="font-size: 16px">{tr}</span></li>' for i, tr in enumerate(r['tracks']))
     more = ''.join(tile(m, f'{BY[m][2]}' + (f' · {BY[m][3]}' if BY[m][3] else ''), '1 / 1', REC.get(m)) for m in r['more'] if m in BY)
     body = ''.join(f'<p style="margin: 0; font-size: 17px; max-width: 60ch{"; color: #3a362f" if i else ""}">{b}</p>' for i, b in enumerate(r['body']))
+    vids = r.get('videos') or []
+    L = iter('ABCD') 
+    vsec = (f'''<section id="watch" aria-label="Watch" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head(next(L), 'Watch', f'{len(vids)} videos')}
+<div style="display: flex; flex-direction: column">''' + ''.join(f'''<a class="press" href="{u}" target="_blank" rel="noopener"><span style="{MONO}; font-size: 11px; color: #b5410b">{src}</span>
+<span class="h" style="{SANS}; font-size: 21px; line-height: 1.2; letter-spacing: -0.02em">{PLAY} {h}</span>
+<span style="font-size: 15px; line-height: 1.45; color: #3a362f">{d}</span></a>''' for h, src, d, u in vids) + f'<span style="border-top: 1px solid {RULE}"></span></div>\n</section>\n') if vids else ''
+    watch_btn = f'<a class="btn line" href="#watch">{PLAY}Watch the LSO performance</a>' if vids else ''
     inner = f'''<header style="position: relative">
 {band(r['grad'], 320)}
 {nav('#f7efe4')}
@@ -1102,7 +1118,7 @@ def record_page(r):
 {hero_title(r['kicker'], r['big'], r['size'])}
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 46ch">{r['lede']}</p>
 {body}
-<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{spot}">{PLAY}Listen on Spotify</a><a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{spot}">{PLAY}Listen on Spotify</a>{watch_btn}<a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
 </div>
 <div class="rise" style="animation-delay: .15s; display: flex; flex-direction: column; gap: 22px; max-width: 460px">
 {cov(t, key, '1 / 1', spot)}
@@ -1113,20 +1129,20 @@ def record_page(r):
 
 {(f'<figure style="margin: 120px 0 0; padding: 0"><img src="{A[r["photo"][0]]}" alt="{r["photo"][1]}" loading="lazy" style="display: block; width: 100%; height: clamp(300px, 52vw, 760px); object-fit: cover; object-position: 40% 35%"><figcaption style="{WRAP}; padding-top: 12px; {MONO}; font-size: 11px; color: {MUTE}">{r["photo"][2]}</figcaption></figure>') if r.get('photo') else ''}
 
-<section aria-label="Tracks" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('A', 'Tracks', f"{len(r['tracks'])} tracks" if r.get('complete') else 'Selected tracks')}
+{vsec}<section aria-label="Tracks" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head(next(L), 'Tracks', f"{len(r['tracks'])} tracks" if r.get('complete') else 'Selected tracks')}
 <ol style="margin: 0; padding: 0; list-style: none; border-bottom: 1px solid {RULE}">{tracks}</ol>
 </section>
 
 <section aria-label="More records" style="{WRAP}; margin-top: 120px; display: flex; flex-direction: column; gap: 32px">
-{staff_head('B', 'More records', 'Strings &amp; orchestra')}
+{staff_head(next(L), 'More records', 'Strings &amp; orchestra')}
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 46%), 1fr)); gap: 32px 24px">{more}</div>
 </section>
 
 {next_link(*r['nxt'])}
 
 {footer(', '.join([c.split()[0] + ' 30%' for c in r['grad'].split(', ')[2:3]] + [c.split()[0] + ' 62%' for c in r['grad'].split(', ')[1:2]] + [c.split()[0] + ' 100%' for c in r['grad'].split(', ')[0:1]]))}'''
-    return page(f"{r['title']}, Kyle Daniel Gordon", root(inner), CSS, PAPER, h=3600)
+    return page(f"{r['title']}, Kyle Daniel Gordon", root(inner), CSS, PAPER, h=3600 + 140 * len(vids))
 
 
 for r in RECORDS:
