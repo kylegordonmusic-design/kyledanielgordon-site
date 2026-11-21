@@ -36,7 +36,7 @@ for f in os.listdir(OGDIR):
 def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg'
 OG = ogi('home')
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/'), ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/'), ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('PressES.dc.html', '/es/prensa/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/'), ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/'), ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -157,6 +157,11 @@ PAGES = [
     dict(src='Press.dc.html', out='press/index.html', path='/press/',
          title='Press Room: Kyle Daniel Gordon, Orchestrator of LUX',
          desc='Interviews, biographies, photos, credit wording and a press sheet for Kyle Daniel Gordon, orchestrator of Rosalía’s LUX and Oppenheimer.',
+         graph=[PERSON], alternates={'en': '/press/', 'es': '/es/prensa/'}),
+    dict(src='PressES.dc.html', out='es/prensa/index.html', path='/es/prensa/', lang='es',
+         alternates={'en': '/press/', 'es': '/es/prensa/'},
+         title='Sala de prensa: Kyle Daniel Gordon, orquestador de LUX de Rosalía',
+         desc='Biografías, fotos, citas y datos de Kyle Daniel Gordon, orquestador principal de LUX de Rosalía, grabado con la Orquesta Sinfónica de Londres. Material libre para prensa.',
          graph=[PERSON]),
 ]
 # ---- record pages (one per project)

@@ -734,105 +734,189 @@ BIO_MED = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based 
            'San Francisco Symphony in 2026. He holds a master’s in music from the University of North Texas.')
 
 
-def press():
-    photos = [('kyle-daniel-gordon-orchestrator-portrait', 'Kyle Daniel Gordon, portrait', 'Portrait · 1600 × 2133', '3 / 4'),
-              ('conducting-london-symphony-orchestra-for-rosalia-lux-lso', 'Kyle Daniel Gordon conducting', 'Square · 1889 × 1889', '1 / 1'),
-              ('kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session', 'Kyle Daniel Gordon with Rosalía and the London Symphony Orchestra at a LUX recording session', 'Wide · 1290 × 525', '1290 / 525'),
-              ('kyle-daniel-gordon-recording-session', 'Kyle Daniel Gordon with Mollie Elizabeth at a recording session', 'Landscape · 2000 × 1125', '16 / 9'),
-              ('conducting-london-symphony-orchestra', 'Kyle Daniel Gordon conducting the London Symphony Orchestra', 'Landscape · 2400 × 1350', '16 / 9')]
-    SHORT = {'kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session': 'With Rosalía and the LSO, LUX sessions', 'kyle-daniel-gordon-orchestrator-portrait': 'Portrait',
-             'conducting-london-symphony-orchestra-for-rosalia-lux-lso': 'Conducting', 'kyle-daniel-gordon-recording-session': 'With Mollie Elizabeth in the studio',
-             'conducting-london-symphony-orchestra': 'Conducting the LSO'}
-    FOCUS = {'kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session': '52% 40%', 'kyle-daniel-gordon-orchestrator-portrait': '50% 22%'}
+QUOTES_EN = [
+    'This was the project of my lifetime so far. Rosalía and Noah Goldstein were so excited to push the boundaries with the orchestra, and so supportive of me being experimental.',
+    'On ‘Berghain’ I only used the notes the natural horns of Mozart’s time could play. Limiting the orchestration to what was period-correct is what brings you into that world.',
+    'Rosalía’s songwriting is astounding: the stories she tells, the way she weaves melodies together. It has so much pathos. Pairing her with the orchestra was the perfect match, her emotion with the natural grandeur of the orchestra.',
+    'The London Symphony Orchestra was so collaborative and so excited to dig into this music and bring it to life. Daníel Bjarnason was a wonderful conductor for the project and added so much to the sessions.',
+    'Harry Wilson did an incredible job capturing it. It’s no easy feat: a week of recording, strings and winds together, then brass, percussion, harp and organ each on their own.',
+    'Noah Goldstein was such a wonderful producer, so encouraging and welcoming. He just wanted this album to be the best it could possibly be.',
+    'An orchestrator is a collaborator. You take someone’s vision of a song and make it sing with an orchestra.']
+# Spanish translations of Kyle's approved quotes (shown with the English original underneath)
+QUOTES_ES = [
+    'Hasta ahora, este ha sido el proyecto de mi vida. Rosalía y Noah Goldstein tenían muchísimas ganas de llevar la orquesta más allá de los límites, y me apoyaron mucho para que experimentara.',
+    'En «Berghain» solo usé las notas que podían tocar las trompas naturales de la época de Mozart. Limitar la orquestación a lo que era fiel a la época es lo que te mete en ese mundo.',
+    'La forma de componer de Rosalía es asombrosa: las historias que cuenta, cómo entrelaza las melodías. Tiene muchísimo pathos. Unirla con la orquesta fue la combinación perfecta: su emoción con la grandeza natural de la orquesta.',
+    'La Orquesta Sinfónica de Londres fue muy colaborativa y tenía muchas ganas de meterse en esta música y darle vida. Daníel Bjarnason fue un director maravilloso para el proyecto y aportó muchísimo a las sesiones.',
+    'Harry Wilson hizo un trabajo increíble al grabarlo. No es nada fácil: una semana de grabación, cuerdas y maderas juntas, y luego metales, percusión, arpa y órgano, cada uno por separado.',
+    'Noah Goldstein fue un productor maravilloso, muy alentador y acogedor. Solo quería que este álbum fuera lo mejor posible.',
+    'Un orquestador es un colaborador. Tomas la visión que alguien tiene de una canción y haces que cante con una orquesta.']
+
+BIO_SHORT_ES = ('Kyle Daniel Gordon es orquestador, arreglista y director de orquesta radicado en Los Ángeles. Fue el orquestador principal de <em>LUX</em> de Rosalía, '
+                'grabado con la Orquesta Sinfónica de Londres, y uno de los orquestadores de la banda sonora de Ludwig Göransson para <em>Oppenheimer</em>.')
+BIO_MED_ES = ('Kyle Daniel Gordon es orquestador, arreglista y director de orquesta radicado en Los Ángeles. Fue el orquestador principal de <em>LUX</em> (2025) de Rosalía, '
+              'grabado con la Orquesta Sinfónica de Londres, que ganó seis Latin Grammy, entre ellos Álbum del Año. '
+              'En cine y televisión fue uno de los orquestadores de la banda sonora de Ludwig Göransson para <em>Oppenheimer</em> y ha trabajado en <em>Frozen II</em>, '
+              '<em>Star Wars: Los últimos Jedi</em>, <em>Black Panther: Wakanda Forever</em>, <em>The Mandalorian</em> y <em>The Gilded Age</em>. '
+              'En los BBC Proms fue el orquestador principal de <em>Soul Revolution</em> (2025) y escribió arreglos para <em>Bond and Beyond</em> (2026), '
+              'donde tocó su arreglo de «Spectre» de Radiohead en el órgano del Royal Albert Hall. Su obra <em>The Little Bird</em> fue estrenada por la '
+              'Sinfónica de San Francisco en 2026. En noviembre de 2026 fue orador en PAN, Instituto de Experimentación en Inteligencia Creativa '
+              '(Universidad Torcuato Di Tella, Buenos Aires), con la charla «Creatividad en la Música». Tiene una maestría en música por la Universidad del Norte de Texas.')
+
+PT = {
+ 'en': dict(
+    photos=[('Kyle Daniel Gordon, portrait', 'Portrait'), ('Kyle Daniel Gordon conducting', 'Conducting'),
+            ('Kyle Daniel Gordon with Rosalía and the London Symphony Orchestra at a LUX recording session', 'With Rosalía and the LSO, LUX sessions'),
+            ('Kyle Daniel Gordon with Mollie Elizabeth at a recording session', 'With Mollie Elizabeth in the studio'),
+            ('Kyle Daniel Gordon conducting the London Symphony Orchestra', 'Conducting the LSO')],
+    sizes=['Portrait · 1600 × 2133', 'Square · 1889 × 1889', 'Wide · 1290 × 525', 'Landscape · 2000 × 1125', 'Landscape · 2400 × 1350'],
+    download='Download',
+    facts=[('Name', 'Kyle Daniel Gordon (also credited as Kyle Gordon)'), ('Based in', 'Los Angeles'),
+           ('Work', 'Orchestrator · arranger · conductor · composer'), ('Selected', 'Rosalía, LUX · Oppenheimer · BBC Proms'),
+           ('Orchestras', 'London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra'),
+           ('Education', 'University of North Texas (MM)'), ('Credit as', 'Kyle Daniel Gordon')],
+    credit=[('Name', 'Kyle Daniel Gordon. Older credits read “Kyle Gordon”. Not the comedian Kyle Gordon.'),
+            ('Role on LUX', '“Orchestrator on LUX” or “orchestrated all 19 tracks of LUX”'),
+            ('Also on LUX', 'Daníel Bjarnason conducted the LSO sessions; other arrangers, including Caroline Shaw and Angélica Negrón, are credited on some tracks'),
+            ('Grammys', 'LUX: 10 Grammy nominations, including Album of the Year at the 69th Grammy Awards'),
+            ('Oppenheimer', '“One of the orchestrators on Oppenheimer”: he was part of the orchestration team on Ludwig Göransson’s score. Please don’t call him “the orchestrator of Oppenheimer”'),
+            ('Other film and TV', '“Worked on”, as part of the orchestration team'),
+            ('Link', 'kyledanielgordon.com')],
+    quotes=QUOTES_EN, qfoot='Kyle Daniel Gordon · free to quote',
+    topics=['How a full symphony orchestra gets built into a pop album, from demo to the LSO at AIR Studios',
+            'What an orchestrator actually does, and how it differs from composing and arranging',
+            'Writing for an orchestra on a record sung in thirteen languages',
+            'Film scoring versus records: from Oppenheimer to LUX',
+            'Arranging for the BBC Proms and playing the Royal Albert Hall organ',
+            'Life as a working orchestrator in Los Angeles'],
+    bios=[('Short', BIO_SHORT, '40 words'), ('Programme', BIO_MED, '150 words')],
+    crumb=('Home', 'Press'), other='<a class="cl" href="PressES.dc.html" hreflang="es" lang="es" style="padding: 10px 0">Español</a>',
+    kicker='Bios, photos, facts and interviews', title='Press room',
+    intro='Kyle is available for interviews in Los Angeles, by phone, video or email. Everything on this page is free to use in coverage.',
+    ask='Request an interview', subj='Interview%20request%3A%20Kyle%20Daniel%20Gordon', sheet='Press sheet (PDF)', office='Press office',
+    heads=[('Biographies', 'Free to use'), ('Photos', 'Click to download'), ('Facts', 'At a glance'), ('Quotes', 'On LUX'),
+           ('How to credit', 'For writers'), ('Interview topics', 'Ask about'), ('Coverage', 'Press')],
+    aria=['Biographies', 'Photos', 'Facts', 'Quotes', 'How to credit', 'Interview topics', 'Coverage'],
+    ptitle='Press room, Kyle Daniel Gordon'),
+ 'es': dict(
+    photos=[('Kyle Daniel Gordon, retrato', 'Retrato'), ('Kyle Daniel Gordon dirigiendo', 'Dirigiendo'),
+            ('Kyle Daniel Gordon con Rosalía y la Orquesta Sinfónica de Londres en una sesión de grabación de LUX', 'Con Rosalía y la LSO, sesiones de LUX'),
+            ('Kyle Daniel Gordon con Mollie Elizabeth en una sesión de grabación', 'Con Mollie Elizabeth en el estudio'),
+            ('Kyle Daniel Gordon dirigiendo a la Orquesta Sinfónica de Londres', 'Dirigiendo a la LSO')],
+    sizes=['Vertical · 1600 × 2133', 'Cuadrada · 1889 × 1889', 'Panorámica · 1290 × 525', 'Horizontal · 2000 × 1125', 'Horizontal · 2400 × 1350'],
+    download='Descargar',
+    facts=[('Nombre', 'Kyle Daniel Gordon (también acreditado como Kyle Gordon)'), ('Residencia', 'Los Ángeles'),
+           ('Oficio', 'Orquestador · arreglista · director de orquesta · compositor'), ('Destacados', 'Rosalía, LUX · Oppenheimer · BBC Proms'),
+           ('Orquestas', 'Orquesta Sinfónica de Londres · Filarmónica de Nueva York · Sinfónica de San Francisco · BBC Concert Orchestra'),
+           ('América Latina', 'Orador en PAN 2026, Universidad Torcuato Di Tella, Buenos Aires («Creatividad en la Música»)'),
+           ('Formación', 'Universidad del Norte de Texas (maestría en música)'), ('Crédito', 'Kyle Daniel Gordon')],
+    credit=[('Nombre', 'Kyle Daniel Gordon. En créditos antiguos aparece como «Kyle Gordon». No es el humorista Kyle Gordon.'),
+            ('Rol en LUX', '«Orquestador de LUX» u «orquestó las 19 canciones de LUX»'),
+            ('También en LUX', 'Daníel Bjarnason dirigió las sesiones con la LSO; otros arreglistas, entre ellos Caroline Shaw y Angélica Negrón, figuran en algunas canciones'),
+            ('Grammy', 'LUX: 10 nominaciones al Grammy, entre ellas Álbum del Año, en la 69.ª edición de los Grammy'),
+            ('Oppenheimer', '«Uno de los orquestadores de Oppenheimer»: formó parte del equipo de orquestación de la banda sonora de Ludwig Göransson. Por favor, no lo llamen «el orquestador de Oppenheimer»'),
+            ('Otros créditos de cine y TV', '«Trabajó en», como parte del equipo de orquestación'),
+            ('Enlace', 'kyledanielgordon.com')],
+    quotes=QUOTES_ES, qfoot='Kyle Daniel Gordon · traducción del inglés · libre de citar',
+    topics=['Cómo se integra una orquesta sinfónica completa en un álbum pop, desde la maqueta hasta la LSO en AIR Studios',
+            'Qué hace realmente un orquestador y en qué se diferencia de componer y arreglar',
+            'Escribir para orquesta en un disco cantado en trece idiomas',
+            'Bandas sonoras frente a discos: de Oppenheimer a LUX',
+            'Arreglos para los BBC Proms y tocar el órgano del Royal Albert Hall',
+            'La vida de un orquestador profesional en Los Ángeles'],
+    bios=[('Breve', BIO_SHORT_ES, 'versión corta'), ('Programa de concierto', BIO_MED_ES, 'versión larga')],
+    crumb=('Inicio', 'Prensa'), other='<a class="cl" href="Press.dc.html" hreflang="en" lang="en" style="padding: 10px 0">English</a> · <a class="cl" href="ProjectES.dc.html" style="padding: 10px 0">LUX en español</a>',
+    kicker='Biografías, fotos, datos y entrevistas', title='Sala de prensa',
+    intro='Kyle está disponible para entrevistas desde Los Ángeles, por teléfono, videollamada o correo electrónico. Todo el material de esta página puede usarse libremente en la cobertura.',
+    ask='Solicitar una entrevista', subj='Solicitud%20de%20entrevista%3A%20Kyle%20Daniel%20Gordon', sheet='Ficha de prensa (PDF, en inglés)', office='Oficina de prensa',
+    heads=[('Biografías', 'Libre uso'), ('Fotos', 'Clic para descargar'), ('Datos', 'De un vistazo'), ('Citas', 'Sobre LUX'),
+           ('Cómo acreditarlo', 'Para periodistas'), ('Temas de entrevista', 'Para preguntar'), ('Cobertura', 'Prensa')],
+    aria=['Biografías', 'Fotos', 'Datos', 'Citas', 'Cómo acreditarlo', 'Temas de entrevista', 'Cobertura'],
+    ptitle='Sala de prensa, Kyle Daniel Gordon'),
+}
+
+
+def press(lang='en'):
+    T = PT[lang]
+    keys = [('kyle-daniel-gordon-orchestrator-portrait', '3 / 4'), ('conducting-london-symphony-orchestra-for-rosalia-lux-lso', '1 / 1'),
+            ('kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session', '1290 / 525'),
+            ('kyle-daniel-gordon-recording-session', '16 / 9'), ('conducting-london-symphony-orchestra', '16 / 9')]
     ph = ''.join(f'''<figure style="margin: 0 0 28px; display: flex; flex-direction: column; gap: 10px; break-inside: avoid">
-<a href="{A[k]}" download class="cov" style="aspect-ratio: {ar}"><img src="{A[k]}" alt="{alt}" loading="lazy"><span class="play">Download</span></a>
-<figcaption style="display: flex; flex-direction: column; gap: 2px; {MONO}; font-size: 11px; line-height: 1.4"><span style="color: {INK}">{SHORT.get(k, alt)}</span><span style="color: {MUTE}">{sz}</span></figcaption></figure>''' for k, alt, sz, ar in photos)
-    facts = spec([('Name', 'Kyle Daniel Gordon (also credited as Kyle Gordon)'), ('Based in', 'Los Angeles'),
-                  ('Work', 'Orchestrator · arranger · conductor · composer'), ('Selected', 'Rosalía, LUX · Oppenheimer · BBC Proms'),
-                  ('Orchestras', 'London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra'),
-                  ('Education', 'University of North Texas (MM)'), ('Credit as', 'Kyle Daniel Gordon')])
+<a href="{A[k]}" download class="cov" style="aspect-ratio: {ar}"><img src="{A[k]}" alt="{alt}" loading="lazy"><span class="play">{T['download']}</span></a>
+<figcaption style="display: flex; flex-direction: column; gap: 2px; {MONO}; font-size: 11px; line-height: 1.4"><span style="color: {INK}">{short}</span><span style="color: {MUTE}">{sz}</span></figcaption></figure>'''
+                 for (k, ar), (alt, short), sz in zip(keys, T['photos'], T['sizes']))
+    facts = spec(T['facts'])
     links = ''.join(f'''<a class="press" href="{u}"><span style="{MONO}; font-size: 11px; color: {MUTE}">{o}</span>
 <span class="h" style="{SANS}; font-size: 20px; line-height: 1.2; letter-spacing: -0.02em">{h} {ARROW}</span></a>''' for o, h, dsc, u in PRESS)
-    credit = spec([('Name', 'Kyle Daniel Gordon. Older credits read “Kyle Gordon”. Not the comedian Kyle Gordon.'),
-                   ('Role on LUX', '“Orchestrator on LUX” or “orchestrated all 19 tracks of LUX”'),
-                   ('Also on LUX', 'Daníel Bjarnason conducted the LSO sessions; other arrangers, including Caroline Shaw and Angélica Negrón, are credited on some tracks'),
-                   ('Grammys', 'LUX: 10 Grammy nominations, including Album of the Year at the 69th Grammy Awards'),
-                   ('Oppenheimer', '“One of the orchestrators on Oppenheimer”: he was part of the orchestration team on Ludwig Göransson’s score. Please don’t call him “the orchestrator of Oppenheimer”'),
-                   ('Other film and TV', '“Worked on”, as part of the orchestration team'),
-                   ('Link', 'kyledanielgordon.com')])
+    credit = spec(T['credit'])
+    orig = (lambda i: f'<p lang="en" style="margin: 0; font-size: 15px; line-height: 1.45; color: {MUTE}">“{QUOTES_EN[i]}”</p>') if lang != 'en' else (lambda i: '')
     quotes = ''.join(f'''<blockquote style="margin: 0; padding: 18px 0 0; border-top: 1.5px solid {INK}; display: flex; flex-direction: column; gap: 10px">
-<p style="margin: 0; font-size: clamp(19px, 2vw, 24px); line-height: 1.4; letter-spacing: -0.01em">“{q}”</p>
-<footer style="{MONO}; font-size: 11px; color: {MUTE}">Kyle Daniel Gordon · free to quote</footer></blockquote>''' for q in [
-        'This was the project of my lifetime so far. Rosalía and Noah Goldstein were so excited to push the boundaries with the orchestra, and so supportive of me being experimental.',
-        'On ‘Berghain’ I only used the notes the natural horns of Mozart’s time could play. Limiting the orchestration to what was period-correct is what brings you into that world.',
-        'Rosalía’s songwriting is astounding: the stories she tells, the way she weaves melodies together. It has so much pathos. Pairing her with the orchestra was the perfect match, her emotion with the natural grandeur of the orchestra.',
-        'The London Symphony Orchestra was so collaborative and so excited to dig into this music and bring it to life. Daníel Bjarnason was a wonderful conductor for the project and added so much to the sessions.',
-        'Harry Wilson did an incredible job capturing it. It’s no easy feat: a week of recording, strings and winds together, then brass, percussion, harp and organ each on their own.',
-        'Noah Goldstein was such a wonderful producer, so encouraging and welcoming. He just wanted this album to be the best it could possibly be.',
-        'An orchestrator is a collaborator. You take someone’s vision of a song and make it sing with an orchestra.'])
-    topics = ''.join(f'<li>{t}</li>' for t in [
-        'How a full symphony orchestra gets built into a pop album, from demo to the LSO at AIR Studios',
-        'What an orchestrator actually does, and how it differs from composing and arranging',
-        'Writing for an orchestra on a record sung in thirteen languages',
-        'Film scoring versus records: from Oppenheimer to LUX',
-        'Arranging for the BBC Proms and playing the Royal Albert Hall organ',
-        'Life as a working orchestrator in Los Angeles'])
+<p style="margin: 0; font-size: clamp(19px, 2vw, 24px); line-height: 1.4; letter-spacing: -0.01em">“{q}”</p>{orig(i)}
+<footer style="{MONO}; font-size: 11px; color: {MUTE}">{T['qfoot']}</footer></blockquote>''' for i, q in enumerate(T['quotes']))
+    topics = ''.join(f'<li>{t}</li>' for t in T['topics'])
     def bio(label, text, words):
         return f'''<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 18px; border-top: 1.5px solid {INK}">
 <span style="{MONO}; font-size: 12px; color: {MUTE}">{label} · {words}</span>
 <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 70ch">{text}</p></div>'''
+    H = T['heads']; AR = T['aria']
+    grid = f'{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start'
     inner = f'''<header style="position: relative">
 {band('#1b1a17 0%, #4b463e 26%, #b9b0a0 54%, #efeadf 78%', 300)}
 {nav('#f2efe8')}
 <div style="{WRAP}; padding-top: 220px; display: flex; flex-direction: column; gap: 20px" class="rise">
-{crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Press')}
-{hero_title('Bios, photos, facts and interviews', 'Press room', 'clamp(64px, 10vw, 160px)')}
-<p style="margin: 0; max-width: 60ch; font-size: 18px; line-height: 1.55">Kyle is available for interviews in Los Angeles, by phone, video or email. Everything on this page is free to use in coverage.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kyledanielgordonpress@gmail.com?subject=Interview%20request%3A%20Kyle%20Daniel%20Gordon">Request an interview</a><a class="btn line" href="/press/kyle-daniel-gordon-press-sheet.pdf" download>Press sheet (PDF)</a></div>
-<span style="{MONO}; font-size: 12px; color: {MUTE}">Press office · kyledanielgordonpress@gmail.com</span>
+{crumbs(f'<a class="cl" href="Home.dc.html" style="padding: 10px 0">{T["crumb"][0]}</a>', T['crumb'][1] + ' <span aria-hidden="true">·</span> ' + T['other'])}
+{hero_title(T['kicker'], T['title'], 'clamp(64px, 10vw, 160px)')}
+<p style="margin: 0; max-width: 60ch; font-size: 18px; line-height: 1.55">{T['intro']}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kyledanielgordonpress@gmail.com?subject={T['subj']}">{T['ask']}</a><a class="btn line" href="/press/kyle-daniel-gordon-press-sheet.pdf" download>{T['sheet']}</a></div>
+<span style="{MONO}; font-size: 12px; color: {MUTE}; overflow-wrap: anywhere">{T['office']} · kyledanielgordonpress@gmail.com</span>
 </div>
 </header>
 
-<section aria-label="Biographies" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
-{staff_head('A', 'Biographies', 'Free to use')}
-<div style="display: flex; flex-direction: column; gap: 36px">{bio('Short', BIO_SHORT, '40 words')}{bio('Programme', BIO_MED, '150 words')}</div>
+<section aria-label="{AR[0]}" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('A', *H[0])}
+<div style="display: flex; flex-direction: column; gap: 36px">{''.join(bio(*b) for b in T['bios'])}</div>
 </section>
 
-<section aria-label="Photos" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
-{staff_head('B', 'Photos', 'Click to download')}
+<section aria-label="{AR[1]}" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('B', *H[1])}
 <div style="columns: 3 300px; column-gap: 28px">{ph}</div>
 </section>
 
-<section aria-label="Facts" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('C', 'Facts', 'At a glance')}
+<section aria-label="{AR[2]}" style="{grid}">
+{staff_head('C', *H[2])}
 {facts}
 </section>
 
-<section aria-label="Quotes" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('D', 'Quotes', 'On LUX')}
+<section aria-label="{AR[3]}" style="{grid}">
+{staff_head('D', *H[3], sid='quotes' if lang == 'en' else 'citas')}
 <div style="display: flex; flex-direction: column; gap: 28px">{quotes}</div>
 </section>
 
-<section aria-label="How to credit" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('E', 'How to credit', 'For writers')}
+<section aria-label="{AR[4]}" style="{grid}">
+{staff_head('E', *H[4])}
 {credit}
 </section>
 
-<section aria-label="Interview topics" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('F', 'Interview topics', 'Ask about')}
+<section aria-label="{AR[5]}" style="{grid}">
+{staff_head('F', *H[5])}
 <ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 14px; font-size: 17px; line-height: 1.5">{topics}</ol>
 </section>
 
-<section aria-label="Coverage" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
-{staff_head('G', 'Coverage', 'Press')}
+<section aria-label="{AR[6]}" style="{grid}">
+{staff_head('G', *H[6])}
 <div style="display: flex; flex-direction: column">{links}</div>
 </section>
 
 {footer('#b9b0a0 30%, #4b463e 62%, #1b1a17 100%')}'''
-    return page('Press room, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=5800)
+    s = page(T['ptitle'], root(inner), CSS, PAPER, h=6200 if lang == 'es' else 5800)
+    if lang == 'es':
+        for a, b in [('>Start a project<', '>Empezar un proyecto<'), ('>Contact<', '>Contacto<')]:
+            s = s.replace(a, b)
+    return s
 
 
-open(os.path.join(OUT, 'Press.dc.html'), 'w', encoding='utf-8').write(press().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+for _lang, _name in (('en', 'Press.dc.html'), ('es', 'PressES.dc.html')):
+    open(os.path.join(OUT, _name), 'w', encoding='utf-8').write(press(_lang).replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
 # ------------------------------------------------------------------ LUX (español)
 ES = [
  ('Orchestrations for an album sung in thirteen languages, with the London Symphony Orchestra on every track.',
@@ -843,11 +927,11 @@ ES = [
   'LUX ganó seis Latin Grammy en la 27.ª edición de los premios, entre ellos Álbum del Año, y está nominado a Álbum del Año en la 69.ª edición de los Grammy.'),
  ('Gordon tells the story of the call from the London Symphony Orchestra that brought him onto the album.',
   'Gordon cuenta la llamada de la Orquesta Sinfónica de Londres que lo llevó al álbum (artículo en inglés).'),
- ('LUX sessions with the London Symphony Orchestra', 'Sesiones de LUX con la Orquesta Sinfónica de Londres'),
+ ('Behind the scenes: with Rosalía and the London Symphony Orchestra, LUX sessions', 'Entre bastidores: con Rosalía y la Orquesta Sinfónica de Londres, sesiones de LUX'),
  ('The London Symphony Orchestra plays on every song. LUX (Complete Works) adds three more.',
   'La Orquesta Sinfónica de Londres toca en todas las canciones. LUX (Complete Works) añade tres más.'),
  ('>Work</a> / Records / Rosalía', '>Trabajo</a> / Discos / Rosalía'),
- ('<a class="cl" href="ProjectES.dc.html" hreflang="es" lang="es" style="padding: 10px 0">Español</a>', '<a class="cl" href="Project.dc.html" hreflang="en" lang="en" style="padding: 10px 0">English</a>'),
+ ('<a class="cl" href="ProjectES.dc.html" hreflang="es" lang="es" style="padding: 10px 0">Español</a>', '<a class="cl" href="Project.dc.html" hreflang="en" lang="en" style="padding: 10px 0">English</a>' + ' <span aria-hidden="true">·</span> <a class="cl" href="PressES.dc.html" style="padding: 10px 0">Sala de prensa</a>'),
  ('>Artist<', '>Artista<'), ('>Album<', '>Álbum<'), ('>Lead orchestrator<', '>Orquestador principal<'),
  ('>Orchestra<', '>Orquesta<'), ('>London Symphony Orchestra<', '>Orquesta Sinfónica de Londres<'), ('>Conductor<', '>Director<'),
  ('>Recorded<', '>Grabación<'), ('>AIR Studios, London<', '>AIR Studios, Londres<'), ('>Label<', '>Sello<'),
