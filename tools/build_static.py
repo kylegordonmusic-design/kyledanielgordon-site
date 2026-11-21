@@ -202,7 +202,9 @@ for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):
     PAGES.append(dict(src=f'Pitch-{pt["slug"]}.dc.html', out=f'for/{pt["slug"]}/index.html', path=f'/for/{pt["slug"]}/',
                       title=f'For {pt["name"]}, Kyle Daniel Gordon', desc='A note from Kyle Daniel Gordon, orchestrator.', graph=[PERSON], noindex=True, og=ogi('for-' + pt['slug'])))
 
-FAVICON = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#1b1a17"/><g stroke="#f7f4ec" stroke-width="2.2"><path d="M10 20h44M10 27h44M10 34h44M10 41h44M10 48h44"/></g><ellipse cx="34" cy="37.5" rx="8" ry="5.5" fill="#e2581a" transform="rotate(-22 34 37.5)"/><path d="M41.2 35V13" stroke="#e2581a" stroke-width="2.6"/></svg>'''
+FAVICON = open('/home/claude/kdg_scripts/icons/favicon.svg').read()
+for _ic in ('favicon-48.png', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png'):
+    shutil.copy('/home/claude/kdg_scripts/icons/' + _ic, os.path.join(OUT, _ic))
 open(os.path.join(OUT, 'favicon.svg'), 'w').write(FAVICON)
 import shutil as _sh
 for _f in os.listdir('/home/claude/kdg_scripts/icons'): _sh.copy(os.path.join('/home/claude/kdg_scripts/icons', _f), os.path.join(OUT, _f))
@@ -247,9 +249,9 @@ def head(p):
 <meta name="twitter:description" content="{p['desc']}">
 <meta name="twitter:image" content="{og}">
 <meta name="theme-color" content="#f7f4ec">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-48.png?v=2" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
