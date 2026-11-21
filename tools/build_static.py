@@ -44,7 +44,7 @@ PERSON = {
     "jobTitle": ["Orchestrator", "Arranger", "Conductor"],
     "hasOccupation": [{"@type": "Occupation", "name": n, "occupationLocation": {"@type": "City", "name": "Los Angeles"}} for n in ["Orchestrator", "Music arranger", "Conductor"]],
     "knowsAbout": ["Orchestration", "String arrangements", "Pop strings", "Film scoring", "Conducting"],
-    "url": SITE + "/", "image": {"@type": "ImageObject", "url": SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], "caption": "Kyle Daniel Gordon conducting"}, "email": "mailto:kylegordonmusic@gmail.com", "contactPoint": {"@type": "ContactPoint", "contactType": "bookings", "email": "kylegordonmusic@gmail.com", "telephone": "+1-818-518-3441", "url": SITE + "/contact/"},
+    "url": SITE + "/", "image": [{"@type": "ImageObject", "url": SITE + blob2path[A['kyle-daniel-gordon-orchestrator-portrait']], "caption": "Kyle Daniel Gordon, orchestrator"}, {"@type": "ImageObject", "url": SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], "caption": "Kyle Daniel Gordon conducting"}], "email": "mailto:kylegordonmusic@gmail.com", "contactPoint": {"@type": "ContactPoint", "contactType": "bookings", "email": "kylegordonmusic@gmail.com", "telephone": "+1-818-518-3441", "url": SITE + "/contact/"},
     "homeLocation": {"@type": "Place", "name": "Los Angeles, California"},
     "alumniOf": {"@type": "CollegeOrUniversity", "name": "University of North Texas"},
     "award": "Billboard Award, #1 Classical Album (Romani: The Untold Story), 2024",
@@ -287,10 +287,10 @@ open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(h404)
 open(os.path.join(OUT, 'googleb7fd6123e4efb445.html'), 'w').write('google-site-verification: googleb7fd6123e4efb445.html')
 
 # ---- sitemap, robots, netlify config, readme
-PHOTOS = {'/': [SITE + blob2path[A['conducting-london-symphony-orchestra']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], SITE + blob2path[A['rosalia-lux-album']]],
-          '/work/rosalia-lux/': [SITE + blob2path[A['rosalia-lux-album']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']]],
+PHOTOS = {'/pop-strings/': [SITE + blob2path[A['kyle-daniel-gordon-recording-session']]], '/': [SITE + blob2path[A['kyle-daniel-gordon-orchestrator-portrait']], SITE + blob2path[A['conducting-london-symphony-orchestra']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']], SITE + blob2path[A['rosalia-lux-album']]],
+          '/work/rosalia-lux/': [SITE + blob2path[A['rosalia-lux-album']], SITE + blob2path[A['kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']]],
           '/work/oppenheimer/': [SITE + blob2path[A['oppenheimer-film-poster']]],
-          '/press/': [SITE + blob2path[A['conducting-london-symphony-orchestra']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']]]}
+          '/press/': [SITE + blob2path[A['kyle-daniel-gordon-orchestrator-portrait']], SITE + blob2path[A['kyle-daniel-gordon-recording-session']], SITE + blob2path[A['conducting-london-symphony-orchestra']], SITE + blob2path[A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']]]}
 urls = ''.join(f'<url><loc>{SITE}{p["path"]}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>{"1.0" if p["path"] == "/" else "0.8"}</priority>'
                + ''.join(f'<image:image><image:loc>{i}</image:loc></image:image>' for i in PHOTOS.get(p['path'], [p.get('og', OG)]))
                + '</url>' for p in PAGES if not p.get('noindex'))

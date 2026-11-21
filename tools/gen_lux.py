@@ -98,6 +98,9 @@ PROMS = [('2026', 'Bond and Beyond', 'Arranger · organ on Radiohead’s “Spec
          ('2025', 'Soul Revolution', 'Arranger · composer of the finale · organ', 'BBC Concert Orchestra · Daniel Bartholomew-Poyser, conductor · presented by Trevor Nelson · 3 August 2025',
           'linear-gradient(160deg, #2b0f2a 0%, #8e2a5e 45%, #f08a5d 100%)', ('Watch the finale', 'https://www.instagram.com/kylegordonmusic/reel/DM7t0RKo_Ne/'), 'BBC Proms · Royal Albert Hall')]
 PHOTO_LUX = A['conducting-london-symphony-orchestra-for-rosalia-lux-lso']
+PHOTO_PORTRAIT = A['kyle-daniel-gordon-orchestrator-portrait']
+PHOTO_SESSION = A['kyle-daniel-gordon-recording-session']
+PHOTO_ROSALIA = A['kyle-daniel-gordon-rosalia-lux-london-symphony-orchestra-session']
 
 PLAY = '<svg aria-hidden="true" width="12" height="13" viewBox="0 0 12 13"><path d="M1.5 1v11l9.5-5.5z" fill="currentColor"></path></svg>'
 ARROW = '<svg aria-hidden="true" width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9 9 2M3.5 2H9v5.5"></path></svg>'
@@ -367,7 +370,7 @@ def home():
 <section id="about" aria-label="About" style="{WRAP}; margin-top: 150px; display: flex; flex-direction: column; gap: 44px">
 {staff_head('F', 'About', 'Los Angeles')}
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 44px 80px; align-items: start">
-<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="{PHOTO_LUX}" alt="Kyle Daniel Gordon with the London Symphony Orchestra during the LUX sessions" loading="lazy" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%"><figcaption style="{MONO}; font-size: 11px; color: {MUTE}">LUX sessions, London Symphony Orchestra</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px"><img src="{PHOTO_PORTRAIT}" alt="Kyle Daniel Gordon, orchestrator, in a Los Angeles recording studio" loading="lazy" style="display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%"><figcaption style="{MONO}; font-size: 11px; color: {MUTE}">In the studio</figcaption></figure>
 <div style="display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.55; max-width: 62ch">
 <p style="margin: 0">Kyle Daniel Gordon is an orchestrator, arranger and conductor based in Los Angeles. He was lead orchestrator on Rosalía's <em>LUX</em>, recorded with the London Symphony Orchestra, which won six Latin Grammys including Album of the Year and received ten Grammy nominations.</p>
 <p style="margin: 0; color: #3a362f">In film and television he orchestrated <em>Oppenheimer</em> and <em>Bridgerton</em>, and has worked in the music departments of <em>The Mandalorian</em>, <em>Black Panther: Wakanda Forever</em> and <em>Star Wars: The Rise of Skywalker</em>. He leads orchestration teams in Los Angeles for composers including John Williams, Ludwig Göransson, Kris Bowers, Walter Murphy and Justin Hurwitz.</p>
@@ -426,8 +429,8 @@ def lux():
 </section>
 
 <figure style="position: relative; margin: 130px 0 0; padding: 0">
-<img src="{PHOTO_LUX}" alt="Kyle Daniel Gordon with the London Symphony Orchestra during the recording of Rosalía's LUX" loading="lazy" style="display: block; width: 100%; height: clamp(360px, 56vw, 760px); object-fit: cover; object-position: 50% 35%">
-<figcaption style="{WRAP}; padding-top: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; {MONO}; font-size: 11px; color: {MUTE}"><span>LUX sessions with the London Symphony Orchestra</span><span>Fig. 2</span></figcaption>
+<img src="{PHOTO_ROSALIA}" alt="Kyle Daniel Gordon with Rosalía and the London Symphony Orchestra at a LUX recording session" loading="lazy" style="display: block; width: 100%; max-width: 1392px; margin: 0 auto; aspect-ratio: 1290 / 525; object-fit: cover">
+<figcaption style="{WRAP}; padding-top: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; {MONO}; font-size: 11px; color: {MUTE}"><span>With Rosalía and the London Symphony Orchestra, LUX sessions</span><span>Fig. 2</span></figcaption>
 </figure>
 
 <section aria-label="Tracklist" style="{WRAP}; margin-top: 130px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 40px 80px; align-items: start">
@@ -633,6 +636,9 @@ def popstrings():
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 46%), 1fr)); gap: 32px 24px">{recs}</div>
 </section>
 
+<figure style="margin: 120px 0 0; padding: 0"><img src="{PHOTO_SESSION}" alt="Kyle Daniel Gordon leading a recording session with brass and saxophones" loading="lazy" style="display: block; width: 100%; height: clamp(300px, 52vw, 760px); object-fit: cover; object-position: 40% 35%">
+<figcaption style="{WRAP}; padding-top: 12px; {MONO}; font-size: 11px; color: {MUTE}">On the podium at a recording session</figcaption></figure>
+
 <section aria-label="How it works" style="{WRAP}; margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
 {staff_head('B', 'How it works', 'Demo to stage')}
 <ol style="margin: 0; padding: 0; list-style: none; font-size: 16px; border-bottom: 1px solid {RULE}">{steps}</ol>
@@ -714,11 +720,13 @@ BIO_MED = ('Kyle Daniel Gordon is an orchestrator, arranger and conductor based 
 
 
 def press():
-    photos = [('conducting-london-symphony-orchestra-for-rosalia-lux-lso', 'Kyle Daniel Gordon conducting', 'Square · 1200 × 1200'),
-              ('conducting-london-symphony-orchestra', 'Kyle Daniel Gordon with the London Symphony Orchestra', 'Landscape · 1200 × 675')]
+    photos = [('kyle-daniel-gordon-orchestrator-portrait', 'Kyle Daniel Gordon, portrait', 'Portrait · 1600 × 2133', '3 / 4'),
+              ('conducting-london-symphony-orchestra-for-rosalia-lux-lso', 'Kyle Daniel Gordon conducting', 'Square · 1889 × 1889', '1 / 1'),
+              ('kyle-daniel-gordon-recording-session', 'Kyle Daniel Gordon leading a recording session', 'Landscape · 2000 × 1125', '16 / 9'),
+              ('conducting-london-symphony-orchestra', 'Kyle Daniel Gordon conducting the London Symphony Orchestra', 'Landscape · 2400 × 1350', '16 / 9')]
     ph = ''.join(f'''<figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
-<a href="{A[k]}" download class="cov" style="aspect-ratio: {'1 / 1' if 'lux' in k else '16 / 9'}"><img src="{A[k]}" alt="{alt}" loading="lazy"><span class="play">Download</span></a>
-<figcaption style="{MONO}; font-size: 11px; color: {MUTE}">{alt} · {sz}</figcaption></figure>''' for k, alt, sz in photos)
+<a href="{A[k]}" download class="cov" style="aspect-ratio: {ar}"><img src="{A[k]}" alt="{alt}" loading="lazy"><span class="play">Download</span></a>
+<figcaption style="{MONO}; font-size: 11px; color: {MUTE}">{alt} · {sz}</figcaption></figure>''' for k, alt, sz, ar in photos)
     facts = spec([('Name', 'Kyle Daniel Gordon (also credited as Kyle Gordon)'), ('Based in', 'Los Angeles'),
                   ('Work', 'Orchestrator · arranger · conductor · composer'), ('Selected', 'Rosalía, LUX · Oppenheimer · BBC Proms'),
                   ('Orchestras', 'London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra'),

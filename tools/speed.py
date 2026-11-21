@@ -19,7 +19,7 @@ FONT_CSS = '''<link rel="preload" href="/img/grain.webp" as="image" type="image/
 @font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic.woff2) format('woff2')}
 </style>'''
 
-WIDTHS = (160, 320, 640, 1000)
+WIDTHS = (160, 320, 640, 1000, 1600)
 
 SPECULATION = '''<script type="speculationrules">
 {"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/img/*"}}]},"eagerness":"moderate"}],
