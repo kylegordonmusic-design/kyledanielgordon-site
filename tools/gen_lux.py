@@ -28,6 +28,8 @@ P = [
  ('BBC Proms: Soul Revolution', 'Stage', 'Arranger, composer (finale), organ', 'BBC Concert Orchestra · 2025', None, 'https://www.instagram.com/kylegordonmusic/reel/DM7t0RKo_Ne/'),
  ('The Little Bird', 'Stage', 'Composer · world premiere', 'San Francisco Symphony · 2026', None, None),
  ('People Pleaser', 'Record', 'Arranger', 'Mollie Elizabeth · 2026', 'mollie-elizabeth-people-pleaser', 'https://open.spotify.com/album/6vYVu3wSl9OedjOU8n8pVX'),
+ ('My One And Only Love', 'Record', 'Arranger, conductor, producer', 'Alex Blair · 2024', 'alex-blair-my-one-and-only-love', 'https://open.spotify.com/track/2KPppSYqaRlZby9tyl0k9P'),
+ ('It’s Christmas Time', 'Record', 'Arranger', 'Jali Music · 2022', 'jali-music-its-christmas-time', 'https://open.spotify.com/track/00wLdAWRWqsjzNWu5vUcMU'),
  ('Grace Kelly with Strings: At The Movies', 'Record', 'Arranger, orchestrator, co-producer', 'Grace Kelly', 'grace-kelly-with-strings-at-the-movies', 'https://open.spotify.com/album/2buBjbRAHUe3QMiWbRuHM0'),
  ('This Light Has No Darkness', 'Record', 'Arranger, orchestrator, co-producer', 'David Friesen', 'david-friesen-this-light-has-no-darkness', sp_search('David Friesen This Light Has No Darkness')),
  ('Magia en Dos', 'Record', 'Orchestrator', 'Ariza', 'ariza-magia-en-dos', sp_search('Ariza Magia en Dos')),
