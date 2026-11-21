@@ -697,7 +697,7 @@ def pitch(pt):
 {live}
 
 <section aria-label="LUX" style="{WRAP}; margin-top: 110px">
-<a href="Project.dc.html" class="press" style="border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: #b5410b">Rosalía · LUX · 6 Latin Grammys · 10 Grammy nominations</span>
+<a href="Project.dc.html" class="press" style="border-top: 2px solid {C['tang']}"><span style="{MONO}; font-size: 11px; color: #b5410b">Rosalía · LUX · 6 Latin Grammys · Album of the Year nominee</span>
 <span class="h" style="{SANS}; font-size: clamp(24px, 3vw, 36px); line-height: 1.15; letter-spacing: -0.03em">Lead orchestrator on LUX, recorded with the London Symphony Orchestra {ARROW}</span></a>
 </section>
 
