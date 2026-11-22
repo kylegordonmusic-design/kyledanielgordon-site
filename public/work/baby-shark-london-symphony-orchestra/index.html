@@ -373,6 +373,7 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 </div>
 <script>
 (function(){var bar,box,ctrl,api,cur,want,waiting=false,t0,fell=false;
+function phone(){return window.matchMedia&&matchMedia('(hover: none) and (pointer: coarse)').matches}
 function uri(s){return 'spotify:'+s.replace('/',':')}
 function mark(a){if(cur)cur.classList.remove('playing');cur=a;if(a)a.classList.add('playing')}
 function plain(s){box.innerHTML='<iframe src="https://open.spotify.com/embed/'+s+'?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify player"></iframe>'}
@@ -389,7 +390,9 @@ var sc=document.createElement('script');sc.src='https://open.spotify.com/embed/i
 function create(){var el=document.getElementById('spembed');if(!el){box.innerHTML='<div id="spembed"></div>';el=document.getElementById('spembed')}
 var w0=want;api.createController(el,{uri:uri(want),width:'100%',height:80,theme:'dark'},function(c){ctrl=c;var first=true;c.addListener('ready',function(){if(first){first=false;if(want!==w0)c.loadUri(uri(want));c.play()}})})}
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-sp]');if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
-var s=a.getAttribute('data-sp');if(!s)return;e.preventDefault();mark(a);go(s)});})();
+var s=a.getAttribute('data-sp');if(!s)return;e.preventDefault();
+if(phone()){location.href='https://open.spotify.com/'+s;return}
+mark(a);go(s)});})();
 </script>
 <script>addEventListener('load',function(){var s=document.createElement('script');s.defer=true;s.src='https://static.cloudflareinsights.com/beacon.min.js';s.setAttribute('data-cf-beacon','{"token": "74d2ccc3aba8442e8ffe162baef5f751"}');document.body.appendChild(s)})</script><script>
 /* Microsoft Clarity (heatmaps + recordings), loaded only after the page is idle so it never slows the first screen */
