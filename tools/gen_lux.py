@@ -1100,7 +1100,7 @@ def orchestrator_guide():
         sec('Orchestrator, arranger and composer', ['A <strong>composer</strong> writes the original music. An <strong>arranger</strong> reshapes existing music, for example turning a pop song into a version for strings. An <strong>orchestrator</strong> assigns finished musical ideas to instruments. In practice the roles overlap, and many people, including Kyle Daniel Gordon, work as all three depending on the project.']),
         sec('How orchestration works on a film score', ['On a large film or series the composer writes against picture, usually in a detailed digital mockup. The mockup goes to a team of orchestrators, often led by a lead orchestrator, who turn each cue into a full score in the composer’s style. A music preparation team then produces the individual parts, and the cues are recorded with an orchestra on a scoring stage, often in only a few days.',
                                                     'Kyle has worked in this way on scores such as <a class="cl" href="Oppenheimer.dc.html"><em>Oppenheimer</em></a>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em> and <em>The Gilded Age</em>.']),
-        sec('How it works on a record', ['On a pop or alternative record the starting point is a song, a production and a vocal. The orchestrator writes parts that sit around the voice without fighting the production, then the strings or orchestra are recorded separately and blended in the mix. On Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>, Kyle Daniel Gordon was lead orchestrator, with the London Symphony Orchestra playing on every track. Read more about <a class="cl" href="PopStrings.dc.html">pop string arrangements</a>.']),
+        sec('How it works on a record', ['On a pop or alternative record the starting point is a song, a production and a vocal. The orchestrator writes parts that sit around the voice without fighting the production, then the strings or orchestra are recorded separately and blended in the mix. On Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>, Kyle Daniel Gordon was lead orchestrator, with the London Symphony Orchestra playing on every track. Read more about <a class="cl" href="PopStrings.dc.html">pop string arrangements</a> and <a class="cl" href="StringsPop.dc.html">how strings work on a pop record</a>.']),
         sec('What a good orchestrator brings', ['Knowledge of every instrument’s range, colour and limits; the ability to write in someone else’s voice; clean, readable scores that save expensive studio time; and the judgement to make a mockup come alive when real players perform it.']),
         sec('Hiring an orchestrator', ['Send the music, the deadline and the size of the ensemble. Rates depend on the amount of music, the size of the orchestra and the turnaround. For film, television, records and concerts, <a class="cl" href="Contact.dc.html">contact Kyle Daniel Gordon</a> in Los Angeles.']),
     ])
@@ -1170,7 +1170,7 @@ PAGE_GRADS['credits'] = '#0d0f14 0%, #24324a 24%, #7d93b8 50%, #e6ebf2 76%'
 
 FAQ_ARR = [
     ('What does an arranger do?', 'An arranger takes a song or piece that already exists and reshapes it for new instruments or a new setting: strings around a pop vocal, a rock band with a symphony orchestra, a film theme for a concert hall. Read more in <a class="cl" href="Orchestrator.dc.html">What does an orchestrator do?</a>'),
-    ('Can Kyle write strings for my song?', 'Yes. Send a demo, stems or a rough mix and the size of ensemble you have in mind, from a string quartet to a full orchestra. He writes parts that sit around the vocal and the production, with a mockup to approve before the session. See <a class="cl" href="PopStrings.dc.html">string arrangements for pop artists</a>.'),
+    ('Can Kyle write strings for my song?', 'Yes. Send a demo, stems or a rough mix and the size of ensemble you have in mind, from a string quartet to a full orchestra. He writes parts that sit around the vocal and the production, with a mockup to approve before the session. See <a class="cl" href="PopStrings.dc.html">string arrangements for pop artists</a> and <a class="cl" href="Hire.dc.html">how to hire a string arranger</a>.'),
     ('Who has he arranged for?', 'Arrangements for Mollie Elizabeth (<em>People Pleaser</em>), Grace Kelly, David Friesen, Ion Zanca (<em>Romani</em>, with the London Symphony Orchestra), Pinkfong’s <em>Baby Shark</em> 10th anniversary with the LSO, the BBC Proms (Bond and Beyond, Soul Revolution, Marvin Gaye) and touring orchestral shows for Hawthorne Heights and Escape the Fate. He was lead orchestrator on Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>.'),
     ('Where are the arrangements recorded?', 'Wherever the project needs: Los Angeles, Nashville or London (<em>LUX</em> was recorded at AIR Studios), or remotely with players you choose. Scores and parts are delivered digitally.'),
     ('How do I book him?', 'Email <a class="cl" href="mailto:kylegordonmusic@gmail.com">kylegordonmusic@gmail.com</a> with the song, the dates and the ensemble size, or use the <a class="cl" href="Contact.dc.html">contact page</a>.'),
@@ -1261,7 +1261,75 @@ def credits_page():
 for _fn, _f in [('Arranger.dc.html', arranger_page), ('Credits.dc.html', credits_page)]:
     open(os.path.join(OUT, _fn), 'w', encoding='utf-8').write(_f().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
 
-json.dump({'la': FAQ_LA, 'contact': FAQ_CONTACT, 'lux': FAQ_LUX, 'lux_es': FAQ_LUX_ES, 'arr': FAQ_ARR}, open('/home/claude/kdg_scripts/faq.json', 'w'), ensure_ascii=False)
+
+
+# ------------------------------------------------------------------ GUIDES (Nov 22): searches "hire a string arranger", "strings on pop songs"
+PAGE_GRADS['hire-a-string-arranger'] = '#140f0a 0%, #4a2a12 24%, #d08a3a 50%, #f6e6cc 76%'
+PAGE_GRADS['strings-on-pop-records'] = '#0b1414 0%, #164040 24%, #4fa3a0 50%, #dff1ee 76%'
+
+FAQ_HIRE = [
+    ('What should I send a string arranger?', 'A demo or rough mix, the tempo (or a click/tempo map), the key and structure, two or three reference tracks, the size of ensemble you have in mind, your deadline, and where you plan to record.'),
+    ('Do I need a full orchestra?', 'Not usually. A string quartet or a small section can sound intimate or, with overdubs, much bigger. A full orchestra makes sense when the song needs weight and colour beyond strings, as on Rosalía’s LUX with the London Symphony Orchestra.'),
+    ('What does a string arrangement cost?', 'It depends on how much music there is, the size of the ensemble, the turnaround and the number of revisions. Session costs (players, studio, engineer, union contracts) are usually separate from the arranging fee. Ask for a quote with the details above.'),
+    ('How should the credit read?', 'Common credits are “String arrangement by”, “Strings arranged and conducted by” or “Orchestrated by”. Agree the wording up front and make sure it goes into the release metadata, so it shows on streaming services.'),
+]
+
+FAQ_POPSTR = [
+    ('Why add strings to a pop song?', 'Strings add warmth, lift a chorus, answer the vocal with a counter-melody, or turn a production into something cinematic. Used sparingly they can also make a quiet verse feel more intimate.'),
+    ('Real strings or sample libraries?', 'Libraries are good for demos and mockups. Real players bring phrasing, tuning and the small imperfections that make a part feel alive, which is why most arrangements are mocked up first and then recorded.'),
+    ('Can a small group sound like a big section?', 'Yes. A quartet or small section can record several passes (overdubs) to build a larger sound, though a real section in one room has a different, more blended character.'),
+]
+
+
+def _guide(slug, kicker, title, sections, faq, next_args, foot, crumb='Guide'):
+    sec = lambda h, paras: f'''<section style="display: flex; flex-direction: column; gap: 16px; padding-top: 28px; border-top: 1.5px solid {INK}">
+<h2 style="margin: 0; {SANS}; font-size: clamp(26px, 3vw, 36px); letter-spacing: -0.035em">{h}</h2>{prose(paras)}</section>'''
+    body = ''.join(sec(h, p) for h, p in sections)
+    inner = f'''<header style="position: relative">
+{band(PAGE_GRADS[slug], 280)}
+{nav('#f6f0e6')}
+<div style="{WRAP}; padding-top: 210px; display: flex; flex-direction: column; gap: 16px" class="rise">
+{crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', crumb)}
+{hero_title(kicker, title, 'clamp(44px, 6vw, 96px)')}
+</div></header>
+<article style="{WRAP}; margin-top: 90px; display: flex; flex-direction: column; gap: 46px; max-width: 900px">{body}
+<section aria-label="Questions" style="display: flex; flex-direction: column; gap: 16px; padding-top: 28px; border-top: 1.5px solid {INK}">
+<h2 style="margin: 0; {SANS}; font-size: clamp(26px, 3vw, 36px); letter-spacing: -0.035em">Questions</h2>
+<div style="border-bottom: 1px solid {RULE}">{faq_block(faq)}</div></section>
+</article>
+{next_link(*next_args)}
+{footer(foot)}'''
+    return page(title.replace('&amp;', '&'), root(inner), CSS, PAPER, h=4600)
+
+
+def hire_guide():
+    return _guide('hire-a-string-arranger', 'A guide by Kyle Daniel Gordon, arranger', 'How to hire a string arranger', [
+        ('What a string arranger does', ['A string arranger writes parts for violins, violas, cellos and basses that sit around a song’s vocal and production. You get a mockup to approve, then a score and individual parts for the players, and often someone to run the session. It is the difference between a pad from a sample library and a part that answers the singer.']),
+        ('What to send before the first call', ['A demo or rough mix; the tempo, or a click or tempo map from your session; the key and the song’s structure; two or three reference tracks with strings you love; the size of ensemble you have in mind; your deadline; and where you plan to record. Stems help but are not required at the start.']),
+        ('Choosing the size of the ensemble', ['A <strong>string quartet</strong> is intimate and detailed. A <strong>small section</strong>, recorded live or built up with overdubs, gives you a fuller sound on a modest budget. A <strong>full orchestra</strong> adds brass, winds and percussion for real weight, as on Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a> and Pinkfong’s <a class="cl" href="Rec-babyshark.dc.html"><em>Baby Shark</em></a> 10th anniversary record, both with the London Symphony Orchestra.']),
+        ('How the process usually runs', ['A short call about the song and the references. A first sketch and mockup. A round or two of revisions. Then the score and parts are prepared and proofed, the strings are recorded, in a studio with a conductor or remotely by players you choose, and the files go to your mixer.']),
+        ('What affects the cost', ['How much music there is, the size of the ensemble, the turnaround and the number of revisions. Session costs, meaning players, studio, engineer and any union contracts, are usually separate from the arranging fee. A clear brief gets you a clear quote.']),
+        ('Credits', ['Agree the credit early (“String arrangement by”, “Strings arranged and conducted by” or “Orchestrated by”) and make sure it goes into the release metadata, so it appears on streaming services and credit databases.']),
+        ('Working with Kyle Daniel Gordon', ['Kyle is a Los Angeles arranger and orchestrator: lead orchestrator on Rosalía’s <em>LUX</em>, arranger, orchestrator and conductor on Mollie Elizabeth’s <a class="cl" href="Rec-mollie.dc.html"><em>People Pleaser</em></a>, and arranger for the BBC Proms. See <a class="cl" href="PopStrings.dc.html">string arrangements for pop artists</a> or <a class="cl" href="Contact.dc.html">get in touch</a>.']),
+    ], FAQ_HIRE, ('Hire', 'Arranger in Los Angeles', 'Arranger.dc.html'), '#d08a3a 30%, #4a2a12 62%, #140f0a 100%')
+
+
+def popstr_guide():
+    return _guide('strings-on-pop-records', 'A guide by Kyle Daniel Gordon, arranger', 'How strings work on a pop record', [
+        ('Why strings', ['Strings can add warmth under a verse, lift a chorus, answer the vocal with a counter-melody, or turn a production into something cinematic. The best parts feel like they were always in the song.']),
+        ('Writing around the voice', ['The vocal comes first. Good string parts stay out of the singer’s register while they sing, move when the voice rests, and leave room for the drums, bass and synths. Often the most effective part is the simplest one, placed in exactly the right bar.']),
+        ('The palette', ['<strong>Long notes</strong> (pads) for warmth; <strong>lines</strong> and counter-melodies that talk to the vocal; <strong>pizzicato</strong> (plucked) for rhythm; short <strong>stabs</strong> and <strong>spiccato</strong> that lock to the groove; <strong>harmonics</strong> and <strong>tremolo</strong> for atmosphere. Most arrangements combine a few of these and change between sections of the song.']),
+        ('Real players, overdubs and sections', ['Sample libraries are ideal for mockups. Real players bring phrasing and tuning that libraries cannot fake. A quartet or small section can record several passes to sound bigger; a full section in one room blends differently, with more air around the sound.']),
+        ('Beyond strings: examples from LUX', ['On Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>, recorded with the London Symphony Orchestra at AIR Studios, the orchestra goes well past strings. On “Berghain” the horn parts use only notes that Mozart-era natural horns could play. A violin solo was recorded at half tempo and sped up. On “Porcelana”, contrabass flute and contrabass clarinet carry the low end.']),
+        ('From session to mix', ['Strings are usually recorded after the main production, to a click, then edited and blended by the mix engineer. Clean, well-prepared parts save expensive studio time and give the mixer something that sits naturally in the track.']),
+        ('Kyle’s string work for artists', ['Arrangements for Mollie Elizabeth’s <a class="cl" href="Rec-mollie.dc.html"><em>People Pleaser</em></a> (Capitol), Grace Kelly’s <a class="cl" href="Rec-gracekelly.dc.html"><em>Grace Kelly with Strings: At The Movies</em></a>, David Friesen’s <a class="cl" href="Rec-friesen.dc.html"><em>This Light Has No Darkness</em></a> and Ion Zanca’s <a class="cl" href="Rec-romani.dc.html"><em>Romani</em></a> with the London Symphony Orchestra. Read <a class="cl" href="Hire.dc.html">how to hire a string arranger</a>.']),
+    ], FAQ_POPSTR, ('Hire', 'String arrangements for pop artists', 'PopStrings.dc.html'), '#4fa3a0 30%, #164040 62%, #0b1414 100%')
+
+
+for _fn, _f in [('Hire.dc.html', hire_guide), ('StringsPop.dc.html', popstr_guide)]:
+    open(os.path.join(OUT, _fn), 'w', encoding='utf-8').write(_f().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+
+json.dump({'la': FAQ_LA, 'contact': FAQ_CONTACT, 'lux': FAQ_LUX, 'lux_es': FAQ_LUX_ES, 'arr': FAQ_ARR, 'hire': FAQ_HIRE, 'popstr': FAQ_POPSTR}, open('/home/claude/kdg_scripts/faq.json', 'w'), ensure_ascii=False)
 
 # credits for structured data (read by build_static.py)
 json.dump([dict(title=t, cat=c, role=r, with_=w, spotify=s) for t, c, r, w, k, s in P],

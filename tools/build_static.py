@@ -39,7 +39,7 @@ for f in os.listdir(OGDIR):
 def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg?v=5'
 OG = ogi('home')
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('PressES.dc.html', '/es/prensa/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Arranger.dc.html', '/arranger-los-angeles/'), ('Credits.dc.html', '/credits/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/'), ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/'), ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('PressES.dc.html', '/es/prensa/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Arranger.dc.html', '/arranger-los-angeles/'), ('Credits.dc.html', '/credits/'), ('Hire.dc.html', '/hire-a-string-arranger/'), ('StringsPop.dc.html', '/strings-on-pop-records/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/'), ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/'), ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -160,6 +160,18 @@ PAGES = [
          title='Credits: Kyle Daniel Gordon, Orchestrator (Film, TV, Records)',
          desc='Film, TV and record credits for orchestrator Kyle Daniel Gordon: Rosalía’s LUX, Oppenheimer, Frozen II, Star Wars, Wakanda Forever, The Mandalorian, Bridgerton, BBC Proms.',
          graph=[PERSON, WORKS]),
+    dict(src='Hire.dc.html', og=ogi('hire-a-string-arranger'), out='hire-a-string-arranger/index.html', path='/hire-a-string-arranger/',
+         title='How to Hire a String Arranger for Your Song (Guide)',
+         desc='What to send a string arranger, how to choose quartet, section or orchestra, how the process and credits work, and what affects cost. By LA arranger Kyle Daniel Gordon.',
+         graph=[PERSON, {"@type": "Article", "headline": 'How to hire a string arranger', "author": {"@id": SITE + "/#kyle"},
+                         "datePublished": TODAY, "dateModified": TODAY, "mainEntityOfPage": SITE + "/hire-a-string-arranger/",
+                         "about": ['String arrangements', 'Music arranging', 'Recording strings'], "image": OG}, FAQ('hire')]),
+    dict(src='StringsPop.dc.html', og=ogi('strings-on-pop-records'), out='strings-on-pop-records/index.html', path='/strings-on-pop-records/',
+         title='How Strings Work on a Pop Record: A Guide by Kyle Daniel Gordon',
+         desc='Writing strings around a vocal, the string palette, real players vs libraries, and examples from Rosalía’s LUX with the London Symphony Orchestra. By arranger Kyle Daniel Gordon.',
+         graph=[PERSON, {"@type": "Article", "headline": 'How strings work on a pop record', "author": {"@id": SITE + "/#kyle"},
+                         "datePublished": TODAY, "dateModified": TODAY, "mainEntityOfPage": SITE + "/strings-on-pop-records/",
+                         "about": ['String arrangements', 'Pop music production', 'Orchestration'], "image": OG}, FAQ('popstr')]),
     dict(src='Orchestrator.dc.html', og=ogi('what-does-an-orchestrator-do'), out='what-does-an-orchestrator-do/index.html', path='/what-does-an-orchestrator-do/',
          title='What Does an Orchestrator Do? A Guide by Kyle Daniel Gordon',
          desc='What an orchestrator does on a film score and a pop record, how it differs from arranging and composing, and how to hire one. By orchestrator Kyle Daniel Gordon.',
