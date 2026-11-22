@@ -521,7 +521,7 @@ def lux():
 </div>
 <div class="rise" style="animation-delay: .15s; display: flex; flex-direction: column; gap: 22px">
 {cov('LUX', 'rosalia-lux-album', '1 / 1', BY['LUX'][5])}
-<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="{BY['LUX'][5]}">{PLAY}Listen on Spotify</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="{BY['LUX'][5]}" data-sp="{spid(BY['LUX'][5])}" data-spt="LUX">{PLAY}Listen</a></div>
 <dl style="margin: 0; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); {MONO}; font-size: 12px; border-bottom: 1px solid {RULE}">{sp}</dl>
 </div>
 </div>
@@ -662,7 +662,7 @@ def oppenheimer():
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 42ch">Orchestration on Ludwig Göransson’s Academy Award-winning score.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch">Kyle Daniel Gordon was one of the orchestrators on Ludwig Göransson’s score for <em>Oppenheimer</em>, Christopher Nolan’s 2023 film about J. Robert Oppenheimer. The score won the Academy Award for Best Original Score.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">Nolan asked for a score led by the solo violin, which he heard as Oppenheimer’s own voice. Around two and a half hours of music runs through the three-hour film, and the orchestra recorded it in five days.</p>
-<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{o[5]}">{PLAY}Listen on Spotify</a><a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{o[5]}"{(' data-sp="' + spid(o[5]) + '" data-spt="' + o[0] + '"') if spid(o[5]) else ''}>{PLAY}Listen</a><a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
 </div>
 <div class="rise" style="animation-delay: .15s; display: flex; flex-direction: column; gap: 22px; max-width: 460px">
 {cov('Oppenheimer', o[4], '2 / 3', o[5])}
@@ -1030,7 +1030,7 @@ ES = [
  ('>Orchestra<', '>Orquesta<'), ('>London Symphony Orchestra<', '>Orquesta Sinfónica de Londres<'), ('>Conductor<', '>Director<'),
  ('>Recorded<', '>Grabación<'), ('>AIR Studios, London<', '>AIR Studios, Londres<'), ('>Label<', '>Sello<'),
  ('>Recognition<', '>Reconocimientos<'), ('>Tracklist<', '>Canciones<'), ('>LUX · 18 tracks<', '>LUX · 18 canciones<'), ('Orchestration: Kyle Daniel Gordon<', 'Orquestación: Kyle Daniel Gordon<'),
- ('Listen on Spotify</a>', 'Escuchar en Spotify</a>'), ('Play the album</a>', 'Escuchar el álbum</a>'),
+ ('{PLAY}Listen</a>'.replace('{PLAY}',PLAY), PLAY+'Escuchar</a>'), ('Play the album</a>', 'Escuchar el álbum</a>'),
  ('>Play<', '>Escuchar<'), ('aria-label="Play LUX"', 'aria-label="Escuchar LUX"'), ('Next — Film', 'Siguiente — Cine'),
  ('>Latin Grammys<', '>Latin Grammy<'),
  ('Album of the Year, Song of the Year (“La Perla”), Best Alternative Music Album and more · 27th Latin Grammy Awards, 2026',
@@ -1466,7 +1466,7 @@ def record_page(r):
 {hero_title(r['kicker'], r['big'], r['size'])}
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 46ch">{r['lede']}</p>
 {body}
-<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{spot}">{PLAY}Listen on Spotify</a>{watch_btn}<a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{spot}"{(' data-sp="' + spid(spot) + '" data-spt="' + t + '"') if spid(spot) else ''}>{PLAY}Listen</a>{watch_btn}<a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
 </div>
 <div class="rise" style="animation-delay: .15s; display: flex; flex-direction: column; gap: 22px; max-width: 460px">
 {cov(t, key, '1 / 1', spot)}
