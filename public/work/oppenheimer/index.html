@@ -254,11 +254,13 @@ a:focus-visible,button:focus-visible{outline:2px solid currentColor;outline-offs
 .row.playing{outline-offset:-3px}
 @media (hover: none){.cov .play{display:none}}
 @media (max-width: 600px){.pgrid{grid-template-columns:1fr 1fr !important;gap:30px 14px !important}.pgrid h3{font-size:20px !important}.pgrid .cov .play{left:8px;bottom:8px;padding:6px 9px 6px 8px}.names{font-size:18px !important;line-height:1.25 !important}}
-.spbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;gap:8px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#1b1a17;box-shadow:0 -10px 30px -12px rgba(0,0,0,.45);transform:translate3d(0,110%,0);transition:transform .35s cubic-bezier(.2,.8,.2,1);will-change:transform;contain:layout paint;isolation:isolate;-webkit-backface-visibility:hidden;backface-visibility:hidden}
-.spbar.on{transform:translate3d(0,0,0)}
-.spbar .spin{flex:1;min-width:0;height:80px;background:#282828;border-radius:12px}
-.spbar .spin iframe{display:block;width:100%;height:80px;border:0;background:transparent;color-scheme:normal}
-.spbar .spx{flex:none;width:44px;height:44px;border-radius:999px;border:1px solid rgba(247,244,236,.4);background:transparent;color:#f7f4ec;font-size:22px;line-height:1;cursor:pointer}
+.spbar{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom));z-index:60;width:min(560px,calc(100% - 20px));height:80px;border-radius:14px;background:#121212;box-shadow:0 18px 40px -18px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);transform:translate3d(-50%,140%,0);opacity:0;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .25s ease;will-change:transform;isolation:isolate;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.spbar.on{transform:translate3d(-50%,0,0);opacity:1}
+.spbar .spin{position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#121212}
+.spbar .spin iframe{display:block;width:100%;height:80px;border:0;background:transparent}
+.spbar .spx{position:absolute;top:-11px;right:-6px;z-index:2;width:28px;height:28px;padding:0;border-radius:999px;border:0;background:#f7f4ec;color:#1b1a17;font-size:17px;line-height:28px;text-align:center;cursor:pointer;box-shadow:0 4px 12px -4px rgba(0,0,0,.5)}
+.spbar .spx::after{content:"";position:absolute;inset:-9px}
+@media (prefers-reduced-motion: reduce){.spbar{transition:none}}
 body.sp-on{padding-bottom:104px}
 @media (max-width: 600px){.swipe{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px !important;margin:0 -24px;padding:0 24px 6px;scrollbar-width:none}.swipe::-webkit-scrollbar{display:none}.swipe>.prom{flex:0 0 82%;scroll-snap-align:start}
 .wall{grid-template-columns:repeat(4,1fr) !important;gap:8px !important}.wall .cov .play{display:none}
@@ -341,8 +343,7 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 </footer>
 </div>
 <script>
-(function(){var bar,box,ctrl,api,cur,want,waiting=false,t0,fell=false;
-function phone(){return window.matchMedia&&matchMedia('(hover: none) and (pointer: coarse)').matches}
+(function(){var bar,box,ctrl,api,cur,want,waiting=false,t0,fell=false,creating=false;
 function uri(s){return 'spotify:'+s.replace('/',':')}
 function mark(a){if(cur)cur.classList.remove('playing');cur=a;if(a)a.classList.add('playing')}
 function plain(s){box.innerHTML='<iframe src="https://open.spotify.com/embed/'+s+'?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify player"></iframe>'}
@@ -352,15 +353,16 @@ bar.querySelector('.spx').addEventListener('click',function(){if(ctrl){try{ctrl.
 function go(s){want=s;if(!bar)make();requestAnimationFrame(function(){bar.classList.add('on')});document.body.classList.add('sp-on');
 if(ctrl){ctrl.loadUri(uri(s));ctrl.play();return}
 if(fell){plain(s);return}
-if(api){return}
-if(waiting)return;waiting=true;t0=setTimeout(function(){if(!ctrl){fell=true;plain(want)}},6000);
-window.onSpotifyIframeApiReady=function(A){clearTimeout(t0);if(fell)return;api=A;create()};
+if(api){create();return}
+if(waiting){clearTimeout(t0);t0=setTimeout(function(){if(!ctrl){fell=true;plain(want)}},6000);return}waiting=true;t0=setTimeout(function(){if(!ctrl){fell=true;plain(want)}},6000);
+window.onSpotifyIframeApiReady=function(A){clearTimeout(t0);if(fell)return;api=A;if(want&&!ctrl)create()};
 var sc=document.createElement('script');sc.src='https://open.spotify.com/embed/iframe-api/v1';sc.async=true;sc.onerror=function(){clearTimeout(t0);fell=true;plain(want)};document.head.appendChild(sc)}
-function create(){var el=document.getElementById('spembed');if(!el){box.innerHTML='<div id="spembed"></div>';el=document.getElementById('spembed')}
+function create(){if(creating)return;creating=true;var el=document.getElementById('spembed');if(!el){box.innerHTML='<div id="spembed"></div>';el=document.getElementById('spembed')}
 var w0=want;api.createController(el,{uri:uri(want),width:'100%',height:80,theme:'dark'},function(c){ctrl=c;var first=true;c.addListener('ready',function(){if(first){first=false;if(want!==w0)c.loadUri(uri(want));c.play()}})})}
+function warm(){if(api||waiting)return;waiting=true;t0=null;window.onSpotifyIframeApiReady=function(A){api=A;if(want&&!ctrl)create()};var sc=document.createElement('script');sc.src='https://open.spotify.com/embed/iframe-api/v1';sc.async=true;sc.onerror=function(){fell=true;if(want)plain(want)};document.head.appendChild(sc)}
+function intent(e){var t=e.target;if(t&&t.closest&&t.closest('[data-sp]'))warm()}document.addEventListener('pointerover',intent,{passive:true});document.addEventListener('touchstart',intent,{passive:true});
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-sp]');if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
 var s=a.getAttribute('data-sp');if(!s)return;e.preventDefault();
-if(phone()){location.href='https://open.spotify.com/'+s;return}
 mark(a);go(s)});})();
 </script>
 <script>addEventListener('load',function(){var s=document.createElement('script');s.defer=true;s.src='https://static.cloudflareinsights.com/beacon.min.js';s.setAttribute('data-cf-beacon','{"token": "74d2ccc3aba8442e8ffe162baef5f751"}');document.body.appendChild(s)})</script><script>
