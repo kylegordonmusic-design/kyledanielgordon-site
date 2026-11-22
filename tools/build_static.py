@@ -294,35 +294,15 @@ def head(p):
 
 # In-page Spotify player everywhere (Kyle, Nov 22 3:16 PM: keep everyone on the site): clicking/tapping a cover (or Listen / a credit row) with data-sp opens a player bar at the bottom.
 # Nothing from Spotify loads until someone taps, so page speed is unchanged.
-PLAYER_JS = '''<script>
-(function(){var bar,box,ctrl,api,cur,want,waiting=false,t0,fell=false,creating=false;
-function uri(s){return 'spotify:'+s.replace('/',':')}
-function mark(a){if(cur)cur.classList.remove('playing');cur=a;if(a)a.classList.add('playing')}
-function plain(s){box.innerHTML='<iframe src="https://open.spotify.com/embed/'+s+'?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify player"></iframe>'}
-function make(){bar=document.createElement('div');bar.className='spbar';bar.setAttribute('role','region');bar.setAttribute('aria-label','Music player');
-bar.innerHTML='<div class="spin"><div id="spembed"></div></div><button class="spx" type="button" aria-label="Close player">×</button>';document.body.appendChild(bar);box=bar.querySelector('.spin');
-bar.querySelector('.spx').addEventListener('click',function(){if(ctrl){try{ctrl.pause()}catch(e){}}bar.classList.remove('on');document.body.classList.remove('sp-on');mark(null)});}
-function go(s){want=s;if(!bar)make();requestAnimationFrame(function(){bar.classList.add('on')});document.body.classList.add('sp-on');
-if(ctrl){ctrl.loadUri(uri(s));ctrl.play();return}
-if(fell){plain(s);return}
-if(api){create();return}
-if(waiting){clearTimeout(t0);t0=setTimeout(function(){if(!ctrl){fell=true;plain(want)}},6000);return}waiting=true;t0=setTimeout(function(){if(!ctrl){fell=true;plain(want)}},6000);
-window.onSpotifyIframeApiReady=function(A){clearTimeout(t0);if(fell)return;api=A;if(want&&!ctrl)create()};
-var sc=document.createElement('script');sc.src='https://open.spotify.com/embed/iframe-api/v1';sc.async=true;sc.onerror=function(){clearTimeout(t0);fell=true;plain(want)};document.head.appendChild(sc)}
-function create(){if(creating)return;creating=true;var el=document.getElementById('spembed');if(!el){box.innerHTML='<div id="spembed"></div>';el=document.getElementById('spembed')}
-var w0=want;api.createController(el,{uri:uri(want),width:'100%',height:80,theme:'dark'},function(c){ctrl=c;var first=true;c.addListener('ready',function(){if(first){first=false;if(want!==w0)c.loadUri(uri(want));c.play()}})})}
-function warm(){if(api||waiting)return;waiting=true;t0=null;window.onSpotifyIframeApiReady=function(A){api=A;if(want&&!ctrl)create()};var sc=document.createElement('script');sc.src='https://open.spotify.com/embed/iframe-api/v1';sc.async=true;sc.onerror=function(){fell=true;if(want)plain(want)};document.head.appendChild(sc)}
-function intent(e){var t=e.target;if(t&&t.closest&&t.closest('[data-sp]'))warm()}document.addEventListener('pointerover',intent,{passive:true});document.addEventListener('touchstart',intent,{passive:true});
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-sp]');if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
-var s=a.getAttribute('data-sp');if(!s)return;e.preventDefault();
-mark(a);go(s)});})();
-</script>'''
+PLAYER_JS = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'player.js'),encoding='utf-8').read()
+APMAP = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'previews.json')))
 
 
 for p in PAGES:
     s = open(os.path.join(SRC, p['src']), encoding='utf-8').read()
     helmet = re.search(r'<helmet>(.*?)</helmet>', s, re.S).group(1)
     body = re.search(r'</helmet>(.*?)</x-dc>', s, re.S).group(1)
+    pj = PLAYER_JS.replace('/*APMAP*/{}', json.dumps({k: v for k, v in APMAP.items() if ('data-sp="' + k + '"') in body}, separators=(',', ':'))) if 'data-sp=' in body else ''
     html = f'''<!doctype html>
 <html lang="{p.get('lang', 'en')}">
 <head>
@@ -331,7 +311,7 @@ for p in PAGES:
 </head>
 <body>
 {fix(body).strip()}
-{PLAYER_JS if 'data-sp=' in body else ''}
+{pj}
 </body>
 </html>
 '''

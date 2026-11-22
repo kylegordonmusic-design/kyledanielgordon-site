@@ -293,14 +293,48 @@ a:focus-visible,button:focus-visible{outline:2px solid currentColor;outline-offs
 .row.playing{outline-offset:-3px}
 @media (hover: none){.cov .play{display:none}}
 @media (max-width: 600px){.pgrid{grid-template-columns:1fr 1fr !important;gap:30px 14px !important}.pgrid h3{font-size:20px !important}.pgrid .cov .play{left:8px;bottom:8px;padding:6px 9px 6px 8px}.names{font-size:18px !important;line-height:1.25 !important}}
-.spbar{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom));z-index:60;width:min(560px,calc(100% - 20px));height:80px;border-radius:14px;background:#121212;box-shadow:0 18px 40px -18px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);transform:translate3d(-50%,140%,0);opacity:0;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .25s ease;will-change:transform;isolation:isolate;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.spbar{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;width:min(440px,calc(100% - 20px));border-radius:18px;background:rgba(27,26,23,.94);-webkit-backdrop-filter:saturate(1.3) blur(16px);backdrop-filter:saturate(1.3) blur(16px);color:#f7f4ec;box-shadow:0 22px 46px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.07);transform:translate3d(-50%,150%,0);opacity:0;transition:transform .45s cubic-bezier(.2,.85,.25,1),opacity .25s ease;will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .spbar.on{transform:translate3d(-50%,0,0);opacity:1}
-.spbar .spin{position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#121212}
-.spbar .spin iframe{display:block;width:100%;height:80px;border:0;background:transparent}
-.spbar .spx{position:absolute;top:-11px;right:-6px;z-index:2;width:28px;height:28px;padding:0;border-radius:999px;border:0;background:#f7f4ec;color:#1b1a17;font-size:17px;line-height:28px;text-align:center;cursor:pointer;box-shadow:0 4px 12px -4px rgba(0,0,0,.5)}
-.spbar .spx::after{content:"";position:absolute;inset:-9px}
-@media (prefers-reduced-motion: reduce){.spbar{transition:none}}
-body.sp-on{padding-bottom:104px}
+.spbar .ap{position:relative;display:flex;align-items:center;gap:12px;height:64px;padding:0 6px 0 8px}
+.ap-art{position:relative;flex:none;width:48px;height:48px;border-radius:10px;overflow:hidden;background:#2b2925;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.ap-art img{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s ease}
+.ap-art img.ok{opacity:1}
+.ap-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.ap-t{font-family:'Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;line-height:1.15;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ap-s{display:flex;align-items:center;gap:7px;min-width:0;font-family:'DM Mono',ui-monospace,monospace;font-size:10.5px;line-height:1.2;letter-spacing:.04em;text-transform:uppercase;color:rgba(247,244,236,.6)}
+.ap-pv{flex:none}@media (max-width: 480px){.ap-pv{display:none}}
+.ap-s span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ap-s a{flex:none;color:#f7f4ec;text-decoration:none;border-bottom:1px solid rgba(247,244,236,.35);padding-bottom:1px}
+.ap-s a:hover{color:#e2581a;border-color:#e2581a}
+.ap-eq{flex:none;display:inline-flex;align-items:flex-end;gap:2px;width:11px;height:10px}
+.ap-eq i{display:block;width:3px;height:3px;border-radius:1px;background:#e2581a;transition:height .2s}
+.spbar.playing .ap-eq i{animation:apeq .9s ease-in-out infinite}
+.spbar.playing .ap-eq i:nth-child(2){animation-delay:-.35s}.spbar.playing .ap-eq i:nth-child(3){animation-delay:-.6s}
+@keyframes apeq{0%,100%{height:3px}50%{height:10px}}
+.ap-pp{position:relative;flex:none;width:42px;height:42px;margin:0 2px;padding:0;border:0;border-radius:50%;background:#f7f4ec;color:#1b1a17;display:grid;place-items:center;cursor:pointer;transition:transform .15s ease,background-color .2s ease;-webkit-tap-highlight-color:transparent}
+.ap-pp:hover{background:#fff}.ap-pp:active{transform:scale(.92)}
+.ap-pp svg.i{width:14px;height:14px}
+.ap-pp .ic-pa,.spbar.playing .ap-pp .ic-pl{display:none}.spbar.playing .ap-pp .ic-pa{display:block}
+.ap-ring{position:absolute;inset:-5px;width:52px;height:52px;transform:rotate(-90deg);pointer-events:none}
+.ap-ring circle{fill:none;stroke-width:2.5}
+.ap-ring .bg{stroke:rgba(247,244,236,.14)}
+.ap-ring .fg{stroke:#e2581a;stroke-linecap:round;stroke-dasharray:150.8;stroke-dashoffset:150.8}
+.spbar.wait .ap-ring{animation:apspin 1s linear infinite}.spbar.wait .ap-ring .fg{stroke-dashoffset:110}
+@keyframes apspin{to{transform:rotate(270deg)}}
+.ap-x{position:relative;flex:none;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:transparent;color:rgba(247,244,236,.55);font-size:20px;line-height:34px;text-align:center;cursor:pointer;transition:color .2s,background-color .2s}
+.ap-x:hover{color:#f7f4ec;background:rgba(255,255,255,.08)}
+.ap-sk{position:absolute;left:16px;right:16px;bottom:0;height:12px;cursor:pointer;touch-action:none}
+.ap-sk::before,.ap-sk b{content:"";position:absolute;left:0;top:7px;height:2px;border-radius:2px}
+.ap-sk::before{right:0;background:rgba(247,244,236,.1)}
+.ap-sk b{width:0;background:rgba(226,88,26,.85)}
+.spbar .spin{display:none;border-radius:14px;overflow:hidden;background:#121212}
+.spbar.sp .spin{display:block}.spbar.sp .ap{display:none}
+.spbar.sp{background:#121212;width:min(560px,calc(100% - 20px))}
+.spbar .spin iframe{display:block;width:100%;height:80px;border:0}
+.spbar.sp .spx{display:block}
+.spbar .spx{display:none;position:absolute;top:-11px;right:-6px;z-index:2;width:28px;height:28px;padding:0;border-radius:999px;border:0;background:#f7f4ec;color:#1b1a17;font-size:17px;line-height:28px;text-align:center;cursor:pointer;box-shadow:0 4px 12px -4px rgba(0,0,0,.5)}
+@media (prefers-reduced-motion: reduce){.spbar{transition:none}.spbar.playing .ap-eq i{animation:none;height:8px}}
+body.sp-on{padding-bottom:92px}
 @media (max-width: 600px){.swipe{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px !important;margin:0 -24px;padding:0 24px 6px;scrollbar-width:none}.swipe::-webkit-scrollbar{display:none}.swipe>.prom{flex:0 0 82%;scroll-snap-align:start}
 .wall{grid-template-columns:repeat(4,1fr) !important;gap:8px !important}.wall .cov .play{display:none}
 #credits:not(.all) .row[data-t]:nth-of-type(n+14){display:none}}
@@ -428,27 +462,70 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 </footer>
 </div>
 <script>
-(function(){var bar,box,ctrl,api,cur,want,waiting=false,t0,fell=false,creating=false;
-function uri(s){return 'spotify:'+s.replace('/',':')}
-function mark(a){if(cur)cur.classList.remove('playing');cur=a;if(a)a.classList.add('playing')}
-function plain(s){box.innerHTML='<iframe src="https://open.spotify.com/embed/'+s+'?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify player"></iframe>'}
+(function(){
+var AP={"album/0rwbMKjNkp4ehQTwf9V2Jk":1697599274,"album/3SUEJULSGgBDG1j4GQhfYY":1848167528},meta={},looked=false,looking=null,bar,au,cur,curS,raf,fr,box,dur=30,silent='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+function $(c){return bar.querySelector(c)}
+function lookup(){if(looked)return Promise.resolve();if(looking)return looking;
+ var ids=[],seen={};document.querySelectorAll('[data-sp]').forEach(function(a){var t=AP[a.getAttribute('data-sp')];if(t&&!seen[t]){seen[t]=1;ids.push(t)}});
+ if(!ids.length){looked=true;return Promise.resolve()}
+ looking=new Promise(function(res){var cb='__ap'+Date.now(),done=false,sc=document.createElement('script');
+  function fin(){if(done)return;done=true;looked=true;try{delete window[cb]}catch(e){window[cb]=null}sc.remove();res()}
+  window[cb]=function(r){(r.results||[]).forEach(function(x){if(x.previewUrl)meta[x.trackId]=x});fin()};
+  sc.onerror=fin;setTimeout(fin,5000);sc.src='https://itunes.apple.com/lookup?country=US&id='+ids.join(',')+'&callback='+cb;document.head.appendChild(sc)});
+ return looking}
+function idle(){(window.requestIdleCallback||function(f){setTimeout(f,1200)})(lookup,{timeout:3000})}
+if(document.readyState==='complete')idle();else addEventListener('load',idle);
+function ico(){return '<svg class="i ic-pl" viewBox="0 0 14 14" aria-hidden="true"><path d="M3.5 1.8v10.4L12 7z" fill="currentColor"/></svg><svg class="i ic-pa" viewBox="0 0 14 14" aria-hidden="true"><rect x="2.5" y="1.8" width="3.2" height="10.4" rx="1" fill="currentColor"/><rect x="8.3" y="1.8" width="3.2" height="10.4" rx="1" fill="currentColor"/></svg>'}
 function make(){bar=document.createElement('div');bar.className='spbar';bar.setAttribute('role','region');bar.setAttribute('aria-label','Music player');
-bar.innerHTML='<div class="spin"><div id="spembed"></div></div><button class="spx" type="button" aria-label="Close player">×</button>';document.body.appendChild(bar);box=bar.querySelector('.spin');
-bar.querySelector('.spx').addEventListener('click',function(){if(ctrl){try{ctrl.pause()}catch(e){}}bar.classList.remove('on');document.body.classList.remove('sp-on');mark(null)});}
-function go(s){want=s;if(!bar)make();requestAnimationFrame(function(){bar.classList.add('on')});document.body.classList.add('sp-on');
-if(ctrl){ctrl.loadUri(uri(s));ctrl.play();return}
-if(fell){plain(s);return}
-if(api){create();return}
-if(waiting){clearTimeout(t0);t0=setTimeout(function(){if(!ctrl){fell=true;plain(want)}},6000);return}waiting=true;t0=setTimeout(function(){if(!ctrl){fell=true;plain(want)}},6000);
-window.onSpotifyIframeApiReady=function(A){clearTimeout(t0);if(fell)return;api=A;if(want&&!ctrl)create()};
-var sc=document.createElement('script');sc.src='https://open.spotify.com/embed/iframe-api/v1';sc.async=true;sc.onerror=function(){clearTimeout(t0);fell=true;plain(want)};document.head.appendChild(sc)}
-function create(){if(creating)return;creating=true;var el=document.getElementById('spembed');if(!el){box.innerHTML='<div id="spembed"></div>';el=document.getElementById('spembed')}
-var w0=want;api.createController(el,{uri:uri(want),width:'100%',height:80,theme:'dark'},function(c){ctrl=c;var first=true;c.addListener('ready',function(){if(first){first=false;if(want!==w0)c.loadUri(uri(want));c.play()}})})}
-function warm(){if(api||waiting)return;waiting=true;t0=null;window.onSpotifyIframeApiReady=function(A){api=A;if(want&&!ctrl)create()};var sc=document.createElement('script');sc.src='https://open.spotify.com/embed/iframe-api/v1';sc.async=true;sc.onerror=function(){fell=true;if(want)plain(want)};document.head.appendChild(sc)}
-function intent(e){var t=e.target;if(t&&t.closest&&t.closest('[data-sp]'))warm()}document.addEventListener('pointerover',intent,{passive:true});document.addEventListener('touchstart',intent,{passive:true});
+ bar.innerHTML='<div class="ap"><div class="ap-art"><img alt="" decoding="async"></div><div class="ap-txt"><div class="ap-t"></div><div class="ap-s"><span class="ap-eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="ap-n"></span><span class="ap-pv">Preview</span><a class="ap-am" target="_blank" rel="noopener">Apple Music ↗</a></div></div>'
+ +'<button class="ap-pp" type="button" aria-label="Pause">'+ico()+'<svg class="ap-ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="bg" cx="26" cy="26" r="24"/><circle class="fg" cx="26" cy="26" r="24"/></svg></button>'
+ +'<button class="ap-x" type="button" aria-label="Close player">×</button><div class="ap-sk" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="30" tabindex="0"><b></b></div></div>'
+ +'<div class="spin"></div><button class="spx" type="button" aria-label="Close player">×</button>';
+ document.body.appendChild(bar);box=bar.querySelector('.spin');fr=$('.ap-ring .fg');
+ var img=$('.ap-art img');img.onload=function(){img.classList.add('ok')};
+ $('.ap-pp').addEventListener('click',function(){if(!au)return;if(au.paused){if(au.ended)au.currentTime=0;au.play().catch(function(){})}else au.pause()});
+ $('.ap-x').addEventListener('click',close);bar.querySelector('.spx').addEventListener('click',close);
+ var sk=$('.ap-sk');function seek(e){if(!au||!au.duration)return;var r=sk.getBoundingClientRect(),x=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));au.currentTime=x*au.duration;paint()}
+ sk.addEventListener('pointerdown',function(e){seek(e);sk.setPointerCapture&&sk.setPointerCapture(e.pointerId);sk.onpointermove=seek});
+ sk.addEventListener('pointerup',function(){sk.onpointermove=null});
+ sk.addEventListener('keydown',function(e){if(!au)return;if(e.key==='ArrowRight')au.currentTime=Math.min(au.duration||30,au.currentTime+5);else if(e.key==='ArrowLeft')au.currentTime=Math.max(0,au.currentTime-5);else return;e.preventDefault();paint()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&bar.classList.contains('on'))close()})}
+function audio(){if(au)return au;au=new Audio();au.preload='auto';au.setAttribute('playsinline','');
+ au.addEventListener('playing',function(){bar.classList.add('playing');bar.classList.remove('wait');$('.ap-pp').setAttribute('aria-label','Pause');loop()});
+ au.addEventListener('pause',function(){bar.classList.remove('playing');$('.ap-pp').setAttribute('aria-label','Play');cancelAnimationFrame(raf);paint()});
+ au.addEventListener('waiting',function(){if(au.src!==silent)bar.classList.add('wait')});
+ au.addEventListener('ended',function(){bar.classList.remove('playing');paint(1)});
+ au.addEventListener('error',function(){if(au.src&&au.src!==silent&&curS)spot(curS)});
+ return au}
+function paint(f){if(!au||!bar)return;var d=au.duration||dur,p=f||Math.min(1,au.currentTime/d);fr.style.strokeDashoffset=(150.8*(1-p)).toFixed(1);$('.ap-sk b').style.width=(p*100)+'%';$('.ap-sk').setAttribute('aria-valuenow',Math.round(au.currentTime||0))}
+function loop(){paint();if(!au.paused)raf=requestAnimationFrame(loop)}
+function mark(a){if(cur)cur.classList.remove('playing');cur=a;if(a)a.classList.add('playing')}
+function show(){requestAnimationFrame(function(){bar.classList.add('on')});document.body.classList.add('sp-on')}
+function close(){if(au)au.pause();box.innerHTML='';bar.classList.remove('on','playing','wait');document.body.classList.remove('sp-on');mark(null)}
+function spot(s){if(au)au.pause();bar.classList.add('sp');bar.classList.remove('playing','wait');box.innerHTML='<iframe src="https://open.spotify.com/embed/'+s+'?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify player"></iframe>'}
+function load(s,a){var m=meta[AP[s]];if(!m){spot(s);return}
+ bar.classList.remove('sp');box.innerHTML='';
+ var t=(a&&a.getAttribute('data-spt'))||m.collectionName,img=$('.ap-art img');
+ $('.ap-t').textContent=t;$('.ap-n').textContent='“'+m.trackName+'”';
+ var am=$('.ap-am');am.href=m.trackViewUrl;am.setAttribute('aria-label','Listen to '+t+' on Apple Music');
+ var art=(m.artworkUrl100||'').replace('100x100bb','160x160bb');if(img.getAttribute('src')!==art){img.classList.remove('ok');img.src=art}
+ if(au.src!==m.previewUrl){au.src=m.previewUrl;au.currentTime=0}paint(0.0001);bar.classList.add('wait');
+ au.play().catch(function(){bar.classList.remove('wait')});
+ if('mediaSession' in navigator){try{navigator.mediaSession.metadata=new MediaMetadata({title:t,artist:m.trackName+' · Kyle Daniel Gordon',album:m.collectionName,artwork:[{src:m.artworkUrl100.replace('100x100bb','512x512bb'),sizes:'512x512',type:'image/jpeg'}]})}catch(e){}}}
+function go(s,a){curS=s;if(!bar)make();audio();show();
+ if(!AP[s]){spot(s);return}
+ if(meta[AP[s]]){load(s,a);return}
+ if(looked){spot(s);return}
+
+ au.src=silent;au.play().catch(function(){});bar.classList.remove('sp');bar.classList.add('wait');$('.ap-t').textContent=(a&&a.getAttribute('data-spt'))||'';$('.ap-n').textContent='Loading…';
+ lookup().then(function(){if(curS===s)load(s,a)})}
+function warm(e){var a=e.target&&e.target.closest&&e.target.closest('[data-sp]');if(a)lookup()}
+document.addEventListener('pointerover',warm,{passive:true});document.addEventListener('touchstart',warm,{passive:true});
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-sp]');if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
-var s=a.getAttribute('data-sp');if(!s)return;e.preventDefault();
-mark(a);go(s)});})();
+ var s=a.getAttribute('data-sp');if(!s)return;e.preventDefault();
+ if(a===cur&&au&&bar.classList.contains('on')&&!bar.classList.contains('sp')){if(au.paused)au.play().catch(function(){});else au.pause();return}
+ mark(a);go(s,a)});
+})();
 </script>
 <script>addEventListener('load',function(){var s=document.createElement('script');s.defer=true;s.src='https://static.cloudflareinsights.com/beacon.min.js';s.setAttribute('data-cf-beacon','{"token": "74d2ccc3aba8442e8ffe162baef5f751"}');document.body.appendChild(s)})</script><script>
 /* Microsoft Clarity (heatmaps + recordings), loaded only after the page is idle so it never slows the first screen */

@@ -219,14 +219,48 @@ a:focus-visible,button:focus-visible{outline:2px solid currentColor;outline-offs
 .row.playing{outline-offset:-3px}
 @media (hover: none){.cov .play{display:none}}
 @media (max-width: 600px){.pgrid{grid-template-columns:1fr 1fr !important;gap:30px 14px !important}.pgrid h3{font-size:20px !important}.pgrid .cov .play{left:8px;bottom:8px;padding:6px 9px 6px 8px}.names{font-size:18px !important;line-height:1.25 !important}}
-.spbar{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom));z-index:60;width:min(560px,calc(100% - 20px));height:80px;border-radius:14px;background:#121212;box-shadow:0 18px 40px -18px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);transform:translate3d(-50%,140%,0);opacity:0;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .25s ease;will-change:transform;isolation:isolate;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.spbar{position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;width:min(440px,calc(100% - 20px));border-radius:18px;background:rgba(27,26,23,.94);-webkit-backdrop-filter:saturate(1.3) blur(16px);backdrop-filter:saturate(1.3) blur(16px);color:#f7f4ec;box-shadow:0 22px 46px -20px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.07);transform:translate3d(-50%,150%,0);opacity:0;transition:transform .45s cubic-bezier(.2,.85,.25,1),opacity .25s ease;will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .spbar.on{transform:translate3d(-50%,0,0);opacity:1}
-.spbar .spin{position:absolute;inset:0;border-radius:14px;overflow:hidden;background:#121212}
-.spbar .spin iframe{display:block;width:100%;height:80px;border:0;background:transparent}
-.spbar .spx{position:absolute;top:-11px;right:-6px;z-index:2;width:28px;height:28px;padding:0;border-radius:999px;border:0;background:#f7f4ec;color:#1b1a17;font-size:17px;line-height:28px;text-align:center;cursor:pointer;box-shadow:0 4px 12px -4px rgba(0,0,0,.5)}
-.spbar .spx::after{content:"";position:absolute;inset:-9px}
-@media (prefers-reduced-motion: reduce){.spbar{transition:none}}
-body.sp-on{padding-bottom:104px}
+.spbar .ap{position:relative;display:flex;align-items:center;gap:12px;height:64px;padding:0 6px 0 8px}
+.ap-art{position:relative;flex:none;width:48px;height:48px;border-radius:10px;overflow:hidden;background:#2b2925;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.ap-art img{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s ease}
+.ap-art img.ok{opacity:1}
+.ap-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.ap-t{font-family:'Instrument Sans',system-ui,sans-serif;font-weight:600;font-size:15px;line-height:1.15;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ap-s{display:flex;align-items:center;gap:7px;min-width:0;font-family:'DM Mono',ui-monospace,monospace;font-size:10.5px;line-height:1.2;letter-spacing:.04em;text-transform:uppercase;color:rgba(247,244,236,.6)}
+.ap-pv{flex:none}@media (max-width: 480px){.ap-pv{display:none}}
+.ap-s span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ap-s a{flex:none;color:#f7f4ec;text-decoration:none;border-bottom:1px solid rgba(247,244,236,.35);padding-bottom:1px}
+.ap-s a:hover{color:#e2581a;border-color:#e2581a}
+.ap-eq{flex:none;display:inline-flex;align-items:flex-end;gap:2px;width:11px;height:10px}
+.ap-eq i{display:block;width:3px;height:3px;border-radius:1px;background:#e2581a;transition:height .2s}
+.spbar.playing .ap-eq i{animation:apeq .9s ease-in-out infinite}
+.spbar.playing .ap-eq i:nth-child(2){animation-delay:-.35s}.spbar.playing .ap-eq i:nth-child(3){animation-delay:-.6s}
+@keyframes apeq{0%,100%{height:3px}50%{height:10px}}
+.ap-pp{position:relative;flex:none;width:42px;height:42px;margin:0 2px;padding:0;border:0;border-radius:50%;background:#f7f4ec;color:#1b1a17;display:grid;place-items:center;cursor:pointer;transition:transform .15s ease,background-color .2s ease;-webkit-tap-highlight-color:transparent}
+.ap-pp:hover{background:#fff}.ap-pp:active{transform:scale(.92)}
+.ap-pp svg.i{width:14px;height:14px}
+.ap-pp .ic-pa,.spbar.playing .ap-pp .ic-pl{display:none}.spbar.playing .ap-pp .ic-pa{display:block}
+.ap-ring{position:absolute;inset:-5px;width:52px;height:52px;transform:rotate(-90deg);pointer-events:none}
+.ap-ring circle{fill:none;stroke-width:2.5}
+.ap-ring .bg{stroke:rgba(247,244,236,.14)}
+.ap-ring .fg{stroke:#e2581a;stroke-linecap:round;stroke-dasharray:150.8;stroke-dashoffset:150.8}
+.spbar.wait .ap-ring{animation:apspin 1s linear infinite}.spbar.wait .ap-ring .fg{stroke-dashoffset:110}
+@keyframes apspin{to{transform:rotate(270deg)}}
+.ap-x{position:relative;flex:none;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:transparent;color:rgba(247,244,236,.55);font-size:20px;line-height:34px;text-align:center;cursor:pointer;transition:color .2s,background-color .2s}
+.ap-x:hover{color:#f7f4ec;background:rgba(255,255,255,.08)}
+.ap-sk{position:absolute;left:16px;right:16px;bottom:0;height:12px;cursor:pointer;touch-action:none}
+.ap-sk::before,.ap-sk b{content:"";position:absolute;left:0;top:7px;height:2px;border-radius:2px}
+.ap-sk::before{right:0;background:rgba(247,244,236,.1)}
+.ap-sk b{width:0;background:rgba(226,88,26,.85)}
+.spbar .spin{display:none;border-radius:14px;overflow:hidden;background:#121212}
+.spbar.sp .spin{display:block}.spbar.sp .ap{display:none}
+.spbar.sp{background:#121212;width:min(560px,calc(100% - 20px))}
+.spbar .spin iframe{display:block;width:100%;height:80px;border:0}
+.spbar.sp .spx{display:block}
+.spbar .spx{display:none;position:absolute;top:-11px;right:-6px;z-index:2;width:28px;height:28px;padding:0;border-radius:999px;border:0;background:#f7f4ec;color:#1b1a17;font-size:17px;line-height:28px;text-align:center;cursor:pointer;box-shadow:0 4px 12px -4px rgba(0,0,0,.5)}
+@media (prefers-reduced-motion: reduce){.spbar{transition:none}.spbar.playing .ap-eq i{animation:none;height:8px}}
+body.sp-on{padding-bottom:92px}
 @media (max-width: 600px){.swipe{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px !important;margin:0 -24px;padding:0 24px 6px;scrollbar-width:none}.swipe::-webkit-scrollbar{display:none}.swipe>.prom{flex:0 0 82%;scroll-snap-align:start}
 .wall{grid-template-columns:repeat(4,1fr) !important;gap:8px !important}.wall .cov .play{display:none}
 #credits:not(.all) .row[data-t]:nth-of-type(n+14){display:none}}
@@ -263,9 +297,10 @@ document.addEventListener('touchstart',function(e){var a=e.target.closest&&e.tar
 <section aria-label="Privacy" style="position: relative; max-width: 1392px; margin: 0 auto; padding-left: 24px; padding-right: 24px; box-sizing: border-box; margin-top: 70px; border-bottom: 1px solid rgba(27,26,23,0.22)"><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid rgba(27,26,23,0.22)">
 <h2 style="margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.02em">What is measured</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">This site uses Cloudflare Web Analytics (page views, no cookies) and Microsoft Clarity (anonymous heatmaps and session recordings that show how pages are used). Text you type into forms is masked. Neither tool is used for advertising.</p></div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid rgba(27,26,23,0.22)">
 <h2 style="margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.02em">Cookies</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">Cloudflare Web Analytics sets no cookies. Microsoft Clarity may set first-party cookies to link page views within a visit; where consent is required it runs without them. You can block both with any standard content blocker.</p></div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid rgba(27,26,23,0.22)">
+<h2 style="margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.02em">Music previews</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">When you open a page with music, the site asks Apple’s public iTunes catalogue for 30-second previews and their cover art. Pressing play streams the preview from Apple. Recordings without an Apple preview play in Spotify’s player. Apple and Spotify can see your IP address when this happens.</p></div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid rgba(27,26,23,0.22)">
 <h2 style="margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.02em">Your data</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">No personal information is collected unless you email Kyle. Email is used only to reply. For questions or deletion requests, write to kylegordonmusic@gmail.com.</p></div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid rgba(27,26,23,0.22)">
 <h2 style="margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.02em">Who runs this site</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">kyledanielgordon.com is run by KG Music LLC, the business of Kyle Daniel Gordon, Los Angeles. Contact: kylegordonmusic@gmail.com.</p></div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid rgba(27,26,23,0.22)">
-<h2 style="margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.02em">Third parties</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">Microsoft’s privacy statement: privacy.microsoft.com. Cloudflare’s privacy policy: cloudflare.com/privacypolicy.</p></div></section>
+<h2 style="margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.02em">Third parties</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">Microsoft’s privacy statement: privacy.microsoft.com. Cloudflare’s privacy policy: cloudflare.com/privacypolicy. Apple: apple.com/legal/privacy. Spotify: spotify.com/legal/privacy-policy.</p></div></section>
 </main>
 <footer id="contact" style="position: relative; overflow: hidden; margin-top: 150px; padding: 180px 24px 36px; color: #fbf8f2">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, #f7f4ec 0%, #b9b0a0 30%, #4b463e 62%, #1b1a17 100%); -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.25) 12%, #000 34%); mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.25) 12%, #000 34%)"><span class="grain" style="opacity: 0.4"></span></div>
