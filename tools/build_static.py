@@ -283,7 +283,7 @@ def head(p):
 # In-page Spotify player: tapping a cover (or Listen / a credit row) with data-sp opens a player bar at the bottom.
 # Nothing from Spotify loads until someone taps, so page speed is unchanged.
 PLAYER_JS = '''<script>
-(function(){var bar,box,ctrl,api,cur,want,waiting=false,t0;
+(function(){var bar,box,ctrl,api,cur,want,waiting=false,t0,fell=false;
 function uri(s){return 'spotify:'+s.replace('/',':')}
 function mark(a){if(cur)cur.classList.remove('playing');cur=a;if(a)a.classList.add('playing')}
 function plain(s){box.innerHTML='<iframe src="https://open.spotify.com/embed/'+s+'?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Spotify player"></iframe>'}
@@ -292,12 +292,13 @@ bar.innerHTML='<div class="spin"><div id="spembed"></div></div><button class="sp
 bar.querySelector('.spx').addEventListener('click',function(){if(ctrl){try{ctrl.pause()}catch(e){}}bar.classList.remove('on');document.body.classList.remove('sp-on');mark(null)});}
 function go(s){want=s;if(!bar)make();requestAnimationFrame(function(){bar.classList.add('on')});document.body.classList.add('sp-on');
 if(ctrl){ctrl.loadUri(uri(s));ctrl.play();return}
-if(api){create();return}
-if(waiting)return;waiting=true;t0=setTimeout(function(){if(!ctrl){api=null;plain(want)}},4000);
-window.onSpotifyIframeApiReady=function(A){api=A;clearTimeout(t0);create()};
-var sc=document.createElement('script');sc.src='https://open.spotify.com/embed/iframe-api/v1';sc.async=true;sc.onerror=function(){clearTimeout(t0);plain(want)};document.head.appendChild(sc)}
+if(fell){plain(s);return}
+if(api){return}
+if(waiting)return;waiting=true;t0=setTimeout(function(){if(!ctrl){fell=true;plain(want)}},6000);
+window.onSpotifyIframeApiReady=function(A){clearTimeout(t0);if(fell)return;api=A;create()};
+var sc=document.createElement('script');sc.src='https://open.spotify.com/embed/iframe-api/v1';sc.async=true;sc.onerror=function(){clearTimeout(t0);fell=true;plain(want)};document.head.appendChild(sc)}
 function create(){var el=document.getElementById('spembed');if(!el){box.innerHTML='<div id="spembed"></div>';el=document.getElementById('spembed')}
-api.createController(el,{uri:uri(want),width:'100%',height:80,theme:'dark'},function(c){ctrl=c;var first=true;c.addListener('ready',function(){if(first){first=false;c.play()}})})}
+var w0=want;api.createController(el,{uri:uri(want),width:'100%',height:80,theme:'dark'},function(c){ctrl=c;var first=true;c.addListener('ready',function(){if(first){first=false;if(want!==w0)c.loadUri(uri(want));c.play()}})})}
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-sp]');if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
 var s=a.getAttribute('data-sp');if(!s)return;e.preventDefault();mark(a);go(s)});})();
 </script>'''
