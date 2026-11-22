@@ -22,6 +22,8 @@ CARDS = [
  ('contact', 'Contact', 'Start a project', 'Orchestration · Pop strings · Conducting', 'kyle-daniel-gordon-orchestrator-portrait', '3/4', ''),
  ('orchestrator-los-angeles', 'Orchestrator, Los Angeles', 'Orchestration · Pop strings · Conducting', 'Rosalía’s LUX · Oppenheimer · London Symphony Orchestra', 'conducting-london-symphony-orchestra', '4/3', ''),
  ('what-does-an-orchestrator-do', 'What does an orchestrator do?', 'A guide', 'By Kyle Daniel Gordon, lead orchestrator on Rosalía’s LUX', 'kyle-daniel-gordon-recording-session', '4/3', ''),
+ ('arranger-los-angeles', 'Arranger, Los Angeles', 'Strings · Orchestra · Live shows', 'Rosalía’s LUX · London Symphony Orchestra · BBC Proms', 'kyle-daniel-gordon-recording-session', '4/3', ''),
+ ('credits', 'Credits', 'Film · Television · Records', 'Oppenheimer · Frozen II · Star Wars · Rosalía’s LUX', 'conducting-london-symphony-orchestra', '4/3', ''),
  ('privacy', 'Privacy', 'kyledanielgordon.com', 'Run by KG Music LLC', None, None, ''),
 ]
 for pt in json.load(open('/home/claude/kdg_scripts/pitches.json')):

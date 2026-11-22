@@ -39,7 +39,7 @@ for f in os.listdir(OGDIR):
 def ogi(n): return f'{SITE}/img/share-{n}-kyle-daniel-gordon.jpg?v=5'
 OG = ogi('home')
 
-LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('PressES.dc.html', '/es/prensa/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/'), ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/'), ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/')]
+LINKS = [('Home.dc.html#', '/#'), ('Home.dc.html', '/'), ('ProjectES.dc.html', '/es/rosalia-lux/'), ('Project.dc.html', '/work/rosalia-lux/'), ('WorkWith.dc.html', '/work-with-kyle/'), ('Oppenheimer.dc.html', '/work/oppenheimer/'), ('Live.dc.html', '/live/'), ('PopStrings.dc.html', '/pop-strings/'), ('PressES.dc.html', '/es/prensa/'), ('Press.dc.html', '/press/'), ('Privacy.dc.html', '/privacy/'), ('LA.dc.html', '/orchestrator-los-angeles/'), ('Arranger.dc.html', '/arranger-los-angeles/'), ('Credits.dc.html', '/credits/'), ('Orchestrator.dc.html', '/what-does-an-orchestrator-do/'), ('Contact.dc.html', '/contact/'), ('Rec-romani.dc.html', '/work/romani-the-untold-story/'), ('Rec-babyshark.dc.html', '/work/baby-shark-london-symphony-orchestra/'), ('Rec-gracekelly.dc.html', '/work/grace-kelly-with-strings-at-the-movies/'), ('Rec-friesen.dc.html', '/work/david-friesen-this-light-has-no-darkness/'), ('Rec-mollie.dc.html', '/work/mollie-elizabeth-people-pleaser/'), ('Rec-ariza.dc.html', '/work/ariza-magia-en-dos/')]
 
 PERSON = {
     "@type": "Person", "@id": SITE + "/#kyle", "name": "Kyle Daniel Gordon", "alternateName": "Kyle Gordon",
@@ -133,8 +133,8 @@ PAGES = [
          desc='Arranger and organist at the BBC Proms: Bond and Beyond (Radiohead’s “Spectre”), Soul Revolution, Marvin Gaye. The Little Bird premiered by the San Francisco Symphony.',
          graph=[PERSON] + EVENTS, og=ogi('live')),
     dict(src='PopStrings.dc.html', out='pop-strings/index.html', path='/pop-strings/',
-         title='Pop String Arrangements, Kyle Daniel Gordon',
-         desc='String and orchestral arrangements for pop artists, from Rosalía’s LUX with the London Symphony Orchestra to records, sessions and live shows.',
+         title='String Arranger for Pop Songs & Artists: Kyle Daniel Gordon',
+         desc='Los Angeles string arranger for pop songs and artists: strings and orchestra for records, sessions and live shows, from Rosalía’s LUX with the London Symphony Orchestra.',
          graph=[PERSON, {"@type": "Service", "serviceType": "Pop string arrangements", "provider": {"@id": SITE + "/#kyle"}, "areaServed": "Worldwide",
                          "description": "String and orchestral arrangements for pop and alternative artists: records, recording sessions and live shows."}], og=ogi('pop-strings')),
     dict(src='Privacy.dc.html', og=ogi('privacy'), out='privacy/index.html', path='/privacy/', title='Privacy, Kyle Daniel Gordon',
@@ -148,6 +148,18 @@ PAGES = [
                          "address": {"@type": "PostalAddress", "addressLocality": "Los Angeles", "addressRegion": "CA", "addressCountry": "US"},
                          "areaServed": [{"@type": "City", "name": "Los Angeles"}, "Worldwide"],
                          "serviceType": ["Orchestration", "String arrangements", "Score preparation", "Conducting"]}, FAQ('la')]),
+    dict(src='Arranger.dc.html', og=ogi('arranger-los-angeles'), out='arranger-los-angeles/index.html', path='/arranger-los-angeles/',
+         title='Arranger in Los Angeles: Kyle Daniel Gordon, Strings & Orchestra',
+         desc='Los Angeles arranger for strings and orchestra: pop and alternative records, symphonic arrangements with the LSO, BBC Proms and touring shows. Lead orchestrator on Rosalía’s LUX.',
+         graph=[PERSON, {"@type": "ProfessionalService", "name": "Kyle Daniel Gordon, arranger", "url": SITE + "/arranger-los-angeles/",
+                         "founder": {"@id": SITE + "/#kyle"}, "email": "kylegordonmusic@gmail.com",
+                         "address": {"@type": "PostalAddress", "addressLocality": "Los Angeles", "addressRegion": "CA", "addressCountry": "US"},
+                         "areaServed": [{"@type": "City", "name": "Los Angeles"}, "Worldwide"],
+                         "serviceType": ["String arrangements", "Orchestral arrangements", "Live show arrangements", "Conducting"]}, FAQ('arr')]),
+    dict(src='Credits.dc.html', og=ogi('credits'), out='credits/index.html', path='/credits/',
+         title='Credits: Kyle Daniel Gordon, Orchestrator (Film, TV, Records)',
+         desc='Film, TV and record credits for orchestrator Kyle Daniel Gordon: Rosalía’s LUX, Oppenheimer, Frozen II, Star Wars, Wakanda Forever, The Mandalorian, Bridgerton, BBC Proms.',
+         graph=[PERSON, WORKS]),
     dict(src='Orchestrator.dc.html', og=ogi('what-does-an-orchestrator-do'), out='what-does-an-orchestrator-do/index.html', path='/what-does-an-orchestrator-do/',
          title='What Does an Orchestrator Do? A Guide by Kyle Daniel Gordon',
          desc='What an orchestrator does on a film score and a pop record, how it differs from arranging and composing, and how to hire one. By orchestrator Kyle Daniel Gordon.',

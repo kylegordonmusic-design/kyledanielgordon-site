@@ -243,7 +243,7 @@ def footer(grad):
 </div>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; {MONO}; font-size: 11px; border-top: 1px solid rgba(251,248,242,0.4); padding-top: 18px">
 <span>Kyle Daniel Gordon · Orchestrator, arranger, conductor · Los Angeles</span>
-<span class="flinks" style="display: flex; flex-wrap: wrap; gap: 4px 26px; white-space: nowrap"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press room</a><a class="cl" href="LA.dc.html" style="padding: 10px 0">Orchestrator in LA</a><a class="cl" href="Orchestrator.dc.html" style="padding: 10px 0">What an orchestrator does</a><a class="cl" href="Privacy.dc.html" style="padding: 10px 0">Privacy</a></span>
+<span class="flinks" style="display: flex; flex-wrap: wrap; gap: 4px 26px; white-space: nowrap"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a><a class="cl" href="https://www.youtube.com/@kylegordonmusic" style="padding: 10px 0">YouTube</a><a class="cl" href="Press.dc.html" style="padding: 10px 0">Press room</a><a class="cl" href="LA.dc.html" style="padding: 10px 0">Orchestrator in LA</a><a class="cl" href="Arranger.dc.html" style="padding: 10px 0">Arranger in LA</a><a class="cl" href="Credits.dc.html" style="padding: 10px 0">Credits</a><a class="cl" href="Orchestrator.dc.html" style="padding: 10px 0">What an orchestrator does</a><a class="cl" href="Privacy.dc.html" style="padding: 10px 0">Privacy</a></span>
 </div>
 </div>
 </footer>'''
@@ -1054,7 +1054,7 @@ def la_page():
     tiles = ''.join(tile(t, f'{BY[t][2]}' + (f' · {BY[t][3]}' if BY[t][3] else ''), '2 / 3', 'Oppenheimer.dc.html' if t == 'Oppenheimer' else None)
                     for t in ['Oppenheimer', 'Frozen II', 'Star Wars: The Last Jedi', 'Black Panther: Wakanda Forever', 'The Gilded Age', 'The Mandalorian'] if t in BY)
     services = [('Film &amp; TV orchestration', 'Full orchestration from mockups, MIDI and sketches, in the composer’s voice. Lead orchestrator or part of an orchestration team.'),
-                ('String &amp; orchestral arrangements', 'Strings, brass and full orchestra for records, singles, live shows and symphonic reimaginings.'),
+                ('String &amp; orchestral arrangements', 'Strings, brass and full orchestra for records, singles, live shows and symphonic reimaginings. See <a class="cl" href="Arranger.dc.html">arranger in Los Angeles</a>.'),
                 ('Score preparation', 'Proofed scores and parts delivered before the session, so the studio time goes to the music.'),
                 ('Conducting', 'Recording sessions and live concerts with orchestras in Los Angeles and abroad.')]
     sv = ''.join(f'''<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1.5px solid {INK}">
@@ -1069,7 +1069,7 @@ def la_page():
 </div>
 <div style="display: flex; flex-direction: column; gap: 18px">
 {prose(['Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He was lead orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and has worked on the scores for <em>Oppenheimer</em>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em> and <em>The Gilded Age</em>.'])}
-<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="Contact.dc.html">Contact Kyle</a><a class="btn line" href="Home.dc.html#credits">All credits</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="Contact.dc.html">Contact Kyle</a><a class="btn line" href="Credits.dc.html">All credits</a></div>
 </div></div></header>
 
 <section aria-label="Services" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
@@ -1162,7 +1162,106 @@ def contact():
 
 for _fn, _f in [('LA.dc.html', la_page), ('Orchestrator.dc.html', orchestrator_guide), ('Contact.dc.html', contact)]:
     open(os.path.join(OUT, _fn), 'w', encoding='utf-8').write(_f().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
-json.dump({'la': FAQ_LA, 'contact': FAQ_CONTACT, 'lux': FAQ_LUX, 'lux_es': FAQ_LUX_ES}, open('/home/claude/kdg_scripts/faq.json', 'w'), ensure_ascii=False)
+
+
+# ------------------------------------------------------------------ MORE SEO LANDING PAGES (Nov 22)
+PAGE_GRADS['arranger-los-angeles'] = '#1a0d14 0%, #5a1f3c 24%, #d0617a 50%, #f6d9c8 76%'
+PAGE_GRADS['credits'] = '#0d0f14 0%, #24324a 24%, #7d93b8 50%, #e6ebf2 76%'
+
+FAQ_ARR = [
+    ('What does an arranger do?', 'An arranger takes a song or piece that already exists and reshapes it for new instruments or a new setting: strings around a pop vocal, a rock band with a symphony orchestra, a film theme for a concert hall. Read more in <a class="cl" href="Orchestrator.dc.html">What does an orchestrator do?</a>'),
+    ('Can Kyle write strings for my song?', 'Yes. Send a demo, stems or a rough mix and the size of ensemble you have in mind, from a string quartet to a full orchestra. He writes parts that sit around the vocal and the production, with a mockup to approve before the session. See <a class="cl" href="PopStrings.dc.html">string arrangements for pop artists</a>.'),
+    ('Who has he arranged for?', 'Arrangements for Mollie Elizabeth (<em>People Pleaser</em>), Grace Kelly, David Friesen, Ion Zanca (<em>Romani</em>, with the London Symphony Orchestra), Pinkfong’s <em>Baby Shark</em> 10th anniversary with the LSO, the BBC Proms (Bond and Beyond, Soul Revolution, Marvin Gaye) and touring orchestral shows for Hawthorne Heights and Escape the Fate. He was lead orchestrator on Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>.'),
+    ('Where are the arrangements recorded?', 'Wherever the project needs: Los Angeles, Nashville or London (<em>LUX</em> was recorded at AIR Studios), or remotely with players you choose. Scores and parts are delivered digitally.'),
+    ('How do I book him?', 'Email <a class="cl" href="mailto:kylegordonmusic@gmail.com">kylegordonmusic@gmail.com</a> with the song, the dates and the ensemble size, or use the <a class="cl" href="Contact.dc.html">contact page</a>.'),
+]
+
+
+def arranger_page():
+    recs = ''.join(tile(t, s, '1 / 1', REC.get(t)) for t, s in
+                   [('LUX', 'Rosalía · lead orchestrator · LSO'), ('People Pleaser', 'Mollie Elizabeth · arranger, orchestrator, conductor'),
+                    ('Baby Shark 10th Anniversary', 'Pinkfong · London Symphony Orchestra'), ('Romani: The Untold Story', 'Ion Zanca · LSO · Billboard #1 Classical'),
+                    ('Grace Kelly with Strings: At The Movies', 'Arranger, orchestrator, co-producer'), ('This Light Has No Darkness', 'David Friesen · arranger, orchestrator')] if t in BY)
+    services = [('String arrangements for records', 'Strings for pop, alternative, R&amp;B and singer-songwriter records, from a quartet to a full section, written around the vocal.'),
+                ('Symphonic arrangements', 'Songs and themes reimagined for full orchestra, as on <em>Baby Shark</em> and <em>Romani</em> with the London Symphony Orchestra.'),
+                ('Live shows', 'Orchestral arrangements for concerts and tours: the BBC Proms, and touring orchestral shows for Hawthorne Heights and Escape the Fate.'),
+                ('Sessions &amp; score prep', 'Parts prepared and proofed for the session, and conducting in the studio or on stage.')]
+    sv = ''.join(f'''<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1.5px solid {INK}">
+<h3 style="margin: 0; {SANS}; font-size: 22px; letter-spacing: -0.02em">{h}</h3><p style="margin: 0; font-size: 16px; color: #3a362f">{t}</p></div>''' for h, t in services)
+    inner = f'''<header style="position: relative">
+{band(PAGE_GRADS['arranger-los-angeles'], 300)}
+{nav('#f8ece4')}
+<div style="{WRAP}; padding-top: 220px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
+<div style="display: flex; flex-direction: column; gap: 18px">
+{crumbs('<a class="cl" href="WorkWith.dc.html" style="padding: 10px 0">Work with Kyle</a>', 'Arranger, Los Angeles')}
+{hero_title('Strings, orchestra &amp; live shows', 'Arranger in Los Angeles', 'clamp(52px, 7vw, 112px)')}
+</div>
+<div style="display: flex; flex-direction: column; gap: 18px">
+{prose(['Kyle Daniel Gordon is a Los Angeles arranger and orchestrator who writes string and orchestral arrangements for artists, records and live shows. He was lead orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and has arranged for the BBC Proms, the London Symphony Orchestra and touring rock shows.'])}
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kylegordonmusic@gmail.com?subject=Arrangement%20enquiry">Email Kyle</a><a class="btn line" href="PopStrings.dc.html">Strings for pop</a></div>
+</div></div></header>
+
+<section aria-label="Services" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('A', 'What he arranges', 'Records · orchestra · stage')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 28px 36px">{sv}</div>
+</section>
+
+<section aria-label="Arrangements" style="{WRAP}; margin-top: 110px; display: flex; flex-direction: column; gap: 32px">
+{staff_head('B', 'Arrangements', 'Selected records')}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 46%), 1fr)); gap: 32px 24px">{recs}</div>
+</section>
+
+<section aria-label="Questions" style="{WRAP}; margin-top: 110px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('C', 'Questions', 'Hiring an arranger')}
+<div style="border-bottom: 1px solid {RULE}">{faq_block(FAQ_ARR)}</div>
+</section>
+
+{next_link('Film &amp; TV', 'Orchestrator in Los Angeles', 'LA.dc.html')}
+{footer('#d0617a 30%, #5a1f3c 62%, #1a0d14 100%')}'''
+    return page('Arranger in Los Angeles, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=4200)
+
+
+def credits_page():
+    groups = [('Film', 'Film'), ('Television', 'Television'), ('Game', 'Games'), ('Record', 'Records'), ('Stage', 'Concerts &amp; stage')]
+    def row(t, cat, role, w):
+        href = REC.get(t)
+        name = f'<a class="cl" href="{href}">{t}</a>' if href else t
+        if t == 'Oppenheimer':
+            role = 'One of the orchestrators (orchestration team)'
+        return (f'<li style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 4px 24px; padding: 14px 0; border-top: 1px solid {RULE}">'
+                f'<span style="{SANS}; font-size: 19px; letter-spacing: -0.015em; color: {CATCOL[cat]}"><em style="font-style: normal">{name}</em></span>'
+                f'<span style="display: flex; flex-direction: column; gap: 2px; {MONO}; font-size: 12px"><span>{role}</span>'
+                f'<span style="color: {MUTE}">{w}</span></span></li>')
+    secs = []
+    for i, (cat, label) in enumerate(groups):
+        items = [p for p in P if p[1] == cat]
+        if not items:
+            continue
+        rows = ''.join(row(p[0], p[1], p[2], p[3]) for p in items)
+        secs.append(f'''<section aria-label="{label}" style="{WRAP}; margin-top: 100px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 24px 80px; align-items: start">
+{staff_head('ABCDE'[i], label, f'{len(items)} credits')}
+<ul style="margin: 0; padding: 0; list-style: none; border-bottom: 1px solid {RULE}">{rows}</ul>
+</section>''')
+    inner = f'''<header style="position: relative">
+{band(PAGE_GRADS['credits'], 280)}
+{nav('#eef2f8')}
+<div style="{WRAP}; padding-top: 210px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
+<div style="display: flex; flex-direction: column; gap: 16px">
+{crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Credits')}
+{hero_title('Film · television · records · concerts', 'Credits', 'clamp(64px, 10vw, 160px)')}
+</div>
+{prose(['Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He has worked in the orchestration and music teams on film and television scores including <em>Oppenheimer</em>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em>, <em>Black Panther: Wakanda Forever</em>, <em>The Mandalorian</em> and <em>Bridgerton</em>, and was lead orchestrator on Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>. On <a class="cl" href="Oppenheimer.dc.html"><em>Oppenheimer</em></a> he was one of the orchestrators on Ludwig Göransson’s score.'])}
+</div></header>
+{''.join(secs)}
+{next_link('Hire', 'Orchestrator in Los Angeles', 'LA.dc.html')}
+{footer('#7d93b8 30%, #24324a 62%, #0d0f14 100%')}'''
+    return page('Credits, Kyle Daniel Gordon', root(inner), CSS, PAPER, h=6000)
+
+
+for _fn, _f in [('Arranger.dc.html', arranger_page), ('Credits.dc.html', credits_page)]:
+    open(os.path.join(OUT, _fn), 'w', encoding='utf-8').write(_f().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
+
+json.dump({'la': FAQ_LA, 'contact': FAQ_CONTACT, 'lux': FAQ_LUX, 'lux_es': FAQ_LUX_ES, 'arr': FAQ_ARR}, open('/home/claude/kdg_scripts/faq.json', 'w'), ensure_ascii=False)
 
 # credits for structured data (read by build_static.py)
 json.dump([dict(title=t, cat=c, role=r, with_=w, spotify=s) for t, c, r, w, k, s in P],
