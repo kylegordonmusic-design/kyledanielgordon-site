@@ -85,7 +85,8 @@ POPULAR = ['Frozen II', 'Star Wars: The Last Jedi', 'Star Wars: The Rise of Skyw
            'Cars on the Road', 'Fraggle Rock: Back to the Rock', 'Mira, Royal Detective', 'T.O.T.S.', 'Jerry & Marge Go Large', 'Mink!']
 GOLD = 'linear-gradient(165deg, #120d07 0%, #4a3315 38%, #b8893c 72%, #f1d9a0 100%)'
 RS_URL = 'https://www.rollingstone.com/music/music-features/rosalia-lux-collaborators-making-of-1235470741/'
-PRESS = [('The Pinkfong Company', 'Baby Shark teams up with the London Symphony Orchestra', 'Press release: the LSO version, recorded at LSO St Luke’s, was arranged and conducted by Kyle Gordon.', 'https://www.thepinkfongcompany.com/en/news/pr/121'),
+PRESS = [('North Texan (University of North Texas)', 'Sound Mind', 'Fall 2026 alumni profile by Jessica DeLeón: from UNT lab-band bassist to orchestrating Rosalía’s LUX.', 'https://northtexan.unt.edu/issues/2026-fall/sound-mind.html'),
+         ('The Pinkfong Company', 'Baby Shark teams up with the London Symphony Orchestra', 'Press release: the LSO version, recorded at LSO St Luke’s, was arranged and conducted by Kyle Gordon.', 'https://www.thepinkfongcompany.com/en/news/pr/121'),
          ('Rolling Stone', '‘Art for Art’s Sake’: Rosalía’s Collaborators Reflect on ‘Lux’', 'Gordon on how the LUX orchestrations came about, alongside Daníel Bjarnason, Carminho and Yahritza.', RS_URL),
          ('Dazed', 'Inside Rosalía’s Lux, with its key collaborators', 'Conductor Daníel Bjarnason on the AIR Studios sessions and the orchestrator who prepared them.', 'https://www.dazeddigital.com/music/article/69044/1/lux-rosalia-new-album-2025-noah-dillon-carminho-daniel-bjaranason-yahritza'),
          ('BroadwayWorld', 'Review: BBC Proms, Bond and Beyond', 'Arrangements credited to Kyle Gordon, Barry Forgie, Guy Barker and Nic Raine; Radiohead’s “Spectre” singled out.', 'https://www.broadwayworld.com/article/Review-BBC-PROMS-BOND-AND-BEYOND-Royal-Albert-Hall-20260826'),
