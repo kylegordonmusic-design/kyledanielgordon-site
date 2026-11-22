@@ -1,4 +1,4 @@
-import os, sys, json
+import os, sys, json, re
 from urllib.parse import quote
 sys.path.insert(0, '/home/claude/kdg_scripts')
 from gen_muck import page, COND, MONO, C, G
@@ -31,44 +31,44 @@ P = [
  ('My One And Only Love', 'Record', 'Arranger, conductor, producer', 'Alex Blair · 2024', 'alex-blair-my-one-and-only-love', 'https://open.spotify.com/track/2KPppSYqaRlZby9tyl0k9P'),
  ('It’s Christmas Time', 'Record', 'Arranger', 'Jali Music · 2022', 'jali-music-its-christmas-time', 'https://open.spotify.com/track/00wLdAWRWqsjzNWu5vUcMU'),
  ('Grace Kelly with Strings: At The Movies', 'Record', 'Arranger, orchestrator, co-producer', 'Grace Kelly', 'grace-kelly-with-strings-at-the-movies', 'https://open.spotify.com/album/2buBjbRAHUe3QMiWbRuHM0'),
- ('This Light Has No Darkness', 'Record', 'Arranger, orchestrator, co-producer', 'David Friesen', 'david-friesen-this-light-has-no-darkness', sp_search('David Friesen This Light Has No Darkness')),
+ ('This Light Has No Darkness', 'Record', 'Arranger, orchestrator, co-producer', 'David Friesen', 'david-friesen-this-light-has-no-darkness', 'https://open.spotify.com/album/06WQu6AA0rJu0kkDMkxQO3'),
  ('Magia en Dos', 'Record', 'Orchestrator', 'Ariza · 2025', 'ariza-magia-en-dos', 'https://open.spotify.com/album/4KTrbaxpyksYA5qWOpPE9l'),
  ('Hawthorne Heights', 'Stage', 'Arranger', 'Touring orchestral show', None, sp_search('Hawthorne Heights')),
  ('Escape the Fate', 'Stage', 'Arranger', 'Touring orchestral show', None, sp_search('Escape the Fate')),
  ('Oppenheimer', 'Film', 'Orchestrator', 'Ludwig Göransson', 'oppenheimer-film-poster', 'https://open.spotify.com/album/0rwbMKjNkp4ehQTwf9V2Jk'),
- ('Frozen II', 'Film', OM, '', 'frozen-ii', sp_search('Frozen II soundtrack')),
- ('Star Wars: The Last Jedi', 'Film', OM, 'John Williams', 'star-wars-the-last-jedi', sp_search('Star Wars The Last Jedi soundtrack')),
- ('Star Wars: The Rise of Skywalker', 'Film', 'Music department', 'John Williams', 'star-wars-the-rise-of-skywalker', sp_search('Star Wars The Rise of Skywalker soundtrack')),
- ('Black Panther: Wakanda Forever', 'Film', OM, 'Ludwig Göransson', 'black-panther-wakanda-forever', sp_search('Black Panther Wakanda Forever score')),
- ('Babylon', 'Film', OM, 'Justin Hurwitz', 'babylon', sp_search('Babylon soundtrack Justin Hurwitz')),
- ('Blue Beetle', 'Film', OM, '', 'blue-beetle', sp_search('Blue Beetle soundtrack')),
- ('White Noise', 'Film', OM, '', 'white-noise', sp_search('White Noise soundtrack')),
- ('Cocaine Bear', 'Film', OM, '', 'cocaine-bear', sp_search('Cocaine Bear soundtrack')),
- ('Chevalier', 'Film', OM, 'Kris Bowers', 'chevalier', sp_search('Chevalier soundtrack Kris Bowers')),
+ ('Frozen II', 'Film', OM, '', 'frozen-ii', 'https://open.spotify.com/album/2IYymqH84JShTdQmQLLQib'),
+ ('Star Wars: The Last Jedi', 'Film', OM, 'John Williams', 'star-wars-the-last-jedi', 'https://open.spotify.com/album/0LhcWlgnpCVHqOVFZFuoPX'),
+ ('Star Wars: The Rise of Skywalker', 'Film', 'Music department', 'John Williams', 'star-wars-the-rise-of-skywalker', 'https://open.spotify.com/album/26pelVOow8ODvBktJbDiua'),
+ ('Black Panther: Wakanda Forever', 'Film', OM, 'Ludwig Göransson', 'black-panther-wakanda-forever', 'https://open.spotify.com/album/2lPz7qiqG7TfvKr3S1Lv6p'),
+ ('Babylon', 'Film', OM, 'Justin Hurwitz', 'babylon', 'https://open.spotify.com/album/0jCuKxy96iDfx9JtXKRyXe'),
+ ('Blue Beetle', 'Film', OM, '', 'blue-beetle', 'https://open.spotify.com/album/4NLYPWzYd1ujwgONgN8wyY'),
+ ('White Noise', 'Film', OM, '', 'white-noise', 'https://open.spotify.com/album/1w3u4kuJ8SzccCpuiWMNMi'),
+ ('Cocaine Bear', 'Film', OM, '', 'cocaine-bear', 'https://open.spotify.com/album/0N4pj2fNZaIKpxA4IgzH9V'),
+ ('Chevalier', 'Film', OM, 'Kris Bowers', 'chevalier', 'https://open.spotify.com/album/3y2KkTMbsx3E35iUTb971k'),
  ('Jerry & Marge Go Large', 'Film', OM, '', 'jerry-and-marge-go-large', sp_search('Jerry and Marge Go Large soundtrack')),
- ('Haunted Mansion', 'Film', OM, 'Kris Bowers', 'haunted-mansion', sp_search('Haunted Mansion 2023 soundtrack')),
+ ('Haunted Mansion', 'Film', OM, 'Kris Bowers', 'haunted-mansion', 'https://open.spotify.com/album/7JNLw46VIKt7zqPxFA69l7'),
  ('Mink!', 'Film', OM, 'Katya Richardson', 'mink-documentary', sp_search('Mink documentary soundtrack')),
- ('The Gilded Age', 'Television', OM, 'Harry & Rupert Gregson-Williams', 'the-gilded-age', sp_search('The Gilded Age soundtrack Gregson-Williams')),
- ('Bridgerton', 'Television', OM, 'Kris Bowers', 'bridgerton', sp_search('Bridgerton Kris Bowers')),
- ('The Mandalorian', 'Television', OM, 'Ludwig Göransson', 'the-mandalorian', sp_search('The Mandalorian original score')),
- ('The Book of Boba Fett', 'Television', OM, '', 'the-book-of-boba-fett', sp_search('The Book of Boba Fett soundtrack')),
- ('Star Trek: Strange New Worlds', 'Television', OM, '', 'star-trek-strange-new-worlds', sp_search('Star Trek Strange New Worlds soundtrack')),
- ('Star Trek: Discovery', 'Television', OM, '', 'star-trek-discovery', sp_search('Star Trek Discovery soundtrack')),
- ('Star Trek: Picard', 'Television', OM, '', 'star-trek-picard', sp_search('Star Trek Picard soundtrack')),
- ('Stargirl', 'Television', OM, '', 'dc-stargirl', sp_search('Stargirl soundtrack')),
- ('The Serpent Queen', 'Television', OM, '', 'the-serpent-queen', sp_search('The Serpent Queen soundtrack')),
+ ('The Gilded Age', 'Television', OM, 'Harry & Rupert Gregson-Williams', 'the-gilded-age', 'https://open.spotify.com/album/7icj34ybGKOf7I17PrNiJv'),
+ ('Bridgerton', 'Television', OM, 'Kris Bowers', 'bridgerton', 'https://open.spotify.com/album/2bU8GVy0KNAzkONX5traPF'),
+ ('The Mandalorian', 'Television', OM, 'Ludwig Göransson', 'the-mandalorian', 'https://open.spotify.com/album/4xFmHg5dYvaqmn9ZNQpjWL'),
+ ('The Book of Boba Fett', 'Television', OM, '', 'the-book-of-boba-fett', 'https://open.spotify.com/album/36qgdmFn1KjBOSG55PB1Ju'),
+ ('Star Trek: Strange New Worlds', 'Television', OM, '', 'star-trek-strange-new-worlds', 'https://open.spotify.com/album/2P5KuodhuREeyUQ45YB1OS'),
+ ('Star Trek: Discovery', 'Television', OM, '', 'star-trek-discovery', 'https://open.spotify.com/album/2DEDHUZtAES0hbA4sLDQMx'),
+ ('Star Trek: Picard', 'Television', OM, '', 'star-trek-picard', 'https://open.spotify.com/album/1Y3O3nlU44LOvFZ80ra0Oq'),
+ ('Stargirl', 'Television', OM, '', 'dc-stargirl', 'https://open.spotify.com/album/0ODOwrlaTvaKi90n7HUfJL'),
+ ('The Serpent Queen', 'Television', OM, '', 'the-serpent-queen', 'https://open.spotify.com/album/7czo2aVfu05Cgw19bCV653'),
  ('Outer Banks', 'Television', OM, '', 'outer-banks', sp_search('Outer Banks soundtrack')),
- ('The Santa Clauses', 'Television', OM, '', 'the-santa-clauses', sp_search('The Santa Clauses soundtrack')),
- ('Frozen Planet II', 'Television', OM, '', 'frozen-planet-ii', sp_search('Frozen Planet II soundtrack')),
- ('Prehistoric Planet 2', 'Television', OM, '', 'prehistoric-planet-2', sp_search('Prehistoric Planet soundtrack')),
+ ('The Santa Clauses', 'Television', OM, '', 'the-santa-clauses', 'https://open.spotify.com/album/0jnYejzZyzLuVNtxIzAFpc'),
+ ('Frozen Planet II', 'Television', OM, '', 'frozen-planet-ii', 'https://open.spotify.com/album/0SiUBQ5pFMK350B63fxSSt'),
+ ('Prehistoric Planet 2', 'Television', OM, '', 'prehistoric-planet-2', 'https://open.spotify.com/album/3pOdQGVWA4Bv7BLlwQZdo9'),
  ('The Simpsons', 'Television', OM, '', 'the-simpsons', sp_search('The Simpsons music')),
  ('Bluey', 'Television', OM, '', 'bluey', sp_search('Bluey soundtrack')),
- ('The Wonderful World of Mickey Mouse', 'Television', OM, '', 'the-wonderful-world-of-mickey-mouse', sp_search('The Wonderful World of Mickey Mouse soundtrack')),
+ ('The Wonderful World of Mickey Mouse', 'Television', OM, '', 'the-wonderful-world-of-mickey-mouse', 'https://open.spotify.com/album/1OLXel73Mf74Mzb2mUaxAH'),
  ('American Dad', 'Television', OM, '', 'american-dad', sp_search('American Dad soundtrack')),
- ('Fraggle Rock: Back to the Rock', 'Television', OM, '', 'fraggle-rock-back-to-the-rock', sp_search('Fraggle Rock Back to the Rock')),
- ('T.O.T.S.', 'Television', OM, 'Tiny Ones Transport Service', 'tots-tiny-ones-transport-service', sp_search('T.O.T.S. Disney Junior')),
- ('Mira, Royal Detective', 'Television', OM, '', 'mira-royal-detective', sp_search('Mira Royal Detective soundtrack')),
- ('Cars on the Road', 'Television', OM, '', 'cars-on-the-road', sp_search('Cars on the Road soundtrack')),
+ ('Fraggle Rock: Back to the Rock', 'Television', OM, '', 'fraggle-rock-back-to-the-rock', 'https://open.spotify.com/album/2tslldkcDqRu8nsCwu9Ly1'),
+ ('T.O.T.S.', 'Television', OM, 'Tiny Ones Transport Service', 'tots-tiny-ones-transport-service', 'https://open.spotify.com/album/2387gp9mfOvJPBYNqb59MG'),
+ ('Mira, Royal Detective', 'Television', OM, '', 'mira-royal-detective', 'https://open.spotify.com/album/0bbffEsQXm7Z16d0iC3W2k'),
+ ('Cars on the Road', 'Television', OM, '', 'cars-on-the-road', 'https://open.spotify.com/album/53Pq1jb0ZarMh5Gm2qArVT'),
  ('Genshin Impact', 'Game', OM, '', 'genshin-impact', sp_search('Genshin Impact soundtrack')),
 ]
 BY = {p[0]: p for p in P}
@@ -154,6 +154,23 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 @media (max-width: 600px){.luxcard{grid-template-columns:1fr !important}.luxcard>.cov{max-width:280px}}
 @media (max-width: 1100px){.cwrap{grid-template-columns:1fr}.cprev{display:none}}
 @media (max-height: 520px) and (orientation: landscape){header>div[style*="padding-top: 2"]{padding-top:96px !important}header h1>span:last-child,header h1[style*="font-size: clamp"]{font-size:clamp(44px,14vh,96px) !important}}
+.cov.playing,.row.playing{outline:3px solid #e2581a;outline-offset:3px}
+.row.playing{outline-offset:-3px}
+@media (hover: none){.cov[data-sp] .play{opacity:1;transform:none}}
+@media (max-width: 600px){.pgrid{grid-template-columns:1fr 1fr !important;gap:30px 14px !important}.pgrid h3{font-size:20px !important}.pgrid .cov .play{left:8px;bottom:8px;padding:6px 9px 6px 8px}.names{font-size:18px !important;line-height:1.25 !important}}
+.spbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;gap:8px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:rgba(27,26,23,.96);box-shadow:0 -10px 30px -12px rgba(0,0,0,.45);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.spbar.on{transform:none}
+.spbar .spin{flex:1;min-width:0;height:80px}
+.spbar .spin iframe{display:block;width:100%;height:80px;border:0;border-radius:12px}
+.spbar .spx{flex:none;width:44px;height:44px;border-radius:999px;border:1px solid rgba(247,244,236,.4);background:transparent;color:#f7f4ec;font-size:22px;line-height:1;cursor:pointer}
+body.sp-on{padding-bottom:104px}
+@media (max-width: 600px){.swipe{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px !important;margin:0 -24px;padding:0 24px 6px;scrollbar-width:none}.swipe::-webkit-scrollbar{display:none}.swipe>.prom{flex:0 0 82%;scroll-snap-align:start}
+.wall{grid-template-columns:repeat(4,1fr) !important;gap:8px !important}.wall .cov .play{display:none}
+#credits:not(.all) .row[data-t]:nth-of-type(n+14){display:none}}
+.more{display:none}
+.tp{display:none}
+@media (hover: none){.hv{display:none}.tp{display:inline}}
+@media (max-width: 600px){#credits:not(.all) .more{display:inline-flex;align-items:center;justify-content:center;min-height:46px;margin-top:18px;padding:0 20px;border-radius:999px;border:1px solid #1b1a17;background:transparent;color:#1b1a17;font-family:'DM Mono',ui-monospace,monospace;font-size:12px;text-transform:uppercase;letter-spacing:.04em;cursor:pointer}}
 @media (max-width: 860px){.row .sub{display:block}.row,.cwrap .row{grid-template-columns:36px minmax(0,1fr) 40px}.row .hide{display:none}.row .peek{display:none}}'''
 
 
@@ -181,6 +198,12 @@ def nav(color, current=''):
             f'<span style="display: flex; flex-wrap: wrap; gap: 6px 26px">{ls}</span></nav>')
 
 
+def spid(href):
+    """'album/ID' or 'track/ID' for a real Spotify link (playable in the in-page player), else ''."""
+    m = re.match(r'https://open\.spotify\.com/(album|track|playlist)/([A-Za-z0-9]+)', href or '')
+    return f'{m.group(1)}/{m.group(2)}' if m else ''
+
+
 def cov(title, key, ratio, href, label='Play on Spotify', extra='', grad=None):
     alt = f'{title} poster' if ratio == '2 / 3' else (f'{title} album cover' if ratio == '1 / 1' else f'{title} artwork')
     img = f'<img src="{A[key]}" alt="{alt}" loading="lazy">' if key else ''
@@ -188,8 +211,10 @@ def cov(title, key, ratio, href, label='Play on Spotify', extra='', grad=None):
                              f'<span style="position: absolute; left: 10px; top: 9px; {MONO}; font-size: 9px; color: rgba(251,248,242,.8)">HBO</span>'
                              f'<span style="position: absolute; left: 10px; right: 10px; bottom: 12px; {COND}; font-size: 22px; line-height: .95; color: #fbf8f2">{title}</span>')
     tag = 'a' if href else 'span'
-    attrs = f' href="{href}" aria-label="Play {title} on Spotify"' if href else ''
-    play = f'<span class="play">{PLAY}{label}</span>' if href else ''
+    sid = spid(href)
+    attrs = (f' href="{href}" data-sp="{sid}" data-spt="{title}" aria-label="Play {title}"' if sid
+             else f' href="{href}" aria-label="Play {title} on Spotify"' if href else '')
+    play = f'<span class="play">{PLAY}{"Play" if sid else label}</span>' if href else ''
     return f'<{tag} class="cov"{attrs} style="aspect-ratio: {ratio}{extra}">{inner}{play}</{tag}>'
 
 
@@ -293,7 +318,7 @@ def home():
         wnb = ' · '.join((lambda q: (q.rsplit('\u00a0', 1)[0] + ' ' + q.rsplit('\u00a0', 1)[1]) if '&' in q else q)(seg.replace(' ', '\u00a0').replace('-', '\u2011')) for seg in (w or '').split(' · '))
         pdata += f' data-t="{t}" data-m="{role}" data-w="{wnb}" data-c="{CATCOL[cat]}" data-r="{"2 / 3" if cat in ("Film", "Television", "Game") else "1 / 1"}"'
         go = f'<span class="go" style="{MONO}; font-size: 11px">{PLAY}{"Watch" if "instagram" in spot else "Listen"}</span>' if spot else f'<span class="go" style="{MONO}; font-size: 11px; color: {MUTE}">Broadcast</span>'
-        tag, attr = ('a', f' href="{spot}"') if spot else ('div', '')
+        tag, attr = ('a', f' href="{spot}"' + (f' data-sp="{spid(spot)}" data-spt="{t}"' if spid(spot) else '')) if spot else ('div', '')
         if t in REC:
             go = f'<span class="go" style="{MONO}; font-size: 11px">Story {ARROW}</span>'
             tag, attr = 'a', f' href="{REC[t]}"'
@@ -321,7 +346,7 @@ def home():
 <h2 id="lux-h" style="margin: 0; {COND}; font-size: 46px; line-height: 0.92">Rosalía — LUX</h2>
 <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #2f2c27">Lead orchestrator on Rosalía's fourth album, recorded with the London Symphony Orchestra at AIR Studios, London.</p>
 <div style="display: flex; flex-direction: column">{aw}</div>
-<div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 6px"><a class="btn solid" href="{BY['LUX'][5]}">{PLAY}Listen</a><a class="btn line" href="Project.dc.html">About the record</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 6px"><a class="btn solid" href="{BY['LUX'][5]}" data-sp="{spid(BY['LUX'][5])}" data-spt="LUX">{PLAY}Listen</a><a class="btn line" href="Project.dc.html">About the record</a></div>
 </div>
 </article>
 </div>
@@ -329,8 +354,8 @@ def home():
 
 <section aria-label="Orchestras and composers" style="{WRAP}; margin-top: 110px">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 28px 72px; padding: 24px 0; border-top: 1px solid {INK}; border-bottom: 1px solid {INK}">
-<div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestras</span><p style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: #1d6fc4">London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra · Seattle Symphony · National Arts Centre Orchestra</p></div>
-<div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestration teams for</span><p style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: {C['mag']}">John Williams · Ludwig Göransson · Kris Bowers · Walter Murphy · Justin Hurwitz</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestras</span><p class="names" style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: #1d6fc4">London Symphony Orchestra · New York Philharmonic · San Francisco Symphony · BBC Concert Orchestra · Seattle Symphony · National Arts Centre Orchestra</p></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="{MONO}; font-size: 11px; color: {MUTE}">Orchestration teams for</span><p class="names" style="margin: 0; {COND}; font-size: 24px; line-height: 1.15; color: {C['mag']}">John Williams · Ludwig Göransson · Kris Bowers · Walter Murphy · Justin Hurwitz</p></div>
 </div>
 </section>
 
@@ -341,16 +366,16 @@ def home():
 
 <section id="work" aria-label="Selected work" style="{WRAP}; margin-top: 140px; display: flex; flex-direction: column; gap: 44px">
 {staff_head('A', 'Film &amp; television', 'Selected')}
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 44px 28px">
+<div class="pgrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 44px 28px">
 {posters}</div>
 {staff_head('B', 'Records', 'Selected')}
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 44px 28px">
+<div class="pgrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 44px 28px">
 {recs}</div>
 </section>
 
 <section id="live" aria-label="Live" style="{WRAP}; margin-top: 140px; display: flex; flex-direction: column; gap: 36px">
 {staff_head('C', 'Live', '<a class="cl" href="Live.dc.html" style="padding: 10px 0">BBC Proms · San Francisco Symphony →</a>')}
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px">
+<div class="swipe" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px">
 {proms}</div>
 </section>
 
@@ -368,7 +393,7 @@ def home():
 </section>
 
 <section aria-label="More film and television" style="{WRAP}; margin-top: 140px; display: flex; flex-direction: column; gap: 32px">
-{staff_head('D', 'Also on screen', 'Most watched first · hover to play')}
+{staff_head('D', 'Also on screen', 'Most watched first · <span class="hv">hover</span><span class="tp">tap</span> to play')}
 <div class="wall">
 {wall}</div>
 </section>
@@ -381,6 +406,7 @@ def home():
 <div>
 <div aria-hidden="true" class="row" style="border-top: 0; padding-top: 0; padding-bottom: 10px; {MONO}; font-size: 11px; color: {MUTE}"><span>No.</span><span>Title</span><span class="hide">Category</span><span class="hide">Role</span><span class="hide">With</span><span></span></div>
 {rows}</div>
+<button type="button" class="more" onclick="this.closest('#credits').classList.add('all');this.remove()">Show all {len(P)} credits</button>
 </div>
 </section>
 {CREDIT_JS}
@@ -523,7 +549,7 @@ def workwith():
 </section>
 
 <section aria-label="Recent work" style="{WRAP}; margin-top: 140px; display: flex; flex-direction: column; gap: 32px">
-{staff_head('B', 'Recent work', 'Hover to play')}
+{staff_head('B', 'Recent work', '<span class="hv">Hover</span><span class="tp">Tap</span> to play')}
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 45%), 1fr)); gap: 14px; align-items: end">
 {strip}</div>
 </section>
@@ -940,7 +966,7 @@ ES = [
  ('>Recorded<', '>Grabación<'), ('>AIR Studios, London<', '>AIR Studios, Londres<'), ('>Label<', '>Sello<'),
  ('>Recognition<', '>Reconocimientos<'), ('>Tracklist<', '>Canciones<'), ('>LUX · 18 tracks<', '>LUX · 18 canciones<'), ('Orchestration: Kyle Daniel Gordon<', 'Orquestación: Kyle Daniel Gordon<'),
  ('Listen on Spotify</a>', 'Escuchar en Spotify</a>'), ('Play the album</a>', 'Escuchar el álbum</a>'),
- ('>Play on Spotify<', '>Escuchar en Spotify<'), ('Next — Film', 'Siguiente — Cine'),
+ ('>Play<', '>Escuchar<'), ('aria-label="Play LUX"', 'aria-label="Escuchar LUX"'), ('Next — Film', 'Siguiente — Cine'),
  ('>Latin Grammys<', '>Latin Grammy<'),
  ('Album of the Year, Song of the Year (“La Perla”), Best Alternative Music Album and more · 27th Latin Grammy Awards, 2026',
   'Álbum del Año, Canción del Año («La Perla»), Mejor Álbum de Música Alternativa y más · 27.ª edición de los Latin Grammy, 2026'),
