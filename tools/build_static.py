@@ -57,7 +57,8 @@ PERSON = {
                    "url": "https://www.rollingstone.com/music/music-features/rosalia-lux-collaborators-making-of-1235470741/"},
                   {"@type": "NewsArticle", "headline": "Baby Shark Teams Up with the London Symphony Orchestra for a 10-Year Celebration",
                    "publisher": {"@type": "Organization", "name": "The Pinkfong Company"}, "url": "https://www.thepinkfongcompany.com/en/news/pr/121"}],
-    "sameAs": ["https://www.imdb.com/name/nm8773349/", "https://www.instagram.com/kylegordonmusic/", "https://musicbrainz.org/artist/d642a287-31a5-409d-aaf6-33e91929405c", "https://www.discogs.com/artist/13136118-Kyle-Gordon-7", "https://www.allmusic.com/artist/kyle-daniel-gordon-mn0005019152", "https://www.wikidata.org/wiki/Q136366079", "https://www.youtube.com/@kylegordonmusic", "https://www.linkedin.com/in/kyle-daniel-gordon-5274ab451/", "https://genius.com/artists/Kyle-daniel-gordon"]}
+    "description": "Orchestrator, arranger and conductor in Los Angeles; lead orchestrator on Rosalía’s LUX, recorded with the London Symphony Orchestra. Not the comedian Kyle Gordon.",
+    "sameAs": ["https://www.imdb.com/name/nm8773349/", "https://open.spotify.com/artist/1A2JT6653OXPB6ccSnsaPv", "https://www.instagram.com/kylegordonmusic/", "https://musicbrainz.org/artist/d642a287-31a5-409d-aaf6-33e91929405c", "https://www.discogs.com/artist/13136118-Kyle-Gordon-7", "https://www.allmusic.com/artist/kyle-daniel-gordon-mn0005019152", "https://www.wikidata.org/wiki/Q136366079", "https://www.youtube.com/@kylegordonmusic", "https://www.linkedin.com/in/kyle-daniel-gordon-5274ab451/", "https://genius.com/artists/Kyle-daniel-gordon"]}
 ALBUM = {
     "@type": "MusicAlbum", "@id": SITE + "/work/rosalia-lux/#album", "name": "LUX",
     "byArtist": {"@type": "MusicGroup", "name": "Rosalía"}, "datePublished": "2025-11-07",
@@ -105,13 +106,13 @@ PAGES = [
          desc='Kyle Daniel Gordon orchestrated Rosalía’s LUX, recorded with the London Symphony Orchestra at AIR Studios. Six Latin Grammys; Grammy Album of the Year nominee.',
          graph=[PERSON, ALBUM, {"@type": "BreadcrumbList", "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Work", "item": SITE + "/#work"},
-             {"@type": "ListItem", "position": 2, "name": "Rosalía, LUX", "item": SITE + "/work/rosalia-lux/"}]}],
+             {"@type": "ListItem", "position": 2, "name": "Rosalía, LUX", "item": SITE + "/work/rosalia-lux/"}]}, FAQ('lux')],
          og=ogi('rosalia-lux'), alternates={'en': '/work/rosalia-lux/', 'es': '/es/rosalia-lux/'}),
     dict(src='ProjectES.dc.html', og=ogi('es-rosalia-lux'), out='es/rosalia-lux/index.html', path='/es/rosalia-lux/', lang='es',
          alternates={'en': '/work/rosalia-lux/', 'es': '/es/rosalia-lux/'},
          title='Rosalía, LUX: orquestaciones de Kyle Daniel Gordon',
          desc='Kyle Daniel Gordon fue el orquestador principal de LUX de Rosalía, grabado con la Orquesta Sinfónica de Londres. Seis Latin Grammy; nominado al Grammy a Álbum del Año.',
-         graph=[PERSON, ALBUM]),
+         graph=[PERSON, ALBUM, FAQ('lux_es')]),
     dict(src='WorkWith.dc.html', out='work-with-kyle/index.html', path='/work-with-kyle/',
          title='Hire an Orchestrator: Kyle Daniel Gordon',
          desc='Orchestration, pop string arrangements and conducting for composers, artists and labels. Orchestrator on Rosalía’s LUX, Oppenheimer and the BBC Proms.',

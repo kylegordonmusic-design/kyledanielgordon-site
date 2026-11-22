@@ -430,6 +430,27 @@ def home():
 
 
 # ------------------------------------------------------------------ LUX PROJECT
+def faq_block(qas):
+    return ''.join(f'''<details style="border-top: 1px solid {RULE}; padding: 18px 0">
+<summary style="cursor: pointer; {SANS}; font-size: 21px; letter-spacing: -0.02em; list-style-position: outside">{q}</summary>
+<p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; max-width: 66ch; color: #3a362f">{a}</p></details>''' for q, a in qas)
+
+
+# Questions people search for, answered on the LUX pages (visible + FAQPage schema). Sources: rosalia.com LUX credits ("Orchestrated by Kyle Gordon").
+FAQ_LUX = [
+    ('Who orchestrated Rosalía’s LUX?', 'Kyle Daniel Gordon, credited as Kyle Gordon. The album’s official credits on rosalia.com read “Orchestrated by Kyle Gordon.” He was lead orchestrator on LUX, writing the orchestra parts the London Symphony Orchestra recorded at AIR Studios in London. Other arrangers, including Caroline Shaw and Angélica Negrón, are credited on some tracks.'),
+    ('Who conducted the orchestra on LUX?', 'Daníel Bjarnason conducted the London Symphony Orchestra sessions at AIR Studios, London.'),
+    ('What has LUX won?', 'LUX won Album of the Year at the 2026 Latin Grammys and has 10 nominations at the 69th Grammy Awards, including Album of the Year.'),
+    ('Is Kyle Daniel Gordon the comedian Kyle Gordon?', 'No. Kyle Daniel Gordon, the orchestrator, arranger and conductor based in Los Angeles, is a different person from the comedian and musician Kyle Gordon.'),
+]
+FAQ_LUX_ES = [
+    ('¿Quién orquestó LUX de Rosalía?', 'Kyle Daniel Gordon, acreditado como Kyle Gordon. Los créditos oficiales del álbum en rosalia.com dicen «Orchestrated by Kyle Gordon». Fue el orquestador principal de LUX y escribió las partes de orquesta que la Orquesta Sinfónica de Londres grabó en los AIR Studios de Londres. Otros arreglistas, entre ellos Caroline Shaw y Angélica Negrón, figuran en algunas canciones.'),
+    ('¿Quién dirigió la orquesta en LUX?', 'Daníel Bjarnason dirigió las sesiones de la Orquesta Sinfónica de Londres en los AIR Studios de Londres.'),
+    ('¿Qué premios ha ganado LUX?', 'LUX ganó el Latin Grammy al Álbum del Año en 2026 y tiene 10 nominaciones en la 69.ª edición de los Grammy, entre ellas Álbum del Año.'),
+    ('¿Kyle Daniel Gordon es el humorista Kyle Gordon?', 'No. Kyle Daniel Gordon, orquestador, arreglista y director de orquesta radicado en Los Ángeles, es una persona distinta del humorista y músico Kyle Gordon.'),
+]
+
+
 def lux():
     tracks = ['Sexo, Violencia y Llantas', 'Reliquia', 'Divinize', 'Porcelana', 'Mio Cristo Piange Diamanti', 'Berghain', 'La Perla',
               'Mundo Nuevo', 'De Madrugá', 'Dios Es Un Stalker', 'La Yugular', 'Sauvignon Blanc', 'La Rumba Del Perdón', 'Memória', 'Magnolias',
@@ -484,6 +505,11 @@ def lux():
 <a class="btn line" href="{BY['LUX'][5]}" style="align-self: flex-start">{PLAY}Play the album</a>
 </div>
 <ol style="margin: 0; padding: 0; list-style: none; font-size: 17px; border-bottom: 1px solid {RULE}">{tl}</ol>
+</section>
+
+<section id="faq" aria-label="Questions" style="{WRAP}; margin-top: 130px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 32px 80px; align-items: start">
+{staff_head('C', 'Questions', 'About LUX')}
+<div style="border-bottom: 1px solid {RULE}">{faq_block(FAQ_LUX)}</div>
 </section>
 
 <section aria-label="Next project" style="{WRAP}; margin-top: 140px">
@@ -977,7 +1003,7 @@ ES = [
 
 
 def lux_es():
-    s = lux()
+    s = lux().replace(faq_block(FAQ_LUX), faq_block(FAQ_LUX_ES)).replace(">Questions<", ">Preguntas<").replace(">About LUX<", ">Sobre LUX<").replace('aria-label="Questions"', 'aria-label="Preguntas"')
     missing = [a for a, b in ES if a not in s]
     if missing:
         print('ES: not found ->', [m[:40] for m in missing])
@@ -1013,12 +1039,6 @@ open(os.path.join(OUT, 'Privacy.dc.html'), 'w', encoding='utf-8').write(privacy(
 # ------------------------------------------------------------------ SEO LANDING PAGES
 def prose(paras, width='66ch'):
     return ''.join(f'<p style="margin: 0; font-size: 18px; line-height: 1.65; max-width: {width}">{t}</p>' for t in paras)
-
-
-def faq_block(qas):
-    return ''.join(f'''<details style="border-top: 1px solid {RULE}; padding: 18px 0">
-<summary style="cursor: pointer; {SANS}; font-size: 21px; letter-spacing: -0.02em; list-style-position: outside">{q}</summary>
-<p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; max-width: 66ch; color: #3a362f">{a}</p></details>''' for q, a in qas)
 
 
 FAQ_LA = [
@@ -1142,7 +1162,7 @@ def contact():
 
 for _fn, _f in [('LA.dc.html', la_page), ('Orchestrator.dc.html', orchestrator_guide), ('Contact.dc.html', contact)]:
     open(os.path.join(OUT, _fn), 'w', encoding='utf-8').write(_f().replace('family=Instrument+Sans:wght@400;500;600', 'family=Instrument+Sans:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1'))
-json.dump({'la': FAQ_LA, 'contact': FAQ_CONTACT}, open('/home/claude/kdg_scripts/faq.json', 'w'), ensure_ascii=False)
+json.dump({'la': FAQ_LA, 'contact': FAQ_CONTACT, 'lux': FAQ_LUX, 'lux_es': FAQ_LUX_ES}, open('/home/claude/kdg_scripts/faq.json', 'w'), ensure_ascii=False)
 
 # credits for structured data (read by build_static.py)
 json.dump([dict(title=t, cat=c, role=r, with_=w, spotify=s) for t, c, r, w, k, s in P],
