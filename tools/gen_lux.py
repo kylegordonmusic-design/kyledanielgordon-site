@@ -1250,7 +1250,7 @@ def credits_page():
 {crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Credits')}
 {hero_title('Film · television · records · concerts', 'Credits', 'clamp(64px, 10vw, 160px)')}
 </div>
-{prose(['Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He has worked in the orchestration and music teams on film and television scores including <em>Oppenheimer</em>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em>, <em>Black Panther: Wakanda Forever</em>, <em>The Mandalorian</em> and <em>Bridgerton</em>, and was lead orchestrator on Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>. On <a class="cl" href="Oppenheimer.dc.html"><em>Oppenheimer</em></a> he was one of the orchestrators on Ludwig Göransson’s score.'])}
+{prose(['Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He has worked in the orchestration and music teams on film and television scores including <em>Oppenheimer</em>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em>, <em>Black Panther: Wakanda Forever</em>, <em>The Mandalorian</em> and <em>Bridgerton</em>, and was lead orchestrator on Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>. On <a class="cl" href="Oppenheimer.dc.html"><em>Oppenheimer</em></a> he was one of the orchestrators on Ludwig Göransson’s score. Credits from before 2026 list him as Kyle Gordon (IMDb, album notes, streaming services); it’s the same person.'])}
 </div></header>
 {''.join(secs)}
 {next_link('Hire', 'Orchestrator in Los Angeles', 'LA.dc.html')}
