@@ -508,7 +508,7 @@ def lux():
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: start">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
 <span style="{MONO}; font-size: 12px; color: {MUTE}"><a class="cl" href="Home.dc.html#work" style="padding: 10px 0">Work</a> / Records / Rosalía <span aria-hidden="true">·</span> <a class="cl" href="ProjectES.dc.html" hreflang="es" lang="es" style="padding: 10px 0">Español</a></span>
-<h1 style="margin: 0; display: flex; flex-direction: column; gap: 6px"><span style="{MONO}; font-size: 14px; font-weight: 400">Rosalía</span><span style="{COND}; font-size: clamp(96px, 15vw, 220px); line-height: 0.8; color: {INK}">LUX</span></h1>
+<h1 style="margin: 0; display: flex; flex-direction: column; gap: 6px"><span style="{MONO}; font-size: 14px; font-weight: 400">Rosalía</span><span style="{COND}; font-size: {H1_L}; line-height: 0.86; color: {INK}">LUX</span></h1>
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 40ch">Orchestrations for an album sung in thirteen languages, with the London Symphony Orchestra on every track.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch">LUX is Rosalía's fourth studio album, released in November 2025. Kyle Daniel Gordon was the album’s lead orchestrator. The album was recorded with the London Symphony Orchestra at AIR Studios in London, conducted by Daníel Bjarnason. Gordon also arranged about an hour of choral music for the project, performed by the Escolania de Montserrat.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">LUX won six Latin Grammys at the 27th Latin Grammy Awards, including Album of the Year, and is nominated for Album of the Year at the 69th Grammy Awards.</p>
@@ -586,7 +586,7 @@ def workwith():
 {nav('#ece8ff', 'Work with Kyle')}
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 48px 80px; align-items: start">
 <div class="rise" style="display: flex; flex-direction: column; gap: 24px">
-<h1 style="margin: 0; {COND}; font-size: clamp(72px, 10vw, 150px); line-height: 0.84; color: {C['sky']}">Work<br>with<br>Kyle</h1>
+<h1 style="margin: 0; {COND}; font-size: {H1_L}; line-height: 0.84; color: {C['sky']}">Work<br>with<br>Kyle</h1>
 <p style="margin: 0; font-size: 20px; line-height: 1.45; max-width: 46ch">Orchestration, pop string arrangements and conducting for composers, artists and labels, from first sketch to final session.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">Recent work includes the orchestrations for Rosalía's LUX with the London Symphony Orchestra, orchestration on Oppenheimer and Bridgerton, and arrangements for the BBC Proms. Projects can start at any stage: a mockup that needs a full score, an album that needs an orchestra, or a session that needs a conductor.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kylegordonmusic@gmail.com">Email Kyle</a><a class="btn line" href="Home.dc.html#credits">See all credits</a></div>
@@ -631,7 +631,11 @@ def spec(rows):
     return f'<dl style="margin: 0; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); {MONO}; font-size: 12px; border-bottom: 1px solid {RULE}">{sp}</dl>'
 
 
-def hero_title(kicker, big, size='clamp(76px, 12vw, 190px)'):
+H1_L, H1_M = 'clamp(64px, 10vw, 160px)', 'clamp(48px, 6.4vw, 104px)'  # page headings: two sizes site-wide (Kyle, Nov 22): large for short titles, medium for long ones
+
+
+def hero_title(kicker, big, size=None):
+    size = size or H1_L
     return (f'<h1 style="margin: 0; display: flex; flex-direction: column; gap: 6px"><span style="{MONO}; font-size: 14px; font-weight: 400">{kicker}</span>'
             f'<span style="{COND}; font-size: {size}; line-height: 0.86; letter-spacing: -0.01em">{big}</span></h1>')
 
@@ -655,7 +659,7 @@ def oppenheimer():
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: start">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
 {crumbs('<a class="cl" href="Home.dc.html#work" style="padding: 10px 0">Work</a>', 'Film', 'Oppenheimer')}
-{hero_title('Christopher Nolan · 2023', 'Oppenheimer', 'clamp(56px, 8vw, 128px)')}
+{hero_title('Christopher Nolan · 2023', 'Oppenheimer', H1_M)}  
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 42ch">Orchestration on Ludwig Göransson’s Academy Award-winning score.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch">Kyle Daniel Gordon was one of the orchestrators on Ludwig Göransson’s score for <em>Oppenheimer</em>, Christopher Nolan’s 2023 film about J. Robert Oppenheimer. The score won the Academy Award for Best Original Score.</p>
 <p style="margin: 0; font-size: 17px; max-width: 58ch; color: #3a362f">Nolan asked for a score led by the solo violin, which he heard as Oppenheimer’s own voice. Around two and a half hours of music runs through the three-hour film, and the orchestra recorded it in five days.</p>
@@ -728,7 +732,7 @@ def popstrings():
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: end">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
 {crumbs('<a class="cl" href="WorkWith.dc.html" style="padding: 10px 0">Work with Kyle</a>', 'Pop strings')}
-{hero_title('String &amp; orchestral arrangements for artists', 'Pop strings', 'clamp(76px, 12vw, 190px)')}
+{hero_title('String &amp; orchestral arrangements for artists', 'Pop strings')}
 </div>
 <div class="rise" style="animation-delay: .1s; display: flex; flex-direction: column; gap: 18px">
 <p style="margin: 0; font-size: 18px; max-width: 58ch">Kyle Daniel Gordon writes string and orchestral arrangements for pop and alternative artists. He was lead orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and arranges for records, sessions and live shows.</p>
@@ -956,7 +960,7 @@ def press(lang='en'):
 {nav('#f2efe8')}
 <div style="{WRAP}; padding-top: 220px; display: flex; flex-direction: column; gap: 20px" class="rise">
 {crumbs(f'<a class="cl" href="Home.dc.html" style="padding: 10px 0">{T["crumb"][0]}</a>', T['crumb'][1] + ' <span aria-hidden="true">·</span> ' + T['other'])}
-{hero_title(T['kicker'], T['title'], 'clamp(64px, 10vw, 160px)')}
+{hero_title(T['kicker'], T['title'])}
 <p style="margin: 0; max-width: 60ch; font-size: 18px; line-height: 1.55">{T['intro']}</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="mailto:kyledanielgordonpress@gmail.com?subject={T['subj']}">{T['ask']}</a><a class="btn line" href="/press/kyle-daniel-gordon-press-sheet.pdf" download>{T['sheet']}</a></div>
 <span style="{MONO}; font-size: 12px; color: {MUTE}; overflow-wrap: anywhere">{T['office']} · kyledanielgordonpress@gmail.com</span>
@@ -1064,7 +1068,7 @@ def privacy():
 {band(PAGE_GRADS['privacy'], 260)}
 {nav('#f2efe8')}
 <div style="{WRAP}; padding-top: 200px; display: flex; flex-direction: column; gap: 14px" class="rise">
-{hero_title('Updated November 2026', 'Privacy', 'clamp(64px, 10vw, 150px)')}
+{hero_title('Updated November 2026', 'Privacy')}
 </div></header>
 <section aria-label="Privacy" style="{WRAP}; margin-top: 70px; border-bottom: 1px solid {RULE}">{body}</section>
 {footer('#b9b0a0 30%, #4b463e 62%, #1b1a17 100%')}'''
@@ -1102,7 +1106,7 @@ def la_page():
 <div style="{WRAP}; padding-top: 220px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
 <div style="display: flex; flex-direction: column; gap: 18px">
 {crumbs('<a class="cl" href="WorkWith.dc.html" style="padding: 10px 0">Work with Kyle</a>', 'Los Angeles')}
-{hero_title('Film, television &amp; records', 'Orchestrator in Los Angeles', 'clamp(52px, 7vw, 112px)')}
+{hero_title('Film, television &amp; records', 'Orchestrator in Los Angeles', H1_M)}
 </div>
 <div style="display: flex; flex-direction: column; gap: 18px">
 {prose(['Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He was lead orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and has worked on the scores for <em>Oppenheimer</em>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em> and <em>The Gilded Age</em>.'])}
@@ -1146,7 +1150,7 @@ def orchestrator_guide():
 {nav('#f4f0fa')}
 <div style="{WRAP}; padding-top: 210px; display: flex; flex-direction: column; gap: 16px" class="rise">
 {crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Guide')}
-{hero_title('A guide by Kyle Daniel Gordon, orchestrator', 'What does an orchestrator do?', 'clamp(48px, 6.4vw, 104px)')}
+{hero_title('A guide by Kyle Daniel Gordon, orchestrator', 'What does an orchestrator do?', H1_M)}
 </div></header>
 <article style="{WRAP}; margin-top: 90px; display: flex; flex-direction: column; gap: 46px; max-width: 900px">{body}</article>
 {next_link('Hire an orchestrator', 'Orchestrator in Los Angeles', 'LA.dc.html')}
@@ -1176,7 +1180,7 @@ def contact():
 <div style="{WRAP}; padding-top: 210px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
 <div style="display: flex; flex-direction: column; gap: 16px">
 {crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Contact')}
-{hero_title('Orchestration · strings · conducting', 'Contact', 'clamp(64px, 10vw, 160px)')}
+{hero_title('Orchestration · strings · conducting', 'Contact')}
 </div>
 <div style="display: flex; flex-direction: column; gap: 10px">
 <a href="mailto:kylegordonmusic@gmail.com" style="{SANS}; font-size: clamp(24px, 2.7vw, 40px); letter-spacing: -0.04em; text-decoration: none; color: {INK}; overflow-wrap: anywhere">kylegordonmusic@gmail.com</a>
@@ -1231,7 +1235,7 @@ def arranger_page():
 <div style="{WRAP}; padding-top: 220px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
 <div style="display: flex; flex-direction: column; gap: 18px">
 {crumbs('<a class="cl" href="WorkWith.dc.html" style="padding: 10px 0">Work with Kyle</a>', 'Arranger, Los Angeles')}
-{hero_title('Strings, orchestra &amp; live shows', 'Arranger in Los Angeles', 'clamp(52px, 7vw, 112px)')}
+{hero_title('Strings, orchestra &amp; live shows', 'Arranger in Los Angeles', H1_M)}
 </div>
 <div style="display: flex; flex-direction: column; gap: 18px">
 {prose(['Kyle Daniel Gordon is a Los Angeles arranger and orchestrator who writes string and orchestral arrangements for artists, records and live shows. He was lead orchestrator on Rosalía’s <em>LUX</em>, recorded with the London Symphony Orchestra, and has arranged for the BBC Proms, the London Symphony Orchestra and touring rock shows.'])}
@@ -1285,7 +1289,7 @@ def credits_page():
 <div style="{WRAP}; padding-top: 210px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 40px 80px; align-items: end" class="rise">
 <div style="display: flex; flex-direction: column; gap: 16px">
 {crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', 'Credits')}
-{hero_title('Film · television · records · concerts', 'Credits', 'clamp(64px, 10vw, 160px)')}
+{hero_title('Film · television · records · concerts', 'Credits')}
 </div>
 {prose(['Kyle Daniel Gordon is a Los Angeles orchestrator, arranger and conductor. He has worked in the orchestration and music teams on film and television scores including <em>Oppenheimer</em>, <em>Frozen II</em>, <em>Star Wars: The Last Jedi</em>, <em>Black Panther: Wakanda Forever</em>, <em>The Mandalorian</em> and <em>Bridgerton</em>, and was lead orchestrator on Rosalía’s <a class="cl" href="Project.dc.html"><em>LUX</em></a>. On <a class="cl" href="Oppenheimer.dc.html"><em>Oppenheimer</em></a> he was one of the orchestrators on Ludwig Göransson’s score. Credits from before 2026 list him as Kyle Gordon (IMDb, album notes, streaming services); it’s the same person.'])}
 </div></header>
@@ -1327,7 +1331,7 @@ def _guide(slug, kicker, title, sections, faq, next_args, foot, crumb='Guide'):
 {nav('#f6f0e6')}
 <div style="{WRAP}; padding-top: 210px; display: flex; flex-direction: column; gap: 16px" class="rise">
 {crumbs('<a class="cl" href="Home.dc.html" style="padding: 10px 0">Home</a>', crumb)}
-{hero_title(kicker, title, 'clamp(44px, 6vw, 96px)')}
+{hero_title(kicker, title, H1_M)}
 </div></header>
 <article style="{WRAP}; margin-top: 90px; display: flex; flex-direction: column; gap: 46px; max-width: 900px">{body}
 <section aria-label="Questions" style="display: flex; flex-direction: column; gap: 16px; padding-top: 28px; border-top: 1.5px solid {INK}">
@@ -1460,7 +1464,7 @@ def record_page(r):
 <div style="{WRAP}; padding-top: 230px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 80px; align-items: start">
 <div class="rise" style="display: flex; flex-direction: column; gap: 22px">
 {crumbs('<a class="cl" href="Home.dc.html#credits" style="padding: 10px 0">Credits</a>', 'Records', r['crumb'])}
-{hero_title(r['kicker'], r['big'], r['size'])}
+{hero_title(r['kicker'], r['big'], H1_M if len(r['big']) > 16 else H1_L)}
 <p style="margin: 0; {MONO}; font-size: 15px; line-height: 1.45; max-width: 46ch">{r['lede']}</p>
 {body}
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><a class="btn solid" href="{spot}"{(' data-sp="' + spid(spot) + '" data-spt="' + t + '"') if spid(spot) else ''}>{PLAY}Listen</a>{watch_btn}<a class="btn line" href="WorkWith.dc.html">Work with Kyle</a></div>
