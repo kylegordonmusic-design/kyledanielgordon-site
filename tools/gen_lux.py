@@ -631,7 +631,7 @@ def spec(rows):
     return f'<dl style="margin: 0; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); {MONO}; font-size: 12px; border-bottom: 1px solid {RULE}">{sp}</dl>'
 
 
-H1_L, H1_M = 'clamp(64px, 10vw, 160px)', 'clamp(48px, 6.4vw, 104px)'  # page headings: two sizes site-wide (Kyle, Nov 22): large for short titles, medium for long ones
+H1_L, H1_M = 'clamp(76px, 12vw, 190px)', 'clamp(48px, 6.4vw, 104px)'  # page headings: two sizes site-wide (Kyle, Nov 22): large for short titles, medium for long ones
 
 
 def hero_title(kicker, big, size=None):
