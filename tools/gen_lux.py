@@ -14,7 +14,7 @@ TINT = {'Record': '#e6eac9', 'Stage': '#e6eac9', 'Film': '#f6dcc8', 'Television'
 
 
 def sp_search(q):
-    return 'https://open.spotify.com/search/' + quote(q)
+    return ''  # Kyle 2026-11-22: no Spotify anywhere; titles without a verified Apple preview show no player
 
 
 # title, category, role, with, image key, spotify
@@ -195,12 +195,6 @@ CSS = '''.cl{text-decoration:underline;text-underline-offset:5px;text-decoration
 .ap-sk::before,.ap-sk b{content:"";position:absolute;left:0;top:7px;height:2px;border-radius:2px}
 .ap-sk::before{right:0;background:rgba(247,244,236,.1)}
 .ap-sk b{width:0;background:rgba(226,88,26,.85)}
-.spbar .spin{display:none;border-radius:14px;overflow:hidden;background:#121212}
-.spbar.sp .spin{display:block}.spbar.sp .ap{display:none}
-.spbar.sp{background:#121212;width:min(560px,calc(100% - 20px))}
-.spbar .spin iframe{display:block;width:100%;height:80px;border:0}
-.spbar.sp .spx{display:block}
-.spbar .spx{display:none;position:absolute;top:-11px;right:-6px;z-index:2;width:28px;height:28px;padding:0;border-radius:999px;border:0;background:#f7f4ec;color:#1b1a17;font-size:17px;line-height:28px;text-align:center;cursor:pointer;box-shadow:0 4px 12px -4px rgba(0,0,0,.5)}
 @media (prefers-reduced-motion: reduce){.spbar{transition:none}.spbar.playing .ap-eq i{animation:none;height:8px}}
 body.sp-on{padding-bottom:92px}
 @media (max-width: 600px){.swipe{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px !important;margin:0 -24px;padding:0 24px 6px;scrollbar-width:none}.swipe::-webkit-scrollbar{display:none}.swipe>.prom{flex:0 0 82%;scroll-snap-align:start}
@@ -1057,10 +1051,10 @@ open(os.path.join(OUT, 'ProjectES.dc.html'), 'w', encoding='utf-8').write(lux_es
 def privacy():
     items = [('What is measured', 'This site uses Cloudflare Web Analytics (page views, no cookies) and Microsoft Clarity (anonymous heatmaps and session recordings that show how pages are used). Text you type into forms is masked. Neither tool is used for advertising.'),
              ('Cookies', 'Cloudflare Web Analytics sets no cookies. Microsoft Clarity may set first-party cookies to link page views within a visit; where consent is required it runs without them. You can block both with any standard content blocker.'),
-             ('Music previews', 'When you open a page with music, the site asks Apple’s public iTunes catalogue for 30-second previews and their cover art. Pressing play streams the preview from Apple. Recordings without an Apple preview play in Spotify’s player. Apple and Spotify can see your IP address when this happens.'),
+             ('Music previews', 'When you open a page with music, the site asks Apple’s public iTunes catalogue for 30-second previews and their cover art. Pressing play streams the preview from Apple, which can see your IP address when this happens.'),
              ('Your data', 'No personal information is collected unless you email Kyle. Email is used only to reply. For questions or deletion requests, write to kylegordonmusic@gmail.com.'),
              ('Who runs this site', 'kyledanielgordon.com is run by KG Music LLC, the business of Kyle Daniel Gordon, Los Angeles. Contact: kylegordonmusic@gmail.com.'),
-             ('Third parties', 'Microsoft’s privacy statement: privacy.microsoft.com. Cloudflare’s privacy policy: cloudflare.com/privacypolicy. Apple: apple.com/legal/privacy. Spotify: spotify.com/legal/privacy-policy.')]
+             ('Third parties', 'Microsoft’s privacy statement: privacy.microsoft.com. Cloudflare’s privacy policy: cloudflare.com/privacypolicy. Apple: apple.com/legal/privacy.')]
     body = ''.join(f'''<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px 60px; padding: 22px 0; border-top: 1px solid {RULE}">
 <h2 style="margin: 0; {SANS}; font-size: 22px; letter-spacing: -0.02em">{h}</h2><p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 62ch">{t}</p></div>''' for h, t in items)
     inner = f'''<header style="position: relative">

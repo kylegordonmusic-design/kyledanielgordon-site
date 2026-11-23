@@ -315,6 +315,7 @@ for p in PAGES:
 </body>
 </html>
 '''
+    html = re.sub(r'https://open\.spotify\.com/((?:album|track)/[A-Za-z0-9]+)', lambda m: f'https://music.apple.com/us/song/{APMAP[m.group(1)]}' if m.group(1) in APMAP else m.group(0), html)
     dst = os.path.join(OUT, p['out'])
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     open(dst, 'w', encoding='utf-8').write(html)
