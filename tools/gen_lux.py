@@ -379,7 +379,7 @@ def home():
 {cov('LUX', 'rosalia-lux-album', '1 / 1', BY['LUX'][5])}
 <div style="display: flex; flex-direction: column; gap: 10px">
 <span style="{MONO}; font-size: 11px; color: #b5410b">Lead orchestrator · Rosalía · 2025</span>
-<h2 id="lux-h" style="margin: 0; {COND}; font-size: 46px; line-height: 0.92">Rosalía — LUX</h2>
+<h2 id="lux-h" style="margin: 0; {SANS}; font-size: clamp(28px, 3vw, 40px); line-height: 1; letter-spacing: -0.04em">Rosalía — LUX</h2>
 <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #2f2c27">Lead orchestrator on Rosalía's fourth album, recorded with the London Symphony Orchestra at AIR Studios, London.</p>
 <div style="display: flex; flex-direction: column">{aw}</div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 6px"><a class="btn solid" href="{BY['LUX'][5]}" data-sp="{spid(BY['LUX'][5])}" data-spt="LUX">{PLAY}Listen</a><a class="btn line" href="Project.dc.html">About the record</a></div>
