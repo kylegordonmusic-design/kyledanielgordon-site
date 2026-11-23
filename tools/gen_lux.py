@@ -57,19 +57,19 @@ P = [
  ('Star Trek: Picard', 'Television', OM, '', 'star-trek-picard', 'https://open.spotify.com/album/1Y3O3nlU44LOvFZ80ra0Oq'),
  ('Stargirl', 'Television', OM, '', 'dc-stargirl', 'https://open.spotify.com/album/0ODOwrlaTvaKi90n7HUfJL'),
  ('The Serpent Queen', 'Television', OM, '', 'the-serpent-queen', 'https://open.spotify.com/album/7czo2aVfu05Cgw19bCV653'),
- ('Outer Banks', 'Television', OM, '', 'outer-banks', sp_search('Outer Banks soundtrack')),
+ ('Outer Banks', 'Television', OM, '', 'outer-banks', 'https://music.apple.com/us/song/6796042426'),
  ('The Santa Clauses', 'Television', OM, '', 'the-santa-clauses', 'https://open.spotify.com/album/0jnYejzZyzLuVNtxIzAFpc'),
  ('Frozen Planet II', 'Television', OM, '', 'frozen-planet-ii', 'https://open.spotify.com/album/0SiUBQ5pFMK350B63fxSSt'),
  ('Prehistoric Planet 2', 'Television', OM, '', 'prehistoric-planet-2', 'https://open.spotify.com/album/3pOdQGVWA4Bv7BLlwQZdo9'),
- ('The Simpsons', 'Television', OM, '', 'the-simpsons', sp_search('The Simpsons music')),
- ('Bluey', 'Television', OM, '', 'bluey', sp_search('Bluey soundtrack')),
+ ('The Simpsons', 'Television', OM, '', 'the-simpsons', 'https://music.apple.com/us/song/1659682209'),
+ ('Bluey', 'Television', OM, '', 'bluey', 'https://music.apple.com/us/song/1861778645'),
  ('The Wonderful World of Mickey Mouse', 'Television', OM, '', 'the-wonderful-world-of-mickey-mouse', 'https://open.spotify.com/album/1OLXel73Mf74Mzb2mUaxAH'),
- ('American Dad', 'Television', OM, '', 'american-dad', sp_search('American Dad soundtrack')),
+ ('American Dad', 'Television', OM, '', 'american-dad', 'https://music.apple.com/us/song/1774798972'),
  ('Fraggle Rock: Back to the Rock', 'Television', OM, '', 'fraggle-rock-back-to-the-rock', 'https://open.spotify.com/album/2tslldkcDqRu8nsCwu9Ly1'),
  ('T.O.T.S.', 'Television', OM, 'Tiny Ones Transport Service', 'tots-tiny-ones-transport-service', 'https://open.spotify.com/album/2387gp9mfOvJPBYNqb59MG'),
  ('Mira, Royal Detective', 'Television', OM, '', 'mira-royal-detective', 'https://open.spotify.com/album/0bbffEsQXm7Z16d0iC3W2k'),
  ('Cars on the Road', 'Television', OM, '', 'cars-on-the-road', 'https://open.spotify.com/album/53Pq1jb0ZarMh5Gm2qArVT'),
- ('Genshin Impact', 'Game', OM, '', 'genshin-impact', sp_search('Genshin Impact soundtrack')),
+ ('Genshin Impact', 'Game', OM, '', 'genshin-impact', 'https://music.apple.com/us/song/6824267023'),
 ]
 BY = {p[0]: p for p in P}
 REC = {'Romani: The Untold Story': 'Rec-romani.dc.html', 'Baby Shark 10th Anniversary': 'Rec-babyshark.dc.html',
@@ -234,7 +234,10 @@ def nav(color, current=''):
 def spid(href):
     """'album/ID' or 'track/ID' for a real Spotify link (playable in the in-page player), else ''."""
     m = re.match(r'https://open\.spotify\.com/(album|track|playlist)/([A-Za-z0-9]+)', href or '')
-    return f'{m.group(1)}/{m.group(2)}' if m else ''
+    if m:
+        return f'{m.group(1)}/{m.group(2)}'
+    m = re.match(r'https://music\.apple\.com/us/song/(\d+)', href or '')
+    return f'apple/{m.group(1)}' if m else ''
 
 
 def cov(title, key, ratio, href, label='Play on Spotify', extra='', grad=None):
