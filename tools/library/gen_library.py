@@ -2,7 +2,7 @@
 python3 gen_library.py preview out.html   -> single file, fonts + images inlined (for review)
 python3 gen_library.py site <site_dir>      -> writes <site_dir>/holiday-library/index.html + images
 """
-import sys, os, base64, html, shutil, urllib.parse
+import sys, os, re, base64, html, shutil, urllib.parse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FONTS = '/tmp/site_new/fonts'
@@ -51,11 +51,35 @@ def b64(path, mime):
 def mailto(subject):
     return 'mailto:' + EMAIL + '?subject=' + urllib.parse.quote(subject)
 
-def build(mode):
+GRAD = '#0b1712 0%, #1d4a35 24%, #b8702f 50%, #f2dcc0 76%'
+SITE = 'https://www.kyledanielgordon.com'
+
+def shell(src_page):
+    """Pull the site's real styles, nav, footer and analytics from a built page so this page matches the site."""
+    t = open(src_page).read()
+    head = t[:t.index('</head>')]
+    styles = ''.join(re.findall(r'<style>.*?</style>', head, re.S))
+    preloads = ''.join(re.findall(r'<link as="(?:font|image)"[^>]*>', head))
+    nav = re.search(r'<nav aria-label="Primary".*?</nav>', t, re.S).group(0)
+    nav = nav.replace(' aria-current="page"', '')
+    nav = re.sub(r'(font-size: 12px; color: )#[0-9a-fA-F]{3,6}', r'\g<1>#f6eedd', nav, count=1)
+    foot = t[t.index('<footer'):t.index('</footer>') + 9]
+    foot = re.sub(r'linear-gradient\(180deg, #f7f4ec 0%, [^)]*\)', 'linear-gradient(180deg, #f7f4ec 0%, #b8702f 30%, #1d4a35 62%, #0b1712 100%)', foot, count=1)
+    tail = t[t.index("<script>addEventListener('load',function(){var s=document.createElement('script')"):t.index('</body>')]
+    # Clarity: tag visits that came through a personal /r/ link (#c=code) so sessions can be matched to the email that was sent
+    tail = tail.replace("if(location.pathname.indexOf('/for/')===0)",
+        "var m=/[#&]c=([a-z0-9]{3})/.exec(location.hash);if(m){clarity('set','lib',m[1]);try{history.replaceState(null,'',location.pathname)}catch(e){}}\nif(location.pathname.indexOf('/for/')===0)")
+    return styles, preloads, nav, foot, tail
+
+def band(h=300):
+    fade = 'linear-gradient(180deg, #000 0%, #000 42%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.18) 86%, transparent 100%)'
+    return (f'<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: {h + 160}px; '
+            f'background: linear-gradient(180deg, {GRAD}); overflow: hidden; -webkit-mask-image: {fade}; mask-image: {fade}">'
+            f'<span class="grain" style="opacity: 0.38"></span></div>')
+
+def build(mode, src_page):
     E = html.escape
-    def font(name):
-        p = os.path.join(FONTS, name)
-        return b64(p, 'font/woff2') if mode == 'preview' else '/fonts/' + name
+    styles, preloads, nav, foot, tail = shell(src_page)
     def img(slug):
         p = os.path.join(HERE, 'img', slug + '.webp')
         return b64(p, 'image/webp') if mode == 'preview' else f'/holiday-library/img/{slug}.webp'
@@ -66,7 +90,7 @@ def build(mode):
         rows = []
         for c in items:
             n += 1
-            rows.append(f'''
+            rows.append(f"""
 <article class="chart">
   <button class="thumb" data-full="{img(c['slug'])}" aria-label="Score sample: {E(c['title'])}">
     <img src="{img(c['slug'])}" alt="First score page of {E(c['title'])}, watermarked" loading="lazy" width="1100" height="1700">
@@ -81,118 +105,88 @@ def build(mode):
       <div><dt>Voices</dt><dd>{E(c['vox'])}</dd></div>
       <div class="wide"><dt>Instrumentation</dt><dd>{E(c['inst'])}</dd></div>
     </dl>
-    <a class="btn" href="{mailto('Perusal request: ' + c['title'])}">Request perusal score</a>
+    <a class="btn solid" href="{mailto('Perusal request: ' + c['title'])}">Request perusal score</a>
   </div>
-</article>''')
-        cards.append(f'''
+</article>""")
+        cards.append(f"""
 <section class="set">
   <header class="sethead"><h2>{E(sname)}</h2><p>{E(sdesc)}</p></header>
   {''.join(rows)}
-</section>''')
-
+</section>""")
     fees = ''.join(f'<tr><th>{E(t)}</th><td>${a}</td><td>${b}</td></tr>' for t, a, b in FEES)
 
-    return f'''<!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow, noarchive">
-<title>Holiday Library · Kyle Daniel Gordon</title>
-<meta name="description" content="Holiday orchestral arrangements by Kyle Daniel Gordon, available for rental.">
-<style>
-@font-face{{font-family:'Archivo';font-weight:800;font-stretch:62%;font-display:swap;src:url({font('archivo-62-800.v2.woff2')}) format('woff2')}}
-@font-face{{font-family:'DM Mono';font-weight:400;font-display:swap;src:url({font('dm-mono-400.v2.woff2')}) format('woff2')}}
-@font-face{{font-family:'Instrument Sans';font-weight:400 700;font-display:swap;src:url({font('instrument-sans.v2.woff2')}) format('woff2')}}
-@font-face{{font-family:'Instrument Serif';font-style:italic;font-display:swap;src:url({font('instrument-serif-italic.v2.woff2')}) format('woff2')}}
-:root{{--ink:#1b1a17;--mute:#625d55;--cream:#f7f4ec;--paper:#fbf8f2;--or:#e2581a;--ol:#6f7a1c;--line:#1b1a1726}}
-*{{box-sizing:border-box}}
-html{{-webkit-text-size-adjust:100%}}
-body{{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.55 'Instrument Sans',system-ui,sans-serif}}
-a{{color:inherit}}
-.mono{{font-family:'DM Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase}}
-.wrap{{max-width:1180px;margin:0 auto;padding:0 28px}}
-.top{{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}}
-.top a{{text-decoration:none}}
-.hero{{padding:72px 0 56px;border-bottom:1px solid var(--line)}}
-.hero h1{{font-family:'Archivo','Arial Narrow',sans-serif;font-weight:800;font-stretch:62%;text-transform:uppercase;font-size:clamp(64px,11vw,168px);line-height:.86;letter-spacing:-.01em;margin:18px 0 28px}}
-.hero h1 em{{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;text-transform:none;font-stretch:100%;color:var(--or);letter-spacing:-.02em}}
-.lede{{max-width:640px;font-size:20px;line-height:1.5;margin:0}}
-.creds{{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:12px;border-top:1px solid var(--line)}}
-.creds div{{padding:18px 18px 0 0}}
-.creds b{{display:block;font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:28px;line-height:1}}
-.creds span{{color:var(--mute);font-size:14px}}
-.set{{padding:64px 0 8px}}
-.sethead{{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:8px}}
-.sethead h2{{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:44px;line-height:1;margin:0}}
-.sethead p{{color:var(--mute);margin:0;max-width:520px;text-align:right;font-size:15px}}
-.chart{{display:grid;grid-template-columns:220px 1fr;gap:36px;padding:32px 0;border-bottom:1px solid var(--line)}}
-.thumb{{position:relative;padding:0;border:1px solid var(--line);background:#fff;cursor:zoom-in;display:block;width:100%;aspect-ratio:11/17;overflow:hidden;box-shadow:0 1px 0 var(--line),0 12px 28px -18px #1b1a1766;transition:transform .2s}}
-.thumb:hover{{transform:translateY(-3px)}}
-.thumb img{{width:100%;height:100%;object-fit:cover;object-position:top;display:block}}
-.zoom{{position:absolute;left:0;right:0;bottom:0;background:var(--ink);color:var(--cream);font:500 11px/1 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;padding:9px}}
-.num{{font-family:'DM Mono',monospace;font-size:12px;color:var(--or)}}
-.meta h3{{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(36px,4.4vw,56px);line-height:.95;margin:6px 0 6px}}
-.by{{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:21px;color:var(--mute);margin:0 0 18px}}
-dl{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 28px;margin:0 0 22px}}
-dl .wide{{grid-column:1/-1}}
-dt{{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}}
-dd{{margin:0;font-size:16px}}
-.btn{{display:inline-block;background:var(--ink);color:var(--cream);text-decoration:none;font:500 12px/1 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;padding:14px 18px;border-radius:999px;transition:background .15s}}
-.btn:hover{{background:var(--or)}}
-.btn.alt{{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}}
-.btn.alt:hover{{background:var(--ink);color:var(--cream)}}
-.fees{{margin:72px 0 0;padding:48px;background:var(--ink);color:var(--cream);border-radius:4px;display:grid;grid-template-columns:1fr 1.25fr;gap:48px}}
-.fees h2{{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:56px;line-height:.92;margin:10px 0 16px}}
-.fees p{{color:#d9d3c7;font-size:15px;margin:0 0 10px}}
-table{{width:100%;border-collapse:collapse}}
-th,td{{text-align:left;padding:14px 0;border-bottom:1px solid #f7f4ec2e;font-size:16px;vertical-align:top}}
-td{{text-align:right;font-family:'DM Mono',monospace;font-size:18px;white-space:nowrap;padding-left:16px}}
-thead th{{font:500 11px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#bdb6a8}}
-thead th:not(:first-child){{text-align:right}}
-.terms{{list-style:none;padding:0;margin:18px 0 0;color:#d9d3c7;font-size:14px}}
-.terms li{{padding:4px 0 4px 16px;position:relative}}
-.terms li:before{{content:'—';position:absolute;left:0;color:var(--or)}}
-.cta{{padding:80px 0 96px;text-align:center}}
-.cta h2{{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(48px,7vw,96px);line-height:.9;margin:12px 0 22px}}
-.cta p{{color:var(--mute);margin:0 0 26px}}
-.cta .btns{{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}}
-footer{{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--mute);font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}}
-#lb{{position:fixed;inset:0;background:#1b1a17e6;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:4vh 16px;z-index:9;cursor:zoom-out}}
-#lb.on{{display:flex}}
-#lb img{{max-width:min(900px,100%);height:auto;background:#fff;box-shadow:0 20px 60px #0008}}
-#lb .x{{position:fixed;top:14px;right:18px;color:var(--cream);font:500 12px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase}}
-@media (max-width:760px){{
- .wrap{{padding:0 18px}} .top span{{display:none}}
- .hero{{padding:44px 0 40px}}
- .creds{{grid-template-columns:1fr 1fr}} .creds b{{font-size:22px}}
- .sethead{{display:block}} .sethead p{{text-align:left;margin-top:8px}}
- .chart{{grid-template-columns:110px 1fr;gap:18px}}
- dl{{grid-template-columns:1fr}}
- .fees{{grid-template-columns:1fr;padding:28px 22px;gap:24px}}
- .fees h2{{font-size:44px}}
-}}
-</style></head>
-<body>
-<div class="wrap">
-  <nav class="top mono"><a href="https://www.kyledanielgordon.com/">Kyle Daniel Gordon</a><span>Holiday Library · Rentals</span></nav>
+    css = """
+.lib{max-width:1392px;margin:0 auto;padding:0 24px;box-sizing:border-box}
+.lib *{box-sizing:border-box}
+.lib .lede{max-width:46ch;font-size:20px;line-height:1.45;margin:0}
+.lib .orch{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #1b1a1726;margin-top:12px}
+.lib .orch div{padding:16px 16px 0 0;font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:28px;line-height:1}
+.lib .set{padding:72px 0 8px}
+.lib .sethead{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-bottom:2px solid #1b1a17;padding-bottom:12px;margin-bottom:8px}
+.lib .sethead h2{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:44px;line-height:1;margin:0}
+.lib .sethead p{color:#625d55;margin:0;max-width:520px;text-align:right;font-size:15px}
+.lib .chart{display:grid;grid-template-columns:220px 1fr;gap:36px;padding:32px 0;border-bottom:1px solid #1b1a1726}
+.lib .thumb{position:relative;padding:0;border:1px solid #1b1a1726;background:#fff;cursor:zoom-in;display:block;width:100%;aspect-ratio:11/17;overflow:hidden;box-shadow:0 12px 28px -18px #1b1a1766;transition:transform .2s}
+.lib .thumb:hover{transform:translateY(-3px)}
+.lib .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.lib .zoom{position:absolute;left:0;right:0;bottom:0;background:#1b1a17;color:#f7f4ec;font:500 11px/1 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;padding:9px}
+.lib .num{font-family:'DM Mono',monospace;font-size:12px;color:#e2581a}
+.lib h3{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(36px,4.4vw,56px);line-height:.95;margin:6px 0}
+.lib .by{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:21px;color:#625d55;margin:0 0 18px}
+.lib dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 28px;margin:0 0 22px}
+.lib dl .wide{grid-column:1/-1}
+.lib dt{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#625d55;margin-bottom:2px}
+.lib dd{margin:0;font-size:16px}
+.lib .fees{margin:88px 0 0;padding:48px;background:#1b1a17;color:#f7f4ec;display:grid;grid-template-columns:1fr 1.25fr;gap:48px;position:relative;overflow:hidden}
+.lib .fees h2{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:56px;line-height:.92;margin:10px 0 16px}
+.lib .fees p{color:#d9d3c7;font-size:15px;margin:0 0 10px}
+.lib table{width:100%;border-collapse:collapse}
+.lib th,.lib td{text-align:left;padding:14px 0;border-bottom:1px solid #f7f4ec2e;font-size:16px;vertical-align:top}
+.lib td{text-align:right;font-family:'DM Mono',monospace;font-size:18px;white-space:nowrap;padding-left:16px}
+.lib thead th{font:500 11px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#bdb6a8}
+.lib thead th:not(:first-child){text-align:right}
+.lib .terms{list-style:none;padding:0;margin:18px 0 0;color:#d9d3c7;font-size:14px}
+.lib .terms li{padding:4px 0 4px 16px;position:relative}
+.lib .terms li:before{content:'—';position:absolute;left:0;color:#e2581a}
+.lib .cta{padding:96px 0 0;text-align:center}
+.lib .cta h2{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(48px,7vw,96px);line-height:.9;margin:12px 0 22px}
+.lib .cta p{color:#625d55;margin:0 0 26px}
+.lib .cta .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.mono{font-family:'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;font-size:12px}
+#lb{position:fixed;inset:0;background:#1b1a17e6;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:4vh 16px;z-index:99;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:min(900px,100%);height:auto;background:#fff;box-shadow:0 20px 60px #0008}
+#lb .x{position:fixed;top:14px;right:18px;color:#f7f4ec;font:500 12px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:760px){
+ .lib h1 em{font-size:.8em}
+ .lib .orch{grid-template-columns:1fr 1fr}.lib .orch div{font-size:22px}
+ .lib .sethead{display:block}.lib .sethead p{text-align:left;margin-top:8px}
+ .lib .chart{grid-template-columns:110px 1fr;gap:18px}
+ .lib dl{grid-template-columns:1fr}
+ .lib .fees{grid-template-columns:1fr;padding:28px 22px;gap:24px}.lib .fees h2{font-size:44px}
+}"""
 
-  <header class="hero">
-    <div class="mono" style="color:var(--ol)">KG Music Library · For orchestras</div>
-    <h1>Holiday<br><em>arrangements</em><br>for orchestra</h1>
+    body = f"""<div style="position: relative; background: #f7f4ec; color: #1b1a17; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 16px; line-height: 1.55; overflow-x: clip">
+<span class="grainm"></span>
+<header style="position: relative">
+{band(300)}
+{nav}
+<div class="lib" style="position: relative; padding-top: 230px">
+  <div class="rise" style="display: flex; flex-direction: column; gap: 24px">
+    <span class="mono" style="color: #1d4a35">KG Music Library · Holiday rentals</span>
+    <h1 style="margin: 0; font-family: 'Archivo', 'Arial Narrow', sans-serif; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(76px, 12vw, 190px); line-height: 0.84; color: #1d4a35">Holiday<br><em style="font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; text-transform: none; font-stretch: 100%; color: #e2581a; letter-spacing: -0.02em">arrangements</em><br>for orchestra</h1>
     <p class="lede">Nine holiday charts by Kyle Daniel Gordon, orchestrator on Rosalía’s <i>LUX</i>, recorded with the London Symphony Orchestra, which won Album of the Year at the Latin Grammys and is nominated for Album of the Year at the Grammys. Engraved and ready for the stands, for pops orchestra, choir and rhythm section.</p>
-    <div class="mono" style="margin-top:44px;color:var(--mute)">Kyle writes for</div>
-    <div class="creds orchs">
-      <div><b>London Symphony Orchestra</b></div>
-      <div><b>New York Philharmonic</b></div>
-      <div><b>San Francisco Symphony</b></div>
-      <div><b>BBC Concert Orchestra</b></div>
-    </div>
-  </header>
-
-  {''.join(cards)}
-
+    <div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn solid" href="#charts">See the charts</a><a class="btn line" href="#fees">Rental fees</a></div>
+  </div>
+  <div class="mono" style="margin-top: 64px; color: #625d55">Kyle writes for</div>
+  <div class="orch"><div>London Symphony Orchestra</div><div>New York Philharmonic</div><div>San Francisco Symphony</div><div>BBC Concert Orchestra</div></div>
+</div>
+</header>
+<main class="lib" id="charts">
+{''.join(cards)}
   <section class="fees" id="fees">
     <div>
-      <div class="mono" style="color:var(--or)">Rental fees</div>
+      <div class="mono" style="color:#e2581a">Rental fees</div>
       <h2>Per chart, per run</h2>
       <p>One fee covers all performances of a chart within a single run of up to six weeks. Score and parts are delivered as PDFs, or printed and shipped, with shipping billed at cost.</p>
       <ul class="terms">
@@ -206,18 +200,17 @@ footer{{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--mute);f
       <tbody>{fees}</tbody>
     </table>
   </section>
-
   <section class="cta">
-    <div class="mono" style="color:var(--ol)">Book or request perusal</div>
+    <div class="mono" style="color:#1d4a35">Book or request perusal</div>
     <h2>Planning your<br>holiday program?</h2>
-    <p>Tell us your concert dates and which charts you’re considering. We’ll reply within one business day.</p>
+    <p>Tell us your concert dates and which charts you’re considering. We’ll reply within one business day.<br><a class="cl" href="mailto:{EMAIL}">{EMAIL}</a></p>
     <div class="btns">
-      <a class="btn" href="{mailto('Holiday library: booking inquiry')}">Book a chart</a>
-      <a class="btn alt" href="{mailto('Holiday library: perusal request')}">Request perusal scores</a>
+      <a class="btn solid" href="{mailto('Holiday library: booking inquiry')}">Book a chart</a>
+      <a class="btn line" href="{mailto('Holiday library: perusal request')}">Request perusal scores</a>
     </div>
   </section>
-
-  <footer><span>KG Music Library · KG Music LLC · Los Angeles, California</span><a href="mailto:{EMAIL}">{EMAIL}</a></footer>
+</main>
+{foot}
 </div>
 <div id="lb" role="dialog" aria-label="Score sample"><span class="x">Close ×</span><img alt=""></div>
 <script>
@@ -226,11 +219,34 @@ document.querySelectorAll('.thumb').forEach(function(b){{b.addEventListener('cli
 lb.addEventListener('click',function(){{lb.classList.remove('on')}});
 document.addEventListener('keydown',function(e){{if(e.key==='Escape')lb.classList.remove('on')}});}})();
 </script>
-</body></html>'''
+{tail}"""
+
+    page = f"""<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+{preloads}
+{styles}
+<style>{css}</style>
+<title>Holiday Library · Kyle Daniel Gordon</title>
+<meta name="description" content="Holiday orchestral arrangements by Kyle Daniel Gordon, available for rental.">
+<meta content="#f7f4ec" name="theme-color">
+<link href="/favicon.svg?v=2" rel="icon" type="image/svg+xml"><link href="/apple-touch-icon.png?v=2" rel="apple-touch-icon">
+</head>
+<body>
+{body}
+</body></html>"""
+    if mode == 'preview':
+        for f in os.listdir(FONTS):
+            page = page.replace('/fonts/' + f, b64(os.path.join(FONTS, f), 'font/woff2'))
+        page = page.replace('url(/img/', f'url({SITE}/img/').replace('href="/', f'href="{SITE}/')
+        page = page.replace(tail, '')  # no analytics in the private preview
+    return page
 
 if __name__ == '__main__':
     mode, out = sys.argv[1], sys.argv[2]
-    page = build(mode)
+    src = os.path.join(out if mode == 'site' else '/tmp/site_new', 'work-with-kyle', 'index.html')
+    page = build(mode, src)
     if mode == 'preview':
         open(out, 'w').write(page)
     else:

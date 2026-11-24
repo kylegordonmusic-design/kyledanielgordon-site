@@ -1056,7 +1056,7 @@ open(os.path.join(OUT, 'ProjectES.dc.html'), 'w', encoding='utf-8').write(lux_es
 
 # ------------------------------------------------------------------ PRIVACY
 def privacy():
-    items = [('What is measured', 'This site uses Cloudflare Web Analytics (page views, no cookies) and Microsoft Clarity (anonymous heatmaps and session recordings that show how pages are used). Text you type into forms is masked. Neither tool is used for advertising.'),
+    items = [('What is measured', 'This site uses Cloudflare Web Analytics (page views, no cookies) and Microsoft Clarity (heatmaps and session recordings that show how pages are used). Text you type into forms is masked. Links in emails we send may carry a short reference code, so we can tell which email a visit came from. Neither tool is used for advertising.'),
              ('Cookies', 'Cloudflare Web Analytics sets no cookies. Microsoft Clarity may set first-party cookies to link page views within a visit; where consent is required it runs without them. You can block both with any standard content blocker.'),
              ('Music previews', 'When you open a page with music, the site asks Apple’s public iTunes catalogue for 30-second previews and their cover art. Pressing play streams the preview from Apple, which can see your IP address when this happens.'),
              ('Your data', 'No personal information is collected unless you email Kyle. Email is used only to reply. For questions or deletion requests, write to kylegordonmusic@gmail.com.'),
