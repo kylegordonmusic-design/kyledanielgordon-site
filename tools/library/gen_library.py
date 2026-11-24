@@ -153,6 +153,12 @@ def build(mode, src_page):
 .lib .cta p{color:#625d55;margin:0 0 26px}
 .lib .cta .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .mono{font-family:'DM Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;font-size:12px}
+.lib .comm{position:relative;overflow:hidden;margin:88px 0 0;padding:56px 48px;color:#fbf8f2;background:linear-gradient(120deg,#0b1712 0%,#1d4a35 45%,#b8702f 100%);display:grid;grid-template-columns:1fr 1fr;gap:40px 64px;align-items:end}
+.lib .comm-in{position:relative}
+.lib .comm h2{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(44px,5.6vw,80px);line-height:.9;margin:12px 0 0}
+.lib .comm h2 em{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;text-transform:none;font-stretch:100%;color:#f2dcc0;letter-spacing:-.02em}
+.lib .comm p{font-size:18px;line-height:1.5;margin:0 0 22px;max-width:44ch;color:#f6eedd}
+.lib .comm .btn.line:hover{background:#fbf8f2;color:#1b1a17;border-color:#fbf8f2}
 #lb{position:fixed;inset:0;background:#1b1a17e6;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:4vh 16px;z-index:99;cursor:zoom-out}
 #lb.on{display:flex}
 #lb img{max-width:min(900px,100%);height:auto;background:#fff;box-shadow:0 20px 60px #0008}
@@ -163,6 +169,7 @@ def build(mode, src_page):
  .lib .sethead{display:block}.lib .sethead p{text-align:left;margin-top:8px}
  .lib .chart{grid-template-columns:110px 1fr;gap:18px}
  .lib dl{grid-template-columns:1fr}
+ .lib .comm{grid-template-columns:1fr;padding:36px 22px;gap:20px}
  .lib .fees{grid-template-columns:1fr;padding:28px 22px;gap:24px}.lib .fees h2{font-size:44px}
 }"""
 
@@ -199,6 +206,17 @@ def build(mode, src_page):
       <thead><tr><th>Orchestra</th><th>First performance</th><th>Each additional</th></tr></thead>
       <tbody>{fees}</tbody>
     </table>
+  </section>
+  <section class="comm" aria-labelledby="comm-h">
+    <span aria-hidden="true" class="grain" style="opacity: 0.34"></span>
+    <div class="comm-in">
+      <div class="mono" style="color:#f2dcc0">Commissions</div>
+      <h2 id="comm-h">Need something<br><em>written for you?</em></h2>
+    </div>
+    <div class="comm-in comm-r">
+      <p>Kyle also writes new arrangements on commission: a holiday song your audience is asking for, a feature for your guest artist, or a full program built around your orchestra’s forces and your hall.</p>
+      <a class="btn line" style="color:#fbf8f2" href="{mailto('Commission inquiry')}">Ask about a commission</a>
+    </div>
   </section>
   <section class="cta">
     <div class="mono" style="color:#1d4a35">Book or request perusal</div>
