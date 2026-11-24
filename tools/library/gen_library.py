@@ -267,6 +267,14 @@ document.addEventListener('keydown',function(e){{if(e.key==='Escape')lb.classLis
 <style>{css}</style>
 <title>Holiday Library · Kyle Daniel Gordon</title>
 <meta name="description" content="Holiday orchestral arrangements by Kyle Daniel Gordon, available for rental.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Kyle Daniel Gordon">
+<meta property="og:title" content="Holiday Library · Kyle Daniel Gordon">
+<meta property="og:description" content="Holiday arrangements for orchestra, available to rent. Orchestrator on Rosalía’s LUX.">
+<meta property="og:url" content="https://www.kyledanielgordon.com/holiday-library/">
+<meta property="og:image" content="https://www.kyledanielgordon.com/holiday-library/share.jpg?v=1"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Holiday Library · Kyle Daniel Gordon">
+<meta name="twitter:description" content="Holiday arrangements for orchestra, available to rent. Orchestrator on Rosalía’s LUX.">
+<meta name="twitter:image" content="https://www.kyledanielgordon.com/holiday-library/share.jpg?v=1">
 <meta content="#f7f4ec" name="theme-color">
 <link href="/favicon.svg?v=2" rel="icon" type="image/svg+xml"><link href="/apple-touch-icon.png?v=2" rel="apple-touch-icon">
 </head>
@@ -289,6 +297,7 @@ if __name__ == '__main__':
     else:
         d = os.path.join(out, 'holiday-library'); os.makedirs(os.path.join(d, 'img'), exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w').write(page)
+        shutil.copy(os.path.join(HERE, 'og-holiday-library.jpg'), os.path.join(d, 'share.jpg'))
         for s in SETS:
             for c in s[2]:
                 shutil.copy(os.path.join(HERE, 'img', c['slug'] + '.webp'), os.path.join(d, 'img'))
