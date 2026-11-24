@@ -233,7 +233,6 @@ def build_b():
 <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
 <span style="{MONO}; font-size: 12px; letter-spacing: 0.32em">For bookings and sessions</span>
 <a href="mailto:kylegordonmusic@gmail.com" style="{COND}; font-weight: 900; font-size: clamp(36px, 7vw, 110px); line-height: 0.95; text-decoration: none; color: #f6efdc; overflow-wrap: anywhere">kylegordonmusic@gmail.com</a>
-<span style="{MONO}; font-size: 14px">(818) 518-3441</span>
 </div>
 <div style="position: relative; margin-top: 130px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; {MONO}; font-size: 12px">
 <span>Los Angeles</span>
@@ -325,7 +324,6 @@ def build_c():
 <footer id="contact" style="position: relative; max-width: 1440px; margin: 0 auto; padding: 140px 24px 40px; box-sizing: border-box">
 <a href="mailto:kylegordonmusic@gmail.com" style="display: block; {WIDE}; font-weight: 900; font-size: clamp(26px, 4.6vw, 66px); line-height: 1; letter-spacing: -0.03em; text-decoration: none; overflow-wrap: anywhere; border-top: 1px solid #1d1b18; padding-top: 28px">kylegordonmusic@gmail.com</a>
 <div style="margin-top: 60px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; {MONO}; font-size: 12px">
-<span>(818) 518-3441</span>
 <span style="display: flex; gap: 28px"><a class="cl" href="https://www.instagram.com/kylegordonmusic/" style="padding: 10px 0">Instagram</a><a class="cl" href="https://www.imdb.com/name/nm8773349/" style="padding: 10px 0">IMDb</a></span>
 </div>
 </footer>
