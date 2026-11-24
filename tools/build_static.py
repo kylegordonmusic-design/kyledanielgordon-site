@@ -385,3 +385,4 @@ import shortlinks
 shortlinks.build(OUT)  # /r/<code> tracked short links, written after the speed pass
 import subprocess as _sp  # hidden holiday rental catalog (noindex, not in sitemap/nav)
 _sp.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'library', 'gen_library.py'), 'site', OUT], check=True)
+_sp.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'library', 'gen_full_library.py'), 'site', OUT], check=True)
