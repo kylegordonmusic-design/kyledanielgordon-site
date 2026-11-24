@@ -273,7 +273,7 @@ def footer(grad):
 <div style="display: flex; flex-direction: column; gap: 10px">
 <span style="{MONO}; font-size: 12px; color: {C['celery']}">Contact</span>
 <a href="mailto:kylegordonmusic@gmail.com" style="{SANS}; font-size: clamp(19px, 6.2vw, 78px); line-height: 0.95; letter-spacing: -0.045em; text-decoration: none; color: #fbf8f2; white-space: nowrap; display: inline-block; padding: 6px 0">kylegordonmusic@gmail.com</a>
-<span style="{MONO}; font-size: 13px">(818) 518-3441 · Los Angeles</span>
+<span style="{MONO}; font-size: 13px">Los Angeles</span>
 </div>
 <a class="btn line" href="Contact.dc.html" style="color: #fbf8f2">Start a project</a>
 </div>
@@ -1184,7 +1184,6 @@ def contact():
 </div>
 <div style="display: flex; flex-direction: column; gap: 10px">
 <a href="mailto:kylegordonmusic@gmail.com" style="{SANS}; font-size: clamp(24px, 2.7vw, 40px); letter-spacing: -0.04em; text-decoration: none; color: {INK}; overflow-wrap: anywhere">kylegordonmusic@gmail.com</a>
-<a href="tel:+18185183441" class="cl" style="{MONO}; font-size: 14px; padding: 8px 0; align-self: flex-start">(818) 518-3441</a>
 <span style="{MONO}; font-size: 12px; color: {MUTE}">Los Angeles · working worldwide</span>
 </div></div></header>
 
