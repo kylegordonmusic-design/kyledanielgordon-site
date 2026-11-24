@@ -23,13 +23,15 @@ POPS1 = '1.1.1.1 — 1.1.1.1 — timp · perc — piano · harp · bass guitar �
 # (id, title, by, arr, cat, voices, duration, instrumentation, tags)
 C = [
  # Soul & gospel
+ ('soul-overture', 'Soul Overture', '', KDG, 'soul', 'Instrumental', '0:51', SOUL_INST, 'overture opener curtain raiser short instrumental soul funk black history month'),
+ ('a-change-is-gonna-come', 'A Change Is Gonna Come', 'Sam Cooke', KDG, 'soul', 'Lead vocal', '3:14', SOUL_INST, 'sam cooke civil rights mlk ballad black history month juneteenth anthem reflective'),
  ('ball-of-confusion', 'Ball of Confusion', 'The Temptations', KDG, 'soul', 'Lead vocal + choir', '3:45', SOUL_INST, 'soul motown protest civil rights black history month juneteenth funk upbeat energetic'),
- ('hard-times', 'Hard Times', '', KDG, 'soul', 'Lead vocal', '3:33', SOUL_INST, 'soul funk protest black history month groove'),
+ ('hard-times', 'Hard Times', 'Curtis Mayfield', KDG, 'soul', 'Lead vocal', '3:33', SOUL_INST, 'soul funk protest black history month groove'),
  ('how-i-got-over', 'How I Got Over', 'Clara Ward', KDG + ' & LJ Singers', 'gospel', 'Lead vocal + choir', '2:53', SOUL_INST, 'gospel choir church aretha black history month juneteenth uplifting celebration'),
  ('i-wish-i-knew', 'I Wish I Knew How It Would Feel to Be Free', 'Billy Taylor', KDG, 'soul', 'Lead vocal + choir', '4:34', SOUL_INST, 'nina simone civil rights freedom mlk black history month juneteenth anthem uplifting'),
  ('oh-happy-day', 'Oh Happy Day', 'Edwin Hawkins', KDG + ' & LJ Singers', 'gospel', 'Lead vocal + choir', '3:51', SOUL_INST, 'gospel choir church joyful celebration closer finale encore black history month juneteenth easter'),
  ('precious-lord', 'Precious Lord, Take My Hand', 'Thomas A. Dorsey', KDG + ' & LJ Singers', 'gospel', 'Lead vocal + choir', '4:29', SOUL_INST, 'gospel choir church ballad mlk memorial black history month reflective'),
- ('save-me-lord', 'Save Me Lord', '', KDG, 'gospel', 'Lead vocal', '2:05', SOUL_INST, 'spiritual gospel ballad nina simone reflective black history month'),
+ ('save-me-lord', 'Save Me, Lord, Save Me', 'Spiritual', KDG, 'gospel', 'Lead vocal', '2:05', SOUL_INST, 'spiritual gospel ballad nina simone reflective black history month'),
  ('say-it-loud', 'Say It Loud', 'James Brown', KDG, 'soul', 'Lead vocal + choir', '3:05', SOUL_INST, 'funk soul james brown protest black history month juneteenth energetic upbeat'),
  ('revolution', 'The Revolution Will Not Be Televised', 'Gil Scott-Heron', KDG, 'soul', 'Lead vocal (spoken)', '3:14', SOUL_INST, 'spoken word protest civil rights black history month jazz funk'),
  ('think', 'Think', 'Aretha Franklin', KDG, 'soul', 'Lead vocal + choir', '2:23', SOUL_INST, 'aretha soul women empowerment upbeat energetic black history month womens history month short'),
@@ -59,6 +61,7 @@ C = [
  ('l-is-for-love', 'L Is for Love', 'Kyle Daniel Gordon (original work)', '', 'concert', 'Instrumental', '4:11', '1.1.1.1 — 1.1.1.1 — timp · 2 perc — piano · harp — strings', 'original love valentines romantic lyrical instrumental'),
  ('fashion', 'Fashion', 'Lady Gaga', KDG, 'concert', 'Instrumental or vocal feature', '2:54', POPS1 + ' (+ soloist)', 'lady gaga pop pride fun young audiences dance upbeat instrumental vocal'),
  ('la-vie-en-rose', 'La Vie en Rose / Non, je ne regrette rien', 'Édith Piaf', KDG, 'concert', 'Instrumental or vocal feature', '5:31', '1.1.1.1 — 1.1.1.1 — timp · perc — harp · piano · upright bass · drum set (+ opt. melodica) — strings (+ soloist)', 'piaf french paris cabaret love valentines romantic medley instrumental vocal bastille day'),
+ ('ma-rendi', 'Ma rendi pur contento', 'Vincenzo Bellini', KDG, 'concert', 'Vocalist + choir', '1:54', '2 + picc · 2 + E.H. · 2 + b cl · 2 + cbsn — 4 hn · 2 tpt · 2 tbn · b tbn · tuba — timp · perc — piano · harp — strings (+ soloist, choir)', 'bellini italian art song opera aria lyrical choir chorus soprano tenor classical romantic gentle'),
  ('orage', 'Orage (from Platée)', 'Jean-Philippe Rameau', KDG + ' (transcription)', 'concert', 'Instrumental', '2:02', 'oboe · bassoon · piano — strings', 'baroque french storm chamber small orchestra short classical instrumental'),
  ('whatd-i-say', 'What’d I Say', 'Ray Charles', KDG, 'concert', 'Vocalist (+ backing vocal)', '4:31', '2.1.2.1 + alto, 2 tenor, bari sax — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — perc — piano · organ · guitar · upright bass · drums · harp — strings', 'ray charles big band jazz rhythm and blues soul swing finale encore upbeat'),
  ('ode-to-hope', 'Ode to Hope', 'Beethoven, reimagined', KDG, 'concert', 'Instrumental', 'On request', '1.1.1.1 — 1.1.1.1 — timp · perc — piano · harp — strings (+ optional flex band for side-by-side)', 'beethoven ode to joy peace unity side by side youth community education un day memorial instrumental'),
@@ -72,7 +75,7 @@ CATS = [('soul', 'Soul & Motown', 'Soul, Motown, funk and freedom songs for voca
         ('holiday', 'Holiday', 'Nine holiday charts: pops with rhythm section, vocal features and gospel carols.')]
 
 PROGRAMS = [
- ('Soul Revolution', 'A full evening of soul, Motown and freedom songs: Say It Loud, Think, War, I Wish I Knew How It Would Feel to Be Free, Oh Happy Day and more.', '13 charts · about 45 min', 'soul'),
+ ('Soul Revolution', 'A full evening of soul, Motown and freedom songs: Say It Loud, Think, War, I Wish I Knew How It Would Feel to Be Free, Oh Happy Day and more.', '15 charts · about 50 min', 'soul'),
  ('Bond & Beyond', 'A spy-themed set: The Avengers, Casino Royale, On Her Majesty’s Secret Service, The Man from U.N.C.L.E. and Spectre.', '5 charts · about 14 min', 'film'),
  ('Gospel Celebration', 'Choir-forward gospel with orchestra and band: Great I Am, Bless the Lord, Amazing God, Abide With Me, Precious Lord and Oh Happy Day.', '6+ charts · 20–25 min', 'gospel'),
  ('A Holiday Pops Half', 'Feliz Navidad, Fairytale of New York, This Christmas, Do-Re-Mi and the gospel carols. Program the half, we’ll do the rest.', '9 charts · about 35 min', 'holiday'),
@@ -319,6 +322,7 @@ document.querySelectorAll('.prog').forEach(function(p){p.addEventListener('click
       <p>One fee covers all performances of a chart within a single run of up to six weeks. Score and parts are delivered as PDFs, or printed and shipped, with shipping billed at cost.</p>
       <ul class="terms">
         <li>Renting a full program? Ask about program pricing</li>
+        <li>Custom instrumentation or a new key for your soloist: quoted per chart</li>
         <li>Rush delivery (within 3 weeks of first rehearsal): +$100</li>
         <li>Performance licensing for the underlying songs is handled through your usual ASCAP/BMI licenses</li>
         <li>Recording, broadcast and streaming by arrangement</li>
@@ -330,10 +334,10 @@ document.querySelectorAll('.prog').forEach(function(p){p.addEventListener('click
     <h2 id="faq-h">Good to know</h2>
     <div>
       <details><summary>Can I see the score before booking?</summary><p>Yes. Request a perusal score for any chart and we’ll send a watermarked PDF, usually within one business day.</p></details>
-      <details><summary>What if my vocalist needs a different key?</summary><p>Ask us. Many charts can be adapted for your soloist; we’ll tell you what’s possible and what it costs before anything is booked.</p></details>
+      <details><summary>What if my vocalist needs a different key?</summary><p>Kyle can re-key any chart for your soloist for a fee. We’ll quote it before anything is booked.</p></details>
       <details><summary>Do we need extra licensing?</summary><p>The rental covers the arrangement. Performance rights for the underlying songs go through your orchestra’s usual ASCAP/BMI licenses. Recording, broadcast and streaming are arranged separately.</p></details>
       <details><summary>How are parts delivered?</summary><p>As print-ready PDFs (score and parts), or printed and shipped to you, with shipping billed at cost.</p></details>
-      <details><summary>Our orchestra is smaller than the listed instrumentation.</summary><p>Tell us your forces. Several charts work with reduced winds or brass, and we’ll say which ones honestly.</p></details>
+      <details><summary>Our orchestra is smaller (or different) than the listed instrumentation.</summary><p>Kyle can adjust the instrumentation to fit your orchestra, for a fee: fewer winds or brass, no rhythm section, strings only, added choir, and so on. Tell us your forces and we’ll send a quote. Some charts already work with reduced forces as written, and we’ll tell you which.</p></details>
     </div>
   </section>
   <section class="comm" aria-labelledby="comm-h">

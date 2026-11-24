@@ -216,6 +216,7 @@ def build(mode, src_page):
       <h2>Per chart, per run</h2>
       <p>One fee covers all performances of a chart within a single run of up to six weeks. Score and parts are delivered as PDFs, or printed and shipped, with shipping billed at cost.</p>
       <ul class="terms">
+        <li>Custom instrumentation or a new key for your soloist: quoted per chart</li>
         <li>Rush delivery (within 3 weeks of first rehearsal): +$100</li>
         <li>Performance licensing for the underlying songs is handled through your usual ASCAP/BMI licenses</li>
         <li>Recording, broadcast and streaming by arrangement</li>
