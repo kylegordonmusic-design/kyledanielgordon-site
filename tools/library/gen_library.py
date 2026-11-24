@@ -94,12 +94,14 @@ def build(mode, src_page):
 <article class="chart">
   <button class="thumb" data-full="{img(c['slug'])}" aria-label="Score sample: {E(c['title'])}">
     <img src="{img(c['slug'])}" alt="First score page of {E(c['title'])}, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">{n:02d}</div>
     <h3>{E(c['title'])}</h3>
     <p class="by">{E(c['by'])} · arr. {E(c.get('arr','Kyle Daniel Gordon'))}</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>{E(c['dur'])}</dd></div>
       <div><dt>Voices</dt><dd>{E(c['vox'])}</dd></div>
@@ -113,7 +115,7 @@ def build(mode, src_page):
   <header class="sethead"><h2>{E(sname)}</h2><p>{E(sdesc)}</p></header>
   {''.join(rows)}
 </section>""")
-    fees = ''.join(f'<tr><th>{E(t)}</th><td>${a}</td><td>${b}</td></tr>' for t, a, b in FEES)
+    fees = ''.join(f'<tr><th>{E(t)}</th><td data-l="First performance">${a}</td><td data-l="Each additional">${b}</td></tr>' for t, a, b in FEES)
 
     css = """
 .lib{max-width:1392px;margin:0 auto;padding:0 24px;box-sizing:border-box}
@@ -125,7 +127,9 @@ def build(mode, src_page):
 .lib .sethead{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-bottom:2px solid #1b1a17;padding-bottom:12px;margin-bottom:8px}
 .lib .sethead h2{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:44px;line-height:1;margin:0}
 .lib .sethead p{color:#625d55;margin:0;max-width:520px;text-align:right;font-size:15px}
-.lib .chart{display:grid;grid-template-columns:220px 1fr;gap:36px;padding:32px 0;border-bottom:1px solid #1b1a1726}
+.lib .chart{display:grid;grid-template-columns:220px 1fr;grid-template-areas:'thumb head' 'thumb body';grid-template-rows:auto 1fr;gap:0 36px;padding:32px 0;border-bottom:1px solid #1b1a1726}
+.lib .chart .thumb{grid-area:thumb;align-self:start}.lib .chart .head{grid-area:head}.lib .chart .body{grid-area:body}
+.lib .zs{display:none}
 .lib .thumb{position:relative;padding:0;border:1px solid #1b1a1726;background:#fff;cursor:zoom-in;display:block;width:100%;aspect-ratio:11/17;overflow:hidden;box-shadow:0 12px 28px -18px #1b1a1766;transition:transform .2s}
 .lib .thumb:hover{transform:translateY(-3px)}
 .lib .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
@@ -164,13 +168,28 @@ def build(mode, src_page):
 #lb img{max-width:min(900px,100%);height:auto;background:#fff;box-shadow:0 20px 60px #0008}
 #lb .x{position:fixed;top:14px;right:18px;color:#f7f4ec;font:500 12px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
 @media (max-width:760px){
+ .lib.hero{padding-top:120px !important}
  .lib h1 em{font-size:.8em}
+ .lib .lede{font-size:18px}
  .lib .orch{grid-template-columns:1fr 1fr}.lib .orch div{font-size:22px}
- .lib .sethead{display:block}.lib .sethead p{text-align:left;margin-top:8px}
- .lib .chart{grid-template-columns:110px 1fr;gap:18px}
- .lib dl{grid-template-columns:1fr}
+ .lib .set{padding-top:56px}
+ .lib .sethead{display:block}.lib .sethead h2{font-size:38px}.lib .sethead p{text-align:left;margin-top:8px}
+ .lib .chart{grid-template-columns:92px 1fr;grid-template-areas:'thumb head' 'body body';grid-template-rows:auto auto;gap:18px 16px;padding:28px 0}
+ .lib .chart .head{align-self:center}
+ .lib h3{font-size:32px;margin:4px 0}
+ .lib .by{font-size:17px;margin:0;line-height:1.3}
+ .lib .zoom{font-size:9px;padding:7px 4px;letter-spacing:.04em}.lib .zl{display:none}.lib .zs{display:inline}
+ .lib dl{grid-template-columns:1fr 1fr;gap:12px 16px;margin:0 0 18px}
+ .lib .chart .btn{width:100%;justify-content:center}
  .lib .comm{grid-template-columns:1fr;padding:36px 22px;gap:20px}
- .lib .fees{grid-template-columns:1fr;padding:28px 22px;gap:24px}.lib .fees h2{font-size:44px}
+ .lib .fees{grid-template-columns:1fr;padding:30px 22px;gap:20px}.lib .fees h2{font-size:44px}
+ .lib table thead{display:none}
+ .lib table tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding:16px 0;border-bottom:1px solid #f7f4ec2e}
+ .lib table th{grid-column:1/-1;border:0;padding:0 0 4px;font-size:17px}
+ .lib table td{border:0;padding:0;text-align:left;font-size:22px}
+ .lib table td:before{content:attr(data-l);display:block;font:500 10px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#bdb6a8;margin-bottom:2px}
+ .lib .cta{padding-top:72px}
+ .lib .cta .btns .btn{width:100%;justify-content:center;max-width:340px}
 }"""
 
     body = f"""<div style="position: relative; background: #f7f4ec; color: #1b1a17; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 16px; line-height: 1.55; overflow-x: clip">
@@ -178,7 +197,7 @@ def build(mode, src_page):
 <header style="position: relative">
 {band(300)}
 {nav}
-<div class="lib" style="position: relative; padding-top: 230px">
+<div class="lib hero" style="position: relative; padding-top: 230px">
   <div class="rise" style="display: flex; flex-direction: column; gap: 24px">
     <span class="mono" style="color: #1d4a35">KG Music Library · Holiday rentals</span>
     <h1 style="margin: 0; font-family: 'Archivo', 'Arial Narrow', sans-serif; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(76px, 12vw, 190px); line-height: 0.84; color: #1d4a35">Holiday<br><em style="font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; text-transform: none; font-stretch: 100%; color: #e2581a; letter-spacing: -0.02em">arrangements</em><br>for orchestra</h1>

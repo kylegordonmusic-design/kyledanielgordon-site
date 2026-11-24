@@ -124,7 +124,9 @@ body.sp-on{padding-bottom:92px}
 .lib .sethead{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-bottom:2px solid #1b1a17;padding-bottom:12px;margin-bottom:8px}
 .lib .sethead h2{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:44px;line-height:1;margin:0}
 .lib .sethead p{color:#625d55;margin:0;max-width:520px;text-align:right;font-size:15px}
-.lib .chart{display:grid;grid-template-columns:220px 1fr;gap:36px;padding:32px 0;border-bottom:1px solid #1b1a1726}
+.lib .chart{display:grid;grid-template-columns:220px 1fr;grid-template-areas:'thumb head' 'thumb body';grid-template-rows:auto 1fr;gap:0 36px;padding:32px 0;border-bottom:1px solid #1b1a1726}
+.lib .chart .thumb{grid-area:thumb;align-self:start}.lib .chart .head{grid-area:head}.lib .chart .body{grid-area:body}
+.lib .zs{display:none}
 .lib .thumb{position:relative;padding:0;border:1px solid #1b1a1726;background:#fff;cursor:zoom-in;display:block;width:100%;aspect-ratio:11/17;overflow:hidden;box-shadow:0 12px 28px -18px #1b1a1766;transition:transform .2s}
 .lib .thumb:hover{transform:translateY(-3px)}
 .lib .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
@@ -163,13 +165,28 @@ body.sp-on{padding-bottom:92px}
 #lb img{max-width:min(900px,100%);height:auto;background:#fff;box-shadow:0 20px 60px #0008}
 #lb .x{position:fixed;top:14px;right:18px;color:#f7f4ec;font:500 12px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
 @media (max-width:760px){
+ .lib.hero{padding-top:120px !important}
  .lib h1 em{font-size:.8em}
+ .lib .lede{font-size:18px}
  .lib .orch{grid-template-columns:1fr 1fr}.lib .orch div{font-size:22px}
- .lib .sethead{display:block}.lib .sethead p{text-align:left;margin-top:8px}
- .lib .chart{grid-template-columns:110px 1fr;gap:18px}
- .lib dl{grid-template-columns:1fr}
+ .lib .set{padding-top:56px}
+ .lib .sethead{display:block}.lib .sethead h2{font-size:38px}.lib .sethead p{text-align:left;margin-top:8px}
+ .lib .chart{grid-template-columns:92px 1fr;grid-template-areas:'thumb head' 'body body';grid-template-rows:auto auto;gap:18px 16px;padding:28px 0}
+ .lib .chart .head{align-self:center}
+ .lib h3{font-size:32px;margin:4px 0}
+ .lib .by{font-size:17px;margin:0;line-height:1.3}
+ .lib .zoom{font-size:9px;padding:7px 4px;letter-spacing:.04em}.lib .zl{display:none}.lib .zs{display:inline}
+ .lib dl{grid-template-columns:1fr 1fr;gap:12px 16px;margin:0 0 18px}
+ .lib .chart .btn{width:100%;justify-content:center}
  .lib .comm{grid-template-columns:1fr;padding:36px 22px;gap:20px}
- .lib .fees{grid-template-columns:1fr;padding:28px 22px;gap:24px}.lib .fees h2{font-size:44px}
+ .lib .fees{grid-template-columns:1fr;padding:30px 22px;gap:20px}.lib .fees h2{font-size:44px}
+ .lib table thead{display:none}
+ .lib table tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding:16px 0;border-bottom:1px solid #f7f4ec2e}
+ .lib table th{grid-column:1/-1;border:0;padding:0 0 4px;font-size:17px}
+ .lib table td{border:0;padding:0;text-align:left;font-size:22px}
+ .lib table td:before{content:attr(data-l);display:block;font:500 10px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#bdb6a8;margin-bottom:2px}
+ .lib .cta{padding-top:72px}
+ .lib .cta .btns .btn{width:100%;justify-content:center;max-width:340px}
 }</style>
 <title>Holiday Library · Kyle Daniel Gordon</title>
 <meta name="description" content="Holiday orchestral arrangements by Kyle Daniel Gordon, available for rental.">
@@ -182,7 +199,7 @@ body.sp-on{padding-bottom:92px}
 <header style="position: relative">
 <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 460px; background: linear-gradient(180deg, #0b1712 0%, #1d4a35 24%, #b8702f 50%, #f2dcc0 76%); overflow: hidden; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 42%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.18) 86%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 42%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.18) 86%, transparent 100%)"><span class="grain" style="opacity: 0.38"></span></div>
 <nav aria-label="Primary" style="position: relative; max-width: 1392px; margin: 0 auto; padding-left: 24px; padding-right: 24px; box-sizing: border-box; padding-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; font-family: 'DM Mono', ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.04em; font-size: 12px; color: #f6eedd"><a href="/" style="padding: 10px 0; text-decoration: none">Kyle Daniel Gordon</a><span style="display: flex; flex-wrap: wrap; gap: 6px 26px"><a class="cl" href="/#work" style="padding: 10px 8px; margin: 0 -8px">Work</a><a class="cl" href="/work/rosalia-lux/" style="padding: 10px 8px; margin: 0 -8px">LUX</a><a class="cl" href="/live/" style="padding: 10px 8px; margin: 0 -8px">Live</a><a class="cl" href="/#credits" style="padding: 10px 8px; margin: 0 -8px">Credits</a><a class="cl" href="/#about" style="padding: 10px 8px; margin: 0 -8px">About</a><a class="cl" href="/work-with-kyle/" style="padding: 10px 8px; margin: 0 -8px">Work with Kyle</a><a class="cl" href="/contact/" style="padding: 10px 8px; margin: 0 -8px">Contact</a></span></nav>
-<div class="lib" style="position: relative; padding-top: 230px">
+<div class="lib hero" style="position: relative; padding-top: 230px">
   <div class="rise" style="display: flex; flex-direction: column; gap: 24px">
     <span class="mono" style="color: #1d4a35">KG Music Library · Holiday rentals</span>
     <h1 style="margin: 0; font-family: 'Archivo', 'Arial Narrow', sans-serif; font-stretch: 62%; font-weight: 800; text-transform: uppercase; font-size: clamp(76px, 12vw, 190px); line-height: 0.84; color: #1d4a35">Holiday<br><em style="font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; text-transform: none; font-stretch: 100%; color: #e2581a; letter-spacing: -0.02em">arrangements</em><br>for orchestra</h1>
@@ -201,12 +218,14 @@ body.sp-on{padding-bottom:92px}
 <article class="chart">
   <button class="thumb" data-full="/holiday-library/img/feliz-navidad.webp" aria-label="Score sample: Feliz Navidad">
     <img src="/holiday-library/img/feliz-navidad.webp" alt="First score page of Feliz Navidad, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">01</div>
     <h3>Feliz Navidad</h3>
     <p class="by">José Feliciano · arr. Kyle Daniel Gordon</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>c. 2:15</dd></div>
       <div><dt>Voices</dt><dd>Vocalist</dd></div>
@@ -218,12 +237,14 @@ body.sp-on{padding-bottom:92px}
 <article class="chart">
   <button class="thumb" data-full="/holiday-library/img/fairytale-of-new-york.webp" aria-label="Score sample: Fairytale of New York">
     <img src="/holiday-library/img/fairytale-of-new-york.webp" alt="First score page of Fairytale of New York, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">02</div>
     <h3>Fairytale of New York</h3>
     <p class="by">The Pogues (MacGowan / Finer) · arr. Kyle Daniel Gordon</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>c. 3:55</dd></div>
       <div><dt>Voices</dt><dd>Instrumental</dd></div>
@@ -235,12 +256,14 @@ body.sp-on{padding-bottom:92px}
 <article class="chart">
   <button class="thumb" data-full="/holiday-library/img/i-saw-three-ships.webp" aria-label="Score sample: I Saw Three Ships">
     <img src="/holiday-library/img/i-saw-three-ships.webp" alt="First score page of I Saw Three Ships, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">03</div>
     <h3>I Saw Three Ships</h3>
     <p class="by">Traditional · arr. Kyle Daniel Gordon</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>c. 2:15</dd></div>
       <div><dt>Voices</dt><dd>Vocalist</dd></div>
@@ -252,12 +275,14 @@ body.sp-on{padding-bottom:92px}
 <article class="chart">
   <button class="thumb" data-full="/holiday-library/img/this-christmas.webp" aria-label="Score sample: This Christmas">
     <img src="/holiday-library/img/this-christmas.webp" alt="First score page of This Christmas, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">04</div>
     <h3>This Christmas</h3>
     <p class="by">Donny Hathaway / Nadine McKinnor · arr. Kyle Daniel Gordon</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>c. 4:10</dd></div>
       <div><dt>Voices</dt><dd>Lead vocal + choir</dd></div>
@@ -269,12 +294,14 @@ body.sp-on{padding-bottom:92px}
 <article class="chart">
   <button class="thumb" data-full="/holiday-library/img/do-re-mi.webp" aria-label="Score sample: Do-Re-Mi">
     <img src="/holiday-library/img/do-re-mi.webp" alt="First score page of Do-Re-Mi, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">05</div>
     <h3>Do-Re-Mi</h3>
     <p class="by">Richard Rodgers / Oscar Hammerstein II · arr. Kyle Daniel Gordon</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>c. 2:10</dd></div>
       <div><dt>Voices</dt><dd>Vocalist</dd></div>
@@ -286,12 +313,14 @@ body.sp-on{padding-bottom:92px}
 <article class="chart">
   <button class="thumb" data-full="/holiday-library/img/hark-sfs.webp" aria-label="Score sample: Hark! The Herald Angels Sing">
     <img src="/holiday-library/img/hark-sfs.webp" alt="First score page of Hark! The Herald Angels Sing, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">06</div>
     <h3>Hark! The Herald Angels Sing</h3>
     <p class="by">Mendelssohn / Wesley · arr. Kyle Daniel Gordon</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>c. 4–5 min</dd></div>
       <div><dt>Voices</dt><dd>Choir</dd></div>
@@ -307,12 +336,14 @@ body.sp-on{padding-bottom:92px}
 <article class="chart">
   <button class="thumb" data-full="/holiday-library/img/hark-gospel.webp" aria-label="Score sample: Hark! The Herald Angels Sing">
     <img src="/holiday-library/img/hark-gospel.webp" alt="First score page of Hark! The Herald Angels Sing, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">07</div>
     <h3>Hark! The Herald Angels Sing</h3>
     <p class="by">Traditional · arr. The Spirituals &amp; Kyle Daniel Gordon</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>c. 3:45</dd></div>
       <div><dt>Voices</dt><dd>Choir</dd></div>
@@ -324,12 +355,14 @@ body.sp-on{padding-bottom:92px}
 <article class="chart">
   <button class="thumb" data-full="/holiday-library/img/o-come-all-ye-faithful.webp" aria-label="Score sample: O Come All Ye Faithful">
     <img src="/holiday-library/img/o-come-all-ye-faithful.webp" alt="First score page of O Come All Ye Faithful, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">08</div>
     <h3>O Come All Ye Faithful</h3>
     <p class="by">Traditional · arr. The Spirituals &amp; Kyle Daniel Gordon</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>c. 6:00</dd></div>
       <div><dt>Voices</dt><dd>Choir</dd></div>
@@ -341,12 +374,14 @@ body.sp-on{padding-bottom:92px}
 <article class="chart">
   <button class="thumb" data-full="/holiday-library/img/joy-to-the-world.webp" aria-label="Score sample: Joy to the World">
     <img src="/holiday-library/img/joy-to-the-world.webp" alt="First score page of Joy to the World, watermarked" loading="lazy" width="1100" height="1700">
-    <span class="zoom">Score sample ↗</span>
+    <span class="zoom"><span class="zl">Score sample ↗</span><span class="zs">Score ↗</span></span>
   </button>
-  <div class="meta">
+  <div class="head">
     <div class="num">09</div>
     <h3>Joy to the World</h3>
     <p class="by">Traditional · arr. The Spirituals &amp; Kyle Daniel Gordon</p>
+  </div>
+  <div class="body">
     <dl>
       <div><dt>Duration</dt><dd>c. 4:05</dd></div>
       <div><dt>Voices</dt><dd>Choir</dd></div>
@@ -369,7 +404,7 @@ body.sp-on{padding-bottom:92px}
     </div>
     <table>
       <thead><tr><th>Orchestra</th><th>First performance</th><th>Each additional</th></tr></thead>
-      <tbody><tr><th>Major orchestras</th><td>$500</td><td>$150</td></tr><tr><th>Regional professional orchestras</th><td>$350</td><td>$100</td></tr><tr><th>Community, youth and school orchestras</th><td>$200</td><td>$75</td></tr></tbody>
+      <tbody><tr><th>Major orchestras</th><td data-l="First performance">$500</td><td data-l="Each additional">$150</td></tr><tr><th>Regional professional orchestras</th><td data-l="First performance">$350</td><td data-l="Each additional">$100</td></tr><tr><th>Community, youth and school orchestras</th><td data-l="First performance">$200</td><td data-l="Each additional">$75</td></tr></tbody>
     </table>
   </section>
   <section class="comm" aria-labelledby="comm-h">
