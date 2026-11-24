@@ -163,7 +163,14 @@ body.sp-on{padding-bottom:92px}
 .sec-h .count{color:#c2577a}
 .sec-h p{color:#625d55;margin:0;max-width:520px;text-align:right;font-size:15px}
 .sec-note{font-size:15px;color:#625d55;margin:14px 0 0}
-.ch{display:grid;grid-template-columns:minmax(0,1.6fr) 250px 150px 170px;gap:10px 24px;align-items:center;padding:18px 0;border-bottom:1px solid #1b1a1726;scroll-margin-top:80px}
+.ch{display:grid;grid-template-columns:64px minmax(0,1.6fr) 230px 140px 260px;gap:10px 24px;align-items:center;padding:18px 0;border-bottom:1px solid #1b1a1726;scroll-margin-top:80px}
+.ch .thumb{grid-row:span 1;padding:0;border:1px solid #1b1a1726;background:#fff;cursor:zoom-in;width:64px;aspect-ratio:11/17;overflow:hidden;box-shadow:0 8px 18px -12px #1b1a1766;transition:transform .2s}
+.ch .thumb:hover{transform:translateY(-2px)}
+.ch .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+#lb{position:fixed;inset:0;background:#1b1a17e6;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:4vh 16px;z-index:99;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:min(900px,100%);height:auto;background:#fff;box-shadow:0 20px 60px #0008}
+#lb .x{position:fixed;top:14px;right:18px;color:#f7f4ec;font:500 12px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
 .ch.hit{background:linear-gradient(90deg,#f3d9cf 0%,transparent 70%)}
 .ch h3{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:28px;line-height:1;margin:0}
 .ch .by{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:18px;color:#625d55;margin:4px 0 0}
@@ -204,7 +211,7 @@ body.sp-on{padding-bottom:92px}
 .cta h2{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(48px,7vw,96px);line-height:.9;margin:12px 0 22px}
 .cta p{color:#625d55;margin:0 0 26px}
 .cta .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-@media (max-width:1100px){.progs .grid{grid-template-columns:1fr 1fr}.ch{grid-template-columns:minmax(0,1fr) auto;}.ch-inst{grid-column:1/-1}.ch-cta{grid-column:1/-1;justify-content:flex-start}}
+@media (max-width:1100px){.progs .grid{grid-template-columns:1fr 1fr}.ch{grid-template-columns:64px minmax(0,1fr) auto;}.ch .thumb{grid-row:span 2}.ch-inst{grid-column:2/-1}.ch-cta{grid-column:1/-1;justify-content:flex-start}}
 @media (max-width:760px){
  .lib.hero{padding-top:120px !important}
  .lib .lede{font-size:18px}
@@ -213,7 +220,13 @@ body.sp-on{padding-bottom:92px}
  .chips{gap:6px;padding:10px 24px;margin-left:-24px;margin-right:-24px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chips button{padding:8px 12px;font-size:11px;white-space:nowrap;flex:0 0 auto}.chips .tot{display:none}
  .progs .grid{grid-template-columns:1fr}
  .sec-h{display:block}.sec-h p{text-align:left;margin-top:8px}
- .ch{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;padding:18px 0}.ch-main{grid-column:1/-1}.ch h3{font-size:26px}.ch-facts{grid-column:1/-1}.ch-inst{grid-column:1/2;align-self:center}.ch-cta{grid-column:2/3;grid-row:3;justify-content:flex-end}.ch-cta .btn.solid{background:transparent;color:#1b1a17;border-color:#1b1a17}
+ .ch{grid-template-columns:56px minmax(0,1fr);gap:10px 14px;padding:18px 0}
+.ch .thumb{width:56px;grid-row:1/3;grid-column:1}
+.ch-main{grid-column:2}
+.ch h3{font-size:26px}
+.ch-facts{grid-column:2}
+.ch-inst{grid-column:1/-1;align-self:center}
+.ch-cta{grid-column:1/-1;justify-content:flex-start;flex-wrap:wrap}.ch-cta .btn.solid{background:transparent;color:#1b1a17;border-color:#1b1a17}
  .lib .fees{grid-template-columns:1fr;padding:30px 22px;gap:20px}.lib .fees h2{font-size:44px}
  .lib table thead{display:none}
  .lib table tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding:16px 0;border-bottom:1px solid #f7f4ec2e}
@@ -277,421 +290,471 @@ body.sp-on{padding-bottom:92px}
   <header class="sec-h"><div><span class="mono count">14 charts</span><h2>Soul &amp; Motown</h2></div><p>Soul, Motown, funk and freedom songs for vocalists and orchestra with rhythm section. Built to program as a full evening or drop into any pops concert.</p></header>
   
   <div class="rows"><article class="ch" id="c-soul-overture" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/soul-overture.webp" aria-label="Score sample: Soul Overture"><img src="/library/img/soul-overture.webp" alt="First score page of Soul Overture, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Soul Overture</h3>
     <p class="by">arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">0:51</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Soul%20Overture">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Soul%20Overture">Request perusal</a></div>
 </article><article class="ch" id="c-a-change-is-gonna-come" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/a-change-is-gonna-come.webp" aria-label="Score sample: A Change Is Gonna Come"><img src="/library/img/a-change-is-gonna-come.webp" alt="First score page of A Change Is Gonna Come, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>A Change Is Gonna Come</h3>
-    <p class="by">Sam Cooke · arr. Kyle Daniel Gordon</p>
+    <p class="by">Sam Cooke · arr. René Hall, adapted by Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal</span><span class="pill d">3:14</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20A%20Change%20Is%20Gonna%20Come">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20A%20Change%20Is%20Gonna%20Come">Request perusal</a></div>
 </article><article class="ch" id="c-ball-of-confusion" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/ball-of-confusion.webp" aria-label="Score sample: Ball of Confusion"><img src="/library/img/ball-of-confusion.webp" alt="First score page of Ball of Confusion, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Ball of Confusion</h3>
     <p class="by">The Temptations · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">3:45</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Ball%20of%20Confusion">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Ball%20of%20Confusion">Request perusal</a></div>
 </article><article class="ch" id="c-hard-times" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/hard-times.webp" aria-label="Score sample: Hard Times"><img src="/library/img/hard-times.webp" alt="First score page of Hard Times, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Hard Times</h3>
     <p class="by">Curtis Mayfield · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal</span><span class="pill d">3:33</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Hard%20Times">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Hard%20Times">Request perusal</a></div>
 </article><article class="ch" id="c-i-wish-i-knew" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/i-wish-i-knew.webp" aria-label="Score sample: I Wish I Knew How It Would Feel to Be Free"><img src="/library/img/i-wish-i-knew.webp" alt="First score page of I Wish I Knew How It Would Feel to Be Free, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>I Wish I Knew How It Would Feel to Be Free</h3>
     <p class="by">Billy Taylor · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">4:34</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20I%20Wish%20I%20Knew%20How%20It%20Would%20Feel%20to%20Be%20Free">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20I%20Wish%20I%20Knew%20How%20It%20Would%20Feel%20to%20Be%20Free">Request perusal</a></div>
 </article><article class="ch" id="c-say-it-loud" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/say-it-loud.webp" aria-label="Score sample: Say It Loud"><img src="/library/img/say-it-loud.webp" alt="First score page of Say It Loud, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Say It Loud</h3>
     <p class="by">James Brown · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">3:05</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Say%20It%20Loud">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Say%20It%20Loud">Request perusal</a></div>
 </article><article class="ch" id="c-revolution" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/revolution.webp" aria-label="Score sample: The Revolution Will Not Be Televised"><img src="/library/img/revolution.webp" alt="First score page of The Revolution Will Not Be Televised, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>The Revolution Will Not Be Televised</h3>
     <p class="by">Gil Scott-Heron · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal (spoken)</span><span class="pill d">3:14</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20The%20Revolution%20Will%20Not%20Be%20Televised">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20The%20Revolution%20Will%20Not%20Be%20Televised">Request perusal</a></div>
 </article><article class="ch" id="c-think" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/think.webp" aria-label="Score sample: Think"><img src="/library/img/think.webp" alt="First score page of Think, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Think</h3>
     <p class="by">Aretha Franklin · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">2:23</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Think">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Think">Request perusal</a></div>
 </article><article class="ch" id="c-young-gifted-black" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/young-gifted-black.webp" aria-label="Score sample: To Be Young, Gifted and Black"><img src="/library/img/young-gifted-black.webp" alt="First score page of To Be Young, Gifted and Black, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>To Be Young, Gifted and Black</h3>
     <p class="by">Nina Simone · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">2:56</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20To%20Be%20Young%2C%20Gifted%20and%20Black">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20To%20Be%20Young%2C%20Gifted%20and%20Black">Request perusal</a></div>
 </article><article class="ch" id="c-war" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/war.webp" aria-label="Score sample: War"><img src="/library/img/war.webp" alt="First score page of War, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>War</h3>
     <p class="by">Edwin Starr · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">3:36</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20War">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20War">Request perusal</a></div>
 </article><article class="ch" id="c-after-the-dance" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/after-the-dance.webp" aria-label="Score sample: After the Dance"><img src="/library/img/after-the-dance.webp" alt="First score page of After the Dance, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>After the Dance</h3>
     <p class="by">Marvin Gaye · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Female &amp; male vocals + choir</span><span class="pill d">4:47</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2.2.2.2 + alto &amp; tenor sax — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · 2 perc — 2 guitars · piano · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20After%20the%20Dance">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20After%20the%20Dance">Request perusal</a></div>
 </article><article class="ch" id="c-here-my-dear" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/here-my-dear.webp" aria-label="Score sample: Here, My Dear"><img src="/library/img/here-my-dear.webp" alt="First score page of Here, My Dear, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Here, My Dear</h3>
     <p class="by">Marvin Gaye · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Male vocal + choir</span><span class="pill d">3:22</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2.2.2.2 + alto &amp; tenor sax — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · 2 perc — 2 guitars · piano · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Here%2C%20My%20Dear">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Here%2C%20My%20Dear">Request perusal</a></div>
 </article><article class="ch" id="c-my-mistake" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/my-mistake.webp" aria-label="Score sample: My Mistake (Was to Love You)"><img src="/library/img/my-mistake.webp" alt="First score page of My Mistake (Was to Love You), watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>My Mistake (Was to Love You)</h3>
     <p class="by">Marvin Gaye · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Female &amp; male vocals</span><span class="pill d">3:08</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2.2.2.2 + alto &amp; tenor sax — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · 2 perc — 2 guitars · piano · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20My%20Mistake%20%28Was%20to%20Love%20You%29">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20My%20Mistake%20%28Was%20to%20Love%20You%29">Request perusal</a></div>
 </article><article class="ch" id="c-soul-bossa-nova" data-cat="soul">
+  <button class="thumb" type="button" data-full="/library/img/soul-bossa-nova.webp" aria-label="Score sample: Soul Bossa Nova"><img src="/library/img/soul-bossa-nova.webp" alt="First score page of Soul Bossa Nova, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Soul Bossa Nova</h3>
     <p class="by">Quincy Jones · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Vocalist + choir</span><span class="pill d">2:39</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 + picc · 2 + E.H. · 2 + b cl · 2 + cbsn — 4 hn · 2 tpt · 2 tbn · b tbn · tuba — timp · perc — piano · e-guitar · bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Soul%20Bossa%20Nova">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Soul%20Bossa%20Nova">Request perusal</a></div>
 </article></div>
 </section><section class="sec" id="gospel" data-sec="gospel">
   <header class="sec-h"><div><span class="mono count">12 charts</span><h2>Gospel &amp; spirituals</h2></div><p>Choir-forward gospel, hymns and spirituals with orchestra and band, from quiet reflection to the big finale.</p></header>
   
   <div class="rows"><article class="ch" id="c-how-i-got-over" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/how-i-got-over.webp" aria-label="Score sample: How I Got Over"><img src="/library/img/how-i-got-over.webp" alt="First score page of How I Got Over, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>How I Got Over</h3>
     <p class="by">Clara Ward · arr. Kyle Daniel Gordon &amp; LJ Singers</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">2:53</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20How%20I%20Got%20Over">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20How%20I%20Got%20Over">Request perusal</a></div>
 </article><article class="ch" id="c-oh-happy-day" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/oh-happy-day.webp" aria-label="Score sample: Oh Happy Day"><img src="/library/img/oh-happy-day.webp" alt="First score page of Oh Happy Day, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Oh Happy Day</h3>
     <p class="by">Edwin Hawkins · arr. Kyle Daniel Gordon &amp; LJ Singers</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">3:51</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Oh%20Happy%20Day">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Oh%20Happy%20Day">Request perusal</a></div>
 </article><article class="ch" id="c-precious-lord" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/precious-lord.webp" aria-label="Score sample: Precious Lord, Take My Hand"><img src="/library/img/precious-lord.webp" alt="First score page of Precious Lord, Take My Hand, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Precious Lord, Take My Hand</h3>
     <p class="by">Thomas A. Dorsey · arr. Kyle Daniel Gordon &amp; LJ Singers</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">4:29</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Precious%20Lord%2C%20Take%20My%20Hand">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Precious%20Lord%2C%20Take%20My%20Hand">Request perusal</a></div>
 </article><article class="ch" id="c-save-me-lord" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/save-me-lord.webp" aria-label="Score sample: Save Me, Lord, Save Me"><img src="/library/img/save-me-lord.webp" alt="First score page of Save Me, Lord, Save Me, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Save Me, Lord, Save Me</h3>
     <p class="by">Spiritual · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal</span><span class="pill d">2:05</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Save%20Me%2C%20Lord%2C%20Save%20Me">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Save%20Me%2C%20Lord%2C%20Save%20Me">Request perusal</a></div>
 </article><article class="ch" id="c-we-shall-not-be-moved" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/we-shall-not-be-moved.webp" aria-label="Score sample: We Shall Not Be Moved"><img src="/library/img/we-shall-not-be-moved.webp" alt="First score page of We Shall Not Be Moved, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>We Shall Not Be Moved</h3>
     <p class="by">Traditional · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">4:34</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 fl · ob · 2 cl · bsn — alto, tenor, bari sax — 4 hn · 4 tpt · 3 tbn · b tbn · tuba — timp · 2 perc — piano · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20We%20Shall%20Not%20Be%20Moved">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20We%20Shall%20Not%20Be%20Moved">Request perusal</a></div>
 </article><article class="ch" id="c-give-me-jesus" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/give-me-jesus.webp" aria-label="Score sample: Give Me Jesus"><img src="/library/img/give-me-jesus.webp" alt="First score page of Give Me Jesus, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Give Me Jesus</h3>
     <p class="by">Spiritual · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Vocalist + choir</span><span class="pill d">4:06</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 + picc · 2 + E.H. · 2 + b cl · 2 + cbsn — 4 hn · 2 tpt · 2 tbn · b tbn · tuba — timp · perc — piano · e-guitar · bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Give%20Me%20Jesus">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Give%20Me%20Jesus">Request perusal</a></div>
 </article><article class="ch" id="c-my-soul-anchored" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/my-soul-anchored.webp" aria-label="Score sample: My Soul’s Been Anchored in the Lord"><img src="/library/img/my-soul-anchored.webp" alt="First score page of My Soul’s Been Anchored in the Lord, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>My Soul’s Been Anchored in the Lord</h3>
     <p class="by">Spiritual · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Vocalist + choir</span><span class="pill d">1:44</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 + picc · 2 + E.H. · 2 + b cl · 2 + cbsn — 4 hn · 2 tpt · 2 tbn · b tbn · tuba — timp · perc — piano · e-guitar · bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20My%20Soul%E2%80%99s%20Been%20Anchored%20in%20the%20Lord">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20My%20Soul%E2%80%99s%20Been%20Anchored%20in%20the%20Lord">Request perusal</a></div>
 </article><article class="ch" id="c-oh-happy-day-symphonic" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/oh-happy-day-symphonic.webp" aria-label="Score sample: Oh Happy Day (symphonic version)"><img src="/library/img/oh-happy-day-symphonic.webp" alt="First score page of Oh Happy Day (symphonic version), watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Oh Happy Day (symphonic version)</h3>
     <p class="by">Edwin Hawkins · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Vocalist + choir</span><span class="pill d">3:50</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 + picc · 2 + E.H. · 2 + b cl · 2 + cbsn — 4 hn · 2 tpt · 2 tbn · b tbn · tuba — timp · perc — piano · e-guitar · bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Oh%20Happy%20Day%20%28symphonic%20version%29">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Oh%20Happy%20Day%20%28symphonic%20version%29">Request perusal</a></div>
 </article><article class="ch" id="c-abide-with-me" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/abide-with-me.webp" aria-label="Score sample: Abide With Me"><img src="/library/img/abide-with-me.webp" alt="First score page of Abide With Me, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Abide With Me</h3>
     <p class="by">Traditional · arr. The Spirituals &amp; Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocals + choir</span><span class="pill d">4:04</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2.2.2.2 — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · 2 perc — piano · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Abide%20With%20Me">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Abide%20With%20Me">Request perusal</a></div>
 </article><article class="ch" id="c-bless-the-lord" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/bless-the-lord.webp" aria-label="Score sample: Bless the Lord"><img src="/library/img/bless-the-lord.webp" alt="First score page of Bless the Lord, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Bless the Lord</h3>
     <p class="by">Traditional · arr. Volney Morgan &amp; New-Ye &amp; Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">3:50</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2.2.2.2 — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · 2 perc — piano · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Bless%20the%20Lord">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Bless%20the%20Lord">Request perusal</a></div>
 </article><article class="ch" id="c-amazing-god" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/amazing-god.webp" aria-label="Score sample: Amazing God"><img src="/library/img/amazing-god.webp" alt="First score page of Amazing God, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Amazing God</h3>
     <p class="by">Traditional · arr. Volney Morgan &amp; New-Ye &amp; Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">3:06</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2.2.2.2 — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · 2 perc — piano · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Amazing%20God">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Amazing%20God">Request perusal</a></div>
 </article><article class="ch" id="c-great-i-am" data-cat="gospel">
+  <button class="thumb" type="button" data-full="/library/img/great-i-am.webp" aria-label="Score sample: Great I Am"><img src="/library/img/great-i-am.webp" alt="First score page of Great I Am, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Great I Am</h3>
     <p class="by">Volney Morgan · arr. Volney Morgan &amp; New-Ye &amp; Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">5:54</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2.2.2.2 — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · 2 perc — piano · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Great%20I%20Am">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Great%20I%20Am">Request perusal</a></div>
 </article></div>
 </section><section class="sec" id="film" data-sec="film">
   <header class="sec-h"><div><span class="mono count">5 charts</span><h2>Film &amp; TV themes</h2></div><p>Spy-era classics and modern Bond, arranged for full orchestra with rhythm section. Big, tight and fun.</p></header>
   
   <div class="rows"><article class="ch" id="c-avengers" data-cat="film">
+  <button class="thumb" type="button" data-full="/library/img/avengers.webp" aria-label="Score sample: The Avengers Suite"><img src="/library/img/avengers.webp" alt="First score page of The Avengers Suite, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>The Avengers Suite</h3>
     <p class="by">Laurie Johnson · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">3:11</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>3 (picc) · 2 · 2 + b cl · 2 — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · perc — piano/organ · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20The%20Avengers%20Suite">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20The%20Avengers%20Suite">Request perusal</a></div>
 </article><article class="ch" id="c-casino-royale" data-cat="film">
+  <button class="thumb" type="button" data-full="/library/img/casino-royale.webp" aria-label="Score sample: Casino Royale"><img src="/library/img/casino-royale.webp" alt="First score page of Casino Royale, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Casino Royale</h3>
     <p class="by">Burt Bacharach · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">2:37</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>3 (picc) · 2 · 2 + b cl · 2 — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · perc — piano/organ · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Casino%20Royale">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Casino%20Royale">Request perusal</a></div>
 </article><article class="ch" id="c-ohmss" data-cat="film">
+  <button class="thumb" type="button" data-full="/library/img/ohmss.webp" aria-label="Score sample: On Her Majesty’s Secret Service"><img src="/library/img/ohmss.webp" alt="First score page of On Her Majesty’s Secret Service, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>On Her Majesty’s Secret Service</h3>
     <p class="by">John Barry · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">2:32</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>3 (picc) · 2 · 2 + b cl · 2 — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · perc — piano/organ · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20On%20Her%20Majesty%E2%80%99s%20Secret%20Service">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20On%20Her%20Majesty%E2%80%99s%20Secret%20Service">Request perusal</a></div>
 </article><article class="ch" id="c-spectre" data-cat="film">
+  <button class="thumb" type="button" data-full="/library/img/spectre.webp" aria-label="Score sample: Spectre"><img src="/library/img/spectre.webp" alt="First score page of Spectre, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Spectre</h3>
     <p class="by">Radiohead · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Male vocal</span><span class="pill d">3:12</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>3 (picc) · 2 · 2 + b cl · 2 — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · perc — piano/organ · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Spectre">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Spectre">Request perusal</a></div>
 </article><article class="ch" id="c-uncle" data-cat="film">
+  <button class="thumb" type="button" data-full="/library/img/uncle.webp" aria-label="Score sample: The Man from U.N.C.L.E."><img src="/library/img/uncle.webp" alt="First score page of The Man from U.N.C.L.E., watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>The Man from U.N.C.L.E.</h3>
     <p class="by">Jerry Goldsmith · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">2:40</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>3 (picc) · 2 · 2 + b cl · 2 — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · perc — piano/organ · e-guitar · e-bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20The%20Man%20from%20U.N.C.L.E.">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20The%20Man%20from%20U.N.C.L.E.">Request perusal</a></div>
 </article></div>
 </section><section class="sec" id="concert" data-sec="concert">
   <header class="sec-h"><div><span class="mono count">10 charts</span><h2>Concert, pops &amp; originals</h2></div><p>Features, crowd-pleasers and Kyle’s own concert works, from chamber forces to full orchestra.</p></header>
   
   <div class="rows"><article class="ch" id="c-little-bird" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/little-bird.webp" aria-label="Score sample: The Little Bird"><img src="/library/img/little-bird.webp" alt="First score page of The Little Bird, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>The Little Bird</h3>
-    <p class="by">Kyle Daniel Gordon (original work) · </p>
+    <p class="by">Kyle Daniel Gordon (original work)</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">5:21</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 + picc · 2 + E.H. · 2 + b cl · 2 + cbsn — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — timp · 3 perc — piano · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20The%20Little%20Bird">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20The%20Little%20Bird">Request perusal</a></div>
 </article><article class="ch" id="c-golden-age-overture" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/golden-age-overture.webp" aria-label="Score sample: Golden Age Overture"><img src="/library/img/golden-age-overture.webp" alt="First score page of Golden Age Overture, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Golden Age Overture</h3>
-    <p class="by">Kyle Daniel Gordon (original work) · </p>
+    <p class="by">Kyle Daniel Gordon (original work)</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">1:38</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>1 (+ picc) · 1 · 1 · 1 (+ cbsn) — 1.1.1.1 — timp · 2 perc — piano · upright bass · drum set · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Golden%20Age%20Overture">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Golden%20Age%20Overture">Request perusal</a></div>
 </article><article class="ch" id="c-l-is-for-love" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/l-is-for-love.webp" aria-label="Score sample: L Is for Love"><img src="/library/img/l-is-for-love.webp" alt="First score page of L Is for Love, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>L Is for Love</h3>
-    <p class="by">Kyle Daniel Gordon (original work) · </p>
+    <p class="by">Kyle Daniel Gordon (original work)</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">4:11</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>1.1.1.1 — 1.1.1.1 — timp · 2 perc — piano · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20L%20Is%20for%20Love">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20L%20Is%20for%20Love">Request perusal</a></div>
 </article><article class="ch" id="c-fashion" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/fashion.webp" aria-label="Score sample: Fashion"><img src="/library/img/fashion.webp" alt="First score page of Fashion, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Fashion</h3>
     <p class="by">Lady Gaga · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental or vocal feature</span><span class="pill d">2:54</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>1.1.1.1 — 1.1.1.1 — timp · perc — piano · harp · bass guitar · drum set — strings (+ soloist)</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Fashion">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Fashion">Request perusal</a></div>
 </article><article class="ch" id="c-la-vie-en-rose" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/la-vie-en-rose.webp" aria-label="Score sample: La Vie en Rose / Non, je ne regrette rien"><img src="/library/img/la-vie-en-rose.webp" alt="First score page of La Vie en Rose / Non, je ne regrette rien, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>La Vie en Rose / Non, je ne regrette rien</h3>
     <p class="by">Édith Piaf · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental or vocal feature</span><span class="pill d">5:31</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>1.1.1.1 — 1.1.1.1 — timp · perc — harp · piano · upright bass · drum set (+ opt. melodica) — strings (+ soloist)</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20La%20Vie%20en%20Rose%20/%20Non%2C%20je%20ne%20regrette%20rien">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20La%20Vie%20en%20Rose%20/%20Non%2C%20je%20ne%20regrette%20rien">Request perusal</a></div>
 </article><article class="ch" id="c-ma-rendi" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/ma-rendi.webp" aria-label="Score sample: Ma rendi pur contento"><img src="/library/img/ma-rendi.webp" alt="First score page of Ma rendi pur contento, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Ma rendi pur contento</h3>
     <p class="by">Vincenzo Bellini · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Vocalist + choir</span><span class="pill d">1:54</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 + picc · 2 + E.H. · 2 + b cl · 2 + cbsn — 4 hn · 2 tpt · 2 tbn · b tbn · tuba — timp · perc — piano · harp — strings (+ soloist, choir)</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Ma%20rendi%20pur%20contento">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Ma%20rendi%20pur%20contento">Request perusal</a></div>
 </article><article class="ch" id="c-orage" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/orage.webp" aria-label="Score sample: Orage (from Platée)"><img src="/library/img/orage.webp" alt="First score page of Orage (from Platée), watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Orage (from Platée)</h3>
     <p class="by">Jean-Philippe Rameau · arr. Kyle Daniel Gordon (transcription)</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">2:02</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>oboe · bassoon · piano — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Orage%20%28from%20Plat%C3%A9e%29">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Orage%20%28from%20Plat%C3%A9e%29">Request perusal</a></div>
 </article><article class="ch" id="c-whatd-i-say" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/whatd-i-say.webp" aria-label="Score sample: What’d I Say"><img src="/library/img/whatd-i-say.webp" alt="First score page of What’d I Say, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>What’d I Say</h3>
     <p class="by">Ray Charles · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Vocalist (+ backing vocal)</span><span class="pill d">4:31</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2.1.2.1 + alto, 2 tenor, bari sax — 4 hn · 3 tpt · 2 tbn · b tbn · tuba — perc — piano · organ · guitar · upright bass · drums · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20What%E2%80%99d%20I%20Say">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20What%E2%80%99d%20I%20Say">Request perusal</a></div>
 </article><article class="ch" id="c-ode-to-hope" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/ode-to-hope.webp" aria-label="Score sample: Ode to Hope"><img src="/library/img/ode-to-hope.webp" alt="First score page of Ode to Hope, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Ode to Hope</h3>
     <p class="by">Beethoven, reimagined · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">On request</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>1.1.1.1 — 1.1.1.1 — timp · perc — piano · harp — strings (+ optional flex band for side-by-side)</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Ode%20to%20Hope">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Ode%20to%20Hope">Request perusal</a></div>
 </article><article class="ch" id="c-ode-to-peace" data-cat="concert">
+  <button class="thumb" type="button" data-full="/library/img/ode-to-peace.webp" aria-label="Score sample: Ode to Peace"><img src="/library/img/ode-to-peace.webp" alt="First score page of Ode to Peace, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Ode to Peace</h3>
     <p class="by">Beethoven, reimagined · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">On request</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2.2.2.2 — 4 hn · 3 tpt · 3 tbn · b tbn · tuba — timp · 3 perc — piano · harp — strings</p></details>
-  <div class="ch-cta"><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Ode%20to%20Peace">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Ode%20to%20Peace">Request perusal</a></div>
 </article></div>
 </section><section class="sec" id="holiday" data-sec="holiday">
   <header class="sec-h"><div><span class="mono count">9 charts</span><h2>Holiday</h2></div><p>Nine holiday charts: pops with rhythm section, vocal features and gospel carols.</p></header>
-  <p class="sec-note">Watermarked score samples for every holiday chart are on the <a class="cl" href="/holiday-library/">Holiday Library</a> page.</p>
+  <p class="sec-note">More about the holiday charts on the <a class="cl" href="/holiday-library/">Holiday Library</a> page.</p>
   <div class="rows"><article class="ch" id="c-feliz-navidad" data-cat="holiday">
+  <button class="thumb" type="button" data-full="/holiday-library/img/feliz-navidad.webp" aria-label="Score sample: Feliz Navidad"><img src="/holiday-library/img/feliz-navidad.webp" alt="First score page of Feliz Navidad, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Feliz Navidad</h3>
     <p class="by">José Feliciano · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Vocalist</span><span class="pill d">2:15</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2. 2. 2. 2 + alto sax — 4. 3. 2 + bass tbn. 1 — perc — piano, electric bass, drum set, harp — strings</p></details>
-  <div class="ch-cta"><a class="btn line sm" href="/holiday-library/">Score sample ↗</a><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Feliz%20Navidad">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Feliz%20Navidad">Request perusal</a></div>
 </article><article class="ch" id="c-fairytale-of-new-york" data-cat="holiday">
+  <button class="thumb" type="button" data-full="/holiday-library/img/fairytale-of-new-york.webp" aria-label="Score sample: Fairytale of New York"><img src="/holiday-library/img/fairytale-of-new-york.webp" alt="First score page of Fairytale of New York, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Fairytale of New York</h3>
     <p class="by">The Pogues (MacGowan / Finer) · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Instrumental</span><span class="pill d">3:55</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 (2nd dbl. picc). 2. 2. 2 + alto sax — 4. 3. 2 + bass tbn. 1 — timp, perc, drum set — piano, electric bass, harp — strings</p></details>
-  <div class="ch-cta"><a class="btn line sm" href="/holiday-library/">Score sample ↗</a><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Fairytale%20of%20New%20York">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Fairytale%20of%20New%20York">Request perusal</a></div>
 </article><article class="ch" id="c-i-saw-three-ships" data-cat="holiday">
+  <button class="thumb" type="button" data-full="/holiday-library/img/i-saw-three-ships.webp" aria-label="Score sample: I Saw Three Ships"><img src="/holiday-library/img/i-saw-three-ships.webp" alt="First score page of I Saw Three Ships, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>I Saw Three Ships</h3>
     <p class="by">Traditional · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Vocalist</span><span class="pill d">2:15</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2. 2. 2. 2 + alto sax — 4. 3. 2 + bass tbn. 1 — timp, perc, drum set — piano, electric bass, harp — strings</p></details>
-  <div class="ch-cta"><a class="btn line sm" href="/holiday-library/">Score sample ↗</a><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20I%20Saw%20Three%20Ships">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20I%20Saw%20Three%20Ships">Request perusal</a></div>
 </article><article class="ch" id="c-this-christmas" data-cat="holiday">
+  <button class="thumb" type="button" data-full="/holiday-library/img/this-christmas.webp" aria-label="Score sample: This Christmas"><img src="/holiday-library/img/this-christmas.webp" alt="First score page of This Christmas, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>This Christmas</h3>
     <p class="by">Donny Hathaway / Nadine McKinnor · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Lead vocal + choir</span><span class="pill d">4:10</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2. 2. 2. 2 (+ opt. alto sax) — 4. 3. 3. 1 — timp — drum set, piano, electric bass, harp — strings</p></details>
-  <div class="ch-cta"><a class="btn line sm" href="/holiday-library/">Score sample ↗</a><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20This%20Christmas">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20This%20Christmas">Request perusal</a></div>
 </article><article class="ch" id="c-do-re-mi" data-cat="holiday">
+  <button class="thumb" type="button" data-full="/holiday-library/img/do-re-mi.webp" aria-label="Score sample: Do-Re-Mi"><img src="/holiday-library/img/do-re-mi.webp" alt="First score page of Do-Re-Mi, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Do-Re-Mi</h3>
     <p class="by">Richard Rodgers / Oscar Hammerstein II · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Vocalist</span><span class="pill d">2:10</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>3. 1. 1 + bass cl. 1 — 1. 2. 1. 0 — timp, perc, drum set — harp, piano — strings</p></details>
-  <div class="ch-cta"><a class="btn line sm" href="/holiday-library/">Score sample ↗</a><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Do-Re-Mi">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Do-Re-Mi">Request perusal</a></div>
 </article><article class="ch" id="c-hark-sfs" data-cat="holiday">
+  <button class="thumb" type="button" data-full="/holiday-library/img/hark-sfs.webp" aria-label="Score sample: Hark! The Herald Angels Sing"><img src="/holiday-library/img/hark-sfs.webp" alt="First score page of Hark! The Herald Angels Sing, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Hark! The Herald Angels Sing</h3>
     <p class="by">Mendelssohn / Wesley · arr. Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Choir</span><span class="pill d">4–5 min</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2 + picc. 2 + E.H. 2 + bass cl. 2 + cbsn — 4. 3. 2 + bass tbn. 1 — timp, perc — organ, harp — strings</p></details>
-  <div class="ch-cta"><a class="btn line sm" href="/holiday-library/">Score sample ↗</a><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Hark%21%20The%20Herald%20Angels%20Sing">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Hark%21%20The%20Herald%20Angels%20Sing">Request perusal</a></div>
 </article><article class="ch" id="c-hark-gospel" data-cat="holiday">
+  <button class="thumb" type="button" data-full="/holiday-library/img/hark-gospel.webp" aria-label="Score sample: Hark! The Herald Angels Sing"><img src="/holiday-library/img/hark-gospel.webp" alt="First score page of Hark! The Herald Angels Sing, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Hark! The Herald Angels Sing</h3>
     <p class="by">Traditional · arr. The Spirituals &amp; Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Choir</span><span class="pill d">3:45</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2. 2. 2. 2 — 4. 3. 2 + bass tbn. 1 — timp, 2 perc — piano, electric bass, drum set, harp — strings</p></details>
-  <div class="ch-cta"><a class="btn line sm" href="/holiday-library/">Score sample ↗</a><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Hark%21%20The%20Herald%20Angels%20Sing">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Hark%21%20The%20Herald%20Angels%20Sing">Request perusal</a></div>
 </article><article class="ch" id="c-o-come-all-ye-faithful" data-cat="holiday">
+  <button class="thumb" type="button" data-full="/holiday-library/img/o-come-all-ye-faithful.webp" aria-label="Score sample: O Come All Ye Faithful"><img src="/holiday-library/img/o-come-all-ye-faithful.webp" alt="First score page of O Come All Ye Faithful, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>O Come All Ye Faithful</h3>
     <p class="by">Traditional · arr. The Spirituals &amp; Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Choir</span><span class="pill d">6:00</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2. 2. 2. 2 — 4. 3. 2 + bass tbn. 1 — timp, 2 perc — piano, electric bass, drum set, harp — strings</p></details>
-  <div class="ch-cta"><a class="btn line sm" href="/holiday-library/">Score sample ↗</a><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20O%20Come%20All%20Ye%20Faithful">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20O%20Come%20All%20Ye%20Faithful">Request perusal</a></div>
 </article><article class="ch" id="c-joy-to-the-world" data-cat="holiday">
+  <button class="thumb" type="button" data-full="/holiday-library/img/joy-to-the-world.webp" aria-label="Score sample: Joy to the World"><img src="/holiday-library/img/joy-to-the-world.webp" alt="First score page of Joy to the World, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>Joy to the World</h3>
     <p class="by">Traditional · arr. The Spirituals &amp; Kyle Daniel Gordon</p>
   </div>
   <div class="ch-facts"><span class="pill v">Choir</span><span class="pill d">4:05</span></div>
   <details class="ch-inst"><summary>Instrumentation</summary><p>2. 2. 2. 2 — 4. 3. 2 + bass tbn. 1 — timp, 2 perc — piano, electric bass, drum set, harp — strings</p></details>
-  <div class="ch-cta"><a class="btn line sm" href="/holiday-library/">Score sample ↗</a><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Joy%20to%20the%20World">Request perusal</a></div>
+  <div class="ch-cta"><button class="btn line sm smp" type="button">Score sample</button><a class="btn solid sm" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Perusal%20request%3A%20Joy%20to%20the%20World">Request perusal</a></div>
 </article></div>
 </section>
   <p class="soon mono">Coming soon: patriotic &amp; Americana. <a class="cl" href="mailto:KyleDanielGordonLibrary@gmail.com?subject=Patriotic%20charts">Ask for the list</a></p>
@@ -751,6 +814,7 @@ body.sp-on{padding-bottom:92px}
 </div>
 </footer>
 </div>
+<div id="lb" role="dialog" aria-label="Score sample"><span class="x">Close ×</span><img alt=""></div>
 <script>
 (function(){
 var D=[{"id": "soul-overture", "t": "Soul Overture", "by": "", "v": "Instrumental", "d": "0:51", "cat": "soul", "tags": "overture opener curtain raiser short instrumental soul funk black history month"}, {"id": "a-change-is-gonna-come", "t": "A Change Is Gonna Come", "by": "Sam Cooke", "v": "Lead vocal", "d": "3:14", "cat": "soul", "tags": "sam cooke civil rights mlk ballad black history month juneteenth anthem reflective"}, {"id": "ball-of-confusion", "t": "Ball of Confusion", "by": "The Temptations", "v": "Lead vocal + choir", "d": "3:45", "cat": "soul", "tags": "soul motown protest civil rights black history month juneteenth funk upbeat energetic"}, {"id": "hard-times", "t": "Hard Times", "by": "Curtis Mayfield", "v": "Lead vocal", "d": "3:33", "cat": "soul", "tags": "soul funk protest black history month groove"}, {"id": "how-i-got-over", "t": "How I Got Over", "by": "Clara Ward", "v": "Lead vocal + choir", "d": "2:53", "cat": "gospel", "tags": "gospel choir church aretha black history month juneteenth uplifting celebration"}, {"id": "i-wish-i-knew", "t": "I Wish I Knew How It Would Feel to Be Free", "by": "Billy Taylor", "v": "Lead vocal + choir", "d": "4:34", "cat": "soul", "tags": "nina simone civil rights freedom mlk black history month juneteenth anthem uplifting"}, {"id": "oh-happy-day", "t": "Oh Happy Day", "by": "Edwin Hawkins", "v": "Lead vocal + choir", "d": "3:51", "cat": "gospel", "tags": "gospel choir church joyful celebration closer finale encore black history month juneteenth easter"}, {"id": "precious-lord", "t": "Precious Lord, Take My Hand", "by": "Thomas A. Dorsey", "v": "Lead vocal + choir", "d": "4:29", "cat": "gospel", "tags": "gospel choir church ballad mlk memorial black history month reflective"}, {"id": "save-me-lord", "t": "Save Me, Lord, Save Me", "by": "Spiritual", "v": "Lead vocal", "d": "2:05", "cat": "gospel", "tags": "spiritual gospel ballad nina simone reflective black history month"}, {"id": "say-it-loud", "t": "Say It Loud", "by": "James Brown", "v": "Lead vocal + choir", "d": "3:05", "cat": "soul", "tags": "funk soul james brown protest black history month juneteenth energetic upbeat"}, {"id": "revolution", "t": "The Revolution Will Not Be Televised", "by": "Gil Scott-Heron", "v": "Lead vocal (spoken)", "d": "3:14", "cat": "soul", "tags": "spoken word protest civil rights black history month jazz funk"}, {"id": "think", "t": "Think", "by": "Aretha Franklin", "v": "Lead vocal + choir", "d": "2:23", "cat": "soul", "tags": "aretha soul women empowerment upbeat energetic black history month womens history month short"}, {"id": "young-gifted-black", "t": "To Be Young, Gifted and Black", "by": "Nina Simone", "v": "Lead vocal + choir", "d": "2:56", "cat": "soul", "tags": "nina simone civil rights youth black history month juneteenth uplifting anthem"}, {"id": "war", "t": "War", "by": "Edwin Starr", "v": "Lead vocal + choir", "d": "3:36", "cat": "soul", "tags": "motown protest funk powerful black history month veterans energetic"}, {"id": "we-shall-not-be-moved", "t": "We Shall Not Be Moved", "by": "Traditional", "v": "Lead vocal + choir", "d": "4:34", "cat": "gospel", "tags": "spiritual civil rights freedom song mavis staples mlk black history month juneteenth anthem"}, {"id": "after-the-dance", "t": "After the Dance", "by": "Marvin Gaye", "v": "Female & male vocals + choir", "d": "4:47", "cat": "soul", "tags": "marvin gaye soul r&b smooth romantic valentines love duet black history month"}, {"id": "here-my-dear", "t": "Here, My Dear", "by": "Marvin Gaye", "v": "Male vocal + choir", "d": "3:22", "cat": "soul", "tags": "marvin gaye soul r&b smooth black history month"}, {"id": "my-mistake", "t": "My Mistake (Was to Love You)", "by": "Marvin Gaye", "v": "Female & male vocals", "d": "3:08", "cat": "soul", "tags": "marvin gaye diana ross duet soul r&b love valentines black history month"}, {"id": "give-me-jesus", "t": "Give Me Jesus", "by": "Spiritual", "v": "Vocalist + choir", "d": "4:06", "cat": "gospel", "tags": "spiritual gospel choir ballad church reflective black history month opera singer"}, {"id": "my-soul-anchored", "t": "My Soul’s Been Anchored in the Lord", "by": "Spiritual", "v": "Vocalist + choir", "d": "1:44", "cat": "gospel", "tags": "spiritual gospel choir upbeat short opera singer black history month"}, {"id": "oh-happy-day-symphonic", "t": "Oh Happy Day (symphonic version)", "by": "Edwin Hawkins", "v": "Vocalist + choir", "d": "3:50", "cat": "gospel", "tags": "gospel choir joyful celebration finale encore full orchestra"}, {"id": "soul-bossa-nova", "t": "Soul Bossa Nova", "by": "Quincy Jones", "v": "Vocalist + choir", "d": "2:39", "cat": "soul", "tags": "quincy jones jazz latin bossa groove fun upbeat austin powers"}, {"id": "abide-with-me", "t": "Abide With Me", "by": "Traditional", "v": "Lead vocals + choir", "d": "4:04", "cat": "gospel", "tags": "hymn gospel choir church memorial reflective"}, {"id": "bless-the-lord", "t": "Bless the Lord", "by": "Traditional", "v": "Lead vocal + choir", "d": "3:50", "cat": "gospel", "tags": "gospel choir church praise uplifting"}, {"id": "amazing-god", "t": "Amazing God", "by": "Traditional", "v": "Lead vocal + choir", "d": "3:06", "cat": "gospel", "tags": "gospel choir church praise uplifting"}, {"id": "great-i-am", "t": "Great I Am", "by": "Volney Morgan", "v": "Lead vocal + choir", "d": "5:54", "cat": "gospel", "tags": "gospel choir church praise big finale"}, {"id": "avengers", "t": "The Avengers Suite", "by": "Laurie Johnson", "v": "Instrumental", "d": "3:11", "cat": "film", "tags": "spy tv theme british 60s film movie opener instrumental fun family pops"}, {"id": "casino-royale", "t": "Casino Royale", "by": "Burt Bacharach", "v": "Instrumental", "d": "2:37", "cat": "film", "tags": "bond spy 60s herb alpert film movie instrumental fun pops short"}, {"id": "ohmss", "t": "On Her Majesty’s Secret Service", "by": "John Barry", "v": "Instrumental", "d": "2:32", "cat": "film", "tags": "bond spy john barry film movie instrumental pops opener short"}, {"id": "spectre", "t": "Spectre", "by": "Radiohead", "v": "Male vocal", "d": "3:12", "cat": "film", "tags": "bond spy radiohead film movie ballad vocal pops"}, {"id": "uncle", "t": "The Man from U.N.C.L.E.", "by": "Jerry Goldsmith", "v": "Instrumental", "d": "2:40", "cat": "film", "tags": "spy tv theme 60s film instrumental fun family pops short"}, {"id": "little-bird", "t": "The Little Bird", "by": "Kyle Daniel Gordon (original work)", "v": "Instrumental", "d": "5:21", "cat": "concert", "tags": "original new music premiere spring nature birds family subscription classical contemporary"}, {"id": "golden-age-overture", "t": "Golden Age Overture", "by": "Kyle Daniel Gordon (original work)", "v": "Instrumental", "d": "1:38", "cat": "concert", "tags": "original overture opener hollywood golden age film pops short fanfare instrumental"}, {"id": "l-is-for-love", "t": "L Is for Love", "by": "Kyle Daniel Gordon (original work)", "v": "Instrumental", "d": "4:11", "cat": "concert", "tags": "original love valentines romantic lyrical instrumental"}, {"id": "fashion", "t": "Fashion", "by": "Lady Gaga", "v": "Instrumental or vocal feature", "d": "2:54", "cat": "concert", "tags": "lady gaga pop pride fun young audiences dance upbeat instrumental vocal"}, {"id": "la-vie-en-rose", "t": "La Vie en Rose / Non, je ne regrette rien", "by": "Édith Piaf", "v": "Instrumental or vocal feature", "d": "5:31", "cat": "concert", "tags": "piaf french paris cabaret love valentines romantic medley instrumental vocal bastille day"}, {"id": "ma-rendi", "t": "Ma rendi pur contento", "by": "Vincenzo Bellini", "v": "Vocalist + choir", "d": "1:54", "cat": "concert", "tags": "bellini italian art song opera aria lyrical choir chorus soprano tenor classical romantic gentle"}, {"id": "orage", "t": "Orage (from Platée)", "by": "Jean-Philippe Rameau", "v": "Instrumental", "d": "2:02", "cat": "concert", "tags": "baroque french storm chamber small orchestra short classical instrumental"}, {"id": "whatd-i-say", "t": "What’d I Say", "by": "Ray Charles", "v": "Vocalist (+ backing vocal)", "d": "4:31", "cat": "concert", "tags": "ray charles big band jazz rhythm and blues soul swing finale encore upbeat"}, {"id": "ode-to-hope", "t": "Ode to Hope", "by": "Beethoven, reimagined", "v": "Instrumental", "d": "On request", "cat": "concert", "tags": "beethoven ode to joy peace unity side by side youth community education un day memorial instrumental"}, {"id": "ode-to-peace", "t": "Ode to Peace", "by": "Beethoven, reimagined", "v": "Instrumental", "d": "On request", "cat": "concert", "tags": "beethoven ode to joy peace unity memorial anthem instrumental"}, {"id": "feliz-navidad", "t": "Feliz Navidad", "by": "José Feliciano", "v": "Vocalist", "d": "2:15", "cat": "holiday", "tags": "holiday christmas december pops festive family  feliz navidad"}, {"id": "fairytale-of-new-york", "t": "Fairytale of New York", "by": "The Pogues (MacGowan / Finer)", "v": "Instrumental", "d": "3:55", "cat": "holiday", "tags": "holiday christmas december pops festive family  fairytale of new york"}, {"id": "i-saw-three-ships", "t": "I Saw Three Ships", "by": "Traditional", "v": "Vocalist", "d": "2:15", "cat": "holiday", "tags": "holiday christmas december pops festive family  i saw three ships"}, {"id": "this-christmas", "t": "This Christmas", "by": "Donny Hathaway / Nadine McKinnor", "v": "Lead vocal + choir", "d": "4:10", "cat": "holiday", "tags": "holiday christmas december pops festive family  this christmas"}, {"id": "do-re-mi", "t": "Do-Re-Mi", "by": "Richard Rodgers / Oscar Hammerstein II", "v": "Vocalist", "d": "2:10", "cat": "holiday", "tags": "holiday christmas december pops festive family  do-re-mi"}, {"id": "hark-sfs", "t": "Hark! The Herald Angels Sing", "by": "Mendelssohn / Wesley", "v": "Choir", "d": "4–5 min", "cat": "holiday", "tags": "holiday christmas december pops festive family  hark! the herald angels sing"}, {"id": "hark-gospel", "t": "Hark! The Herald Angels Sing", "by": "Traditional", "v": "Choir", "d": "3:45", "cat": "holiday", "tags": "holiday christmas december pops festive family gospel choir hark! the herald angels sing"}, {"id": "o-come-all-ye-faithful", "t": "O Come All Ye Faithful", "by": "Traditional", "v": "Choir", "d": "6:00", "cat": "holiday", "tags": "holiday christmas december pops festive family gospel choir o come all ye faithful"}, {"id": "joy-to-the-world", "t": "Joy to the World", "by": "Traditional", "v": "Choir", "d": "4:05", "cat": "holiday", "tags": "holiday christmas december pops festive family gospel choir joy to the world"}];
@@ -785,6 +849,11 @@ function show(cat){document.querySelectorAll('.chips button[data-f]').forEach(fu
 document.querySelectorAll('.chips button[data-f]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.f);var t=document.getElementById(b.dataset.f=='all'?'soul':b.dataset.f);if(t)t.scrollIntoView({behavior:'smooth'})})});
 document.querySelectorAll('.prog').forEach(function(p){p.addEventListener('click',function(e){if(e.target.closest('a'))return;show(p.dataset.go);document.getElementById(p.dataset.go).scrollIntoView({behavior:'smooth'})})});
 })();</script>
+<script>(function(){var lb=document.getElementById('lb'),im=lb.querySelector('img');
+function op(b){im.src=b.dataset.full;im.alt=b.getAttribute('aria-label');lb.classList.add('on');try{clarity('event','library_sample')}catch(e){}}
+document.querySelectorAll('.ch').forEach(function(a){var t=a.querySelector('.thumb'),s=a.querySelector('.smp');t.addEventListener('click',function(){op(t)});if(s)s.addEventListener('click',function(){op(t)})});
+lb.addEventListener('click',function(){lb.classList.remove('on')});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on')});})();</script>
 <script>addEventListener('load',function(){var s=document.createElement('script');s.defer=true;s.src='https://static.cloudflareinsights.com/beacon.min.js';s.setAttribute('data-cf-beacon','{"token": "74d2ccc3aba8442e8ffe162baef5f751"}');document.body.appendChild(s)})</script><script>
 /* Microsoft Clarity (heatmaps + recordings), loaded only after the page is idle so it never slows the first screen */
 addEventListener('load',function(){var go=function(){(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","zgts1iwdii");

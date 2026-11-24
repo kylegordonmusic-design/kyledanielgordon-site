@@ -24,7 +24,7 @@ POPS1 = '1.1.1.1 — 1.1.1.1 — timp · perc — piano · harp · bass guitar �
 C = [
  # Soul & gospel
  ('soul-overture', 'Soul Overture', '', KDG, 'soul', 'Instrumental', '0:51', SOUL_INST, 'overture opener curtain raiser short instrumental soul funk black history month'),
- ('a-change-is-gonna-come', 'A Change Is Gonna Come', 'Sam Cooke', KDG, 'soul', 'Lead vocal', '3:14', SOUL_INST, 'sam cooke civil rights mlk ballad black history month juneteenth anthem reflective'),
+ ('a-change-is-gonna-come', 'A Change Is Gonna Come', 'Sam Cooke', 'René Hall, adapted by Kyle Daniel Gordon', 'soul', 'Lead vocal', '3:14', SOUL_INST, 'sam cooke civil rights mlk ballad black history month juneteenth anthem reflective'),
  ('ball-of-confusion', 'Ball of Confusion', 'The Temptations', KDG, 'soul', 'Lead vocal + choir', '3:45', SOUL_INST, 'soul motown protest civil rights black history month juneteenth funk upbeat energetic'),
  ('hard-times', 'Hard Times', 'Curtis Mayfield', KDG, 'soul', 'Lead vocal', '3:33', SOUL_INST, 'soul funk protest black history month groove'),
  ('how-i-got-over', 'How I Got Over', 'Clara Ward', KDG + ' & LJ Singers', 'gospel', 'Lead vocal + choir', '2:53', SOUL_INST, 'gospel choir church aretha black history month juneteenth uplifting celebration'),
@@ -99,12 +99,19 @@ def build(mode, src_page):
     allc = C + holiday_entries()
     data = [dict(id=i, t=t, by=b, arr=a, cat=c, v=v, d=d, inst=ins, tags=tg) for i, t, b, a, c, v, d, ins, tg in allc]
 
+    def sample(i, hol):
+        p = os.path.join(H.HERE if hol else HERE, 'img' if hol else 'samples', i + '.webp')
+        if mode == 'preview': return H.b64(p, 'image/webp')
+        return f'/holiday-library/img/{i}.webp' if hol else f'/library/img/{i}.webp'
+
     def row(x):
         hol = x['cat'] == 'holiday'
-        by = (E(x['by']) + ' · ' if x['by'] else '') + (('arr. ' + E(x['arr'])) if x['arr'] else '')
-        cta = (f'<a class="btn line sm" href="/holiday-library/">Score sample ↗</a>' if hol else '') + \
+        by = ' · '.join(p for p in [E(x['by']), ('arr. ' + E(x['arr'])) if x['arr'] else ''] if p)
+        cta = f'<button class="btn line sm smp" type="button">Score sample</button>' + \
               f'<a class="btn solid sm" href="{mailto("Perusal request: " + x["t"])}">Request perusal</a>'
+        src = sample(x['id'], hol)
         return f'''<article class="ch" id="c-{x['id']}" data-cat="{x['cat']}">
+  <button class="thumb" type="button" data-full="{src}" aria-label="Score sample: {E(x['t'])}"><img src="{src}" alt="First score page of {E(x['t'])}, watermarked" loading="lazy" width="1100" height="1700"></button>
   <div class="ch-main">
     <h3>{E(x['t'])}</h3>
     <p class="by">{by}</p>
@@ -118,7 +125,7 @@ def build(mode, src_page):
     for key, name, desc in CATS:
         rows = ''.join(row(x) for x in data if x['cat'] == key)
         n = sum(1 for x in data if x['cat'] == key)
-        extra = '<p class="sec-note">Watermarked score samples for every holiday chart are on the <a class="cl" href="/holiday-library/">Holiday Library</a> page.</p>' if key == 'holiday' else ''
+        extra = '<p class="sec-note">More about the holiday charts on the <a class="cl" href="/holiday-library/">Holiday Library</a> page.</p>' if key == 'holiday' else ''
         secs.append(f'''<section class="sec" id="{key}" data-sec="{key}">
   <header class="sec-h"><div><span class="mono count">{n} charts</span><h2>{E(name)}</h2></div><p>{E(desc)}</p></header>
   {extra}
@@ -179,7 +186,14 @@ def build(mode, src_page):
 .sec-h .count{color:#c2577a}
 .sec-h p{color:#625d55;margin:0;max-width:520px;text-align:right;font-size:15px}
 .sec-note{font-size:15px;color:#625d55;margin:14px 0 0}
-.ch{display:grid;grid-template-columns:minmax(0,1.6fr) 250px 150px 170px;gap:10px 24px;align-items:center;padding:18px 0;border-bottom:1px solid #1b1a1726;scroll-margin-top:80px}
+.ch{display:grid;grid-template-columns:64px minmax(0,1.6fr) 230px 140px 260px;gap:10px 24px;align-items:center;padding:18px 0;border-bottom:1px solid #1b1a1726;scroll-margin-top:80px}
+.ch .thumb{grid-row:span 1;padding:0;border:1px solid #1b1a1726;background:#fff;cursor:zoom-in;width:64px;aspect-ratio:11/17;overflow:hidden;box-shadow:0 8px 18px -12px #1b1a1766;transition:transform .2s}
+.ch .thumb:hover{transform:translateY(-2px)}
+.ch .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+#lb{position:fixed;inset:0;background:#1b1a17e6;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:4vh 16px;z-index:99;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:min(900px,100%);height:auto;background:#fff;box-shadow:0 20px 60px #0008}
+#lb .x{position:fixed;top:14px;right:18px;color:#f7f4ec;font:500 12px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
 .ch.hit{background:linear-gradient(90deg,#f3d9cf 0%,transparent 70%)}
 .ch h3{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:28px;line-height:1;margin:0}
 .ch .by{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:18px;color:#625d55;margin:4px 0 0}
@@ -220,7 +234,7 @@ def build(mode, src_page):
 .cta h2{font-family:'Archivo','Arial Narrow',sans-serif;font-stretch:62%;font-weight:800;text-transform:uppercase;font-size:clamp(48px,7vw,96px);line-height:.9;margin:12px 0 22px}
 .cta p{color:#625d55;margin:0 0 26px}
 .cta .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-@media (max-width:1100px){.progs .grid{grid-template-columns:1fr 1fr}.ch{grid-template-columns:minmax(0,1fr) auto;}.ch-inst{grid-column:1/-1}.ch-cta{grid-column:1/-1;justify-content:flex-start}}
+@media (max-width:1100px){.progs .grid{grid-template-columns:1fr 1fr}.ch{grid-template-columns:64px minmax(0,1fr) auto;}.ch .thumb{grid-row:span 2}.ch-inst{grid-column:2/-1}.ch-cta{grid-column:1/-1;justify-content:flex-start}}
 @media (max-width:760px){
  .lib.hero{padding-top:120px !important}
  .lib .lede{font-size:18px}
@@ -229,7 +243,13 @@ def build(mode, src_page):
  .chips{gap:6px;padding:10px 24px;margin-left:-24px;margin-right:-24px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chips button{padding:8px 12px;font-size:11px;white-space:nowrap;flex:0 0 auto}.chips .tot{display:none}
  .progs .grid{grid-template-columns:1fr}
  .sec-h{display:block}.sec-h p{text-align:left;margin-top:8px}
- .ch{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;padding:18px 0}.ch-main{grid-column:1/-1}.ch h3{font-size:26px}.ch-facts{grid-column:1/-1}.ch-inst{grid-column:1/2;align-self:center}.ch-cta{grid-column:2/3;grid-row:3;justify-content:flex-end}.ch-cta .btn.solid{background:transparent;color:#1b1a17;border-color:#1b1a17}
+ .ch{grid-template-columns:56px minmax(0,1fr);gap:10px 14px;padding:18px 0}
+.ch .thumb{width:56px;grid-row:1/3;grid-column:1}
+.ch-main{grid-column:2}
+.ch h3{font-size:26px}
+.ch-facts{grid-column:2}
+.ch-inst{grid-column:1/-1;align-self:center}
+.ch-cta{grid-column:1/-1;justify-content:flex-start;flex-wrap:wrap}.ch-cta .btn.solid{background:transparent;color:#1b1a17;border-color:#1b1a17}
  .lib .fees{grid-template-columns:1fr;padding:30px 22px;gap:20px}.lib .fees h2{font-size:44px}
  .lib table thead{display:none}
  .lib table tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding:16px 0;border-bottom:1px solid #f7f4ec2e}
@@ -355,7 +375,13 @@ document.querySelectorAll('.prog').forEach(function(p){p.addEventListener('click
 </main>
 {foot}
 </div>
+<div id="lb" role="dialog" aria-label="Score sample"><span class="x">Close ×</span><img alt=""></div>
 <script>{js}</script>
+<script>(function(){{var lb=document.getElementById('lb'),im=lb.querySelector('img');
+function op(b){{im.src=b.dataset.full;im.alt=b.getAttribute('aria-label');lb.classList.add('on');try{{clarity('event','library_sample')}}catch(e){{}}}}
+document.querySelectorAll('.ch').forEach(function(a){{var t=a.querySelector('.thumb'),s=a.querySelector('.smp');t.addEventListener('click',function(){{op(t)}});if(s)s.addEventListener('click',function(){{op(t)}})}});
+lb.addEventListener('click',function(){{lb.classList.remove('on')}});
+document.addEventListener('keydown',function(e){{if(e.key==='Escape')lb.classList.remove('on')}});}})();</script>
 {tail}"""
 
     og = '''<meta property="og:type" content="website"><meta property="og:site_name" content="Kyle Daniel Gordon">
@@ -394,6 +420,9 @@ if __name__ == '__main__':
     else:
         d = os.path.join(out, 'library'); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w').write(page)
+        os.makedirs(os.path.join(d, 'img'), exist_ok=True)
+        for f in os.listdir(os.path.join(HERE, 'samples')):
+            import shutil; shutil.copy(os.path.join(HERE, 'samples', f), os.path.join(d, 'img', f))
         og = os.path.join(HERE, 'og-library.jpg')
         if os.path.exists(og):
             import shutil; shutil.copy(og, os.path.join(d, 'share.jpg'))
